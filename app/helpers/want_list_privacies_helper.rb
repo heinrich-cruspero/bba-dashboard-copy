@@ -1,0 +1,2 @@
+module WantListPrivaciesHelper
+end

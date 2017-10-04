@@ -1,0 +1,2 @@
+class WantListPrivacy < ApplicationRecord
+end
