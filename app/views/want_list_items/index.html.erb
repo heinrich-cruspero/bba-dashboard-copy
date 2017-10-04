@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Want List Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Want list</th>
+      <th>Isbn</th>
+      <th>Quantity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @want_list_items.each do |want_list_item| %>
+      <tr>
+        <td><%= want_list_item.want_list %></td>
+        <td><%= want_list_item.isbn %></td>
+        <td><%= want_list_item.quantity %></td>
+        <td><%= link_to 'Show', want_list_item %></td>
+        <td><%= link_to 'Edit', edit_want_list_item_path(want_list_item) %></td>
+        <td><%= link_to 'Destroy', want_list_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Want List Item', new_want_list_item_path %>

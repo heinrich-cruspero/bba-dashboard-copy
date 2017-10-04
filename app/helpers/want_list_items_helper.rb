@@ -1,0 +1,2 @@
+module WantListItemsHelper
+end

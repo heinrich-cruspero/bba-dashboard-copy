@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :want_list_items
   resources :want_lists
   root 'users#index'
   devise_for :users
