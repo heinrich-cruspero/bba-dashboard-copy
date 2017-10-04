@@ -1,8 +1,11 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
     @user = users(:one)
+    sign_in users(:one)
   end
 
   test "should get index" do
@@ -16,6 +19,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create user" do
+    sign_out users(:one)
+
     assert_difference('User.count') do
       post users_url, params: { user: { email: "test@test.com", password: "testpassword" } }
     end

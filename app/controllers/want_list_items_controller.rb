@@ -1,4 +1,6 @@
 class WantListItemsController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_want_list_item, only: [:show, :edit, :update, :destroy]
 
   # GET /want_list_items

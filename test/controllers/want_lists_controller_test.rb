@@ -1,8 +1,11 @@
 require 'test_helper'
 
 class WantListsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
     @want_list = want_lists(:one)
+    sign_in users(:one)
   end
 
   test "should get index" do
