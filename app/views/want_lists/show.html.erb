@@ -1,19 +1,23 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @want_list.name %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @want_list.user %>
-</p>
-
-<p>
-  <strong>Want list privacy:</strong>
-  <%= @want_list.want_list_privacy %>
-</p>
+<ul class="mdl-list">
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <strong>Name:</strong>
+      <%= @want_list.name %>
+    </span>
+  </li>
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <strong>User:</strong>
+      <%= @want_list.user.email %>
+    </span>
+  </li>
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <strong>Want list privacy:</strong>
+      <%= @want_list.want_list_privacy.name %>
+    </span>
+  </li>
+</ul>
 
 <%= link_to 'Edit', edit_want_list_path(@want_list) %> |
 <%= link_to 'Back', want_lists_path %>

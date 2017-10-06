@@ -27,6 +27,7 @@ class WantListsController < ApplicationController
   # POST /want_lists.json
   def create
     @want_list = WantList.new(want_list_params)
+    @want_list.user = current_user
 
     respond_to do |format|
       if @want_list.save

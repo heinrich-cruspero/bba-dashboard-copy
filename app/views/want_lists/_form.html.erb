@@ -1,32 +1,22 @@
 <%= form_with(model: want_list, local: true) do |form| %>
-  <% if want_list.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(want_list.errors.count, "error") %> prohibited this want_list from being saved:</h2>
-
-      <ul>
-      <% want_list.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :want_list_name %>
+  <div class="mdl-textfield mdl-js-textfield">
+    <%= form.label :name, class: "mdl-textfield__label" %><br />
+    <%= form.text_field :name, id: :want_list_name, class: "mdl-textfield__input" %>
+    <% want_list.errors.full_messages_for(:name).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+    <% end %>
+  </div>
+    <br />
+  <div class="mdl-textfield mdl-js-textfield">
+    <%= form.collection_radio_buttons :want_list_privacy_id, WantListPrivacy.all, :id, :name %>
+    <% want_list.errors.full_messages_for(:want_list_privacy_id).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :want_list_user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :want_list_privacy_id %>
-    <%= form.text_field :want_list_privacy_id, id: :want_list_want_list_privacy_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="mdl-card__actions">
+    <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"%>
   </div>
 <% end %>
+
+<%= link_to 'Back', want_lists_path %>
