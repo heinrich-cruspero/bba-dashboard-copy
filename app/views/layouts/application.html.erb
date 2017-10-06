@@ -36,7 +36,7 @@
     <% if user_signed_in? %>
       <%= render 'layouts/toolbars' %>
     <% else %>
-      <%= yield %>
+      <%= render 'layouts/devise' %>
     <% end %>
   </body>
 </html>
