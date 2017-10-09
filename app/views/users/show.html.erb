@@ -1,4 +1,17 @@
-<p id="notice"><%= notice %></p>
+<ul class="mdl-list">
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </span>
+  </li>
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <strong>Admin:</strong>
+      <%= @user.admin %>
+    </span>
+  </li>
+</ul>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

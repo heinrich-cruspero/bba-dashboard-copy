@@ -1,17 +1,10 @@
 <%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="mdl-textfield mdl-js-textfield">
+      <%= form.label :admin, class: "mdl-check_box__label" %><br />
+      <%= form.check_box :admin, class: "mdl-check_box__input" %>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="mdl-card__actions">
+      <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
+    </div>
 <% end %>
