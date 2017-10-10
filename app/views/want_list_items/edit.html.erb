@@ -1,6 +1,5 @@
-<h1>Editing Want List Item</h1>
-
 <%= render 'form', want_list_item: @want_list_item %>
 
 <%= link_to 'Show', @want_list_item %> |
-<%= link_to 'Back', want_list_items_path %>
+<%= link_to 'Back', items_want_list_path(@want_list_item.want_list) %>
+

@@ -44,7 +44,7 @@ class WantListItemsController < ApplicationController
   def update
     respond_to do |format|
       if @want_list_item.update(want_list_item_params)
-        format.html { redirect_to @want_list_item, notice: 'Want list item was successfully updated.' }
+        format.html { redirect_to items_want_list_path(@want_list_item.want_list), notice: 'Want list item was successfully updated.' }
         format.json { render :show, status: :ok, location: @want_list_item }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class WantListItemsController < ApplicationController
   def destroy
     @want_list_item.destroy
     respond_to do |format|
-      format.html { redirect_to want_list_items_url, notice: 'Want list item was successfully destroyed.' }
+      format.html { redirect_to items_want_list_path(@want_list_item.want_list), notice: 'Want list item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

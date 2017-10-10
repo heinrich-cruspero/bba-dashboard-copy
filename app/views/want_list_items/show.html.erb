@@ -1,19 +1,23 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Want list:</strong>
-  <%= @want_list_item.want_list %>
-</p>
-
-<p>
-  <strong>EAN:</strong>
-  <%= @want_list_item.ean %>
-</p>
-
-<p>
-  <strong>Quantity:</strong>
-  <%= @want_list_item.quantity %>
-</p>
+<ul class="mdl-list">
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <strong>Want list:</strong>
+      <%= @want_list_item.want_list.name %>
+    </span>
+  </li>
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <strong>EAN:</strong>
+      <%= @want_list_item.ean %>
+    </span>
+  </li>
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <strong>Quantity:</strong>
+      <%= @want_list_item.quantity %>
+    </span>
+  </li>
+</ul>
 
 <%= link_to 'Edit', edit_want_list_item_path(@want_list_item) %> |
-<%= link_to 'Back', want_list_items_path %>
+<%= link_to 'Back', items_want_list_path(@want_list_item.want_list) %>

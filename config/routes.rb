@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   resources :want_list_items
-  resources :want_lists
+  resources :want_lists do
+    member do
+      get :items
+    end
+  end
   root 'dashboards#index'
   devise_for :users
   resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

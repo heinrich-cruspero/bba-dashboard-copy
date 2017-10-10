@@ -4,7 +4,7 @@
       <th>Name</th>
       <th>User</th>
       <th>Want list privacy</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -14,6 +14,7 @@
         <td><%= want_list.name %></td>
         <td><%= want_list.user.email %></td>
         <td><%= want_list.want_list_privacy.name %></td>
+        <td><%= link_to 'Items', items_want_list_path(want_list) %></td>
         <td><%= link_to 'Show', want_list %></td>
         <td><%= link_to 'Edit', edit_want_list_path(want_list) %></td>
         <td><%= link_to 'Destroy', want_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>

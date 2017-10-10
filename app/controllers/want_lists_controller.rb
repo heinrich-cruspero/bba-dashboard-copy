@@ -3,7 +3,7 @@ class WantListsController < ApplicationController
 
   before_action :authenticate_user!
 
-  before_action :set_want_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_want_list, only: [:show, :edit, :update, :destroy, :items]
 
   after_action :upload_items, only: [:update, :create]
 
@@ -66,6 +66,11 @@ class WantListsController < ApplicationController
       format.html { redirect_to want_lists_url, notice: 'Want list was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # GET /items/1
+  def items
+    @want_list_items = @want_list.want_list_items
   end
 
   private
