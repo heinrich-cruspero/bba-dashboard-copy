@@ -1,4 +1,6 @@
 class WantListsController < ApplicationController
+  load_and_authorize_resource
+
   require 'csv'
 
   before_action :set_want_list, only: [:show, :edit, :update, :destroy, :items]
