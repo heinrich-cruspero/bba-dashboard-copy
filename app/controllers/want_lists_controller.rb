@@ -1,7 +1,11 @@
 class WantListsController < ApplicationController
+  require 'csv'
+
   before_action :authenticate_user!
 
   before_action :set_want_list, only: [:show, :edit, :update, :destroy]
+
+  after_action :upload_items, only: [:update, :create]
 
   # GET /want_lists
   # GET /want_lists.json
@@ -73,5 +77,16 @@ class WantListsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def want_list_params
       params.require(:want_list).permit(:name, :user_id, :want_list_privacy_id)
+    end
+
+    # After update & create process items file if exist
+    def upload_items
+      return if params[:want_list][:want_list_items].nil?
+
+      @want_list.want_list_items.delete_all
+
+      CSV.foreach(params[:want_list][:want_list_items].path, headers: true) do |row|
+        @want_list.want_list_items << WantListItem.new(row.to_hash)
+      end
     end
 end
