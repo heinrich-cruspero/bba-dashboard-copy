@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20171004153632) do
 
   create_table "want_list_items", force: :cascade do |t|
     t.bigint "want_list_id"
-    t.string "isbn"
+    t.string "ean"
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

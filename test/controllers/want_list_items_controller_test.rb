@@ -20,7 +20,7 @@ class WantListItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create want_list_item" do
     assert_difference('WantListItem.count') do
-      post want_list_items_url, params: { want_list_item: { isbn: @want_list_item.isbn, quantity: @want_list_item.quantity, want_list_id: @want_list_item.want_list_id } }
+      post want_list_items_url, params: { want_list_item: { ean: @want_list_item.ean, quantity: @want_list_item.quantity, want_list_id: @want_list_item.want_list_id } }
     end
 
     assert_redirected_to want_list_item_url(WantListItem.last)
@@ -37,7 +37,7 @@ class WantListItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update want_list_item" do
-    patch want_list_item_url(@want_list_item), params: { want_list_item: { isbn: @want_list_item.isbn, quantity: @want_list_item.quantity, want_list_id: @want_list_item.want_list_id } }
+    patch want_list_item_url(@want_list_item), params: { want_list_item: { ean: @want_list_item.ean, quantity: @want_list_item.quantity, want_list_id: @want_list_item.want_list_id } }
     assert_redirected_to want_list_item_url(@want_list_item)
   end
 

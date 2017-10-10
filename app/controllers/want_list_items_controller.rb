@@ -71,6 +71,6 @@ class WantListItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def want_list_item_params
-      params.require(:want_list_item).permit(:want_list_id, :isbn, :quantity)
+      params.require(:want_list_item).permit(:want_list_id, :ean, :quantity)
     end
 end

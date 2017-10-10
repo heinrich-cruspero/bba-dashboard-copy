@@ -2,10 +2,10 @@
 
 one:
   want_list: one
-  isbn: MyString
+  ean: MyString
   quantity: 1
 
 two:
   want_list: two
-  isbn: MyString
+  ean: MyString
   quantity: 1
