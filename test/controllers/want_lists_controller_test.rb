@@ -50,7 +50,7 @@ class WantListsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get items" do
-    get want_list_items_url(@want_list)
+    get items_want_list_url(@want_list)
     assert_response :success
   end
 end

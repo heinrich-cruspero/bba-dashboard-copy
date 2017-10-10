@@ -1,20 +1,16 @@
 class WantListsController < ApplicationController
   require 'csv'
 
-  before_action :authenticate_user!
-
   before_action :set_want_list, only: [:show, :edit, :update, :destroy, :items]
 
   after_action :upload_items, only: [:update, :create]
 
   # GET /want_lists
-  # GET /want_lists.json
   def index
     @want_lists = WantList.all
   end
 
   # GET /want_lists/1
-  # GET /want_lists/1.json
   def show
   end
 
@@ -28,7 +24,6 @@ class WantListsController < ApplicationController
   end
 
   # POST /want_lists
-  # POST /want_lists.json
   def create
     @want_list = WantList.new(want_list_params)
     @want_list.user = current_user
@@ -36,30 +31,24 @@ class WantListsController < ApplicationController
     respond_to do |format|
       if @want_list.save
         format.html { redirect_to @want_list, notice: 'Want list was successfully created.' }
-        format.json { render :show, status: :created, location: @want_list }
       else
         format.html { render :new }
-        format.json { render json: @want_list.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /want_lists/1
-  # PATCH/PUT /want_lists/1.json
   def update
     respond_to do |format|
       if @want_list.update(want_list_params)
         format.html { redirect_to @want_list, notice: 'Want list was successfully updated.' }
-        format.json { render :show, status: :ok, location: @want_list }
       else
         format.html { render :edit }
-        format.json { render json: @want_list.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /want_lists/1
-  # DELETE /want_lists/1.json
   def destroy
     @want_list.destroy
     respond_to do |format|

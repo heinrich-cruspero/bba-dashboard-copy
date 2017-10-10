@@ -8,24 +8,6 @@ class WantListItemsControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:one)
   end
 
-  test "should get index" do
-    get want_list_items_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_want_list_item_url
-    assert_response :success
-  end
-
-  test "should create want_list_item" do
-    assert_difference('WantListItem.count') do
-      post want_list_items_url, params: { want_list_item: { ean: @want_list_item.ean, quantity: @want_list_item.quantity, want_list_id: @want_list_item.want_list_id } }
-    end
-
-    assert_redirected_to want_list_item_url(WantListItem.last)
-  end
-
   test "should show want_list_item" do
     get want_list_item_url(@want_list_item)
     assert_response :success
