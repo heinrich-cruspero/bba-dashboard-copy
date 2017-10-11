@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20171011134443) do
     t.string "isbn", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ean"], name: "index_books_on_ean"
-    t.index ["isbn"], name: "index_books_on_isbn"
+    t.index ["ean"], name: "index_books_on_ean", unique: true
+    t.index ["isbn"], name: "index_books_on_isbn", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,26 +43,29 @@ ActiveRecord::Schema.define(version: 20171011134443) do
   end
 
   create_table "want_list_items", force: :cascade do |t|
-    t.bigint "want_list_id"
-    t.string "ean"
-    t.integer "quantity"
+    t.bigint "want_list_id", null: false
+    t.string "ean", null: false
+    t.integer "quantity", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ean"], name: "index_want_list_items_on_ean"
     t.index ["want_list_id"], name: "index_want_list_items_on_want_list_id"
   end
 
   create_table "want_list_privacies", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_want_list_privacies_on_name", unique: true
   end
 
   create_table "want_lists", force: :cascade do |t|
-    t.string "name"
-    t.bigint "user_id"
-    t.bigint "want_list_privacy_id"
+    t.string "name", null: false
+    t.bigint "user_id", null: false
+    t.bigint "want_list_privacy_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_want_lists_on_name"
     t.index ["user_id"], name: "index_want_lists_on_user_id"
     t.index ["want_list_privacy_id"], name: "index_want_lists_on_want_list_privacy_id"
   end
