@@ -1,0 +1,17 @@
+<ul class="mdl-list">
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <strong>EAN:</strong>
+      <%= @book.ean %>
+    </span>
+  </li>
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <strong>ISBN:</strong>
+      <%= @book.isbn %>
+    </span>
+  </li>
+</ul>
+
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Back', books_path %>
