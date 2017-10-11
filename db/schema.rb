@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171011134443) do
+ActiveRecord::Schema.define(version: 20171011151952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "amazon_data", force: :cascade do |t|
+    t.bigint "book_id"
+    t.float "lowest_fba", default: 0.0, null: false
+    t.float "lowest_good_price", default: 0.0, null: false
+    t.integer "sales_rank", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_amazon_data_on_book_id", unique: true
+  end
 
   create_table "books", force: :cascade do |t|
     t.string "ean", null: false
@@ -22,6 +32,32 @@ ActiveRecord::Schema.define(version: 20171011134443) do
     t.datetime "updated_at", null: false
     t.index ["ean"], name: "index_books_on_ean", unique: true
     t.index ["isbn"], name: "index_books_on_isbn", unique: true
+  end
+
+  create_table "guide_data", force: :cascade do |t|
+    t.bigint "book_id"
+    t.float "list_price", default: 0.0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_guide_data_on_book_id", unique: true
+  end
+
+  create_table "indaba_data", force: :cascade do |t|
+    t.bigint "book_id"
+    t.float "bbap", default: 0.0, null: false
+    t.float "direct", default: 0.0, null: false
+    t.integer "tqs", default: 0, null: false
+    t.integer "weekly_sqad", default: 0, null: false
+    t.integer "weekly_sqmd", default: 0, null: false
+    t.float "past_day_sales_history_lowest_price", default: 0.0, null: false
+    t.float "past_day_sales_history_highest_price", default: 0.0, null: false
+    t.float "past_week_sales_history_lowest_price", default: 0.0, null: false
+    t.float "past_week_sales_history_highest_price", default: 0.0, null: false
+    t.float "past_month_sales_history_lowest_price", default: 0.0, null: false
+    t.float "past_month_sales_history_highest_price", default: 0.0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_indaba_data_on_book_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,6 +106,9 @@ ActiveRecord::Schema.define(version: 20171011134443) do
     t.index ["want_list_privacy_id"], name: "index_want_lists_on_want_list_privacy_id"
   end
 
+  add_foreign_key "amazon_data", "books"
+  add_foreign_key "guide_data", "books"
+  add_foreign_key "indaba_data", "books"
   add_foreign_key "want_list_items", "want_lists"
   add_foreign_key "want_lists", "users"
   add_foreign_key "want_lists", "want_list_privacies"
