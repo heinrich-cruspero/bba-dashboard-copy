@@ -48,7 +48,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -58,3 +58,6 @@ end
 gem 'devise'
 gem 'material_design_lite-sass'
 gem 'cancancan', '~> 2.0'
+gem 'jquery-rails'
+gem 'jquery-datatables-rails'
+gem 'ajax-datatables-rails'

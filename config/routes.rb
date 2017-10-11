@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :books
+  resources :books, except: %i[new, create, edit, update, destroy]
 
   resources :want_list_items, except: %i[index, new, create]
 
