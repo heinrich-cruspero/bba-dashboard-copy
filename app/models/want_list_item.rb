@@ -5,5 +5,5 @@ class WantListItem < ApplicationRecord
 
   has_one :user, :through => :want_list
 
-  belongs_to :book, :foreign_key => :ean, :primary_key => :ean
+  belongs_to :book, :foreign_key => :ean, :primary_key => :ean, optional: true
 end
