@@ -9,9 +9,9 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'dashboards#index'
+  root 'books#index'
 
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
   resources :users, except: %i[new, create]
 end
