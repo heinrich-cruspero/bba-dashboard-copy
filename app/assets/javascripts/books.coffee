@@ -26,4 +26,16 @@ $ ->
       {data: 'past_week_sales_history_highest_price', orderable: true, searchable: false}
       {data: 'past_month_sales_history_lowest_price', orderable: true, searchable: false}
       {data: 'past_month_sales_history_highest_price', orderable: true, searchable: false}
+      {data: 'first_lowest_price_indaba_name', orderable: true, searchable: false}
+      {data: 'first_lowest_price_indaba_lowest_price', orderable: true, searchable: false}
+      {data: 'first_lowest_price_indaba_quantity_online', orderable: true, searchable: false}
+      {data: 'second_lowest_price_indaba_name', orderable: true, searchable: false}
+      {data: 'second_lowest_price_indaba_lowest_price', orderable: true, searchable: false}
+      {data: 'second_lowest_price_indaba_quantity_online', orderable: true, searchable: false}
+      {data: 'third_lowest_price_indaba_name', orderable: true, searchable: false}
+      {data: 'third_lowest_price_indaba_lowest_price', orderable: true, searchable: false}
+      {data: 'third_lowest_price_indaba_quantity_online', orderable: true, searchable: false}
+      {data: 'forth_lowest_price_indaba_name', orderable: true, searchable: false}
+      {data: 'forth_lowest_price_indaba_lowest_price', orderable: true, searchable: false}
+      {data: 'forth_lowest_price_indaba_quantity_online', orderable: true, searchable: false}
     ]

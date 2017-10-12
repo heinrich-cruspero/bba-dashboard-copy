@@ -19,6 +19,18 @@ class BookDatatable < AjaxDatatablesRails::Base
       past_week_sales_history_highest_price: { source: "IndabaDatum.past_week_sales_history_highest_price", cond: :eq, searchable: false, orderable: true },
       past_month_sales_history_lowest_price: { source: "IndabaDatum.past_month_sales_history_lowest_price", cond: :eq, searchable: false, orderable: true },
       past_month_sales_history_highest_price: { source: "IndabaDatum.past_month_sales_history_highest_price", cond: :eq, searchable: false, orderable: true },
+      first_lowest_price_indaba_name: { source: "IndabaDatum.first_lowest_price_indaba_name", cond: :eq, searchable: false, orderable: true },
+      first_lowest_price_indaba_lowest_price: { source: "IndabaDatum.first_lowest_price_indaba_lowest_price", cond: :eq, searchable: false, orderable: true },
+      first_lowest_price_indaba_quantity_online: { source: "IndabaDatum.first_lowest_price_indaba_quantity_online", cond: :eq, searchable: false, orderable: true },
+      second_lowest_price_indaba_name: { source: "IndabaDatum.second_lowest_price_indaba_name", cond: :eq, searchable: false, orderable: true },
+      second_lowest_price_indaba_lowest_price: { source: "IndabaDatum.second_lowest_price_indaba_lowest_price", cond: :eq, searchable: false, orderable: true },
+      second_lowest_price_indaba_quantity_online: { source: "IndabaDatum.second_lowest_price_indaba_quantity_online", cond: :eq, searchable: false, orderable: true },
+      third_lowest_price_indaba_name: { source: "IndabaDatum.third_lowest_price_indaba_name", cond: :eq, searchable: false, orderable: true },
+      third_lowest_price_indaba_lowest_price: { source: "IndabaDatum.third_lowest_price_indaba_lowest_price", cond: :eq, searchable: false, orderable: true },
+      third_lowest_price_indaba_quantity_online: { source: "IndabaDatum.third_lowest_price_indaba_quantity_online", cond: :eq, searchable: false, orderable: true },
+      forth_lowest_price_indaba_name: { source: "IndabaDatum.forth_lowest_price_indaba_name", cond: :eq, searchable: false, orderable: true },
+      forth_lowest_price_indaba_lowest_price: { source: "IndabaDatum.forth_lowest_price_indaba_lowest_price", cond: :eq, searchable: false, orderable: true },
+      forth_lowest_price_indaba_quantity_online: { source: "IndabaDatum.forth_lowest_price_indaba_quantity_online", cond: :eq, searchable: false, orderable: true },
     }
   end
 
@@ -43,6 +55,18 @@ class BookDatatable < AjaxDatatablesRails::Base
         past_week_sales_history_highest_price: record.indaba_datum.past_week_sales_history_highest_price,
         past_month_sales_history_lowest_price: record.indaba_datum.past_month_sales_history_lowest_price,
         past_month_sales_history_highest_price: record.indaba_datum.past_month_sales_history_highest_price,
+        first_lowest_price_indaba_name: record.indaba_datum.first_lowest_price_indaba_name,
+        first_lowest_price_indaba_lowest_price: record.indaba_datum.first_lowest_price_indaba_lowest_price,
+        first_lowest_price_indaba_quantity_online: record.indaba_datum.first_lowest_price_indaba_quantity_online,
+        second_lowest_price_indaba_name: record.indaba_datum.second_lowest_price_indaba_name,
+        second_lowest_price_indaba_lowest_price: record.indaba_datum.second_lowest_price_indaba_lowest_price,
+        second_lowest_price_indaba_quantity_online: record.indaba_datum.second_lowest_price_indaba_quantity_online,
+        third_lowest_price_indaba_name: record.indaba_datum.third_lowest_price_indaba_name,
+        third_lowest_price_indaba_lowest_price: record.indaba_datum.third_lowest_price_indaba_lowest_price,
+        third_lowest_price_indaba_quantity_online: record.indaba_datum.third_lowest_price_indaba_quantity_online,
+        forth_lowest_price_indaba_name: record.indaba_datum.forth_lowest_price_indaba_name,
+        forth_lowest_price_indaba_lowest_price: record.indaba_datum.forth_lowest_price_indaba_lowest_price,
+        forth_lowest_price_indaba_quantity_online: record.indaba_datum.forth_lowest_price_indaba_quantity_online,
       }
     end
   end

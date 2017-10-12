@@ -55,6 +55,18 @@ ActiveRecord::Schema.define(version: 20171011151952) do
     t.float "past_week_sales_history_highest_price", default: 0.0, null: false
     t.float "past_month_sales_history_lowest_price", default: 0.0, null: false
     t.float "past_month_sales_history_highest_price", default: 0.0, null: false
+    t.string "first_lowest_price_indaba_name", null: false
+    t.float "first_lowest_price_indaba_lowest_price", default: 0.0, null: false
+    t.integer "first_lowest_price_indaba_quantity_online", default: 0, null: false
+    t.string "second_lowest_price_indaba_name", null: false
+    t.float "second_lowest_price_indaba_lowest_price", default: 0.0, null: false
+    t.integer "second_lowest_price_indaba_quantity_online", default: 0, null: false
+    t.string "third_lowest_price_indaba_name", null: false
+    t.float "third_lowest_price_indaba_lowest_price", default: 0.0, null: false
+    t.integer "third_lowest_price_indaba_quantity_online", default: 0, null: false
+    t.string "forth_lowest_price_indaba_name", null: false
+    t.float "forth_lowest_price_indaba_lowest_price", default: 0.0, null: false
+    t.integer "forth_lowest_price_indaba_quantity_online", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_indaba_data_on_book_id", unique: true

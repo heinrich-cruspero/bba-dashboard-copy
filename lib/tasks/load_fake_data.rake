@@ -27,7 +27,25 @@ namespace :load_fake_data do
                        past_week_sales_history_lowest_price: Faker::Commerce.price,
                        past_week_sales_history_highest_price: Faker::Commerce.price,
                        past_month_sales_history_lowest_price: Faker::Commerce.price,
-                       past_month_sales_history_highest_price: Faker::Commerce.price }).save!
+                       past_month_sales_history_highest_price: Faker::Commerce.price,
+
+                       first_lowest_price_indaba_name: Faker::Company.name,
+                       first_lowest_price_indaba_lowest_price: Faker::Commerce.price,
+                       first_lowest_price_indaba_quantity_online: Faker::Number.number(3),
+
+                       second_lowest_price_indaba_name: Faker::Company.name,
+                       second_lowest_price_indaba_lowest_price: Faker::Commerce.price,
+                       second_lowest_price_indaba_quantity_online: Faker::Number.number(3),
+
+                       third_lowest_price_indaba_name: Faker::Company.name,
+                       third_lowest_price_indaba_lowest_price: Faker::Commerce.price,
+                       third_lowest_price_indaba_quantity_online: Faker::Number.number(3),
+
+                       forth_lowest_price_indaba_name: Faker::Company.name,
+                       forth_lowest_price_indaba_lowest_price: Faker::Commerce.price,
+                       forth_lowest_price_indaba_quantity_online: Faker::Number.number(3),
+
+                      }).save!
     end
   end
 
