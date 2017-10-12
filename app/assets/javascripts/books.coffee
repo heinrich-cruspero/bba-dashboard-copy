@@ -5,7 +5,7 @@ $ ->
     ajax: $('#books-table').data('source')
     pagingType: 'full_numbers'
     order: []
-    scrollY: '500px'
+    scrollY: ($(window).height() - 300) + 'px'
     scrollX: true
     pageLength: 100
     columns: [
