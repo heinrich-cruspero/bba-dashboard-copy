@@ -1,0 +1,60 @@
+<table class="mdl-data-table">
+  <thead>
+  <tr>
+    <th>BBAP</th>
+    <th>ListPrice</th>
+    <th>TQS</th>
+    <th>Direct</th>
+    <th>LowestGoodPrice</th>
+    <th>LowestFba</th>
+    <th>SalesRank</th>
+    <th>7SQAD</th>
+    <th>7SQMD</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%= @book.indaba_datum.bbap %></td>
+    <td><%= @book.guide_datum.list_price %></td>
+    <td><%= @book.indaba_datum.tqs %></td>
+    <td><%= @book.indaba_datum.direct %></td>
+    <td><%= @book.amazon_datum.lowest_good_price %></td>
+    <td><%= @book.amazon_datum.lowest_fba %></td>
+    <td><%= @book.amazon_datum.sales_rank %></td>
+    <td><%= @book.indaba_datum.weekly_sqad %></td>
+    <td><%= @book.indaba_datum.weekly_sqmd %></td>
+  </tr>
+  </tbody>
+</table>
+
+<table class="mdl-data-table">
+  <thead>
+    <tr>
+      <th>Indaba Instance</th>
+      <th>Quantity Online</th>
+      <th>Lowest Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @book.indaba_datum.first_lowest_price_indaba_name %></td>
+      <td><%= @book.indaba_datum.first_lowest_price_indaba_lowest_price %></td>
+      <td><%= @book.indaba_datum.first_lowest_price_indaba_quantity_online %></td>
+    </tr>
+    <tr>
+      <td><%= @book.indaba_datum.second_lowest_price_indaba_name %></td>
+      <td><%= @book.indaba_datum.second_lowest_price_indaba_lowest_price %></td>
+      <td><%= @book.indaba_datum.second_lowest_price_indaba_quantity_online %></td>
+    </tr>
+    <tr>
+      <td><%= @book.indaba_datum.third_lowest_price_indaba_name %></td>
+      <td><%= @book.indaba_datum.third_lowest_price_indaba_lowest_price %></td>
+      <td><%= @book.indaba_datum.third_lowest_price_indaba_quantity_online %></td>
+    </tr>
+    <tr>
+      <td><%= @book.indaba_datum.forth_lowest_price_indaba_name %></td>
+      <td><%= @book.indaba_datum.forth_lowest_price_indaba_lowest_price %></td>
+      <td><%= @book.indaba_datum.forth_lowest_price_indaba_quantity_online %></td>
+    </tr>
+  </tbody>
+</table>
