@@ -7,12 +7,10 @@ class CreateIndabaData < ActiveRecord::Migration[5.1]
       t.integer :tqs, null: false, default: 0
       t.integer :weekly_sqad, null: false, default: 0
       t.integer :weekly_sqmd, null: false, default: 0
-      t.float :past_day_sales_history_lowest_price, null: false, default: 0.00
-      t.float :past_day_sales_history_highest_price, null: false, default: 0.00
-      t.float :past_week_sales_history_lowest_price, null: false, default: 0.00
-      t.float :past_week_sales_history_highest_price, null: false, default: 0.00
-      t.float :past_month_sales_history_lowest_price, null: false, default: 0.00
-      t.float :past_month_sales_history_highest_price, null: false, default: 0.00
+      t.integer :past_day_sales_history_quantity, null: false, default: 0
+      t.integer :past_week_sales_history_quantity, null: false, default: 0
+      t.integer :past_month_sales_history_quantity, null: false, default: 0
+      t.integer :past_year_sales_history_quantity, null: false, default: 0
 
       t.string :first_lowest_price_indaba_name, null: false
       t.float :first_lowest_price_indaba_lowest_price, null: false, default: 0.00

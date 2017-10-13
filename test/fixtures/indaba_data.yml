@@ -7,12 +7,10 @@ one:
   tqs: 1
   weekly_sqad: 1
   weekly_sqmd: 1
-  past_day_sales_history_lowest_price: 1.5
-  past_day_sales_history_highest_price: 1.5
-  past_week_sales_history_lowest_price: 1.5
-  past_week_sales_history_highest_price: 1.5
-  past_month_sales_history_lowest_price: 1.5
-  past_month_sales_history_highest_price: 1.5
+  past_day_sales_history_quantity: 5
+  past_week_sales_history_quantity: 10
+  past_month_sales_history_quantity: 20
+  past_year_sales_history_quantity: 100
   first_lowest_price_indaba_name: first
   first_lowest_price_indaba_lowest_price: 2.3
   first_lowest_price_indaba_quantity_online: 5
@@ -33,12 +31,10 @@ two:
   tqs: 1
   weekly_sqad: 1
   weekly_sqmd: 1
-  past_day_sales_history_lowest_price: 1.5
-  past_day_sales_history_highest_price: 1.5
-  past_week_sales_history_lowest_price: 1.5
-  past_week_sales_history_highest_price: 1.5
-  past_month_sales_history_lowest_price: 1.5
-  past_month_sales_history_highest_price: 1.5
+  past_day_sales_history_quantity: 5
+  past_week_sales_history_quantity: 10
+  past_month_sales_history_quantity: 20
+  past_year_sales_history_quantity: 100
   first_lowest_price_indaba_name: first
   first_lowest_price_indaba_lowest_price: 2.3
   first_lowest_price_indaba_quantity_online: 5

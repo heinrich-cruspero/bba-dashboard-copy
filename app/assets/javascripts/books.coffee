@@ -4,19 +4,18 @@ $ ->
     serverSide: true
     ajax: $('#books-table').data('source')
     pagingType: 'full_numbers'
-    order: []
+    order: [[3,'desc']]
     scrollY: ($(window).height() - 300) + 'px'
     scrollX: true
     pageLength: 100
     columns: [
-      {data: 'ean', orderable: false, searchable: true}
       {data: 'isbn', orderable: false, searchable: true}
-      {data: 'past_day_sales_history_lowest_price', orderable: true, searchable: false}
-      {data: 'past_day_sales_history_highest_price', orderable: true, searchable: false}
-      {data: 'past_week_sales_history_lowest_price', orderable: true, searchable: false}
-      {data: 'past_week_sales_history_highest_price', orderable: true, searchable: false}
-      {data: 'past_month_sales_history_lowest_price', orderable: true, searchable: false}
-      {data: 'past_month_sales_history_highest_price', orderable: true, searchable: false}
+      {data: 'author', orderable: false, searchable: true}
+      {data: 'title', orderable: false, searchable: true}
+      {data: 'past_day_sales_history_quantity', orderable: true, searchable: false}
+      {data: 'past_week_sales_history_quantity', orderable: true, searchable: false}
+      {data: 'past_month_sales_history_quantity', orderable: true, searchable: false}
+      {data: 'past_year_sales_history_quantity', orderable: true, searchable: false}
     ]
 
   $('#books-table tbody').on 'click', 'tr', ->

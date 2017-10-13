@@ -1,7 +1,11 @@
 namespace :load_fake_data do
   task books: :environment do
     1000.times do
-      Book.new({ean: Faker::Number.unique.number(13).to_s, isbn: Faker::Number.unique.number(10).to_s}).save!
+      Book.new({ean: Faker::Number.unique.number(13).to_s,
+                isbn: Faker::Number.unique.number(10).to_s,
+                author: Faker::Book.author,
+                title: Faker::Book.title
+               }).save!
     end
   end
 
@@ -19,15 +23,16 @@ namespace :load_fake_data do
 
   task indaba_data: :environment do
     Book.all.each do |book|
-      IndabaDatum.new({book: book, bbap: Faker::Commerce.price, direct: Faker::Commerce.price,
-                       tqs: Faker::Number.number(3), weekly_sqad: Faker::Number.number(3),
+      IndabaDatum.new({book: book,
+                       bbap: Faker::Commerce.price,
+                       direct: Faker::Commerce.price,
+                       tqs: Faker::Number.number(3),
+                       weekly_sqad: Faker::Number.number(3),
                        weekly_sqmd: Faker::Number.number(3),
-                       past_day_sales_history_lowest_price: Faker::Commerce.price,
-                       past_day_sales_history_highest_price: Faker::Commerce.price,
-                       past_week_sales_history_lowest_price: Faker::Commerce.price,
-                       past_week_sales_history_highest_price: Faker::Commerce.price,
-                       past_month_sales_history_lowest_price: Faker::Commerce.price,
-                       past_month_sales_history_highest_price: Faker::Commerce.price,
+                       past_day_sales_history_quantity: Faker::Number.number(3),
+                       past_week_sales_history_quantity: Faker::Number.number(3),
+                       past_month_sales_history_quantity: Faker::Number.number(3),
+                       past_year_sales_history_quantity: Faker::Number.number(3),
 
                        first_lowest_price_indaba_name: Faker::Company.name,
                        first_lowest_price_indaba_lowest_price: Faker::Commerce.price,
