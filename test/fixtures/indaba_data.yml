@@ -10,18 +10,6 @@ one:
   past_week_sales_history_quantity: 10
   past_month_sales_history_quantity: 20
   past_year_sales_history_quantity: 100
-  first_lowest_price_indaba_name: first
-  first_lowest_price_indaba_lowest_price: 2.3
-  first_lowest_price_indaba_quantity_online: 5
-  second_lowest_price_indaba_name: second
-  second_lowest_price_indaba_lowest_price: 5.66
-  second_lowest_price_indaba_quantity_online: 10
-  third_lowest_price_indaba_name: third
-  third_lowest_price_indaba_lowest_price: 8.99
-  third_lowest_price_indaba_quantity_online: 6
-  forth_lowest_price_indaba_name: forth
-  forth_lowest_price_indaba_lowest_price: 7.99
-  forth_lowest_price_indaba_quantity_online: 4
 
 two:
   book: two
@@ -33,15 +21,3 @@ two:
   past_week_sales_history_quantity: 10
   past_month_sales_history_quantity: 20
   past_year_sales_history_quantity: 100
-  first_lowest_price_indaba_name: first
-  first_lowest_price_indaba_lowest_price: 2.3
-  first_lowest_price_indaba_quantity_online: 5
-  second_lowest_price_indaba_name: second
-  second_lowest_price_indaba_lowest_price: 5.66
-  second_lowest_price_indaba_quantity_online: 10
-  third_lowest_price_indaba_name: third
-  third_lowest_price_indaba_lowest_price: 8.99
-  third_lowest_price_indaba_quantity_online: 6
-  forth_lowest_price_indaba_name: forth
-  forth_lowest_price_indaba_lowest_price: 7.99
-  forth_lowest_price_indaba_quantity_online: 4

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  book: one
+  name: MyString
+  quantity_online: 1
+  lowest_price: 1.5
+
+two:
+  book: two
+  name: MyString
+  quantity_online: 1
+  lowest_price: 1.5

@@ -32,26 +32,21 @@ namespace :load_fake_data do
                        past_week_sales_history_quantity: Faker::Number.number(3),
                        past_month_sales_history_quantity: Faker::Number.number(3),
                        past_year_sales_history_quantity: Faker::Number.number(3),
-
-                       first_lowest_price_indaba_name: Faker::Company.name,
-                       first_lowest_price_indaba_lowest_price: Faker::Commerce.price,
-                       first_lowest_price_indaba_quantity_online: Faker::Number.number(3),
-
-                       second_lowest_price_indaba_name: Faker::Company.name,
-                       second_lowest_price_indaba_lowest_price: Faker::Commerce.price,
-                       second_lowest_price_indaba_quantity_online: Faker::Number.number(3),
-
-                       third_lowest_price_indaba_name: Faker::Company.name,
-                       third_lowest_price_indaba_lowest_price: Faker::Commerce.price,
-                       third_lowest_price_indaba_quantity_online: Faker::Number.number(3),
-
-                       forth_lowest_price_indaba_name: Faker::Company.name,
-                       forth_lowest_price_indaba_lowest_price: Faker::Commerce.price,
-                       forth_lowest_price_indaba_quantity_online: Faker::Number.number(3),
-
                       }).save!
     end
   end
 
-  task all: [:books, :amazon_data, :guide_data, :indaba_data]
+  task indaba_instances: :environment do
+    Book.all.each do |book|
+      5.times do
+        IndabaInstance.new({book: book,
+                            name: Faker::Company.name,
+                            quantity_online: Faker::Number.number(3),
+                            lowest_price: Faker::Commerce.price,
+                           }).save!
+      end
+    end
+  end
+
+  task all: [:books, :amazon_data, :guide_data, :indaba_data, :indaba_instances]
 end

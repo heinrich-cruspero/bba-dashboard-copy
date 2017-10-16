@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171011151952) do
+ActiveRecord::Schema.define(version: 20171016144811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,21 +56,22 @@ ActiveRecord::Schema.define(version: 20171011151952) do
     t.integer "past_week_sales_history_quantity", default: 0, null: false
     t.integer "past_month_sales_history_quantity", default: 0, null: false
     t.integer "past_year_sales_history_quantity", default: 0, null: false
-    t.string "first_lowest_price_indaba_name", null: false
-    t.float "first_lowest_price_indaba_lowest_price", default: 0.0, null: false
-    t.integer "first_lowest_price_indaba_quantity_online", default: 0, null: false
-    t.string "second_lowest_price_indaba_name", null: false
-    t.float "second_lowest_price_indaba_lowest_price", default: 0.0, null: false
-    t.integer "second_lowest_price_indaba_quantity_online", default: 0, null: false
-    t.string "third_lowest_price_indaba_name", null: false
-    t.float "third_lowest_price_indaba_lowest_price", default: 0.0, null: false
-    t.integer "third_lowest_price_indaba_quantity_online", default: 0, null: false
-    t.string "forth_lowest_price_indaba_name", null: false
-    t.float "forth_lowest_price_indaba_lowest_price", default: 0.0, null: false
-    t.integer "forth_lowest_price_indaba_quantity_online", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_indaba_data_on_book_id", unique: true
+  end
+
+  create_table "indaba_instances", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.string "name", null: false
+    t.integer "quantity_online", default: 0, null: false
+    t.float "lowest_price", default: 0.0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_indaba_instances_on_book_id"
+    t.index ["lowest_price"], name: "index_indaba_instances_on_lowest_price"
+    t.index ["name"], name: "index_indaba_instances_on_name"
+    t.index ["quantity_online"], name: "index_indaba_instances_on_quantity_online"
   end
 
   create_table "users", force: :cascade do |t|
@@ -122,6 +123,7 @@ ActiveRecord::Schema.define(version: 20171011151952) do
   add_foreign_key "amazon_data", "books"
   add_foreign_key "guide_data", "books"
   add_foreign_key "indaba_data", "books"
+  add_foreign_key "indaba_instances", "books"
   add_foreign_key "want_list_items", "want_lists"
   add_foreign_key "want_lists", "users"
   add_foreign_key "want_lists", "want_list_privacies"
