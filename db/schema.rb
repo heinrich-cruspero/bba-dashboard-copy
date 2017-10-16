@@ -28,10 +28,14 @@ ActiveRecord::Schema.define(version: 20171011151952) do
   create_table "books", force: :cascade do |t|
     t.string "ean", null: false
     t.string "isbn", null: false
+    t.string "author", null: false
+    t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author"], name: "index_books_on_author"
     t.index ["ean"], name: "index_books_on_ean", unique: true
     t.index ["isbn"], name: "index_books_on_isbn", unique: true
+    t.index ["title"], name: "index_books_on_title"
   end
 
   create_table "guide_data", force: :cascade do |t|
@@ -47,14 +51,11 @@ ActiveRecord::Schema.define(version: 20171011151952) do
     t.float "bbap", default: 0.0, null: false
     t.float "direct", default: 0.0, null: false
     t.integer "tqs", default: 0, null: false
-    t.integer "weekly_sqad", default: 0, null: false
     t.integer "weekly_sqmd", default: 0, null: false
-    t.float "past_day_sales_history_lowest_price", default: 0.0, null: false
-    t.float "past_day_sales_history_highest_price", default: 0.0, null: false
-    t.float "past_week_sales_history_lowest_price", default: 0.0, null: false
-    t.float "past_week_sales_history_highest_price", default: 0.0, null: false
-    t.float "past_month_sales_history_lowest_price", default: 0.0, null: false
-    t.float "past_month_sales_history_highest_price", default: 0.0, null: false
+    t.integer "past_day_sales_history_quantity", default: 0, null: false
+    t.integer "past_week_sales_history_quantity", default: 0, null: false
+    t.integer "past_month_sales_history_quantity", default: 0, null: false
+    t.integer "past_year_sales_history_quantity", default: 0, null: false
     t.string "first_lowest_price_indaba_name", null: false
     t.float "first_lowest_price_indaba_lowest_price", default: 0.0, null: false
     t.integer "first_lowest_price_indaba_quantity_online", default: 0, null: false

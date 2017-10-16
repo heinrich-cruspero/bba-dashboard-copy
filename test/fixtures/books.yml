@@ -3,7 +3,11 @@
 one:
   ean: MyString1
   isbn: MyString1
+  author: MyString1
+  title: MyString1
 
 two:
   ean: MyString2
   isbn: MyString2
+  author: MyString2
+  title: MyString2

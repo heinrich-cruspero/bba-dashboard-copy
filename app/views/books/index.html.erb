@@ -1,40 +1,22 @@
 <%= javascript_include_tag 'books' %>
 <%= stylesheet_link_tag 'books', media: 'all' %>
 
-<table id="books-table" data-source="<%= books_path(format: :json) %>" class="mdl-data-table display nowrap" cellspacing="0" width="100%">
+<table id="books-table" data-source="<%= books_path(format: :json) %>" class="mdl-data-table" cellspacing="0" width="100%">
   <thead>
   <tr>
-    <th>EAN</th>
     <th>ISBN</th>
-    <th>ListPrice</th>
-    <th>LowestFba</th>
-    <th>LowestGoodPrice</th>
-    <th>SalesRank</th>
-    <th>BBAP</th>
-    <th>Direct</th>
-    <th>TQS</th>
-    <th>7SQAD</th>
-    <th>7SQMD</th>
-    <th>PastDaySalesHistoryLowestPrice</th>
-    <th>PastDaySalesHistoryHighestPrice</th>
-    <th>PastWeeklySalesHistoryLowestPrice</th>
-    <th>PastWeeklySalesHistoryHighestPrice</th>
-    <th>PastMonthlySalesHistoryLowestPrice</th>
-    <th>PastMonthlySalesHistoryHighestPrice</th>
-    <th>FirstLowestPriceIndabaName</th>
-    <th>FirstLowestPriceIndabaLowestPrice</th>
-    <th>FirstLowestPriceIndabaQuantityOnline</th>
-    <th>SecondLowestPriceIndabaName</th>
-    <th>SecondLowestPriceIndabaLowestPrice</th>
-    <th>SecondLowestPriceIndabaQuantityOnline</th>
-    <th>ThirdLowestPriceIndabaName</th>
-    <th>ThirdLowestPriceIndabaLowestPrice</th>
-    <th>ThirdLowestPriceIndabaQuantityOnline</th>
-    <th>ForthLowestPriceIndabaName</th>
-    <th>ForthLowestPriceIndabaLowestPrice</th>
-    <th>ForthLowestPriceIndabaQuantityOnline</th>
+    <th>Author</th>
+    <th>Title</th>
+    <th>PastDay</th>
+    <th>PastMonth</th>
+    <th>PastWeek</th>
+    <th>PastYear</th>
   </tr>
   </thead>
   <tbody>
   </tbody>
 </table>
+
+<div id="details" class="mdl-cell">
+</div>
+
