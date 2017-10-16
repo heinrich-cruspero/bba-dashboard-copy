@@ -16,6 +16,7 @@ $ ->
       {data: 'past_week_sales_history_quantity', orderable: true, searchable: false}
       {data: 'past_month_sales_history_quantity', orderable: true, searchable: false}
       {data: 'past_year_sales_history_quantity', orderable: true, searchable: false}
+      {data: 'tqs', orderable: true, searchable: false}
     ]
 
   $('#books-table tbody').on 'click', 'tr', ->
