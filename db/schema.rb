@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20171011151952) do
     t.float "bbap", default: 0.0, null: false
     t.float "direct", default: 0.0, null: false
     t.integer "tqs", default: 0, null: false
-    t.integer "weekly_sqad", default: 0, null: false
     t.integer "weekly_sqmd", default: 0, null: false
     t.integer "past_day_sales_history_quantity", default: 0, null: false
     t.integer "past_week_sales_history_quantity", default: 0, null: false
