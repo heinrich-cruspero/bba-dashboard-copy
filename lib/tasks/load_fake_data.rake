@@ -27,7 +27,6 @@ namespace :load_fake_data do
                        bbap: Faker::Commerce.price,
                        direct: Faker::Commerce.price,
                        tqs: Faker::Number.number(3),
-                       weekly_sqad: Faker::Number.number(3),
                        weekly_sqmd: Faker::Number.number(3),
                        past_day_sales_history_quantity: Faker::Number.number(3),
                        past_week_sales_history_quantity: Faker::Number.number(3),

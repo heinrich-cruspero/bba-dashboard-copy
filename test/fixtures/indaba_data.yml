@@ -5,7 +5,6 @@ one:
   bbap: 1.5
   direct: 1.5
   tqs: 1
-  weekly_sqad: 1
   weekly_sqmd: 1
   past_day_sales_history_quantity: 5
   past_week_sales_history_quantity: 10
@@ -29,7 +28,6 @@ two:
   bbap: 1.5
   direct: 1.5
   tqs: 1
-  weekly_sqad: 1
   weekly_sqmd: 1
   past_day_sales_history_quantity: 5
   past_week_sales_history_quantity: 10

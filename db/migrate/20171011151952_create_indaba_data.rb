@@ -5,7 +5,6 @@ class CreateIndabaData < ActiveRecord::Migration[5.1]
       t.float :bbap, null: false, default: 0.00
       t.float :direct, null: false, default: 0.00
       t.integer :tqs, null: false, default: 0
-      t.integer :weekly_sqad, null: false, default: 0
       t.integer :weekly_sqmd, null: false, default: 0
       t.integer :past_day_sales_history_quantity, null: false, default: 0
       t.integer :past_week_sales_history_quantity, null: false, default: 0
