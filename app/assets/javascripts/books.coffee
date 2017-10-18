@@ -18,6 +18,8 @@ $ ->
       {data: 'past_year_sales_history_quantity', orderable: true, searchable: false}
       {data: 'tqs', orderable: true, searchable: false}
     ]
+    'fnDrawCallback': () ->
+      componentHandler.upgradeDom()
 
   $('#books-table tbody').on 'click', 'tr', ->
     if $(this).hasClass('selected')

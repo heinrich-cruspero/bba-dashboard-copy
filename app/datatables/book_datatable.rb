@@ -18,8 +18,8 @@ class BookDatatable < AjaxDatatablesRails::Base
       {
         'DT_RowId' => record.id,
         isbn: record.isbn,
-        author: record.author,
-        title: record.title,
+        author: tooltip_field('author', record.id, record.author),
+        title: tooltip_field('title', record.id, record.title),
         past_day_sales_history_quantity: record.indaba_datum.past_day_sales_history_quantity,
         past_week_sales_history_quantity: record.indaba_datum.past_week_sales_history_quantity,
         past_month_sales_history_quantity: record.indaba_datum.past_month_sales_history_quantity,
@@ -33,5 +33,10 @@ class BookDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     Book.includes(:guide_datum, :amazon_datum, :indaba_datum).references(:guide_datum, :amazon_datum, :indaba_datum).all
+  end
+
+  def tooltip_field(field_name, id, full_string)
+    "<div id='#{field_name}_#{id}'>#{full_string[0..20]}</div>
+      <div class='mdl-tooltip' data-mdl-for='#{field_name}_#{id}'>#{full_string}</div>".html_safe
   end
 end
