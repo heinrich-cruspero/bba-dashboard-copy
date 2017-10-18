@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171016144811) do
+ActiveRecord::Schema.define(version: 20171018165259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 20171016144811) do
     t.index ["quantity_online"], name: "index_indaba_instances_on_quantity_online"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.string "buyer_email", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_orders_on_book_id"
+    t.index ["buyer_email"], name: "index_orders_on_buyer_email"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -124,6 +133,7 @@ ActiveRecord::Schema.define(version: 20171016144811) do
   add_foreign_key "guide_data", "books"
   add_foreign_key "indaba_data", "books"
   add_foreign_key "indaba_instances", "books"
+  add_foreign_key "orders", "books"
   add_foreign_key "want_list_items", "want_lists"
   add_foreign_key "want_lists", "users"
   add_foreign_key "want_lists", "want_list_privacies"

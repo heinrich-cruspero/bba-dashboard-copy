@@ -5,7 +5,8 @@ $ ->
     ajax: $('#books-table').data('source')
     pagingType: 'full_numbers'
     order: [[3,'desc']]
-    scrollY: ($(window).height() - 300) + 'px'
+    scrollY: '60vh'
+    scrollCollapse: true
     scrollX: true
     pageLength: 100
     columns: [
@@ -34,4 +35,11 @@ $ ->
           alert(errorThrown)
         success: (data, textStatus, jqXHR) ->
           $('#details').html(data)
-
+          $('#orders-table').DataTable
+            pageLength: 100
+            paging:   false,
+            ordering: false,
+            searching: false,
+            info:     false
+            scrollY: '40vh'
+            scrollCollapse: true

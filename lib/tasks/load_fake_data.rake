@@ -48,5 +48,15 @@ namespace :load_fake_data do
     end
   end
 
-  task all: [:books, :amazon_data, :guide_data, :indaba_data, :indaba_instances]
+  task orders: :environment do
+    Book.all.each do |book|
+      100.times do
+        Order.new({book: book,
+                   buyer_email: Faker::Internet.email
+                  }).save!
+      end
+    end
+  end
+
+  task all: [:books, :amazon_data, :guide_data, :indaba_data, :indaba_instances, :orders]
 end
