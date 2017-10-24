@@ -13,11 +13,11 @@ $ ->
       {data: 'isbn', orderable: false, searchable: true}
       {data: 'author', orderable: false, searchable: true}
       {data: 'title', orderable: false, searchable: true}
+      {data: 'tqs', orderable: true, searchable: false}
       {data: 'past_day_sales_history_quantity', orderable: true, searchable: false}
       {data: 'past_week_sales_history_quantity', orderable: true, searchable: false}
       {data: 'past_month_sales_history_quantity', orderable: true, searchable: false}
       {data: 'past_year_sales_history_quantity', orderable: true, searchable: false}
-      {data: 'tqs', orderable: true, searchable: false}
     ]
     'fnDrawCallback': () ->
       componentHandler.upgradeDom()

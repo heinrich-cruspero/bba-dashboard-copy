@@ -51,11 +51,14 @@ ActiveRecord::Schema.define(version: 20171018165259) do
     t.float "bbap", default: 0.0, null: false
     t.float "direct", default: 0.0, null: false
     t.integer "tqs", default: 0, null: false
+    t.integer "weekly_sqad", default: 0, null: false
     t.integer "weekly_sqmd", default: 0, null: false
     t.integer "past_day_sales_history_quantity", default: 0, null: false
     t.integer "past_week_sales_history_quantity", default: 0, null: false
     t.integer "past_month_sales_history_quantity", default: 0, null: false
     t.integer "past_year_sales_history_quantity", default: 0, null: false
+    t.integer "daily_rqf", default: 0, null: false
+    t.integer "weekly_rqf", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_indaba_data_on_book_id", unique: true

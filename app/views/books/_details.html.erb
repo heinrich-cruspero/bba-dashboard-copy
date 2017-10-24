@@ -2,27 +2,29 @@
   <thead>
   <tr>
     <th>BBAP</th>
-    <th>Direct</th>
+    <th>7SQAD</th>
     <th>7SQMD</th>
-
-    <th>LowestGoodPrice</th>
-    <th>LowestFba</th>
+    <th>Low</th>
+    <th>FBALow</th>
     <th>SalesRank</th>
-
     <th>ListPrice</th>
+    <th>Direct</th>
+    <th>1DQCA</th>
+    <th>7DQCA</th>
   </tr>
   </thead>
   <tbody>
   <tr>
     <td><%= @book.indaba_datum.bbap %></td>
-    <td><%= @book.indaba_datum.direct %></td>
+    <td><%= @book.indaba_datum.weekly_sqad %></td>
     <td><%= @book.indaba_datum.weekly_sqmd %></td>
-
     <td><%= @book.amazon_datum.lowest_good_price %></td>
     <td><%= @book.amazon_datum.lowest_fba %></td>
     <td><%= @book.amazon_datum.sales_rank %></td>
-
     <td><%= @book.guide_datum.list_price %></td>
+    <td><%= @book.indaba_datum.direct %></td>
+    <td><%= @book.indaba_datum.daily_rqf %></td>
+    <td><%= @book.indaba_datum.weekly_rqf %></td>
   </tr>
   </tbody>
 </table>

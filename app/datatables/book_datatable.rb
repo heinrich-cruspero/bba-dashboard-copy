@@ -5,11 +5,11 @@ class BookDatatable < AjaxDatatablesRails::Base
       isbn: { source: "Book.isbn", cond: :eq, searchable: true, orderable: false },
       author: { source: "Book.author", cond: :eq, searchable: true, orderable: false },
       title: { source: "Book.title", cond: :eq, searchable: true, orderable: false },
+      tqs: { source: "IndabaDatum.tqs", cond: :eq, searchable: false, orderable: true },
       past_day_sales_history_quantity: { source: "IndabaDatum.past_day_sales_history_quantity", cond: :eq, searchable: false, orderable: true },
       past_week_sales_history_quantity: { source: "IndabaDatum.past_week_sales_history_quantity", cond: :eq, searchable: false, orderable: true },
       past_month_sales_history_quantity: { source: "IndabaDatum.past_month_sales_history_quantity", cond: :eq, searchable: false, orderable: true },
       past_year_sales_history_quantity: { source: "IndabaDatum.past_year_sales_history_quantity", cond: :eq, searchable: false, orderable: true },
-      tqs: { source: "IndabaDatum.tqs", cond: :eq, searchable: false, orderable: true },
     }
   end
 
@@ -20,11 +20,11 @@ class BookDatatable < AjaxDatatablesRails::Base
         isbn: record.isbn,
         author: tooltip_field('author', record.id, record.author),
         title: tooltip_field('title', record.id, record.title),
+        tqs: record.indaba_datum.tqs,
         past_day_sales_history_quantity: record.indaba_datum.past_day_sales_history_quantity,
         past_week_sales_history_quantity: record.indaba_datum.past_week_sales_history_quantity,
         past_month_sales_history_quantity: record.indaba_datum.past_month_sales_history_quantity,
         past_year_sales_history_quantity: record.indaba_datum.past_year_sales_history_quantity,
-        tqs: record.indaba_datum.tqs,
       }
     end
   end
