@@ -38,7 +38,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @book.indaba_instances.order(:lowest_price).each do |indaba_instance| %>
+    <% @book.indaba_instances.order(:lowest_price).limit(5).each do |indaba_instance| %>
       <tr>
         <td><%= indaba_instance.name %></td>
         <td><%= indaba_instance.quantity_online %></td>

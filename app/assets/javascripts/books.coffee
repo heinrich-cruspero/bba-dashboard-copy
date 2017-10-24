@@ -41,11 +41,11 @@ $ ->
             ordering: false,
             searching: false,
             info:     false
-            scrollY: '20vh'
+            scrollY: '40vh'
           $('#fbaz-table').DataTable
             pageLength: 100
             paging:   false,
             ordering: false,
             searching: false,
             info:     false
-            scrollY: '20vh'
+            scrollY: '40vh'
