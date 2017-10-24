@@ -5,7 +5,7 @@ $ ->
     ajax: $('#books-table').data('source')
     pagingType: 'full_numbers'
     order: [[3,'desc']]
-    scrollY: '60vh'
+    scrollY: '75vh'
     scrollCollapse: true
     scrollX: true
     pageLength: 100
@@ -41,5 +41,11 @@ $ ->
             ordering: false,
             searching: false,
             info:     false
-            scrollY: '40vh'
-            scrollCollapse: true
+            scrollY: '20vh'
+          $('#fbaz-table').DataTable
+            pageLength: 100
+            paging:   false,
+            ordering: false,
+            searching: false,
+            info:     false
+            scrollY: '20vh'

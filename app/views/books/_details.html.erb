@@ -48,17 +48,36 @@
   </tbody>
 </table>
 
-<table id="orders-table" class="mdl-data-table">
-  <thead>
+<div class="mdl-grid">
+  <table id="fbaz-table" class="mdl-data-table mdl-cell">
+    <thead>
     <tr>
-      <th class="mdl-data-table__cell--non-numeric">Buyer Email</th>
+      <th>Price</th>
+      <th>Market</th>
     </tr>
-  </thead>
-  <tbody>
-    <% @book.orders.each do |order| %>
-      <tr>
-        <td class="mdl-data-table__cell--non-numeric"><%= order.buyer_email %></td>
-      </tr>
+    </thead>
+    <tbody>
+    <% @book.fbaz_data.each do |fbaz_data| %>
+        <tr>
+          <td><%= fbaz_data.price %></td>
+          <td><%= fbaz_data.market %></td>
+        </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+
+  <table id="orders-table" class="mdl-data-table mdl-cell">
+    <thead>
+    <tr>
+      <th>Buyer Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @book.orders.each do |order| %>
+        <tr>
+          <td><%= order.buyer_email %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

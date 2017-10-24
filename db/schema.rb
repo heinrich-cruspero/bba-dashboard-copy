@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018165259) do
+ActiveRecord::Schema.define(version: 20171024194700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 20171018165259) do
     t.index ["ean"], name: "index_books_on_ean", unique: true
     t.index ["isbn"], name: "index_books_on_isbn", unique: true
     t.index ["title"], name: "index_books_on_title"
+  end
+
+  create_table "fbaz_data", force: :cascade do |t|
+    t.bigint "book_id"
+    t.float "price", default: 0.0, null: false
+    t.string "market", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_fbaz_data_on_book_id"
   end
 
   create_table "guide_data", force: :cascade do |t|
@@ -133,6 +142,7 @@ ActiveRecord::Schema.define(version: 20171018165259) do
   end
 
   add_foreign_key "amazon_data", "books"
+  add_foreign_key "fbaz_data", "books"
   add_foreign_key "guide_data", "books"
   add_foreign_key "indaba_data", "books"
   add_foreign_key "indaba_instances", "books"

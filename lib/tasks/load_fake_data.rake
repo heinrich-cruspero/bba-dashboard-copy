@@ -41,9 +41,9 @@ namespace :load_fake_data do
 
   task indaba_instances: :environment do
     Book.all.each do |book|
-      5.times do
+      8.times do |i|
         IndabaInstance.new({book: book,
-                            name: Faker::Company.name,
+                            name: ['Main', 'FCBBobby', 'FCBJim', 'FCBLane', 'FCBRENEE', 'FCBSteve', 'TextBookCorner', 'FBAAZ'][i],
                             quantity_online: Faker::Number.number(3),
                             lowest_price: Faker::Commerce.price,
                            }).save!
@@ -61,5 +61,16 @@ namespace :load_fake_data do
     end
   end
 
-  task all: [:books, :amazon_data, :guide_data, :indaba_data, :indaba_instances, :orders]
+  task fbaz_data: :environment do
+    Book.all.each do |book|
+      100.times do
+        FbazDatum.new({book: book,
+                       price: Faker::Commerce.price,
+                       market: ['Amazon', 'Amazon CA'].sample
+                      }).save!
+      end
+    end
+  end
+
+  task all: [:books, :amazon_data, :guide_data, :indaba_data, :indaba_instances, :orders, :fbaz_data]
 end
