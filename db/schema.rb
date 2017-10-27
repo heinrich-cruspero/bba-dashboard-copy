@@ -91,10 +91,12 @@ ActiveRecord::Schema.define(version: 20171031155344) do
     t.float "price_paid", default: 0.0, null: false
     t.string "market_name", null: false
     t.string "buyer_email", null: false
+    t.datetime "date_ordered", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_indaba_orders_on_book_id"
     t.index ["buyer_email"], name: "index_indaba_orders_on_buyer_email"
+    t.index ["date_ordered"], name: "index_indaba_orders_on_date_ordered"
     t.index ["indaba_instance_id"], name: "index_indaba_orders_on_indaba_instance_id"
     t.index ["market_name"], name: "index_indaba_orders_on_market_name"
   end
