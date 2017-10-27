@@ -2,8 +2,14 @@
 
 one:
   book: one
+  indaba_name: MyString
+  price_paid: 1.5
+  market_name: MyString
   buyer_email: MyString
 
 two:
   book: two
+  indaba_name: MyString
+  price_paid: 1.5
+  market_name: MyString
   buyer_email: MyString

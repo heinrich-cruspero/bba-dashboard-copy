@@ -51,26 +51,18 @@ namespace :load_fake_data do
     end
   end
 
-  task orders: :environment do
+  task indaba_orders: :environment do
     Book.all.each do |book|
       100.times do
-        Order.new({book: book,
-                   buyer_email: Faker::Internet.email
-                  }).save!
+        IndabaOrder.new({book: book,
+                         indaba_name: ['Main', 'FCBBobby', 'FCBJim', 'FCBLane', 'FCBRENEE', 'FCBSteve', 'TextBookCorner', 'FBAAZ'].sample,
+                         buyer_email: Faker::Internet.email,
+                         price_paid: Faker::Commerce.price,
+                         market_name: ['Amazon', 'AmazonCa', 'Direct'].sample
+                        }).save!
       end
     end
   end
 
-  task fbaz_data: :environment do
-    Book.all.each do |book|
-      100.times do
-        FbazDatum.new({book: book,
-                       price: Faker::Commerce.price,
-                       market: ['Amazon', 'Amazon CA'].sample
-                      }).save!
-      end
-    end
-  end
-
-  task all: [:books, :amazon_data, :guide_data, :indaba_data, :indaba_instances, :orders, :fbaz_data]
+  task all: [:books, :amazon_data, :guide_data, :indaba_data, :indaba_instances, :indaba_orders]
 end
