@@ -8,5 +8,7 @@ class CreateIndabaInstances < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+
+    add_index :indaba_instances, [:book_id, :name], unique: true
   end
 end

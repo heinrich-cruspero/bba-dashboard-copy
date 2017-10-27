@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20171024194700) do
     t.float "lowest_price", default: 0.0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["book_id", "name"], name: "index_indaba_instances_on_book_id_and_name", unique: true
     t.index ["book_id"], name: "index_indaba_instances_on_book_id"
     t.index ["lowest_price"], name: "index_indaba_instances_on_lowest_price"
     t.index ["name"], name: "index_indaba_instances_on_name"
