@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027152326) do
+ActiveRecord::Schema.define(version: 20171031155344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "amazon_data", force: :cascade do |t|
-    t.bigint "book_id"
+    t.bigint "book_id", null: false
     t.float "lowest_fba", default: 0.0, null: false
     t.float "lowest_good_price", default: 0.0, null: false
     t.integer "sales_rank", default: 0, null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20171027152326) do
   end
 
   create_table "guide_data", force: :cascade do |t|
-    t.bigint "book_id"
+    t.bigint "book_id", null: false
     t.float "list_price", default: 0.0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20171027152326) do
   end
 
   create_table "indaba_data", force: :cascade do |t|
-    t.bigint "book_id"
+    t.bigint "book_id", null: false
     t.float "bbap", default: 0.0, null: false
     t.float "direct", default: 0.0, null: false
     t.integer "tqs", default: 0, null: false
@@ -64,29 +64,39 @@ ActiveRecord::Schema.define(version: 20171027152326) do
     t.index ["book_id"], name: "index_indaba_data_on_book_id", unique: true
   end
 
-  create_table "indaba_instances", force: :cascade do |t|
+  create_table "indaba_instance_data", force: :cascade do |t|
+    t.bigint "indaba_instance_id", null: false
     t.bigint "book_id", null: false
-    t.string "name", null: false
     t.integer "quantity_online", default: 0, null: false
     t.float "lowest_price", default: 0.0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id", "name"], name: "index_indaba_instances_on_book_id_and_name", unique: true
-    t.index ["book_id"], name: "index_indaba_instances_on_book_id"
-    t.index ["lowest_price"], name: "index_indaba_instances_on_lowest_price"
-    t.index ["name"], name: "index_indaba_instances_on_name"
-    t.index ["quantity_online"], name: "index_indaba_instances_on_quantity_online"
+    t.index ["book_id"], name: "index_indaba_instance_data_on_book_id"
+    t.index ["indaba_instance_id", "book_id"], name: "index_indaba_instance_data_on_indaba_instance_id_and_book_id", unique: true
+    t.index ["indaba_instance_id"], name: "index_indaba_instance_data_on_indaba_instance_id"
+  end
+
+  create_table "indaba_instances", force: :cascade do |t|
+    t.string "database_name", null: false
+    t.string "account_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_name"], name: "index_indaba_instances_on_account_name", unique: true
+    t.index ["database_name"], name: "index_indaba_instances_on_database_name", unique: true
   end
 
   create_table "indaba_orders", force: :cascade do |t|
-    t.bigint "book_id"
-    t.string "indaba_name"
-    t.float "price_paid"
-    t.string "market_name"
-    t.string "buyer_email"
+    t.bigint "book_id", null: false
+    t.bigint "indaba_instance_id", null: false
+    t.float "price_paid", default: 0.0, null: false
+    t.string "market_name", null: false
+    t.string "buyer_email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_indaba_orders_on_book_id"
+    t.index ["buyer_email"], name: "index_indaba_orders_on_buyer_email"
+    t.index ["indaba_instance_id"], name: "index_indaba_orders_on_indaba_instance_id"
+    t.index ["market_name"], name: "index_indaba_orders_on_market_name"
   end
 
   create_table "users", force: :cascade do |t|
@@ -100,7 +110,7 @@ ActiveRecord::Schema.define(version: 20171027152326) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.boolean "admin", default: true, null: false
+    t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -138,8 +148,10 @@ ActiveRecord::Schema.define(version: 20171027152326) do
   add_foreign_key "amazon_data", "books"
   add_foreign_key "guide_data", "books"
   add_foreign_key "indaba_data", "books"
-  add_foreign_key "indaba_instances", "books"
+  add_foreign_key "indaba_instance_data", "books"
+  add_foreign_key "indaba_instance_data", "indaba_instances"
   add_foreign_key "indaba_orders", "books"
+  add_foreign_key "indaba_orders", "indaba_instances"
   add_foreign_key "want_list_items", "want_lists"
   add_foreign_key "want_lists", "users"
   add_foreign_key "want_lists", "want_list_privacies"

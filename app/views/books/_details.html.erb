@@ -38,11 +38,11 @@
     </tr>
   </thead>
   <tbody>
-    <% @book.indaba_instances.where('quantity_online > 0').order(:lowest_price).each do |indaba_instance| %>
+    <% @book.indaba_instance_data.where('quantity_online > 0').order(:lowest_price).each do |indaba_instance_datum| %>
       <tr>
-        <td><%= indaba_instance.name %></td>
-        <td><%= indaba_instance.quantity_online %></td>
-        <td><%= indaba_instance.lowest_price %></td>
+        <td><%= indaba_instance_datum.indaba_instance.account_name %></td>
+        <td><%= indaba_instance_datum.quantity_online %></td>
+        <td><%= indaba_instance_datum.lowest_price %></td>
       </tr>
     <% end %>
   </tbody>
@@ -57,7 +57,7 @@
     </tr>
     </thead>
     <tbody>
-    <% @book.indaba_orders.where("indaba_name = 'FBAAZ'").order('indaba_orders.id DESC').each do |indaba_order| %>
+    <% @book.indaba_orders.where("indaba_instance_id != 9").order('indaba_orders.id DESC').each do |indaba_order| %>
         <tr>
           <td><%= indaba_order.price_paid %></td>
           <td><%= indaba_order.market_name %></td>
@@ -73,7 +73,7 @@
     </tr>
     </thead>
     <tbody>
-    <% @book.indaba_orders.where("indaba_name != 'FBAAZ'").order('indaba_orders.id DESC').each do |indaba_order| %>
+    <% @book.indaba_orders.where("indaba_instance_id != 9").order('indaba_orders.id DESC').each do |indaba_order| %>
         <tr>
           <td><%= indaba_order.buyer_email %></td>
         </tr>

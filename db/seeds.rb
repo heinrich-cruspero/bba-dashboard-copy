@@ -1,8 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 WantListPrivacy.create([{ name: 'Public' }, { name: 'Private' }])
+
+IndabaInstance.create(
+                      [
+                                  { database_name: 'MainDB', account_name: 'FCB_Main' },
+                                  { database_name: 'IndabaMerchant_FCBBobby_MainDB', account_name: 'FCB_Bobby' },
+                                  { database_name: 'IndabaMerchant_FCBJim_MainDB', account_name: 'FCB_Jim' },
+                                  { database_name: 'IndabaMerchant_FCBLane_MainDB', account_name: 'FCB_Lane' },
+                                  { database_name: 'IndabaMerchant_FCBRENEE_MainDB', account_name: 'FCB_Renee' },
+                                  { database_name: 'IndabaMerchant_FCBSteve_MainDB', account_name: 'FCB_Steve' },
+                                  { database_name: 'IndabaMerchant_FCBRich_MainDB', account_name: 'FCB_Rich' },
+                                  { database_name: 'textbookcorner_MainDB', account_name: 'TBC' },
+                                  { database_name: 'FCB_FBAAZ_MainDB', account_name: 'FBAAZ' },
+                                ]
+                      )

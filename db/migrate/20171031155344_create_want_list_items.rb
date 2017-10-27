@@ -1,7 +1,7 @@
 class CreateWantListItems < ActiveRecord::Migration[5.1]
   def change
     create_table :want_list_items do |t|
-      t.references :want_list, foreign_key: true, null: false
+      t.references :want_list, foreign_key: true, null: false, index:true
       t.string :ean, null: false, index: true
       t.integer :quantity, null: false, default: 0
 

@@ -1,7 +1,7 @@
 class CreateIndabaData < ActiveRecord::Migration[5.1]
   def change
     create_table :indaba_data do |t|
-      t.references :book, foreign_key: true, index: { unique: true }
+      t.references :book, foreign_key: true, null: false, index: { unique: true }
       t.float :bbap, null: false, default: 0.00
       t.float :direct, null: false, default: 0.00
       t.integer :tqs, null: false, default: 0

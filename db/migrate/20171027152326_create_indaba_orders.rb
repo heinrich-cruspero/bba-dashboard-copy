@@ -1,11 +1,11 @@
 class CreateIndabaOrders < ActiveRecord::Migration[5.1]
   def change
     create_table :indaba_orders do |t|
-      t.references :book, foreign_key: true
-      t.string :indaba_name
-      t.float :price_paid
-      t.string :market_name
-      t.string :buyer_email
+      t.references :book, foreign_key: true, null: false, index: true
+      t.references :indaba_instance, foreign_key: true, null: false, index: true
+      t.float :price_paid, null: false, default: 0.00
+      t.string :market_name, null: false, index: true
+      t.string :buyer_email, null: false, index: true
 
       t.timestamps
     end

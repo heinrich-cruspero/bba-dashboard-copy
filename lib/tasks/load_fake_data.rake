@@ -39,14 +39,14 @@ namespace :load_fake_data do
     end
   end
 
-  task indaba_instances: :environment do
+  task indaba_instance_data: :environment do
     Book.all.each do |book|
-      8.times do |i|
-        IndabaInstance.new({book: book,
-                            name: ['Main', 'FCBBobby', 'FCBJim', 'FCBLane', 'FCBRENEE', 'FCBSteve', 'TextBookCorner', 'FBAAZ'][i],
-                            quantity_online: Faker::Number.number(3),
-                            lowest_price: Faker::Commerce.price,
-                           }).save!
+      IndabaInstance.all.each do |indaba_instance|
+        IndabaInstanceDatum.new({book: book,
+                                 indaba_instance: indaba_instance,
+                                 quantity_online: Faker::Number.number(3),
+                                 lowest_price: Faker::Commerce.price,
+                               }).save!
       end
     end
   end
@@ -55,7 +55,7 @@ namespace :load_fake_data do
     Book.all.each do |book|
       100.times do
         IndabaOrder.new({book: book,
-                         indaba_name: ['Main', 'FCBBobby', 'FCBJim', 'FCBLane', 'FCBRENEE', 'FCBSteve', 'TextBookCorner', 'FBAAZ'].sample,
+                         indaba_instance: IndabaInstance.all.sample,
                          buyer_email: Faker::Internet.email,
                          price_paid: Faker::Commerce.price,
                          market_name: ['Amazon', 'AmazonCa', 'Direct'].sample
@@ -64,5 +64,5 @@ namespace :load_fake_data do
     end
   end
 
-  task all: [:books, :amazon_data, :guide_data, :indaba_data, :indaba_instances, :indaba_orders]
+  task all: [:books, :amazon_data, :guide_data, :indaba_data, :indaba_instance_data, :indaba_orders]
 end
