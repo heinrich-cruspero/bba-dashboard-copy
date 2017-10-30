@@ -6,6 +6,7 @@ class CreateIndabaOrders < ActiveRecord::Migration[5.1]
       t.float :price_paid, null: false, default: 0.00
       t.string :market_name, null: false, index: true
       t.string :buyer_email, null: false, index: true
+      t.string :market_order_item_number, null: false, index: { unique: true }
       t.datetime :date_ordered, null: false, index: true
 
       t.timestamps

@@ -6,6 +6,7 @@ one:
   price_paid: 1.5
   market_name: MyString
   buyer_email: MyString
+  market_order_item_number: MyString1
   date_ordered: <%= 5.day.ago %>
 
 two:
@@ -14,4 +15,5 @@ two:
   price_paid: 1.5
   market_name: MyString
   buyer_email: MyString
+  market_order_item_number: MyString2
   date_ordered: <%= 5.day.ago %>

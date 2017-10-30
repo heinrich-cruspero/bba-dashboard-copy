@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20171031155344) do
     t.float "price_paid", default: 0.0, null: false
     t.string "market_name", null: false
     t.string "buyer_email", null: false
+    t.string "market_order_item_number", null: false
     t.datetime "date_ordered", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(version: 20171031155344) do
     t.index ["date_ordered"], name: "index_indaba_orders_on_date_ordered"
     t.index ["indaba_instance_id"], name: "index_indaba_orders_on_indaba_instance_id"
     t.index ["market_name"], name: "index_indaba_orders_on_market_name"
+    t.index ["market_order_item_number"], name: "index_indaba_orders_on_market_order_item_number", unique: true
   end
 
   create_table "users", force: :cascade do |t|

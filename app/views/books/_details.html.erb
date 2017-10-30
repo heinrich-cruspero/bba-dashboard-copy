@@ -57,7 +57,7 @@
     </tr>
     </thead>
     <tbody>
-    <% @book.indaba_orders.where("indaba_instance_id != 9").order('indaba_orders.id DESC').each do |indaba_order| %>
+    <% @book.indaba_orders.where("indaba_orders.indaba_instance_id = 9").order('indaba_orders.date_ordered DESC').limit(100).each do |indaba_order| %>
         <tr>
           <td><%= indaba_order.price_paid %></td>
           <td><%= indaba_order.market_name %></td>
@@ -73,7 +73,7 @@
     </tr>
     </thead>
     <tbody>
-    <% @book.indaba_orders.where("indaba_instance_id != 9").order('indaba_orders.id DESC').each do |indaba_order| %>
+    <% @book.indaba_orders.where("indaba_orders.indaba_instance_id = 1").order('indaba_orders.date_ordered DESC').limit(100).each do |indaba_order| %>
         <tr>
           <td><%= indaba_order.buyer_email %></td>
         </tr>
