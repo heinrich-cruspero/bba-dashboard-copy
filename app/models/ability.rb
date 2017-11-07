@@ -37,5 +37,8 @@ class Ability
       can [:show, :edit, :update, :destroy, :items], WantList, :user => user
       can [:show, :edit, :update, :destroy], WantListItem, :user => user
     end
+
+    #TODO remove before production
+    can :manage, :all
   end
 end
