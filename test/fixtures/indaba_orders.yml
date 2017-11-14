@@ -8,6 +8,7 @@ one:
   buyer_email: MyString
   market_order_item_number: MyString1
   date_ordered: <%= 5.day.ago %>
+  market_book_order_id: MyString
 
 two:
   book: two
@@ -17,3 +18,4 @@ two:
   buyer_email: MyString
   market_order_item_number: MyString2
   date_ordered: <%= 5.day.ago %>
+  market_book_order_id: MyString2
