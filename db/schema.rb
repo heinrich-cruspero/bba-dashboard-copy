@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20171031155344) do
   create_table "indaba_orders", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "indaba_instance_id", null: false
+    t.string "market_book_order_id", null: false
     t.float "price_paid", default: 0.0, null: false
     t.string "market_name", null: false
     t.string "buyer_email", null: false
@@ -98,7 +99,9 @@ ActiveRecord::Schema.define(version: 20171031155344) do
     t.index ["book_id"], name: "index_indaba_orders_on_book_id"
     t.index ["buyer_email"], name: "index_indaba_orders_on_buyer_email"
     t.index ["date_ordered"], name: "index_indaba_orders_on_date_ordered"
+    t.index ["indaba_instance_id", "market_book_order_id"], name: "index_indaba_orders_on_indaba_instance_and_market_book_order", unique: true
     t.index ["indaba_instance_id"], name: "index_indaba_orders_on_indaba_instance_id"
+    t.index ["market_book_order_id"], name: "index_indaba_orders_on_market_book_order_id"
     t.index ["market_name"], name: "index_indaba_orders_on_market_name"
     t.index ["market_order_item_number"], name: "index_indaba_orders_on_market_order_item_number", unique: true
   end
