@@ -9,7 +9,13 @@ class WantListsController < ApplicationController
 
   # GET /want_lists
   def index
-    @want_lists = WantList.all
+    @want_lists = WantList.where('user_id=?', current_user.id)
+    self_want_lists = ActiveRecord::Base.connection.execute("SELECT want_list_id FROM users_want_lists WHERE user_id = #{current_user.id}").values
+    @self_want_lists = WantList.where("id IN (?)", self_want_lists.flatten)
+    respond_to do |format|
+      format.html
+      format.json { render json: WantListDatatable.new(view_context) }
+    end
   end
 
   # GET /want_lists/1
@@ -25,13 +31,19 @@ class WantListsController < ApplicationController
   def edit
   end
 
-  # POST /want_lists
   def create
-    @want_list = WantList.new(want_list_params)
-    @want_list.user = current_user
-
+    # @want_list = WantList.new
+    params[:privacy_list].to_i == 3 ? privacy_id = 3 : privacy_id = params[:privacy_list].to_i
+    @want_list = WantList.new(:name=>params[:want_list][:name], :user_id=>current_user.id, :want_list_privacy_id =>privacy_id)
     respond_to do |format|
       if @want_list.save
+        if privacy_id == 3
+        params[:user_id].each do |k,v|
+          if v.last.to_i == 1
+            ActiveRecord::Base.connection.execute("INSERT INTO users_want_lists (want_list_id , user_id) VALUES (#{@want_list.id}, #{k.to_i})")
+          end
+          end
+        end
         format.html { redirect_to @want_list, notice: 'Want list was successfully created.' }
       else
         format.html { render :new }
@@ -52,16 +64,28 @@ class WantListsController < ApplicationController
 
   # DELETE /want_lists/1
   def destroy
-    @want_list.destroy
-    respond_to do |format|
-      format.html { redirect_to want_lists_url, notice: 'Want list was successfully destroyed.' }
-      format.json { head :no_content }
+    # @want_list.destroy
+    if @want_list.want_list_privacy_id == 3
+        ActiveRecord::Base.connection.execute("DELETE FROM users_want_lists WHERE want_list_id = #{@want_list.id}")
+        @want_list.destroy
+    else
+      @want_list.destroy
     end
+    redirect_to :action => :index
   end
 
   # GET /items/1
   def items
     @want_list_items = @want_list.want_list_items
+  end
+
+  def list_user
+    # session[:permission_id] = params[:want_list_privacy_id]
+    @users = User.all.uniq
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   private

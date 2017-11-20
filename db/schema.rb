@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031155344) do
+ActiveRecord::Schema.define(version: 20171114215115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,12 +122,18 @@ ActiveRecord::Schema.define(version: 20171031155344) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "users_want_lists", id: false, force: :cascade do |t|
+    t.integer "want_list_id"
+    t.integer "user_id"
+  end
+
   create_table "want_list_items", force: :cascade do |t|
     t.bigint "want_list_id", null: false
     t.string "ean", null: false
     t.integer "quantity", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "max_price"
     t.index ["ean"], name: "index_want_list_items_on_ean"
     t.index ["want_list_id"], name: "index_want_list_items_on_want_list_id"
   end

@@ -1,17 +1,28 @@
-<ul class="mdl-list">
-  <li class="mdl-list__item">
-    <span class="mdl-list__item-primary-content">
-      <strong>Email:</strong>
-      <%= @user.email %>
-    </span>
-  </li>
-  <li class="mdl-list__item">
-    <span class="mdl-list__item-primary-content">
-      <strong>Admin:</strong>
-      <%= @user.admin %>
-    </span>
-  </li>
-</ul>
+<div class="mdl-layout mdl-js-layout">
+  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h5 class="mdl-card__title-text mdl-color-text--grey"> User Details </h5>
+    </div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+    <div class="mdl-card__supporting-text">
+
+      <ul class="mdl-list">
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            <strong>Email:</strong>
+            <%= @user.email %>
+          </span>
+        </li>
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            <strong>Admin:</strong>
+            <%= @user.admin %>
+          </span>
+        </li>
+      </ul>
+
+      <%= link_to 'Edit', edit_user_path(@user) %> |
+      <%= link_to 'Back', users_path %>
+    </div>
+  </div>
+</div>

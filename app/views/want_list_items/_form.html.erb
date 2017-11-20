@@ -1,23 +1,45 @@
-<%= form_with(model: want_list_item, local: true) do |form| %>
-  <div class="mdl-textfield mdl-js-textfield">
-    <%= form.label :ean, class: "mdl-textfield__label" %>
-    <%= form.text_field :ean, id: :want_list_item_ean, class: "mdl-textfield__input" %>
-    <% want_list_item.errors.full_messages_for(:ean).each do |message| %>
-        <span class="mdl-textfield__error"><%= message %></span>
+<div class="mdl-layout mdl-js-layout">
+  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h5 class="mdl-card__title-text mdl-color-text--grey">Edit Items</h5>
+    </div>
+
+    <div class="mdl-card__supporting-text">
+    <%= form_with(model: want_list_item, local: true) do |form| %>
+      <div class="mdl-textfield mdl-js-textfield">
+        <%= form.label :ean, class: "mdl-textfield__label" %>
+        <%= form.text_field :ean, id: :want_list_item_ean, class: "mdl-textfield__input" %>
+        <% want_list_item.errors.full_messages_for(:ean).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+        <% end %>
+      </div>
+
+      <br />
+
+      <div class="mdl-textfield mdl-js-textfield">
+        <%= form.label :quantity, class: "mdl-textfield__label" %>
+        <%= form.number_field :quantity, id: :want_list_item_quantity, class: "mdl-textfield__input" %>
+        <% want_list_item.errors.full_messages_for(:quantity).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+        <% end %>
+      </div>
+
+      <div class="mdl-textfield mdl-js-textfield">
+        <%= form.label :max_price, class: "mdl-textfield__label" %>
+        <%= form.number_field :max_price, id: :want_list_item_max_price, class: "mdl-textfield__input" %>
+        <% want_list_item.errors.full_messages_for(:max_price).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+        <% end %>
+      </div>
+
+      <div class="mdl-card__actions">
+        <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
+      </div>
     <% end %>
-  </div>
 
-  <br />
-
-  <div class="mdl-textfield mdl-js-textfield">
-    <%= form.label :quantity, class: "mdl-textfield__label" %>
-    <%= form.number_field :quantity, id: :want_list_item_quantity, class: "mdl-textfield__input" %>
-    <% want_list_item.errors.full_messages_for(:quantity).each do |message| %>
-        <span class="mdl-textfield__error"><%= message %></span>
-    <% end %>
+    <%= link_to 'Show', @want_list_item %> |
+    <%= link_to 'Back', items_want_list_path(@want_list_item.want_list) %>
+    </div>
   </div>
+</div>
 
-  <div class="mdl-card__actions">
-    <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
-  </div>
-<% end %>

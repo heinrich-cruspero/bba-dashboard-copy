@@ -1,23 +1,33 @@
-<ul class="mdl-list">
-  <li class="mdl-list__item">
-    <span class="mdl-list__item-primary-content">
-      <strong>Name:</strong>
-      <%= @want_list.name %>
-    </span>
-  </li>
-  <li class="mdl-list__item">
-    <span class="mdl-list__item-primary-content">
-      <strong>User:</strong>
-      <%= @want_list.user.email %>
-    </span>
-  </li>
-  <li class="mdl-list__item">
-    <span class="mdl-list__item-primary-content">
-      <strong>Want list privacy:</strong>
-      <%= @want_list.want_list_privacy.name %>
-    </span>
-  </li>
-</ul>
+<div class="mdl-layout mdl-js-layout">
+  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h5 class="mdl-card__title-text mdl-color-text--grey">Wantlist</h5>
+    </div>
 
-<%= link_to 'Edit', edit_want_list_path(@want_list) %> |
-<%= link_to 'Back', want_lists_path %>
+    <div class="mdl-card__supporting-text">
+    <ul class="mdl-list">
+      <li class="mdl-list__item">
+        <span class="mdl-list__item-primary-content">
+          <strong>Name:</strong>
+          <%= @want_list.name %>
+        </span>
+      </li>
+      <li class="mdl-list__item">
+        <span class="mdl-list__item-primary-content">
+          <strong>User:</strong>
+          <%= @want_list.user.email %>
+        </span>
+      </li>
+      <li class="mdl-list__item">
+        <span class="mdl-list__item-primary-content">
+          <strong>Want list privacy:</strong>
+          <%= @want_list.want_list_privacy.name %>
+        </span>
+      </li>
+    </ul>
+
+    <%= link_to 'Edit', edit_want_list_path(@want_list) %> | <%= link_to 'Back', want_lists_path %>
+
+    </div>
+  </div>
+</div>

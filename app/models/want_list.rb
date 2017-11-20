@@ -5,4 +5,5 @@ class WantList < ApplicationRecord
   belongs_to :user
 
   has_many :want_list_items, :dependent => :destroy
+
 end
