@@ -21,9 +21,9 @@
             <td data-label="Material" class="mdl-data-table__cell--non-numeric"><%= want_list_item.ean %></td>
             <td data-label="Material" class="mdl-data-table__cell--non-numeric"><%= want_list_item.quantity %></td>
             <td data-label="Material" class="mdl-data-table__cell--non-numeric"><%= want_list_item.max_price %></td>
-            <td><%= link_to 'Show', want_list_item %></td>
-            <td><%= link_to 'Edit', edit_want_list_item_path(want_list_item) %></td>
-            <td><%= link_to 'Delete', want_list_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= button_to 'Show', want_list_item, :method => "get", class: "mdl-js-ripple-effect" %></td>
+            <td><%= button_to 'Edit', edit_want_list_item_path(want_list_item), :method => "get", class: "mdl-js-ripple-effect" %></td>
+            <td><%= button_to 'Delete', want_list_item, method: :delete, data: { confirm: 'Are you sure?' }, class: "mdl-js-ripple-effect" %></td>
           </tr>
         <% end %>
       </tbody>
