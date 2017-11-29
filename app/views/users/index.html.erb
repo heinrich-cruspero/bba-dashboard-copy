@@ -1,31 +1,17 @@
-<div class="mdl-layout mdl-js-layout">
-  <div class="mdl-card mdl-cell mdl-cell--8-col mdl-cell--4-col-tablet mdl-shadow--2dp">
-    <div class="mdl-card__title">
-      <h5 class="mdl-card__title-text mdl-color-text--grey"> Users </h5>
-    </div>
+<%= javascript_include_tag 'users' %>
+<%= stylesheet_link_tag 'users', media: 'all' %>
 
-    <div class="mdl-card__supporting-text">
+<table id="users-table", data-source="<%= users_path(format: :json) %>", class="mdl-data-table" cellspacing="0" width="100%" >
+  <thead>
+  <tr>
+    <th>Email</th>
+    <th>Admin</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
 
-    <table class="mdl-data-table mdl-cell mdl-cell--12-col mdl-js-data-table mdl-shadow--2dp">
-      <thead>
-        <tr>
-          <th class="mdl-data-table__cell--non-numeric">Email</th>
-          <th class="mdl-data-table__cell--non-numeric">Admin</th>
-          <th colspan="2"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <td data-label="Material" class="mdl-data-table__cell--non-numeric"><%= user.email %></td>
-            <td data-label="Material" class="mdl-data-table__cell--non-numeric"><%= user.admin %></td>
-            <td><%= link_to 'Show', user %></td>
-            <td><%= link_to 'Edit', edit_user_path(user) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    </div>
-  </div>
-</div>

@@ -1,14 +1,14 @@
 <div class="mdl-layout mdl-js-layout">
   <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
     <div class="mdl-card__title">
-      <h5 class="mdl-card__title-text mdl-color-text--grey"> Edit User Permission</h5>
+      <h5 class="mdl-card__title-text mdl-color-text--grey"> Edit User Role</h5>
     </div>
 
     <div class="mdl-card__supporting-text">
 
     <%= form_with(model: user, local: true) do |form| %>
     <div class="mdl-textfield mdl-js-textfield">
-      <%= form.label :admin, class: "mdl-check_box__label" %><br />
+      <%= form.label :admin, class: "mdl-check_box__label" %>
       <%= form.check_box :admin, class: "mdl-check_box__input" %>
     </div>
 
