@@ -58,7 +58,7 @@ namespace :load_fake_data do
                          indaba_instance: IndabaInstance.all.sample,
                          buyer_email: Faker::Internet.email,
                          price_paid: Faker::Commerce.price,
-                         market_order_item_number: Faker::Number.unique.number(10).to_s,
+                         market_book_order_id: Faker::Number.unique.number(10).to_s,
                          market_name: ['Amazon', 'AmazonCa', 'Direct'].sample,
                          date_ordered: Faker::Date.backward
                         }).save!
