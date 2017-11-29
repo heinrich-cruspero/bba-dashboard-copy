@@ -12,7 +12,7 @@ class WantListsController < ApplicationController
     @want_lists = WantList.where('user_id=?', current_user.id)
     self_want_lists = ActiveRecord::Base.connection.execute("SELECT want_list_id FROM users_want_lists WHERE user_id = #{current_user.id}").values
     @self_want_lists = WantList.where("id IN (?)", self_want_lists.flatten)
-    @all_public_want_lists = WantList.where("want_list_privacy_id = ?", 2)
+    @all_public_want_lists = WantList.where("want_list_privacy_id = ?", 1)
     respond_to do |format|
       format.html
       format.json { render json: WantListDatatable.new(view_context) }
@@ -55,29 +55,28 @@ class WantListsController < ApplicationController
   # PATCH/PUT /want_lists/1
   def update
     # abort(@want_list.inspect)
-    params[:privacy_list].to_i == 3 ? privacy_id = 3 : privacy_id = params[:privacy_list].to_i
+    params[:edit_privacy_list].to_i == 3 ? privacy_id = 3 : privacy_id = params[:edit_privacy_list].to_i
     # @want_list = WantList.new(:name=>params[:want_list][:name], :user_id=>current_user.id, :want_list_privacy_id =>privacy_id)
     respond_to do |format|
       @want_list.want_list_privacy_id = privacy_id
       # if @want_list.save
       if @want_list.update(want_list_params)
-        # if privacy_id == 3
-        #   params[:user_id].each do |k,v|
-        #     if v.last.to_i == 1
-        #       # ActiveRecord::Base.connection.execute("INSERT INTO users_want_lists (want_list_id , user_id) VALUES (#{@want_list.id}, #{k.to_i})")
-        #     end
-        #     end
+        if privacy_id == 3
+          ActiveRecord::Base.connection.execute("DELETE FROM users_want_lists WHERE want_list_id = #{@want_list.id}")
+          params[:user_id].each do |k,v|
+            if v.last.to_i == 1
+              ActiveRecord::Base.connection.execute("INSERT INTO users_want_lists (want_list_id , user_id) VALUES (#{@want_list.id}, #{k.to_i})")
+            end
+            end
     # respond_to do |format|
-      # if @want_list.update(want_list_params)
         format.html { redirect_to :action => :index, notice: 'Want list was successfully updated.' }
       #     redirect_to :action => :index, notice: 'Want list was successfully updated.'
         else
         format.html { render :edit }
-          end
         end
         end
-    # end
-  # end
+    end
+  end
 
   # DELETE /want_lists/1
   def destroy
@@ -94,6 +93,10 @@ class WantListsController < ApplicationController
   # GET /items/1
   def items
     @want_list_items = @want_list.want_list_items
+    respond_to do |format|
+      format.html
+      format.json { render json: WantListItemDatatable.new(view_context) }
+    end
   end
 
   def list_user
@@ -120,7 +123,7 @@ class WantListsController < ApplicationController
     end
     result = final_user_ids.delete_if { |item| item == want_list_id}
     @selected_users = User.where("id IN (?)", result)
-    # abort(@selected_users.to_s)
+    @remaining_users = User.where.not("id IN (?)", @selected_users.collect {|x| x.id})
     respond_to do |format|
       format.html
       format.js

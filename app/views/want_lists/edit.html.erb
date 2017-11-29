@@ -26,7 +26,7 @@
 
       <% get_privacy_list %>
       <% @want_list_privacy.each do |privacy| %>
-          <input value="<%=privacy.id %>" name="privacy_list" type="radio" class="shared_users" <% if @want_list.want_list_privacy_id.to_i == privacy.id.to_i %>checked<%end%>>
+          <input value="<%=privacy.id %>" name="edit_privacy_list" type="radio" class="shared_users" <% if @want_list.want_list_privacy_id.to_i == privacy.id.to_i %>checked<%end%>>
           <%=privacy.name%>
       <% end %>
     </div>
@@ -35,7 +35,6 @@
 
     <div class="mdl-textfield mdl-js-textfield test">
       <ul id="users">
-        <label>Select users</label><br>
         <% unless @users.nil? %>
             <% render @users %>
         <% end %>
@@ -59,3 +58,63 @@
 </div>
   </div>
 </div>
+
+<script>
+    //edit wantlist
+    $(document).ready(function() {
+        var id_value = document.getElementsByName('edit_privacy_list')
+        var id_to_pass = document.getElementById('hidden_want_list').value
+        for (var i = 0, length = id_value.length; i < length; i++)
+        {
+
+            if (id_value[i].value == 1) {
+                $("#users").hide()
+            }
+            if (id_value[i].value == 2) {
+                $("#users").hide()
+            }
+            if (id_value[i].value == 3) {
+                $("#users").show()
+                jQuery.ajax({
+                    type: "GET",
+                    url: "/want_lists/edit_wantlist_user",
+                    data: "&authenticity_token=" + get_authenticity_token() + "&format=js" + "&want_list_id=" + id_to_pass,
+                    asynchronous: true,
+                    evalScripts: true
+                });
+            }
+
+        }
+
+    });
+
+    $(function(){
+        $('input[type=radio][name=edit_privacy_list]').change(function(){
+            var id_to_pass = document.getElementById('hidden_want_list').value
+            var id_value = this.value
+            if (id_value == 1) {
+                $("#users").hide()
+            }
+            var id_value = this.value
+            if (id_value == 2) {
+                $("#users").hide()
+            }
+            var id_value = this.value
+            if (id_value == 3) {
+                $("#users").show()
+                jQuery.ajax({
+                    type: "GET",
+                    url: "/want_lists/edit_wantlist_user",
+                    data: "&authenticity_token=" + get_authenticity_token() + "&format=js" + "&want_list_id=" + id_to_pass,
+                    asynchronous: true,
+                    evalScripts: true
+                });
+            }
+        });
+
+        // $(document).ready(function(){
+        //     $("#users").hide()
+        // });
+    });
+
+</script>
