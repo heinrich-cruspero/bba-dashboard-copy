@@ -9,10 +9,10 @@ class WantListsController < ApplicationController
 
   # GET /want_lists
   def index
-    @want_lists = WantList.where('user_id=?', current_user.id)
-    self_want_lists = ActiveRecord::Base.connection.execute("SELECT want_list_id FROM users_want_lists WHERE user_id = #{current_user.id}").values
-    @self_want_lists = WantList.where("id IN (?)", self_want_lists.flatten)
-    @all_public_want_lists = WantList.where("want_list_privacy_id = ?", 1)
+    # @want_lists = WantList.where('user_id=?', current_user.id)
+    # self_want_lists = ActiveRecord::Base.connection.execute("SELECT want_list_id FROM users_want_lists WHERE user_id = #{current_user.id}").values
+    # @self_want_lists = WantList.where("id IN (?)", self_want_lists.flatten)
+    # @all_public_want_lists = WantList.where("want_list_privacy_id = ?", 1)
     respond_to do |format|
       format.html
       format.json { render json: WantListDatatable.new(view_context) }
@@ -70,9 +70,11 @@ class WantListsController < ApplicationController
             end
     # respond_to do |format|
         format.html { redirect_to :action => :index, notice: 'Want list was successfully updated.' }
-      #     redirect_to :action => :index, notice: 'Want list was successfully updated.'
+          # redirect_to :action => :index, notice: 'Want list was successfully updated.'
         else
-        format.html { render :edit }
+          format.html { redirect_to :action => :index, notice: 'Want list was successfully updated.' }
+        # format.html { render :edit }
+    # end
         end
         end
     end
@@ -93,10 +95,10 @@ class WantListsController < ApplicationController
   # GET /items/1
   def items
     @want_list_items = @want_list.want_list_items
-    respond_to do |format|
-      format.html
-      format.json { render json: WantListItemDatatable.new(view_context) }
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: WantListItemDatatable.new(view_context) }
+    # end
   end
 
   def list_user

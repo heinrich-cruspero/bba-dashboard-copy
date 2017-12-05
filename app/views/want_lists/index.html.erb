@@ -1,85 +1,24 @@
-<%= javascript_include_tag 'want_list' %>
+<%= stylesheet_link_tag 'want_lists', media: 'all' %>
+<%= javascript_include_tag 'want_lists' %>
 
-<div class = "mdl-color-text--grey"><h5>Manage Wantlist</h5></div>
-    <table id="want-lists-table" data-source="<%= want_lists_path(format: :json) %>" class="mdl-data-table" cellspacing="0" width="100%">
-      <thead>
-        <tr>
-          <th class="mdl-data-table__cell--non-numeric">Name</th>
-          <th>User email</th>
-          <th>Want list privacy</th>
-          <th colspan="4"></th>
-        </tr>
-      </thead>
+<div class = "mdl-color-text--grey"><h5>Manage Wantlists</h5></div>
+  <table id="want-lists-table" data-source="<%= want_lists_path(format: :json) %>" class="mdl-data-table" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>User email</th>
+        <th>Want list privacy</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <!--<th colspan="3"></th>-->
+      </tr>
+    </thead>
 
-      <tbody>
-        <% @want_lists.each do |want_list| %>
-          <tr>
-            <td data-label="Material" class="mdl-data-table__cell--non-numeric"><%= want_list.name %></td>
-            <td><%= want_list.user.email %></td>
-            <td><%= want_list.want_list_privacy.name %></td>
-            <td><%= button_to 'Items', items_want_list_path(want_list), :method => "get", class: "mdl-js-ripple-effect" %></td>
-            <td><%= button_to 'Show', want_list, :method => "get", class: "mdl-js-ripple-effect" %></td>
-            <td><%= button_to 'Edit', edit_want_list_path(want_list), :method => "get", class: "mdl-js-ripple-effect" %></td>
-            <td><%= button_to 'Delete', want_list, method: :delete, data: { confirm: 'Are you sure?' }, class: "mdl-js-ripple-effect" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= button_to 'New Want List', new_want_list_path, :method => "get", class: "mdl-button mdl-button--colored" %>
+    <tbody>
+    </tbody>
     <br>
+  </table>
 
-   <div class = "mdl-color-text--grey title_header title-header"><h5>Shared Wantlist</h5></div>
-    <table id="want-list-table" data-source="<%= want_lists_path(format: :json) %>" class="mdl-data-table" cellspacing="0" width="100%">
-      <thead>
-      <tr>
-        <th class="mdl-data-table__cell--non-numeric">Name</th>
-        <th>User email</th>
-        <th>Want list privacy</th>
-        <th colspan="4"></th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <% @self_want_lists.each do |want_list| %>
-          <tr>
-            <td data-label="Material" class="mdl-data-table__cell--non-numeric"><%= want_list.name %></td>
-            <td><%= want_list.user.email %></td>
-            <td><%= want_list.want_list_privacy.name %></td>
-            <td><%= button_to 'Items', items_want_list_path(want_list), :method => "get", class: "mdl-js-ripple-effect" %></td>
-            <td><%= button_to 'Show', want_list, :method => "get", class: "mdl-js-ripple-effect" %></td>
-            <td><%= button_to 'Edit', edit_want_list_path(want_list), :method => "get", class: "mdl-js-ripple-effect" %></td>
-            <td><%= button_to 'Delete', want_list, method: :delete, data: { confirm: 'Are you sure?' }, class: "mdl-js-ripple-effect" %></td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-
-      <h5 class="mdl-color-text--grey">Public wantlists</h5>
-
-    <table id="want-list-table" data-source="<%= want_lists_path(format: :json) %>" class="mdl-data-table" cellspacing="0" width="100%">
-      <thead>
-      <tr>
-        <th class="mdl-data-table__cell--non-numeric">Name</th>
-        <th>User email</th>
-        <th>Want list privacy</th>
-        <th colspan="4"></th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <% @all_public_want_lists.each do |want_list| %>
-          <tr>
-            <td data-label="Material" class="mdl-data-table__cell--non-numeric"><%= want_list.name %></td>
-            <td><%= want_list.user.email %></td>
-            <td><%= want_list.want_list_privacy.name %></td>
-            <td><%= button_to 'Items', items_want_list_path(want_list), :method => "get", class: "mdl-js-ripple-effect" %></td>
-            <td><%= button_to 'Show', want_list, :method => "get", class: "mdl-js-ripple-effect" %></td>
-            <td><%= button_to 'Edit', edit_want_list_path(want_list), :method => "get", class: "mdl-js-ripple-effect" %></td>
-            <td><%= button_to 'Delete', want_list, method: :delete, data: { confirm: 'Are you sure?' }, class: "mdl-js-ripple-effect"%></td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-
-<div id="details" class="mdl-cell">
-</div>
+  <%= button_to 'New Want List', new_want_list_path, :method => "get", class: "mdl-button mdl-button--colored" %>
