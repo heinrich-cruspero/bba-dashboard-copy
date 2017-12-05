@@ -94,7 +94,7 @@ class WantListsController < ApplicationController
 
   # GET /items/1
   def items
-    @want_list_items = @want_list.want_list_items
+    # @want_list_items = @want_list.want_list_items
     # respond_to do |format|
     #   format.html
     #   format.json { render json: WantListItemDatatable.new(view_context) }

@@ -7,12 +7,20 @@ class WantListItemsController < ApplicationController
   def show
   end
 
+  def index
+    respond_to do |format|
+      format.html
+      format.json { render json: WantListItemDatatable.new(view_context) }
+    end
+  end
+
   # GET /want_list_items/1/edit
   def edit
   end
 
   # PATCH/PUT /want_list_items/1
   def update
+    # abort(@want_list_item.inspect)
     respond_to do |format|
       if @want_list_item.update(want_list_item_params)
         format.html { redirect_to items_want_list_path(@want_list_item.want_list), notice: 'Want list item was successfully updated.' }
