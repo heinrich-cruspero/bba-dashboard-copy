@@ -11,6 +11,7 @@
     <th>Direct</th>
     <th>1DQCA</th>
     <th>7DQCA</th>
+    <th>Last Update</th>
   </tr>
   </thead>
   <tbody>
@@ -25,6 +26,7 @@
     <td><%= @book.indaba_datum.direct %></td>
     <td><%= @book.indaba_datum.daily_rqf %></td>
     <td><%= @book.indaba_datum.weekly_rqf %></td>
+    <td><%= @book.indaba_datum.updated_at.strftime("%d-%m-%Y %H:%M") %></td>
   </tr>
   </tbody>
 </table>

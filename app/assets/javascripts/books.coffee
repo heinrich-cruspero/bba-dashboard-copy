@@ -18,7 +18,7 @@ $ ->
       {data: 'past_week_sales_history_quantity', orderable: true, searchable: false}
       {data: 'past_month_sales_history_quantity', orderable: true, searchable: false}
       {data: 'past_year_sales_history_quantity', orderable: true, searchable: false}
-      {data: 'updated_at', orderable: true, searchable: false}
+
     ]
     'fnDrawCallback': () ->
       componentHandler.upgradeDom()
