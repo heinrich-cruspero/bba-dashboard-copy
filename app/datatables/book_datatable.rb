@@ -10,6 +10,7 @@ class BookDatatable < AjaxDatatablesRails::Base
       past_week_sales_history_quantity: { source: "IndabaDatum.past_week_sales_history_quantity", cond: :eq, searchable: false, orderable: true },
       past_month_sales_history_quantity: { source: "IndabaDatum.past_month_sales_history_quantity", cond: :eq, searchable: false, orderable: true },
       past_year_sales_history_quantity: { source: "IndabaDatum.past_year_sales_history_quantity", cond: :eq, searchable: false, orderable: true },
+      updated_at: { source: "IndabaDatum.updated_at", cond: :eq, searchable: false, orderable: true },
     }
   end
 
@@ -25,6 +26,7 @@ class BookDatatable < AjaxDatatablesRails::Base
         past_week_sales_history_quantity: record.indaba_datum.past_week_sales_history_quantity,
         past_month_sales_history_quantity: record.indaba_datum.past_month_sales_history_quantity,
         past_year_sales_history_quantity: record.indaba_datum.past_year_sales_history_quantity,
+        updated_at: record.indaba_datum.updated_at.strftime("%d-%m-%Y %H:%M"),
       }
     end
   end
