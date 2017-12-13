@@ -2,12 +2,15 @@
 <%= stylesheet_link_tag 'want_list_items', media: 'all' %>
 
 <div class = "mdl-color-text--grey"><h5>Wantlist Items</h5></div>
-<table id="want-list-items-table" data-source="<%= want_list_items_path(format: :json) %>" class="mdl-data-table" cellspacing="0" width="100%">
+<!--<table id="want-list-items-table" data-source="<#%= want_list_items_path(want_list_id: want_list_id, format: :json) %>" class="mdl-data-table" cellspacing="0" width="100%">-->
+<table id="want-list-items-table" data-source="<%= want_list_items_path(want_list_id: params[:want_list_id], format: :json)%>" class="mdl-data-table" cellspacing="0" width="100%">
   <thead>
   <tr>
     <th>EAN</th>
     <th>Quantity</th>
     <th>Max Price</th>
+    <th>Author</th>
+    <th>Title</th>
     <th></th>
     <th></th>
     <th></th>

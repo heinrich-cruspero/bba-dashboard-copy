@@ -9,10 +9,6 @@ class WantListsController < ApplicationController
 
   # GET /want_lists
   def index
-    # @want_lists = WantList.where('user_id=?', current_user.id)
-    # self_want_lists = ActiveRecord::Base.connection.execute("SELECT want_list_id FROM users_want_lists WHERE user_id = #{current_user.id}").values
-    # @self_want_lists = WantList.where("id IN (?)", self_want_lists.flatten)
-    # @all_public_want_lists = WantList.where("want_list_privacy_id = ?", 1)
     respond_to do |format|
       format.html
       format.json { render json: WantListDatatable.new(view_context) }
@@ -54,12 +50,9 @@ class WantListsController < ApplicationController
 
   # PATCH/PUT /want_lists/1
   def update
-    # abort(@want_list.inspect)
     params[:edit_privacy_list].to_i == 3 ? privacy_id = 3 : privacy_id = params[:edit_privacy_list].to_i
-    # @want_list = WantList.new(:name=>params[:want_list][:name], :user_id=>current_user.id, :want_list_privacy_id =>privacy_id)
     respond_to do |format|
       @want_list.want_list_privacy_id = privacy_id
-      # if @want_list.save
       if @want_list.update(want_list_params)
         if privacy_id == 3
           ActiveRecord::Base.connection.execute("DELETE FROM users_want_lists WHERE want_list_id = #{@want_list.id}")
@@ -68,13 +61,9 @@ class WantListsController < ApplicationController
               ActiveRecord::Base.connection.execute("INSERT INTO users_want_lists (want_list_id , user_id) VALUES (#{@want_list.id}, #{k.to_i})")
             end
             end
-    # respond_to do |format|
         format.html { redirect_to :action => :index, notice: 'Want list was successfully updated.' }
-          # redirect_to :action => :index, notice: 'Want list was successfully updated.'
         else
           format.html { redirect_to :action => :index, notice: 'Want list was successfully updated.' }
-        # format.html { render :edit }
-    # end
         end
         end
     end
@@ -93,12 +82,13 @@ class WantListsController < ApplicationController
   end
 
   # GET /items/1
+
   def items
-    # @want_list_items = @want_list.want_list_items
-    # respond_to do |format|
-    #   format.html
-    #   format.json { render json: WantListItemDatatable.new(view_context) }
-    # end
+    params[:want_list_id] = @want_list.id
+    respond_to do |format|
+       format.html
+       format.json { render json: WantListItemDatatable.new(view_context, want_list_id: params[:want_list_id]) }
+    end
   end
 
   def list_user

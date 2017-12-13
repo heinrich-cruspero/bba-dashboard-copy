@@ -1,17 +1,19 @@
 <%= javascript_include_tag 'users' %>
 <%= stylesheet_link_tag 'users', media: 'all' %>
 
-<table id="users-table", data-source="<%= users_path(format: :json) %>", class="mdl-data-table" cellspacing="0" width="100%" >
-  <thead>
-  <tr>
-    <th>Email</th>
-    <th>Admin</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
+<div class = "mdl-color-text--grey"><h5>Manage Users</h5></div>
+
+  <table id="users-table", data-source="<%= users_path(format: :json) %>", class="mdl-data-table" cellspacing="0" width="100%" >
+    <thead>
+    <tr>
+      <th>Email</th>
+      <th>Admin</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 
