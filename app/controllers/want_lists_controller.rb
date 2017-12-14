@@ -29,43 +29,30 @@ class WantListsController < ApplicationController
   end
 
   def create
-    # @want_list = WantList.new
-    params[:privacy_list].to_i == 3 ? privacy_id = 3 : privacy_id = params[:privacy_list].to_i
-    @want_list = WantList.new(:name=>params[:want_list][:name], :user_id=>current_user.id, :want_list_privacy_id =>privacy_id)
+    @want_list = WantList.new(want_list_params)
+    @want_list.user = current_user
+    # abort(@want_list.inspect)
     respond_to do |format|
       if @want_list.save
-        if privacy_id == 3
-        params[:user_id].each do |k,v|
-          if v.last.to_i == 1
-            ActiveRecord::Base.connection.execute("INSERT INTO users_want_lists (want_list_id , user_id) VALUES (#{@want_list.id}, #{k.to_i})")
-          end
-          end
-        end
         format.html { redirect_to @want_list, notice: 'Want list was successfully created.' }
+        format.json { render :show, status: :created, location: @want_list }
       else
+        # respond_with(@want_list)
         format.html { render :new }
+        format.json { render json: @want_list.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /want_lists/1
   def update
-    params[:edit_privacy_list].to_i == 3 ? privacy_id = 3 : privacy_id = params[:edit_privacy_list].to_i
     respond_to do |format|
-      @want_list.want_list_privacy_id = privacy_id
       if @want_list.update(want_list_params)
-        if privacy_id == 3
-          ActiveRecord::Base.connection.execute("DELETE FROM users_want_lists WHERE want_list_id = #{@want_list.id}")
-          params[:user_id].each do |k,v|
-            if v.last.to_i == 1
-              ActiveRecord::Base.connection.execute("INSERT INTO users_want_lists (want_list_id , user_id) VALUES (#{@want_list.id}, #{k.to_i})")
-            end
-            end
-        format.html { redirect_to :action => :index, notice: 'Want list was successfully updated.' }
-        else
-          format.html { redirect_to :action => :index, notice: 'Want list was successfully updated.' }
-        end
-        end
+        format.html { redirect_to @want_list, notice: 'Want list was successfully updated.' }
+        format.json { render :show, status: :ok, location: @want_list }
+      else
+        format.html { render :edit }
+        format.json { render json: @want_list.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -100,28 +87,6 @@ class WantListsController < ApplicationController
     end
   end
 
-  def edit_wantlist_user
-    want_list_id = params[:want_list_id]
-    selected_users = ActiveRecord::Base.connection.execute("SELECT * FROM users_want_lists WHERE want_list_id =#{want_list_id}")
-    user_ids = []
-    final_user_ids = []
-    selected_users.each do |user|
-    user_ids << user
-    end
-    user_ids.each do |entry|
-      entry.each do |k,v|
-        final_user_ids << v
-        end
-    end
-    result = final_user_ids.delete_if { |item| item == want_list_id}
-    @selected_users = User.where("id IN (?)", result)
-    @remaining_users = User.where.not("id IN (?)", @selected_users.collect {|x| x.id})
-    respond_to do |format|
-      format.html
-      format.js
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_want_list
@@ -130,7 +95,7 @@ class WantListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def want_list_params
-      params.require(:want_list).permit(:name, :user_id, :want_list_privacy_id)
+      params.require(:want_list).permit(:name, :user_id, :want_list_privacy_id, user_ids: [])
     end
 
     # After update & create process items file if exist

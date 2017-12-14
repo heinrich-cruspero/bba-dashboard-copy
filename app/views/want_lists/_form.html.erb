@@ -1,3 +1,6 @@
+<%= javascript_include_tag 'want_lists' %>
+<%= stylesheet_link_tag 'want_lists', media: 'all' %>
+
 <div class="mdl-layout mdl-js-layout layout_height">
   <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
     <div class="mdl-card__title">
@@ -6,7 +9,7 @@
 
     <div class="mdl-card__supporting-text">
     <!--<#%= form_with(model: want_list, local: true) do |form| %>-->
-      <%= form_for :want_list,:url =>{:controller => "want_lists", :action=>"create"}, :method => :post do |form| %>
+    <%= form_for :want_list,:url =>{:controller => "want_lists", :action=>"create"}, :method => :post do |form| %>
     <div class="mdl-textfield mdl-js-textfield">
       <%= form.label :name, class: "mdl-textfield__label" %><br />
       <%= form.text_field :name, id: :want_list_name, class: "mdl-textfield__input" %>
@@ -18,28 +21,29 @@
     <br />
 
     <div class="mdl-textfield mdl-js-textfield">
-      <!--<#%= form.collection_radio_buttons :want_list_privacy_id, WantListPrivacy.all, :id, :name %>-->
-        <!--<#% want_list.errors.full_messages_for(:want_list_privacy_id).each do |message| %>-->
-          <!--<span class="mdl-textfield__error"><#%= message %></span>-->
-          <!--<#% end %>-->
+      <%= form.collection_radio_buttons :want_list_privacy_id, WantListPrivacy.all, :id, :name %>
+        <% want_list.errors.full_messages_for(:want_list_privacy_id).each do |message| %>
+          <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+    </div>
 
-    <% get_privacy_list %>
-    <% @want_list_privacy.each do |privacy| %>
-        <input value="<%=privacy.id %>" name="privacy_list" type="radio" class="shared_users" <% if @want_list.want_list_privacy_id.to_i == privacy.id.to_i %>checked<%end%>>
-        <%=privacy.name%>
+    <br />
+
+    <div class="mdl-cell mdl-cell--12-col no-margin select_users">
+      <%= form.label :select_users, :class => 'select-label' %>
+      <div>
+        <%=form.collection_check_boxes(:user_ids, User.where.not(id: current_user.id), :id, :email) do |shared_user| %>
+          <div class="row">
+            <%= shared_user.label(class: "check_box") do %>
+            <div class="col-xs-4">
+            <%= shared_user.check_box(class: "check_box") %>
+            <%= shared_user.object.email %>
+          </div>
         <% end %>
+        </div>
+      <% end %>
     </div>
-
-    <br />
-
-    <div class="mdl-textfield mdl-js-textfield test">
-      <ul id="users">
-        <% unless @users.nil? %>
-        <% render @users %>
-         <% end %>
-      </ul>
     </div>
-    <br />
 
     <div class="mdl-textfield mdl-js-textfield">
       <%= form.label :want_list_items, class: "mdl-textfield__label" %><br />
@@ -60,3 +64,19 @@
 </div>
 </div>
 
+<script>
+  $('input[type=radio]').change( function() {
+    var id_value = this.value
+    if (id_value == 1) {
+    $(".select_users").hide()
+    };
+    var id_value = this.value
+    if (id_value == 2) {
+    $(".select_users").hide()
+    }
+    var id_value = this.value
+    if (id_value == 3) {
+    $(".select_users").show()
+    }
+  });
+</script>

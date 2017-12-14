@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'want_lists/list_user'
-  get 'want_lists/edit_wantlist_user'
-
   resources :books, except: %i[new, create, edit, update, destroy] do
     member do
       get :details

@@ -123,8 +123,11 @@ ActiveRecord::Schema.define(version: 20171114215115) do
   end
 
   create_table "users_want_lists", id: false, force: :cascade do |t|
-    t.integer "want_list_id"
-    t.integer "user_id"
+    t.bigint "want_list_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_users_want_lists_on_user_id"
+    t.index ["want_list_id", "user_id"], name: "index_users_want_lists_on_want_list_id_and_user_id", unique: true
+    t.index ["want_list_id"], name: "index_users_want_lists_on_want_list_id"
   end
 
   create_table "want_list_items", force: :cascade do |t|
@@ -163,6 +166,8 @@ ActiveRecord::Schema.define(version: 20171114215115) do
   add_foreign_key "indaba_instance_data", "indaba_instances"
   add_foreign_key "indaba_orders", "books"
   add_foreign_key "indaba_orders", "indaba_instances"
+  add_foreign_key "users_want_lists", "users"
+  add_foreign_key "users_want_lists", "want_lists"
   add_foreign_key "want_list_items", "want_lists"
   add_foreign_key "want_lists", "users"
   add_foreign_key "want_lists", "want_list_privacies"

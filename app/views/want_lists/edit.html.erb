@@ -1,3 +1,6 @@
+<%= javascript_include_tag 'want_lists' %>
+<%= stylesheet_link_tag 'want_lists', media: 'all' %>
+
 <input type=hidden id="hidden_want_list" value="<%= @want_list.id%>">
 <!--<#%= render 'form', want_list: @want_list %>-->
 <div class="mdl-layout mdl-js-layout layout_height">
@@ -19,28 +22,30 @@
     <br />
 
     <div class="mdl-textfield mdl-js-textfield">
-      <!--<#%= form.collection_radio_buttons :want_list_privacy_id, WantListPrivacy.all, :id, :name %>-->
-      <!--<#% want_list.errors.full_messages_for(:want_list_privacy_id).each do |message| %>-->
-      <!--<span class="mdl-textfield__error"><#%= message %></span>-->
-      <!--<#% end %>-->
-
-      <% get_privacy_list %>
-      <% @want_list_privacy.each do |privacy| %>
-          <input value="<%=privacy.id %>" name="edit_privacy_list" type="radio" class="shared_users" <% if @want_list.want_list_privacy_id.to_i == privacy.id.to_i %>checked<%end%>>
-           <%=privacy.name%>
+      <%= form.collection_radio_buttons :want_list_privacy_id, WantListPrivacy.all, :id, :name %>
+      <% @want_list.errors.full_messages_for(:want_list_privacy_id).each do |message| %>
+      <span class="mdl-textfield__error"><%= message %></span>
       <% end %>
+
     </div>
 
-    <br />
-
-    <div class="mdl-textfield mdl-js-textfield">
-      <ul id="users">
-        <% unless @users.nil? %>
-            <% render @users %>
-        <% end %>
-      </ul>
-    </div>
-    <br />
+    <!--<#% if params[:action] == 'edit' || params[:action] == 'update' %>-->
+      <div class="mdl-cell mdl-cell--12-col no-margin edit_users">
+        <%= form.label :select_users, :class => 'select-label' %>
+        <div>
+          <%=form.collection_check_boxes(:user_ids, User.where.not(id: current_user.id), :id, :email) do |shared_user| %>
+            <div class="row">
+              <%= shared_user.label(class: "check_box") do %>
+              <div class="col-xs-4">
+                <%= shared_user.check_box(class: "check_box") %>
+                <%= shared_user.object.email %>
+              </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <!--<#% end %>-->
 
     <div class="mdl-textfield mdl-js-textfield">
       <%= form.label :want_list_items, class: "mdl-textfield__label" %><br />
@@ -59,58 +64,20 @@
   </div>
 </div>
 
+
 <script>
-    //edit wantlist
-        $(document).ready(function() {
-            var id_value = document.getElementsByName('edit_privacy_list')
-            var id_to_pass = document.getElementById('hidden_want_list').value
-                 for (var i = 0, length = id_value.length; i < length; i++)
-                  {
-
-                         if (id_value[i].value == 3) {
-                               $("#users").hide()
-                          }
-                          if (id_value[i].value == 2) {
-                          $("#users").hide()
-                          }
-                          if (id_value[i].value == 1) {
-                               $("#users").show()
-                               jQuery.ajax({
-                                     type: "GET",
-                                        url: "/want_lists/edit_wantlist_user",
-                                        data: "&authenticity_token=" + get_authenticity_token() + "&format=js" + "&want_list_id=" + id_to_pass,
-                                        asynchronous: true,
-                                        evalScripts: true
-                              });
-                            }
-
-                       }
-
-                   });
-
-    $(function(){
-        $('input[type=radio][name=edit_privacy_list]').change(function(){
-            var id_to_pass = document.getElementById('hidden_want_list').value
-            var id_value = this.value
-            if (id_value == 3) {
-                $("#users").show()
-            }
-            var id_value = this.value
-            if (id_value == 2) {
-                $("#users").hide()
-            }
-            var id_value = this.value
-            if (id_value == 1) {
-                $("#users").hide()
-                jQuery.ajax({
-                    type: "GET",
-                    url: "/want_lists/edit_wantlist_user",
-                    data: "&authenticity_token=" + get_authenticity_token() + "&format=js" + "&want_list_id=" + id_to_pass,
-                    asynchronous: true,
-                    evalScripts: true
-                });
-            }
-        });
+    $('input[type=radio]').change( function() {
+        var id_value = this.value
+        if (id_value == 1) {
+            $(".edit_users").hide()
+        };
+        var id_value = this.value
+        if (id_value == 2) {
+            $(".edit_users").hide()
+        }
+        var id_value = this.value
+        if (id_value == 3) {
+            $(".edit_users").show()
+        }
     });
-
 </script>

@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag 'want_lists', media: 'all' %>
 <%= javascript_include_tag 'want_lists' %>
+<%= stylesheet_link_tag 'want_lists', media: 'all' %>
 
 <div class = "mdl-color-text--grey"><h5>Manage Wantlists</h5></div>
   <table id="want-lists-table" data-source="<%= want_lists_path(format: :json) %>" class="mdl-data-table" cellspacing="0" width="100%">

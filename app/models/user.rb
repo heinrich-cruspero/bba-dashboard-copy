@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   has_many :want_lists, :dependent => :destroy
   has_many :want_list_items, :through => :want_lists
-  has_and_belongs_to_many :want_lists
+  has_and_belongs_to_many :want_lists, join_table: "users_want_lists", association_foreign_key: "want_list_id"
 
   def self.from_omniauth(access_token)
     data = access_token.info
