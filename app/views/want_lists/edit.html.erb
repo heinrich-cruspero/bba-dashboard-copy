@@ -22,14 +22,13 @@
     <br />
 
     <div class="mdl-textfield mdl-js-textfield">
-      <%= form.collection_radio_buttons :want_list_privacy_id, WantListPrivacy.all, :id, :name %>
+      <%= form.collection_radio_buttons :want_list_privacy_id, WantListPrivacy.all, :id, :name, :name => 'edit_privacy_list' %>
       <% @want_list.errors.full_messages_for(:want_list_privacy_id).each do |message| %>
       <span class="mdl-textfield__error"><%= message %></span>
       <% end %>
 
     </div>
 
-    <!--<#% if params[:action] == 'edit' || params[:action] == 'update' %>-->
       <div class="mdl-cell mdl-cell--12-col no-margin edit_users">
         <%= form.label :select_users, :class => 'select-label' %>
         <div>
@@ -45,7 +44,6 @@
           <% end %>
         </div>
       </div>
-    <!--<#% end %>-->
 
     <div class="mdl-textfield mdl-js-textfield">
       <%= form.label :want_list_items, class: "mdl-textfield__label" %><br />
@@ -66,6 +64,13 @@
 
 
 <script>
+
+    $(document).ready(function() {
+        if(document.getElementsById('want_list[want_list_privacy_id]').checked) {
+            $(".edit_users").show()
+        }
+    });
+
     $('input[type=radio]').change( function() {
         var id_value = this.value
         if (id_value == 1) {

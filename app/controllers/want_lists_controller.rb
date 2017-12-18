@@ -31,13 +31,11 @@ class WantListsController < ApplicationController
   def create
     @want_list = WantList.new(want_list_params)
     @want_list.user = current_user
-    # abort(@want_list.inspect)
     respond_to do |format|
       if @want_list.save
         format.html { redirect_to @want_list, notice: 'Want list was successfully created.' }
         format.json { render :show, status: :created, location: @want_list }
       else
-        # respond_with(@want_list)
         format.html { render :new }
         format.json { render json: @want_list.errors, status: :unprocessable_entity }
       end
@@ -45,26 +43,25 @@ class WantListsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @want_list.update(want_list_params)
-        format.html { redirect_to @want_list, notice: 'Want list was successfully updated.' }
-        format.json { render :show, status: :ok, location: @want_list }
-      else
-        format.html { render :edit }
-        format.json { render json: @want_list.errors, status: :unprocessable_entity }
+    @want_list = WantList.find(params[:id])
+    @want_list.update(want_list_params)
+    @users = User.where("id IN (?)", params[:want_list][:user_ids].reject { |u| u.empty? })
+    @want_list.users.destroy_all
+    @want_list.users << @users
+      respond_to do |format|
+        if @want_list.update(want_list_params)
+          format.html { redirect_to @want_list, notice: 'Want list was successfully updated.' }
+          format.json { render :show, status: :ok, location: @want_list }
+        else
+          format.html { render :edit }
+          format.json { render json: @want_list.errors, status: :unprocessable_entity }
+        end
       end
-    end
   end
 
   # DELETE /want_lists/1
   def destroy
-    # @want_list.destroy
-    if @want_list.want_list_privacy_id == 3
-        ActiveRecord::Base.connection.execute("DELETE FROM users_want_lists WHERE want_list_id = #{@want_list.id}")
-        @want_list.destroy
-    else
-      @want_list.destroy
-    end
+    @want_list.destroy
     redirect_to :action => :index
   end
 
@@ -75,15 +72,6 @@ class WantListsController < ApplicationController
     respond_to do |format|
        format.html
        format.json { render json: WantListItemDatatable.new(view_context, want_list_id: params[:want_list_id]) }
-    end
-  end
-
-  def list_user
-    # session[:permission_id] = params[:want_list_privacy_id]
-    @users = User.all.uniq
-    respond_to do |format|
-      format.html
-      format.js
     end
   end
 
