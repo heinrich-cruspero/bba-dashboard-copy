@@ -1,20 +1,22 @@
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Admin</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
+<%= javascript_include_tag 'users' %>
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.email %></td>
-        <td><%= user.admin %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-color-text--grey">
+    <h5>Manage Users</h5>
+  </div>
+
+  <div class="mdl-cell mdl-cell--12-col">
+    <table id="users-table", data-source="<%= users_path(format: :json) %>", class="mdl-data-table" width="100%" >
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Admin</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>

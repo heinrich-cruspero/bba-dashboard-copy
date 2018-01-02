@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031155344) do
+ActiveRecord::Schema.define(version: 20171114215115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,12 +122,21 @@ ActiveRecord::Schema.define(version: 20171031155344) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "users_want_lists", id: false, force: :cascade do |t|
+    t.bigint "want_list_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_users_want_lists_on_user_id"
+    t.index ["want_list_id", "user_id"], name: "index_users_want_lists_on_want_list_id_and_user_id", unique: true
+    t.index ["want_list_id"], name: "index_users_want_lists_on_want_list_id"
+  end
+
   create_table "want_list_items", force: :cascade do |t|
     t.bigint "want_list_id", null: false
     t.string "ean", null: false
     t.integer "quantity", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "max_price"
     t.index ["ean"], name: "index_want_list_items_on_ean"
     t.index ["want_list_id"], name: "index_want_list_items_on_want_list_id"
   end
@@ -157,6 +166,8 @@ ActiveRecord::Schema.define(version: 20171031155344) do
   add_foreign_key "indaba_instance_data", "indaba_instances"
   add_foreign_key "indaba_orders", "books"
   add_foreign_key "indaba_orders", "indaba_instances"
+  add_foreign_key "users_want_lists", "users"
+  add_foreign_key "users_want_lists", "want_lists"
   add_foreign_key "want_list_items", "want_lists"
   add_foreign_key "want_lists", "users"
   add_foreign_key "want_lists", "want_list_privacies"

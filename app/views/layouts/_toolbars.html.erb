@@ -5,14 +5,6 @@
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title"><%= controller_name.classify.pluralize %></span>
       <div class="mdl-layout-spacer"></div>
-      <!--<div class="mdl-textfield mdl-js-textfield mdl-textfield&#45;&#45;expandable">
-        <label class="mdl-button mdl-js-button mdl-button&#45;&#45;icon" for="search">
-          <i class="material-icons">search</i>
-        </label>
-        <div class="mdl-textfield__expandable-holder">
-          <input class="mdl-textfield__input" type="text" id="search">
-        </div>
-      </div>-->
       <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
         <i class="material-icons">more_vert</i>
       </button>
@@ -25,9 +17,9 @@
     <%= link_to(image_tag("big_bba_solutions.png", class: "logo"), root_url) %>
     <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
       <a class="mdl-navigation__link" href="<%= books_url %>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">library_books</i>Books</a>
-      <!--<a class="mdl-navigation__link" href="<%= want_lists_url %>"><i class="mdl-color-text&#45;&#45;blue-grey-400 material-icons" role="presentation">list</i>Want Lists</a>-->
+      <a class="mdl-navigation__link" href="<%= want_lists_url %>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">list</i>Want Lists</a>
       <% if @current_user.admin? %>
-          <!--<a class="mdl-navigation__link" href="<%= users_url %>"><i class="mdl-color-text&#45;&#45;blue-grey-400 material-icons" role="presentation">people</i>Users</a>-->
+          <a class="mdl-navigation__link" href="<%= users_url %>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Users</a>
       <% end %>
       <div class="mdl-layout-spacer"></div>
       <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>

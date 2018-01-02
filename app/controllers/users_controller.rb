@@ -1,15 +1,14 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   # GET /users
   def index
-    @users = User.all
-  end
-
-  # GET /users/1
-  def show
+    respond_to do |format|
+      format.html
+      format.json { render json: UserDatatable.new(view_context) }
+    end
   end
 
   # GET /users/1/edit
@@ -20,7 +19,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to users_url, notice: 'User was successfully updated.' }
       else
         format.html { render :edit }
       end

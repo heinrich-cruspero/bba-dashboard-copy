@@ -1,11 +1,7 @@
 class WantListItemsController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_want_list_item, only: [:show, :edit, :update, :destroy]
-
-  # GET /want_list_items/1
-  def show
-  end
+  before_action :set_want_list_item, only: [:edit, :update, :destroy]
 
   # GET /want_list_items/1/edit
   def edit
@@ -38,6 +34,6 @@ class WantListItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def want_list_item_params
-      params.require(:want_list_item).permit(:ean, :quantity)
+      params.require(:want_list_item).permit(:quantity, :max_price)
     end
 end

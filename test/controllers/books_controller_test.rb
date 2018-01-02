@@ -12,10 +12,4 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     get books_url
     assert_response :success
   end
-
-  test "should show book" do
-    get book_url(@book)
-    assert_response :success
-  end
-
 end

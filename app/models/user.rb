@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
 
-  has_many :want_lists, :dependent => :destroy
-  has_many :want_list_items, :through => :want_lists
+  has_many :owned_want_lists, class_name: 'WantList', :dependent => :destroy
+  has_and_belongs_to_many :want_lists, :dependent => :destroy
 
   def self.from_omniauth(access_token)
     data = access_token.info

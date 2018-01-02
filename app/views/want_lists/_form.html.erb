@@ -1,34 +1,47 @@
-<%= form_with(model: want_list, local: true) do |form| %>
-    <div class="mdl-textfield mdl-js-textfield">
-      <%= form.label :name, class: "mdl-textfield__label" %><br />
-      <%= form.text_field :name, id: :want_list_name, class: "mdl-textfield__input" %>
-      <% want_list.errors.full_messages_for(:name).each do |message| %>
-          <span class="mdl-textfield__error"><%= message %></span>
+<%= javascript_include_tag 'want_list_form' %>
+
+<div class="mdl-layout mdl-js-layout">
+  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h5 class="mdl-card__title-text mdl-color-text--grey"> <%= action_name.humanize %> Wantlist</h5>
+    </div>
+
+    <div class="mdl-card__supporting-text">
+      <%= form_with(model: want_list, local: true) do |form| %>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :name, class: "mdl-textfield__label" %>
+          <%= form.text_field :name, id: :want_list_name, class: "mdl-textfield__input" %>
+          <% want_list.errors.full_messages_for(:name).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.collection_radio_buttons :want_list_privacy_id, WantListPrivacy.all, :id, :name %>
+          <% want_list.errors.full_messages_for(:want_list_privacy_id).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col no-margin" id="users_select_div" <% if @want_list.nil? || @want_list.want_list_privacy_id != 3 %> hidden <% end %> >
+          <%= form.label :users, :class => 'select-label' %>
+          <div>
+            <%= form.select :user_ids, User.where.not(id: current_user.id).collect { |x| [x.email, x.id] }, {:include_blank => true}, :multiple => true, :id => 'users_select' %>
+          </div>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.file_field :want_list_items, class: "mdl-textfield__input" %>
+          <% want_list.errors.full_messages_for(:want_list_items).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-card__actions">
+          <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
+        </div>
       <% end %>
+
+      <%= link_to 'Back', want_lists_path %>
     </div>
-
-    <br />
-
-    <div class="mdl-textfield mdl-js-textfield">
-      <%= form.collection_radio_buttons :want_list_privacy_id, WantListPrivacy.all, :id, :name %>
-      <% want_list.errors.full_messages_for(:want_list_privacy_id).each do |message| %>
-          <span class="mdl-textfield__error"><%= message %></span>
-      <% end %>
-    </div>
-
-    <br />
-
-    <div class="mdl-textfield mdl-js-textfield">
-      <%= form.label :want_list_items, class: "mdl-textfield__label" %><br />
-      <%= form.file_field :want_list_items, class: "mdl-textfield__input" %>
-      <% want_list.errors.full_messages_for(:want_list_items).each do |message| %>
-          <span class="mdl-textfield__error"><%= message %></span>
-      <% end %>
-    </div>
-
-    <div class="mdl-card__actions">
-      <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
-    </div>
-<% end %>
-
-<%= link_to 'Back', want_lists_path %>
+  </div>
+</div>
