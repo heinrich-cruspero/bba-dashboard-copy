@@ -7,13 +7,6 @@ class WantListItemsController < ApplicationController
   def show
   end
 
-  def index
-    respond_to do |format|
-      format.html
-      format.json { render json: WantListItemDatatable.new(view_context) }
-    end
-  end
-
   # GET /want_list_items/1/edit
   def edit
   end

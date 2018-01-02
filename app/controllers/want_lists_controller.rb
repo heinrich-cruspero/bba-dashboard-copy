@@ -62,6 +62,14 @@ class WantListsController < ApplicationController
     end
   end
 
+  # GET /items/1
+  def items
+    respond_to do |format|
+       format.html
+       format.json { render json: WantListItemDatatable.new(view_context, want_list_id: @want_list.id) }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_want_list
