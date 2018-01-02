@@ -60,14 +60,15 @@
 
     <%= link_to 'Back', want_lists_path %>| <%= link_to 'Show', @want_list %>
 
-</div>
-</div>
+    </div>
+  </div>
 </div>
 
 <script>
     $(document).ready(function(){
         $(".select_users").hide()
     });
+
   $('input[type=radio]').change( function() {
     var id_value = this.value
     if (id_value == 1) {

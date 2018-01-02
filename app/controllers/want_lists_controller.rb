@@ -45,9 +45,6 @@ class WantListsController < ApplicationController
   def update
     @want_list = WantList.find(params[:id])
     @want_list.update(want_list_params)
-    @users = User.where("id IN (?)", params[:want_list][:user_ids].reject { |u| u.empty? })
-    @want_list.users.destroy_all
-    @want_list.users << @users
       respond_to do |format|
         if @want_list.update(want_list_params)
           format.html { redirect_to @want_list, notice: 'Want list was successfully updated.' }
