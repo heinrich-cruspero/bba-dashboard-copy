@@ -42,7 +42,7 @@ class WantListsController < ApplicationController
   def update
     respond_to do |format|
       if @want_list.update(want_list_params)
-        format.html { redirect_to @want_list, notice: 'Want list was successfully updated.' }
+        format.html { redirect_to want_lists_url, notice: 'Want list was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -74,7 +74,7 @@ class WantListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def want_list_params
-      params.require(:want_list).permit(:name, :user_id, :want_list_privacy_id)
+      params.require(:want_list).permit(:name, :want_list_privacy_id, :user_ids => [])
     end
 
     # After update & create process items file if exist

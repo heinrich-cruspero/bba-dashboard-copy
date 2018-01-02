@@ -33,7 +33,7 @@ class WantListsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update want_list" do
     patch want_list_url(@want_list), params: { want_list: { name: @want_list.name, user_id: @want_list.user_id, want_list_privacy_id: @want_list.want_list_privacy_id } }
-    assert_redirected_to want_list_url(@want_list)
+    assert_redirected_to want_lists_url
   end
 
   test "should destroy want_list" do
