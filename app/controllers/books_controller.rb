@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_book, only: [:show, :details]
+  before_action :set_book, only: [:details]
 
   # GET /books
   def index
