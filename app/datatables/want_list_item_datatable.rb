@@ -21,7 +21,6 @@ class WantListItemDatatable < AjaxDatatablesRails::Base
         author: record.book.nil? ? '' : record.book.author,
         title: record.book.nil? ? '' : record.book.title,
         actions: link_to("edit", edit_want_list_item_path(record), method: :get, class: "mdl-js-ripple-effect") + ' ' +
-                 link_to("Show", record, method: :get, class: "mdl-js-ripple-effect") + ' ' +
                  link_to("Delete", record, method: :delete, data: { confirm: 'Are you sure?' }, class: "mdl-js-ripple-ef")
       }
     end

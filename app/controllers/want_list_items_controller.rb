@@ -1,11 +1,7 @@
 class WantListItemsController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_want_list_item, only: [:show, :edit, :update, :destroy]
-
-  # GET /want_list_items/1
-  def show
-  end
+  before_action :set_want_list_item, only: [:edit, :update, :destroy]
 
   # GET /want_list_items/1/edit
   def edit

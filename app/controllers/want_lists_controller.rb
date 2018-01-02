@@ -3,7 +3,7 @@ class WantListsController < ApplicationController
 
   require 'csv'
 
-  before_action :set_want_list, only: [:show, :edit, :update, :destroy, :items]
+  before_action :set_want_list, only: [:edit, :update, :destroy, :items]
 
   after_action :upload_items, only: [:update, :create]
 
@@ -13,10 +13,6 @@ class WantListsController < ApplicationController
       format.html
       format.json { render json: WantListDatatable.new(view_context) }
     end
-  end
-
-  # GET /want_lists/1
-  def show
   end
 
   # GET /want_lists/new

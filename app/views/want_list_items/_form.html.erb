@@ -6,7 +6,7 @@
 
     <div class="mdl-card__supporting-text">
     <%= form_with(model: want_list_item, local: true) do |form| %>
-      <div class="mdl-textfield mdl-js-textfield">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <%= form.label :ean, class: "mdl-textfield__label" %>
         <%= form.text_field :ean, id: :want_list_item_ean, class: "mdl-textfield__input" %>
         <% want_list_item.errors.full_messages_for(:ean).each do |message| %>
@@ -16,7 +16,7 @@
 
       <br />
 
-      <div class="mdl-textfield mdl-js-textfield">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <%= form.label :quantity, class: "mdl-textfield__label" %>
         <%= form.number_field :quantity, id: :want_list_item_quantity, class: "mdl-textfield__input" %>
         <% want_list_item.errors.full_messages_for(:quantity).each do |message| %>
@@ -25,7 +25,7 @@
       </div>
 
       <br>
-      <div class="mdl-textfield mdl-js-textfield">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <%= form.label :max_price, class: "mdl-textfield__label" %>
         <%= form.number_field :max_price, id: :want_list_item_max_price, class: "mdl-textfield__input" %>
         <% want_list_item.errors.full_messages_for(:max_price).each do |message| %>
@@ -38,7 +38,6 @@
       </div>
     <% end %>
 
-    <%= link_to 'Show', @want_list_item %> |
     <%= link_to 'Back', items_want_list_path(@want_list_item.want_list) %>
     </div>
   </div>
