@@ -5,11 +5,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    # @users = User.all
-    respond_to do |format|
-      format.html
-      format.json { render json: UserDatatable.new(view_context) }
-    end
+    @users = User.all
   end
 
   # GET /users/1
@@ -47,6 +43,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:admin, want_list_ids: [])
+      params.require(:user).permit(:admin)
     end
 end

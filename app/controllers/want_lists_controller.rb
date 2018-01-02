@@ -28,47 +28,37 @@ class WantListsController < ApplicationController
   def edit
   end
 
+  # POST /want_lists
   def create
     @want_list = WantList.new(want_list_params)
     @want_list.user = current_user
+
     respond_to do |format|
       if @want_list.save
         format.html { redirect_to @want_list, notice: 'Want list was successfully created.' }
-        format.json { render :show, status: :created, location: @want_list }
       else
         format.html { render :new }
-        format.json { render json: @want_list.errors, status: :unprocessable_entity }
       end
     end
   end
 
+  # PATCH/PUT /want_lists/1
   def update
-    @want_list = WantList.find(params[:id])
-    @want_list.update(want_list_params)
-      respond_to do |format|
-        if @want_list.update(want_list_params)
-          format.html { redirect_to @want_list, notice: 'Want list was successfully updated.' }
-          format.json { render :show, status: :ok, location: @want_list }
-        else
-          format.html { render :edit }
-          format.json { render json: @want_list.errors, status: :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @want_list.update(want_list_params)
+        format.html { redirect_to @want_list, notice: 'Want list was successfully updated.' }
+      else
+        format.html { render :edit }
       end
+    end
   end
 
   # DELETE /want_lists/1
   def destroy
     @want_list.destroy
-    redirect_to :action => :index
-  end
-
-  # GET /items/1
-
-  def items
-    params[:want_list_id] = @want_list.id
     respond_to do |format|
-       format.html
-       format.json { render json: WantListItemDatatable.new(view_context, want_list_id: params[:want_list_id]) }
+      format.html { redirect_to want_lists_url, notice: 'Want list was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
@@ -80,7 +70,7 @@ class WantListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def want_list_params
-      params.require(:want_list).permit(:name, :user_id, :want_list_privacy_id, user_ids: [])
+      params.require(:want_list).permit(:name, :user_id, :want_list_privacy_id)
     end
 
     # After update & create process items file if exist

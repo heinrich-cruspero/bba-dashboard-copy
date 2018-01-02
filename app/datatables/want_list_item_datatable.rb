@@ -1,5 +1,4 @@
 class WantListItemDatatable < AjaxDatatablesRails::Base
-
   def_delegator :@view, :link_to
   def_delegator :@view, :edit_want_list_item_path
   def_delegator :@view, :button_to
@@ -7,10 +6,10 @@ class WantListItemDatatable < AjaxDatatablesRails::Base
   def view_columns
     @view_columns ||= {
         ean: { source: "WantListItem.ean", cond: :eq, searchable: true, orderable: false },
-        quantity: { source: "WantListItem.quantity", cond: :eq, searchable: true, orderable: true },
-        max_price: { source: "WantListItem.max_price", cond: :eq, searchable: true, orderable: true },
-        author: { source: "Book.author", cond: :eq, searchable: true, orderable: false },
-        title: { source: "Book.title", cond: :eq, searchable: true, orderable: false },
+        quantity: { source: "WantListItem.quantity", cond: :eq, searchable: false, orderable: true },
+        max_price: { source: "WantListItem.max_price", cond: :eq, searchable: false, orderable: true },
+        author: { source: "Book.author", cond: :like, searchable: true, orderable: false },
+        title: { source: "Book.title", cond: :like, searchable: true, orderable: false },
     }
   end
 

@@ -20,7 +20,6 @@ class WantListItemsController < ApplicationController
 
   # PATCH/PUT /want_list_items/1
   def update
-    # abort(@want_list_item.inspect)
     respond_to do |format|
       if @want_list_item.update(want_list_item_params)
         format.html { redirect_to items_want_list_path(@want_list_item.want_list), notice: 'Want list item was successfully updated.' }
@@ -46,6 +45,6 @@ class WantListItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def want_list_item_params
-      params.require(:want_list_item).permit(:ean, :quantity,:max_price)
+      params.require(:want_list_item).permit(:ean, :quantity)
     end
 end

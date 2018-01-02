@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   resources :books, except: %i[new, create, edit, update, destroy] do
     member do
       get :details
