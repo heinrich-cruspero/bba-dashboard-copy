@@ -8,11 +8,6 @@ class WantListItemsControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:one)
   end
 
-  test "should show want_list_item" do
-    get want_list_item_url(@want_list_item)
-    assert_response :success
-  end
-
   test "should get edit" do
     get edit_want_list_item_url(@want_list_item)
     assert_response :success

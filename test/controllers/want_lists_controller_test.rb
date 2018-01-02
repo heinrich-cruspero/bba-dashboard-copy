@@ -23,12 +23,7 @@ class WantListsControllerTest < ActionDispatch::IntegrationTest
       post want_lists_url, params: { want_list: { name: @want_list.name, user_id: @want_list.user_id, want_list_privacy_id: @want_list.want_list_privacy_id } }
     end
 
-    assert_redirected_to want_list_url(WantList.last)
-  end
-
-  test "should show want_list" do
-    get want_list_url(@want_list)
-    assert_response :success
+    assert_redirected_to want_lists_url
   end
 
   test "should get edit" do

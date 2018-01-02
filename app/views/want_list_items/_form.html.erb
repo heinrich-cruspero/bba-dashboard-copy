@@ -8,7 +8,7 @@
     <%= form_with(model: want_list_item, local: true) do |form| %>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <%= form.label :ean, class: "mdl-textfield__label" %>
-        <%= form.text_field :ean, id: :want_list_item_ean, class: "mdl-textfield__input" %>
+        <%= form.text_field :ean, id: :want_list_item_ean, class: "mdl-textfield__input", disabled: true %>
         <% want_list_item.errors.full_messages_for(:ean).each do |message| %>
             <span class="mdl-textfield__error"><%= message %></span>
         <% end %>

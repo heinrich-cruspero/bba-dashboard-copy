@@ -27,11 +27,11 @@ class WantListsController < ApplicationController
   # POST /want_lists
   def create
     @want_list = WantList.new(want_list_params)
-    @want_list.user = current_user
+    @want_list.owner = current_user
 
     respond_to do |format|
       if @want_list.save
-        format.html { redirect_to @want_list, notice: 'Want list was successfully created.' }
+        format.html { redirect_to want_lists_url, notice: 'Want list was successfully created.' }
       else
         format.html { render :new }
       end

@@ -2,10 +2,10 @@
 
 one:
   name: MyString
-  user: one
+  owner: one
   want_list_privacy: one
 
 two:
   name: MyString
-  user: two
+  owner: two
   want_list_privacy: two
