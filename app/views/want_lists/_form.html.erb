@@ -22,7 +22,7 @@
             <span class="mdl-textfield__error"><%= message %></span>
           <% end %>
         </div>
-        <div class="mdl-cell mdl-cell--12-col no-margin" id="users_select_div" <% if @want_list.nil? || @want_list.want_list_privacy_id == 1 %> hidden <% end %> >
+        <div class="mdl-cell mdl-cell--12-col no-margin" id="users_select_div" <% if @want_list.nil? || @want_list.want_list_privacy_id != 3 %> hidden <% end %> >
           <%= form.label :users, :class => 'select-label' %>
           <div>
             <%= form.select :user_ids, User.where.not(id: current_user.id).collect { |x| [x.email, x.id] }, {:include_blank => true}, :multiple => true, :id => 'users_select' %>
