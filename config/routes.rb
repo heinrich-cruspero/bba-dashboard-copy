@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :books, except: %i[new, create, edit, update, destroy] do
+  resources :books, except: %i[new, create, edit, update, destroy, show] do
     member do
       get :details
     end
@@ -17,5 +17,5 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
-  resources :users, except: %i[new, create]
+  resources :users, except: %i[new, create, show]
 end
