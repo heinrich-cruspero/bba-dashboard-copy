@@ -18,8 +18,8 @@ class WantListDatatable < AjaxDatatablesRails::Base
           name: want_list.name,
           email: want_list.owner.email,
           privacy: want_list.want_list_privacy.name,
-          actions: link_to("items", items_want_list_path(want_list)) +' '+
-              link_to("edit", edit_want_list_path(want_list)) + ' '+
+          actions: link_to("Items", items_want_list_path(want_list)) +' '+
+              link_to("Edit", edit_want_list_path(want_list)) + ' '+
               link_to("Delete", want_list, method: :delete, data: { confirm: 'Are you sure?' })
       }
     end
