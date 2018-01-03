@@ -16,18 +16,25 @@
           <% end %>
         </div>
 
+        </br>
+
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
           <%= form.collection_radio_buttons :want_list_privacy_id, WantListPrivacy.all, :id, :name %>
           <% want_list.errors.full_messages_for(:want_list_privacy_id).each do |message| %>
             <span class="mdl-textfield__error"><%= message %></span>
           <% end %>
         </div>
+
+        </br>
+
         <div class="mdl-cell mdl-cell--12-col no-margin" id="users_select_div" <% if @want_list.nil? || @want_list.want_list_privacy_id != 3 %> hidden <% end %> >
           <%= form.label :users, :class => 'select-label' %>
           <div>
             <%= form.select :user_ids, User.where.not(id: current_user.id).collect { |x| [x.email, x.id] }, {:include_blank => true}, :multiple => true, :id => 'users_select' %>
           </div>
         </div>
+
+        </br>
 
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
           <%= form.file_field :want_list_items, class: "mdl-textfield__input" %>
