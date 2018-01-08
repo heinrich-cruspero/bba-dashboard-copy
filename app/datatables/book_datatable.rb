@@ -26,7 +26,7 @@ class BookDatatable < AjaxDatatablesRails::Base
         past_week_sales_history_quantity: record.indaba_datum.past_week_sales_history_quantity,
         past_month_sales_history_quantity: record.indaba_datum.past_month_sales_history_quantity,
         past_year_sales_history_quantity: record.indaba_datum.past_year_sales_history_quantity,
-        updated_at: record.indaba_datum.updated_at.in_time_zone('Central Time (US & Canada)').strftime("%d-%m-%Y %H:%M"),
+        updated_at: record.indaba_datum.updated_at.in_time_zone('Central Time (US & Canada)').strftime("%m-%d-%Y %H:%M"),
       }
     end
   end

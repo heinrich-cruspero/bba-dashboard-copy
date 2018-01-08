@@ -56,11 +56,13 @@
 </table>
 
 <div class="mdl-grid">
-  <table id="fbaz-table" class="mdl-data-table mdl-cell">
+  <table id="fbaz-table" class="mdl-data-table">
     <thead>
     <tr>
       <th>Price</th>
       <th>Market</th>
+      <th>Date</th>
+      <th>Indaba</th>
     </tr>
     </thead>
     <tbody>
@@ -68,12 +70,14 @@
         <tr>
           <td><%= indaba_order.price_paid %></td>
           <td><%= indaba_order.market_name %></td>
+          <td><%= indaba_order.date_ordered.strftime("%m-%d-%Y") %></td>
+          <td><%= indaba_order.indaba_instance.account_name %></td>
         </tr>
     <% end %>
     </tbody>
   </table>
 
-  <table id="orders-table" class="mdl-data-table mdl-cell">
+  <table id="orders-table" class="mdl-data-table">
     <thead>
     <tr>
       <th>Buyer Email</th>
