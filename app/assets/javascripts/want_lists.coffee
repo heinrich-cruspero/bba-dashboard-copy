@@ -1,3 +1,13 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  $('#want-lists-table').dataTable
+    processing: true
+    serverSide: true
+    ajax: $('#want-lists-table').data('source')
+    pagingType: 'full_numbers'
+    pageLength: 10
+    columns: [
+      {data: 'name', orderable: true, searchable: true}
+      {data: 'email', orderable: true, searchable: true}
+      {data: 'privacy', orderable: true, searchable: true}
+      {data: 'actions', orderable: false, searchable: false}
+    ]

@@ -1,4 +1,4 @@
-WantListPrivacy.create([{ name: 'Public' }, { name: 'Private' }])
+WantListPrivacy.create([{ name: 'Public' }, { name: 'Private' }, { name: 'Shared' }])
 
 IndabaInstance.create(
                       [

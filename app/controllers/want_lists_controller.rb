@@ -3,17 +3,16 @@ class WantListsController < ApplicationController
 
   require 'csv'
 
-  before_action :set_want_list, only: [:show, :edit, :update, :destroy, :items]
+  before_action :set_want_list, only: [:edit, :update, :destroy, :items]
 
   after_action :upload_items, only: [:update, :create]
 
   # GET /want_lists
   def index
-    @want_lists = WantList.all
-  end
-
-  # GET /want_lists/1
-  def show
+    respond_to do |format|
+      format.html
+      format.json { render json: WantListDatatable.new(view_context) }
+    end
   end
 
   # GET /want_lists/new
@@ -28,11 +27,11 @@ class WantListsController < ApplicationController
   # POST /want_lists
   def create
     @want_list = WantList.new(want_list_params)
-    @want_list.user = current_user
+    @want_list.owner = current_user
 
     respond_to do |format|
       if @want_list.save
-        format.html { redirect_to @want_list, notice: 'Want list was successfully created.' }
+        format.html { redirect_to want_lists_url, notice: 'Want list was successfully created.' }
       else
         format.html { render :new }
       end
@@ -43,7 +42,7 @@ class WantListsController < ApplicationController
   def update
     respond_to do |format|
       if @want_list.update(want_list_params)
-        format.html { redirect_to @want_list, notice: 'Want list was successfully updated.' }
+        format.html { redirect_to want_lists_url, notice: 'Want list was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -61,7 +60,10 @@ class WantListsController < ApplicationController
 
   # GET /items/1
   def items
-    @want_list_items = @want_list.want_list_items
+    respond_to do |format|
+       format.html
+       format.json { render json: WantListItemDatatable.new(view_context, want_list_id: @want_list.id) }
+    end
   end
 
   private
@@ -72,7 +74,7 @@ class WantListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def want_list_params
-      params.require(:want_list).permit(:name, :user_id, :want_list_privacy_id)
+      params.require(:want_list).permit(:name, :want_list_privacy_id, :user_ids => [])
     end
 
     # After update & create process items file if exist

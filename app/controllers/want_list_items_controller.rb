@@ -1,10 +1,26 @@
 class WantListItemsController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_want_list_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_want_list_item, only: [:edit, :update, :destroy]
 
-  # GET /want_list_items/1
-  def show
+  # POST /want_list_items.json
+  def create
+    @want_list_item = WantListItem.where(want_list_id: params[:want_list_item][:want_list_id],ean: params[:want_list_item][:ean]).first
+    if @want_list_item.nil?
+      @want_list_item = WantListItem.new(want_list_item_params)
+    else
+      @want_list_item.update(want_list_item_params)
+    end
+
+    respond_to do |format|
+      if @want_list_item.save
+        format.js   { }
+        format.json { render status: :created, location: @want_list_item }
+      else
+        format.js   { }
+        format.json { render status: :unprocessable_entity, location: @want_list_item }
+      end
+    end
   end
 
   # GET /want_list_items/1/edit
@@ -38,6 +54,6 @@ class WantListItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def want_list_item_params
-      params.require(:want_list_item).permit(:ean, :quantity)
+      params.require(:want_list_item).permit(:ean, :want_list_id, :quantity,  :quantity_purchased, :max_price)
     end
 end

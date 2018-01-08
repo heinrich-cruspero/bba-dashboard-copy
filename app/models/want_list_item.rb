@@ -3,7 +3,7 @@ class WantListItem < ApplicationRecord
 
   belongs_to :want_list
 
-  has_one :user, :through => :want_list
+  has_one :user, :through => :want_list, :source => 'owner'
 
   belongs_to :book, :foreign_key => :ean, :primary_key => :ean, optional: true
 end
