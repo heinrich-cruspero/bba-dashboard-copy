@@ -3,9 +3,13 @@
 one:
   want_list: one
   ean: MyString
-  quantity: 1
+  quantity: 10
+  quantity_purchased: 1
+  max_price: 50
 
 two:
   want_list: two
   ean: MyString
-  quantity: 1
+  quantity: 5
+  quantity_purchased: 2
+  max_price: 30

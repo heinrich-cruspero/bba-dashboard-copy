@@ -17,6 +17,7 @@ class WantListItemDatatable < AjaxDatatablesRails::Base
       {
         ean: record.ean,
         quantity: record.quantity,
+        quantity_purchased: record.quantity_purchased,
         max_price: record.max_price,
         author: record.book.nil? ? '' : record.book.author,
         title: record.book.nil? ? '' : record.book.title,

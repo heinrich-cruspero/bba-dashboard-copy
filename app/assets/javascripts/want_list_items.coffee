@@ -8,6 +8,7 @@ $ ->
     columns: [
       {data: 'ean', orderable: true, searchable: true}
       {data: 'quantity', orderable: true, searchable: false}
+      {data: 'quantity_purchased', orderable: true, searchable: false}
       {data: 'max_price', orderable: true, searchable: false}
       {data: 'author', orderable: true, searchable: true}
       {data: 'title', orderable: true, searchable: true}

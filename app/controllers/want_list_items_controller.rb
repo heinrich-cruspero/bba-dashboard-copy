@@ -14,9 +14,11 @@ class WantListItemsController < ApplicationController
 
     respond_to do |format|
       if @want_list_item.save
-        format.json { render json: @want_list_item.inspect, status: :created }
+        format.js   { }
+        format.json { render status: :created, location: @want_list_item }
       else
-        format.json { render json: @want_list_item.errors, status: :unprocessable_entity }
+        format.js   { }
+        format.json { render status: :unprocessable_entity, location: @want_list_item }
       end
     end
   end
@@ -52,6 +54,6 @@ class WantListItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def want_list_item_params
-      params.require(:want_list_item).permit(:ean, :want_list_id, :quantity, :max_price)
+      params.require(:want_list_item).permit(:ean, :want_list_id, :quantity,  :quantity_purchased, :max_price)
     end
 end
