@@ -4,7 +4,7 @@ $ ->
     serverSide: true
     ajax: $('#books-table').data('source')
     pagingType: 'full_numbers'
-    order: [[3,'desc']]
+    order: [[4,'desc']]
     scrollY: '70vh'
     scrollCollapse: true
     scrollX: true
@@ -13,6 +13,7 @@ $ ->
       {data: 'isbn', orderable: false, searchable: true}
       {data: 'author', orderable: false, searchable: true}
       {data: 'title', orderable: false, searchable: true}
+      {data: 'publication_date', orderable: true, searchable: true}
       {data: 'tqs', orderable: true, searchable: false}
       {data: 'past_day_sales_history_quantity', orderable: true, searchable: false}
       {data: 'past_week_sales_history_quantity', orderable: true, searchable: false}
