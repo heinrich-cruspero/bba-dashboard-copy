@@ -14,9 +14,11 @@ class WantListItemsController < ApplicationController
 
     respond_to do |format|
       if @want_list_item.save
-        format.json { render json: {}, status: :created }
+        format.js   { }
+        format.json { render status: :created, location: @want_list_item }
       else
-        format.json { render json: @want_list_item.errors, status: :unprocessable_entity }
+        format.js   { }
+        format.json { render status: :unprocessable_entity, location: @want_list_item }
       end
     end
   end
