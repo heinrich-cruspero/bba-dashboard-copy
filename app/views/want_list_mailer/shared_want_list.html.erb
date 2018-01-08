@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <p><%= @want_list.owner.email %> shared a want list with you.</p>
+  <p>You can access it at: </p><a><%= items_want_list_url(@want_list) %></a>
+</body>
+</html>
