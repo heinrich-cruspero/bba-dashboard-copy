@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114215115) do
+ActiveRecord::Schema.define(version: 20180108145914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,7 +136,8 @@ ActiveRecord::Schema.define(version: 20171114215115) do
     t.integer "quantity", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "max_price"
+    t.float "max_price", default: 0.0, null: false
+    t.integer "quantity_purchased", default: 0, null: false
     t.index ["ean"], name: "index_want_list_items_on_ean"
     t.index ["want_list_id"], name: "index_want_list_items_on_want_list_id"
   end
