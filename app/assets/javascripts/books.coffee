@@ -39,15 +39,21 @@ $ ->
           $('#details').html(data)
           $('#orders-table').DataTable
             pageLength: 100
-            paging:   false,
-            ordering: false,
-            searching: false,
+            paging:   false
+            ordering: false
+            searching: false
             info:     false
             scrollY: '20vh'
           $('#fbaz-table').DataTable
             pageLength: 100
-            paging:   false,
-            ordering: false,
-            searching: false,
+            paging:   false
+            ordering: false
+            searching: false
             info:     false
             scrollY: '20vh'
+          $('#indaba-data').DataTable
+            paging:   false
+            ordering: false
+            searching: false
+            info:     false
+            scrollX: true
