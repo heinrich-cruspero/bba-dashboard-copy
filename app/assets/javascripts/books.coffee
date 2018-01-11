@@ -19,6 +19,17 @@ $ ->
       {data: 'weekly_sqad', orderable: true, searchable: false}
       {data: 'monthly_sqad', orderable: true, searchable: false}
       {data: 'yearly_sqad', orderable: true, searchable: false}
+      {data: 'bbap', orderable: true, searchable: false}
+      {data: 'weekly_sqmd', orderable: true, searchable: false}
+      {data: 'lowest_good_price', orderable: true, searchable: false}
+      {data: 'lowest_fba', orderable: true, searchable: false}
+      {data: 'sales_rank', orderable: true, searchable: false}
+      {data: 'list_price', orderable: true, searchable: false}
+      {data: 'w_nw', orderable: true, searchable: false}
+      {data: 'whole_sale', orderable: true, searchable: false}
+      {data: 'direct', orderable: true, searchable: false}
+      {data: 'daily_rqf', orderable: true, searchable: false}
+      {data: 'weekly_rqf', orderable: true, searchable: false}
       {data: 'daily_sqaa', orderable: true, searchable: false}
       {data: 'weekly_sqaa', orderable: true, searchable: false}
       {data: 'monthly_sqaa', orderable: true, searchable: false}
@@ -55,9 +66,3 @@ $ ->
             searching: false
             info:     false
             scrollY: '20vh'
-          $('#indaba-data').DataTable
-            paging:   false
-            ordering: false
-            searching: false
-            info:     false
-            scrollX: true
