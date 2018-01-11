@@ -15,10 +15,14 @@ $ ->
       {data: 'title', orderable: false, searchable: true}
       {data: 'publication_date', orderable: true, searchable: true}
       {data: 'tqs', orderable: true, searchable: false}
-      {data: 'past_day_sales_history_quantity', orderable: true, searchable: false}
-      {data: 'past_week_sales_history_quantity', orderable: true, searchable: false}
-      {data: 'past_month_sales_history_quantity', orderable: true, searchable: false}
-      {data: 'past_year_sales_history_quantity', orderable: true, searchable: false}
+      {data: 'daily_sqad', orderable: true, searchable: false}
+      {data: 'weekly_sqad', orderable: true, searchable: false}
+      {data: 'monthly_sqad', orderable: true, searchable: false}
+      {data: 'yearly_sqad', orderable: true, searchable: false}
+      {data: 'daily_sqaa', orderable: true, searchable: false}
+      {data: 'weekly_sqaa', orderable: true, searchable: false}
+      {data: 'monthly_sqaa', orderable: true, searchable: false}
+      {data: 'yearly_sqaa', orderable: true, searchable: false}
       {data: 'updated_at', orderable: true, searchable: false}
     ]
     'fnDrawCallback': () ->
