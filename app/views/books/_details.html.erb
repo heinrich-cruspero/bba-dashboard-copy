@@ -24,42 +24,40 @@
   </tbody>
 </table>
 
-<div class="mdl-grid">
-  <table id="fbaz-table" class="mdl-data-table">
-    <thead>
+<table id="fbaz-table" class="mdl-data-table">
+  <thead>
+  <tr>
+    <th>Price</th>
+    <th>Market</th>
+    <th>Date</th>
+    <th>Indaba</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @book.indaba_orders.where("indaba_orders.indaba_instance_id = 9").order('indaba_orders.date_ordered DESC').limit(100).each do |indaba_order| %>
     <tr>
-      <th>Price</th>
-      <th>Market</th>
-      <th>Date</th>
-      <th>Indaba</th>
+      <td><%= indaba_order.price_paid %></td>
+      <td><%= indaba_order.market_name %></td>
+      <td><%= indaba_order.date_ordered.strftime("%m-%d-%Y") %></td>
+      <td><%= indaba_order.indaba_instance.account_name %></td>
     </tr>
-    </thead>
-    <tbody>
-    <% @book.indaba_orders.where("indaba_orders.indaba_instance_id = 9").order('indaba_orders.date_ordered DESC').limit(100).each do |indaba_order| %>
-        <tr>
-          <td><%= indaba_order.price_paid %></td>
-          <td><%= indaba_order.market_name %></td>
-          <td><%= indaba_order.date_ordered.strftime("%m-%d-%Y") %></td>
-          <td><%= indaba_order.indaba_instance.account_name %></td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
+  <% end %>
+  </tbody>
+</table>
 
-  <table id="orders-table" class="mdl-data-table">
-    <thead>
+<table id="orders-table" class="mdl-data-table">
+  <thead>
+  <tr>
+    <th>Buyer Email</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @book.indaba_orders.where("indaba_orders.indaba_instance_id = 1").order('indaba_orders.date_ordered DESC').limit(100).each do |indaba_order| %>
     <tr>
-      <th>Buyer Email</th>
+      <td><%= indaba_order.buyer_email %></td>
     </tr>
-    </thead>
-    <tbody>
-    <% @book.indaba_orders.where("indaba_orders.indaba_instance_id = 1").order('indaba_orders.date_ordered DESC').limit(100).each do |indaba_order| %>
-        <tr>
-          <td><%= indaba_order.buyer_email %></td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+  <% end %>
+  </tbody>
+</table>
 
 <%= render 'add_to_want_list', want_list_item: WantListItem.new(), ean: @book.ean %>
