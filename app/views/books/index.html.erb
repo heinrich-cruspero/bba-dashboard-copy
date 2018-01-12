@@ -1,7 +1,7 @@
 <%= javascript_include_tag 'books' %>
 <%= stylesheet_link_tag 'books', media: 'all' %>
 
-<table id="books-table" data-source="<%= books_path(format: :json) %>" class="mdl-data-table" cellspacing="0" width="100%">
+<table id="books-table" data-source="<%= books_path(format: :json) %>" class="mdl-cell mdl-cell--10-col mdl-data-table" cellspacing="0" width="100%">
   <thead>
   <tr>
     <th>ISBN</th>
@@ -35,6 +35,6 @@
   </tbody>
 </table>
 
-<div id="details" class="mdl-cell">
+<div id="details" class="mdl-cell mdl-cell--2-col">
 </div>
 
