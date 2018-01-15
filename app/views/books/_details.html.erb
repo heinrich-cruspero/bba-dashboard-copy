@@ -4,6 +4,7 @@
       <th>Indaba Instance</th>
       <th>Quantity Online</th>
       <th>Lowest Price</th>
+      <th>Total Quantity</th>
     </tr>
   </thead>
   <tbody>
@@ -12,6 +13,7 @@
         <td><%= indaba_instance_datum.indaba_instance.account_name %></td>
         <td><%= indaba_instance_datum.quantity_online %></td>
         <td><%= indaba_instance_datum.lowest_price %></td>
+        <td><%= indaba_instance_datum.total_quantity %></td>
       </tr>
     <% end %>
     <% @book.indaba_instance_data.where('indaba_instance_data.indaba_instance_id = 9').each do |indaba_instance_datum| %>
@@ -19,6 +21,7 @@
         <td><%= indaba_instance_datum.indaba_instance.account_name %></td>
         <td><%= indaba_instance_datum.quantity_online %></td>
         <td><%= indaba_instance_datum.lowest_price %></td>
+        <td><%= indaba_instance_datum.total_quantity %></td>
       </tr>
   <% end %>
   </tbody>
