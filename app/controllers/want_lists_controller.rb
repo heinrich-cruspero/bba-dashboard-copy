@@ -3,7 +3,7 @@ class WantListsController < ApplicationController
 
   require 'csv'
 
-  before_action :set_want_list, only: [:edit, :update, :destroy, :items]
+  before_action :set_want_list, only: [:edit, :update, :destroy, :items, :export]
 
   after_action :upload_items, only: [:update, :create]
 
@@ -64,6 +64,10 @@ class WantListsController < ApplicationController
        format.html
        format.json { render json: WantListItemDatatable.new(view_context, want_list_id: @want_list.id) }
     end
+  end
+
+  def export
+    send_data @want_list.want_list_items.to_csv, filename: "#{@want_list.name}.csv"
   end
 
   private

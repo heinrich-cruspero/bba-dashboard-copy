@@ -3,6 +3,7 @@ class WantListDatatable < AjaxDatatablesRails::Base
   def_delegator :@view, :edit_want_list_path
   def_delegator :@view, :want_list_path
   def_delegator :@view, :items_want_list_path
+  def_delegator :@view, :export_want_list_path
 
   def view_columns
     @view_columns ||= {
@@ -19,6 +20,7 @@ class WantListDatatable < AjaxDatatablesRails::Base
           email: want_list.owner.email,
           privacy: want_list.want_list_privacy.name,
           actions: link_to("Items", items_want_list_path(want_list)) +' '+
+              ((@view.can? :export, want_list) ? link_to("Export", export_want_list_path(want_list)) : '') + ' '+
               ((@view.can? :update, want_list) ? link_to("Edit", edit_want_list_path(want_list)) : '') + ' '+
               ((@view.can? :destroy, want_list) ? link_to("Delete", want_list, method: :delete, data: { confirm: 'Are you sure?' }) : '')
       }

@@ -13,7 +13,7 @@ class Ability
       can [:update], WantListItem, want_list_id: WantList.where(want_list_privacy_id: 1).pluck(:id)
 
       can [:index, :create], WantList
-      can [:update, :destroy, :items], WantList, :owner => user
+      can [:update, :destroy, :items, :export], WantList, :owner => user
       can [:items], WantList, id: user.want_lists.pluck(:id)
       can [:items], WantList, want_list_privacy_id: 1
     end
