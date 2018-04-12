@@ -95,3 +95,91 @@ ActiveRecord::Schema.define(version: 20180412131451) do
     t.index ["database_name"], name: "index_indaba_instances_on_database_name", unique: true
   end
 
+  create_table "indaba_orders", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "indaba_instance_id", null: false
+    t.float "price_paid", default: 0.0, null: false
+    t.string "market_name", null: false
+    t.string "buyer_email"
+    t.string "market_book_order_id", null: false
+    t.datetime "date_ordered", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_indaba_orders_on_book_id"
+    t.index ["buyer_email"], name: "index_indaba_orders_on_buyer_email"
+    t.index ["date_ordered"], name: "index_indaba_orders_on_date_ordered"
+    t.index ["indaba_instance_id", "market_book_order_id"], name: "index_indaba_orders_on_indaba_instance_and_market_book_order", unique: true
+    t.index ["indaba_instance_id"], name: "index_indaba_orders_on_indaba_instance_id"
+    t.index ["market_book_order_id"], name: "index_indaba_orders_on_market_book_order_id"
+    t.index ["market_name"], name: "index_indaba_orders_on_market_name"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.boolean "admin", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "users_want_lists", id: false, force: :cascade do |t|
+    t.bigint "want_list_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_users_want_lists_on_user_id"
+    t.index ["want_list_id", "user_id"], name: "index_users_want_lists_on_want_list_id_and_user_id", unique: true
+    t.index ["want_list_id"], name: "index_users_want_lists_on_want_list_id"
+  end
+
+  create_table "want_list_items", force: :cascade do |t|
+    t.bigint "want_list_id", null: false
+    t.string "ean", null: false
+    t.integer "quantity", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "max_price", default: 0.0, null: false
+    t.integer "quantity_purchased", default: 0, null: false
+    t.index ["ean"], name: "index_want_list_items_on_ean"
+    t.index ["want_list_id"], name: "index_want_list_items_on_want_list_id"
+  end
+
+  create_table "want_list_privacies", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_want_list_privacies_on_name", unique: true
+  end
+
+  create_table "want_lists", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "user_id", null: false
+    t.bigint "want_list_privacy_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_want_lists_on_name"
+    t.index ["user_id"], name: "index_want_lists_on_user_id"
+    t.index ["want_list_privacy_id"], name: "index_want_lists_on_want_list_privacy_id"
+  end
+
+  add_foreign_key "amazon_data", "books"
+  add_foreign_key "guide_data", "books"
+  add_foreign_key "indaba_data", "books"
+  add_foreign_key "indaba_instance_data", "books"
+  add_foreign_key "indaba_instance_data", "indaba_instances"
+  add_foreign_key "indaba_orders", "books"
+  add_foreign_key "indaba_orders", "indaba_instances"
+  add_foreign_key "users_want_lists", "users"
+  add_foreign_key "users_want_lists", "want_lists"
+  add_foreign_key "want_list_items", "want_lists"
+  add_foreign_key "want_lists", "users"
+  add_foreign_key "want_lists", "want_list_privacies"
+end
