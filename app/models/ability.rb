@@ -14,8 +14,8 @@ class Ability
 
       can [:index, :create], WantList
       can [:update, :destroy, :items, :export], WantList, :owner => user
-      can [:items], WantList, id: user.want_lists.pluck(:id)
-      can [:items], WantList, want_list_privacy_id: 1
+      can [:items, :export], WantList, id: user.want_lists.pluck(:id)
+      can [:items, :export], WantList, want_list_privacy_id: 1
     end
   end
 end
