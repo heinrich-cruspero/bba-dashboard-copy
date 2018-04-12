@@ -8,23 +8,22 @@ class WantListItem < ApplicationRecord
   belongs_to :book, :foreign_key => :ean, :primary_key => :ean, optional: true
 
   def self.to_csv
-    attributes = %w{ean quantity quantity_purchased max_price book.author book.title}
+    attributes = %w[EAN Quantity QuantityPurchased MaxPrice Author Title Publisher Edition ListPrice PercentOfList]
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
 
       all.each do |want_list_item|
-        csv << attributes.map do |attr|
-          if attr.split('.').count > 1
-            if want_list_item.send(attr.split('.')[0]).nil?
-              ''
-            else
-              want_list_item.send(attr.split('.')[0]).send(attr.split('.')[1])
-            end
-          else
-            want_list_item.send(attr)
-          end
-        end
+        csv << [want_list_item.ean,
+                want_list_item.quantity,
+                want_list_item.quantity_purchased,
+                want_list_item.max_price,
+                want_list_item.book.nil? ? '' : want_list_item.book.author,
+                want_list_item.book.nil? ? '' : want_list_item.book.title,
+                want_list_item.book.nil? ? '' : want_list_item.book.publisher,
+                want_list_item.book.nil? ? '' : want_list_item.book.edition,
+                want_list_item.book.nil? ? '' : want_list_item.book.guide_datum.list_price,
+                want_list_item.book.nil? ? '' : want_list_item.book.guide_datum.list_price * 0.50]
       end
     end
   end

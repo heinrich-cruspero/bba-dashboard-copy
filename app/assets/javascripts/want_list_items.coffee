@@ -12,5 +12,11 @@ $ ->
       {data: 'max_price', orderable: true, searchable: false}
       {data: 'author', orderable: true, searchable: true}
       {data: 'title', orderable: true, searchable: true}
+      {data: 'publisher', orderable: true, searchable: true}
+      {data: 'edition', orderable: true, searchable: true}
+      {data: 'list_price', orderable: true, searchable: false}
+      {data: 'percent_of_list', orderable: true, searchable: false}
       {data: 'actions', orderable: false, searchable: false}
     ]
+    'fnDrawCallback': () ->
+      componentHandler.upgradeDom()

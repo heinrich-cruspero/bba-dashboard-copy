@@ -1,5 +1,6 @@
 class BookDatatable < AjaxDatatablesRails::Base
   def_delegator :@view, :number_with_delimiter
+  def_delegator :@view, :tooltip_field
 
   def view_columns
     @view_columns ||= {
@@ -68,10 +69,5 @@ class BookDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     Book.includes(:guide_datum, :amazon_datum, :indaba_datum).references(:guide_datum, :amazon_datum, :indaba_datum).all
-  end
-
-  def tooltip_field(field_name, id, full_string)
-    "<div id='#{field_name}_#{id}'>#{full_string[0..20]}</div>
-      <div class='mdl-tooltip' data-mdl-for='#{field_name}_#{id}'>#{full_string}</div>".html_safe
   end
 end
