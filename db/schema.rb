@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226171346) do
+ActiveRecord::Schema.define(version: 20180412131451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20180226171346) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "publication_date"
+    t.string "publisher"
+    t.string "edition"
     t.index ["author"], name: "index_books_on_author"
     t.index ["ean"], name: "index_books_on_ean", unique: true
     t.index ["isbn"], name: "index_books_on_isbn", unique: true
@@ -110,20 +112,6 @@ ActiveRecord::Schema.define(version: 20180226171346) do
     t.index ["indaba_instance_id"], name: "index_indaba_orders_on_indaba_instance_id"
     t.index ["market_book_order_id"], name: "index_indaba_orders_on_market_book_order_id"
     t.index ["market_name"], name: "index_indaba_orders_on_market_name"
-  end
-
-  create_table "tmp_indaba_data", id: false, force: :cascade do |t|
-    t.bigint "book_id", null: false
-    t.integer "daily_sqad", default: 0, null: false
-    t.integer "weekly_sqad", default: 0, null: false
-    t.integer "monthly_sqad", default: 0, null: false
-    t.integer "yearly_sqad", default: 0, null: false
-    t.integer "daily_sqaa", default: 0, null: false
-    t.integer "weekly_sqaa", default: 0, null: false
-    t.integer "monthly_sqaa", default: 0, null: false
-    t.integer "yearly_sqaa", default: 0, null: false
-    t.integer "tqs", default: 0, null: false
-    t.index ["book_id"], name: "index_tmp_indaba_data_on_book_id"
   end
 
   create_table "users", force: :cascade do |t|
