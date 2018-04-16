@@ -2,7 +2,7 @@
   <%= form.text_field :ean, value: ean, hidden: true %>
 
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <%= form.select :want_list_id, current_user.owned_want_lists.collect { |x| [x.name, x.id] } %>
+    <%= form.select :want_list_id, current_user.all_want_lists.collect { |x| [x.name, x.id] } %>
   </div>
 
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">

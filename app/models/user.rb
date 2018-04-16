@@ -18,4 +18,10 @@ class User < ApplicationRecord
 
     user
   end
+
+  def all_want_lists
+    WantList.joins('LEFT JOIN "users_want_lists" ON "users_want_lists"."want_list_id" = "want_lists"."id"')
+        .where("want_lists.user_id=#{self.id} OR users_want_lists.user_id=#{self.id} OR want_list_privacy_id = 1")
+        .distinct
+  end
 end
