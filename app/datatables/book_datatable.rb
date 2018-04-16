@@ -45,7 +45,7 @@ class BookDatatable < AjaxDatatablesRails::Base
         weekly_sqad: number_with_delimiter(record.indaba_datum.weekly_sqad),
         monthly_sqad: number_with_delimiter(record.indaba_datum.monthly_sqad),
         yearly_sqad: number_with_delimiter(record.indaba_datum.yearly_sqad),
-        bbap: record.indaba_datum.yearly_sqad,
+        bbap: record.indaba_datum.bbap,
         weekly_sqmd: number_with_delimiter(record.indaba_datum.weekly_sqmd),
         lowest_good_price: record.amazon_datum.lowest_good_price,
         lowest_fba: record.amazon_datum.lowest_fba,
