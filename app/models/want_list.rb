@@ -9,6 +9,6 @@ class WantList < ApplicationRecord
   private
 
   def sharing_email(user)
-    WantListMailer.shared_want_list(user, self).deliver_now
+    WantListMailer.shared_want_list(user, self).deliver_now unless self.owner.nil?
   end
 end
