@@ -9,6 +9,9 @@ $ ->
     scrollCollapse: true
     scrollX: true
     pageLength: 100
+    fixedColumns: {
+        leftColumns: 3
+    }
     columns: [
       {data: 'isbn', orderable: false, searchable: true}
       {data: 'author', orderable: false, searchable: true}
@@ -39,30 +42,35 @@ $ ->
     'fnDrawCallback': () ->
       componentHandler.upgradeDom()
 
-  $('#books-table tbody').on 'click', 'tr', ->
-    if $(this).hasClass('selected')
-      $(this).removeClass 'selected'
-    else
-      books_table.$('tr.selected').removeClass 'selected'
-      $(this).addClass 'selected'
-      $.ajax 'books/' + books_table.row(this).id() + '/details',
-        type: 'GET'
-        dataType: 'html'
-        error: (jqXHR, textStatus, errorThrown) ->
-          alert(errorThrown)
-        success: (data, textStatus, jqXHR) ->
-          $('#details').html(data)
-          $('#orders-table').DataTable
-            pageLength: 100
-            paging:   false
-            ordering: false
-            searching: false
-            info:     false
-            scrollY: '20vh'
-          $('#fbaz-table').DataTable
-            pageLength: 100
-            paging:   false
-            ordering: false
-            searching: false
-            info:     false
-            scrollY: '20vh'
+  $(books_table.table().container()).on 'click', 'tr', ->
+    row_index = books_table.fixedColumns().rowIndex(this)
+    row = books_table.row( row_index );
+    id = row.id()
+
+    books_table.$('tr.selected').removeClass 'selected'
+    $('.DTFC_LeftBodyLiner tr').removeClass 'selected'
+
+    $(row.node()).addClass 'selected'
+    $('.DTFC_LeftBodyLiner tr').eq(row_index + 1).addClass 'selected'
+
+    $.ajax 'books/' + id + '/details',
+      type: 'GET'
+      dataType: 'html'
+      error: (jqXHR, textStatus, errorThrown) ->
+        alert(errorThrown)
+      success: (data, textStatus, jqXHR) ->
+        $('#details').html(data)
+        $('#orders-table').DataTable
+          pageLength: 100
+          paging:   false
+          ordering: false
+          searching: false
+          info:     false
+          scrollY: '20vh'
+        $('#fbaz-table').DataTable
+          pageLength: 100
+          paging:   false
+          ordering: false
+          searching: false
+          info:     false
+          scrollY: '20vh'
