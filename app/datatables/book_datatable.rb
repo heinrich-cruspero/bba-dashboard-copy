@@ -37,8 +37,8 @@ class BookDatatable < AjaxDatatablesRails::Base
       {
         'DT_RowId' => record.id,
         isbn: record.isbn,
-        author: tooltip_field('author', record.id, record.author),
-        title: tooltip_field('title', record.id, record.title),
+        author: record.author,
+        title: record.title,
         publication_date: record.publication_date,
         tqs: number_with_delimiter(record.indaba_datum.tqs),
         daily_sqad: number_with_delimiter(record.indaba_datum.daily_sqad),
