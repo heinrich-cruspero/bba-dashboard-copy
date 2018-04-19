@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180412131451) do
+ActiveRecord::Schema.define(version: 20180419135510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,25 @@ ActiveRecord::Schema.define(version: 20180412131451) do
     t.index ["market_name"], name: "index_indaba_orders_on_market_name"
   end
 
+  create_table "tmp_indaba_data", id: false, force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "indaba_instance_id", null: false
+    t.integer "tqs", default: 0, null: false
+    t.integer "total_quantity", default: 0, null: false
+    t.integer "quantity_online", default: 0, null: false
+    t.float "lowest_price", default: 0.0, null: false
+    t.float "list_price", default: 0.0, null: false
+    t.float "lowest_good_price", default: 0.0, null: false
+    t.float "lowest_fba", default: 0.0, null: false
+    t.integer "sales_rank", default: 0, null: false
+    t.float "bbap", default: 0.0, null: false
+    t.float "direct", default: 0.0, null: false
+    t.float "w_nw", default: 0.0, null: false
+    t.float "whole_sale", default: 0.0, null: false
+    t.index ["book_id"], name: "index_tmp_indaba_data_on_book_id"
+    t.index ["indaba_instance_id"], name: "index_tmp_indaba_data_on_indaba_instance_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -149,6 +168,7 @@ ActiveRecord::Schema.define(version: 20180412131451) do
     t.float "max_price", default: 0.0, null: false
     t.integer "quantity_purchased", default: 0, null: false
     t.index ["ean"], name: "index_want_list_items_on_ean"
+    t.index ["want_list_id", "ean"], name: "index_want_list_items_on_want_list_id_and_ean", unique: true
     t.index ["want_list_id"], name: "index_want_list_items_on_want_list_id"
   end
 
