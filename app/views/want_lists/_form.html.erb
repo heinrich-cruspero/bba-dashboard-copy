@@ -44,6 +44,15 @@
           <% end %>
         </div>
 
+        <div>
+          <%= form.label :active, class: "mdl-checkbox__label" %>
+          <%= form.check_box :active, class: "mdl-checkbox__input" %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.select :valore_account_id, ValoreAccount.all.collect {|x| [x.name, x.id]}, {include_blank: 'Select Valore Account'} %>
+        </div>
+
         <div class="mdl-card__actions">
           <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
         </div>
