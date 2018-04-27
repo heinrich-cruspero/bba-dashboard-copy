@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180419135510) do
+ActiveRecord::Schema.define(version: 20180427204025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,6 +159,16 @@ ActiveRecord::Schema.define(version: 20180419135510) do
     t.index ["want_list_id"], name: "index_users_want_lists_on_want_list_id"
   end
 
+  create_table "valore_accounts", force: :cascade do |t|
+    t.string "name"
+    t.string "buyer_id"
+    t.string "access_key_id"
+    t.string "secret_acccess_key"
+    t.string "queue_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "want_list_items", force: :cascade do |t|
     t.bigint "want_list_id", null: false
     t.string "ean", null: false
@@ -167,6 +177,7 @@ ActiveRecord::Schema.define(version: 20180419135510) do
     t.datetime "updated_at", null: false
     t.float "max_price", default: 0.0, null: false
     t.integer "quantity_purchased", default: 0, null: false
+    t.datetime "expiration_date"
     t.index ["ean"], name: "index_want_list_items_on_ean"
     t.index ["want_list_id", "ean"], name: "index_want_list_items_on_want_list_id_and_ean", unique: true
     t.index ["want_list_id"], name: "index_want_list_items_on_want_list_id"
@@ -185,8 +196,11 @@ ActiveRecord::Schema.define(version: 20180419135510) do
     t.bigint "want_list_privacy_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active"
+    t.bigint "valore_account_id"
     t.index ["name"], name: "index_want_lists_on_name"
     t.index ["user_id"], name: "index_want_lists_on_user_id"
+    t.index ["valore_account_id"], name: "index_want_lists_on_valore_account_id"
     t.index ["want_list_privacy_id"], name: "index_want_lists_on_want_list_privacy_id"
   end
 
@@ -201,5 +215,6 @@ ActiveRecord::Schema.define(version: 20180419135510) do
   add_foreign_key "users_want_lists", "want_lists"
   add_foreign_key "want_list_items", "want_lists"
   add_foreign_key "want_lists", "users"
+  add_foreign_key "want_lists", "valore_accounts"
   add_foreign_key "want_lists", "want_list_privacies"
 end
