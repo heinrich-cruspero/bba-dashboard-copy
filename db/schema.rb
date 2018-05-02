@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(version: 20180502193412) do
     t.string "name"
     t.string "buyer_id"
     t.string "access_key_id"
-    t.string "secret_acccess_key"
+    t.string "secret_access_key"
     t.string "queue_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
