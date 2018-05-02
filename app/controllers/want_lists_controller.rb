@@ -85,6 +85,8 @@ class WantListsController < ApplicationController
     def upload_items
       return if params[:want_list][:want_list_items].nil?
 
+      @want_list.want_list_items.delete_all if params[:want_list][:reset] == "1"
+
       CSV.foreach(params[:want_list][:want_list_items].path, headers: true) do |row|
         WantListItem.where(want_list_id: @want_list.id, ean: row.to_hash['ean']).first_or_create().update(row.to_hash)
       end

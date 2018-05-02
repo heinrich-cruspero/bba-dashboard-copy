@@ -49,6 +49,11 @@
           <%= form.check_box :active, class: "mdl-checkbox__input" %>
         </div>
 
+        <div>
+          <%= form.label :reset, class: "mdl-checkbox__label" %>
+          <%= form.check_box :reset, class: "mdl-checkbox__input" %>
+        </div>
+
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
           <%= form.select :valore_account_id, ValoreAccount.all.collect {|x| [x.name, x.id]}, {include_blank: 'Select Valore Account'} %>
         </div>
