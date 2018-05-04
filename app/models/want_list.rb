@@ -6,6 +6,8 @@ class WantList < ApplicationRecord
   has_and_belongs_to_many :users, after_add: :sharing_email, :dependent => :destroy
   has_many :want_list_items, :dependent => :destroy
 
+  belongs_to :valore_account, optional: true
+
   private
 
   def sharing_email(user)

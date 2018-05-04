@@ -78,12 +78,14 @@ class WantListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def want_list_params
-      params.require(:want_list).permit(:name, :want_list_privacy_id, :user_ids => [])
+      params.require(:want_list).permit(:name, :want_list_privacy_id, :valore_account_id, :active, :user_ids => [])
     end
 
     # After update & create process items file if exist
     def upload_items
       return if params[:want_list][:want_list_items].nil?
+
+      @want_list.want_list_items.delete_all if params[:want_list][:reset] == "1"
 
       CSV.foreach(params[:want_list][:want_list_items].path, headers: true) do |row|
         WantListItem.where(want_list_id: @want_list.id, ean: row.to_hash['ean']).first_or_create().update(row.to_hash)
