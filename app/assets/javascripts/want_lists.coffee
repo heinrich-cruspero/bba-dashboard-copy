@@ -9,5 +9,7 @@ $ ->
       {data: 'name', orderable: true, searchable: true}
       {data: 'email', orderable: true, searchable: true}
       {data: 'privacy', orderable: true, searchable: true}
+      {data: 'active', orderable: true, searchable: false}
+      {data: 'valore_account', orderable: true, searchable: true}
       {data: 'actions', orderable: false, searchable: false}
     ]
