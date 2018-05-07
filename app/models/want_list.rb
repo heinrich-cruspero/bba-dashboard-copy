@@ -1,5 +1,6 @@
 class WantList < ApplicationRecord
-  validates :name, presence: true
+  validates :name, :want_list_privacy_id, presence: true
+  validates :valore_account_id, uniqueness: true
 
   belongs_to :want_list_privacy
   belongs_to :owner, class_name: 'User', foreign_key: 'user_id'

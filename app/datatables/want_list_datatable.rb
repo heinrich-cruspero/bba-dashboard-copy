@@ -9,7 +9,9 @@ class WantListDatatable < AjaxDatatablesRails::Base
     @view_columns ||= {
         name: { source: "WantList.name", cond: :like, searchable: true, orderable: true  },
         email: { source: "User.email", cond: :like, searchable: true, orderable: true },
-        privacy: { source: "WantListPrivacy.name", cond: :like, searchable: true, orderable: true }
+        privacy: { source: "WantListPrivacy.name", cond: :like, searchable: true, orderable: true },
+        active: { source: "WantList.active", cond: :eq, searchable: false, orderable: true },
+        valore_account: { source: "ValoreAccount.name", cond: :like, searchable: true, orderable: true }
     }
   end
 
@@ -19,6 +21,8 @@ class WantListDatatable < AjaxDatatablesRails::Base
           name: want_list.name,
           email: want_list.owner.email,
           privacy: want_list.want_list_privacy.name,
+          active: want_list.active,
+          valore_account: want_list.valore_account.nil? ? '' : want_list.valore_account.name,
           actions: link_to("Items", items_want_list_path(want_list)) +' '+
               ((@view.can? :export, want_list) ? link_to("Export", export_want_list_path(want_list)) : '') + ' '+
               ((@view.can? :update, want_list) ? link_to("Edit", edit_want_list_path(want_list)) : '') + ' '+
@@ -30,7 +34,7 @@ class WantListDatatable < AjaxDatatablesRails::Base
   private
 
   def get_raw_records()
-    WantList.includes(:owner, :want_list_privacy).references(:owner, :want_list_privacy)
+    WantList.includes(:owner, :want_list_privacy, :valore_account).references(:owner, :want_list_privacy, :valore_account)
             .joins('LEFT JOIN "users_want_lists" ON "users_want_lists"."want_list_id" = "want_lists"."id"')
             .where("want_lists.user_id=#{@view.current_user.id} OR users_want_lists.user_id=#{@view.current_user.id} OR want_list_privacy_id = 1")
             .distinct
