@@ -1,0 +1,2 @@
+class ValoreOrder < ApplicationRecord
+end
