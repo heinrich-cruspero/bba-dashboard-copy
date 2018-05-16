@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180502193412) do
+ActiveRecord::Schema.define(version: 20180516172806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,17 @@ ActiveRecord::Schema.define(version: 20180502193412) do
     t.string "access_key_id"
     t.string "secret_access_key"
     t.string "queue_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "valore_orders", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "item_id"
+    t.string "isbn"
+    t.float "price"
+    t.datetime "quote_date"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
