@@ -19,4 +19,14 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
   resources :users, except: %i[new, create, show]
+
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+      resources :valore_orders, only: %i[] do
+        collection do
+          get :pending_orders
+        end
+      end
+    end
+  end
 end
