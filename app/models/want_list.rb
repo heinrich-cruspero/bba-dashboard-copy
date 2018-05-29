@@ -8,6 +8,7 @@ class WantList < ApplicationRecord
   has_many :want_list_items, :dependent => :destroy
 
   belongs_to :valore_account, optional: true
+  belongs_to :abe_account, optional: true
 
   private
 

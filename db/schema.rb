@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180516172806) do
+ActiveRecord::Schema.define(version: 20180529145724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "abe_accounts", force: :cascade do |t|
+    t.string "email"
+    t.string "client_key"
+    t.string "access_key"
+    t.string "secret_key"
+    t.string "cc_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "amazon_data", force: :cascade do |t|
     t.bigint "book_id", null: false
@@ -210,6 +220,8 @@ ActiveRecord::Schema.define(version: 20180516172806) do
     t.datetime "updated_at", null: false
     t.boolean "active"
     t.bigint "valore_account_id"
+    t.bigint "abe_account_id"
+    t.index ["abe_account_id"], name: "index_want_lists_on_abe_account_id"
     t.index ["name"], name: "index_want_lists_on_name"
     t.index ["user_id"], name: "index_want_lists_on_user_id"
     t.index ["valore_account_id"], name: "index_want_lists_on_valore_account_id"
@@ -226,6 +238,7 @@ ActiveRecord::Schema.define(version: 20180516172806) do
   add_foreign_key "users_want_lists", "users"
   add_foreign_key "users_want_lists", "want_lists"
   add_foreign_key "want_list_items", "want_lists"
+  add_foreign_key "want_lists", "abe_accounts"
   add_foreign_key "want_lists", "users"
   add_foreign_key "want_lists", "valore_accounts"
   add_foreign_key "want_lists", "want_list_privacies"
