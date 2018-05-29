@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180529145724) do
+ActiveRecord::Schema.define(version: 20180529175620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,6 +188,8 @@ ActiveRecord::Schema.define(version: 20180529145724) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "valore_account_id"
+    t.index ["valore_account_id"], name: "index_valore_orders_on_valore_account_id"
   end
 
   create_table "want_list_items", force: :cascade do |t|
@@ -237,6 +239,7 @@ ActiveRecord::Schema.define(version: 20180529145724) do
   add_foreign_key "indaba_orders", "indaba_instances"
   add_foreign_key "users_want_lists", "users"
   add_foreign_key "users_want_lists", "want_lists"
+  add_foreign_key "valore_orders", "valore_accounts"
   add_foreign_key "want_list_items", "want_lists"
   add_foreign_key "want_lists", "abe_accounts"
   add_foreign_key "want_lists", "users"
