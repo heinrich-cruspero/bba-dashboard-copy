@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+##
 class BooksController < ApplicationController
   load_and_authorize_resource
 
@@ -17,13 +20,14 @@ class BooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def book_params
-      params.require(:book).permit()
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def book_params
+    params.require(:book).permit
+  end
 end

@@ -1,21 +1,22 @@
+# frozen_string_literal: true
+
+##
 class CustomIsbnsController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_custom_isbn, only: [:show, :edit, :update, :destroy]
+  before_action :set_custom_isbn, only: %i[show edit update destroy]
 
   def index
     @custom_isbns = CustomIsbn.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @custom_isbn = CustomIsbn.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @custom_isbn = CustomIsbn.new(custom_isbn_params)
@@ -47,11 +48,12 @@ class CustomIsbnsController < ApplicationController
   end
 
   private
-    def set_custom_isbn
-      @custom_isbn = CustomIsbn.find(params[:id])
-    end
 
-    def custom_isbn_params
-      params.require(:custom_isbn).permit(:text_isbn, :alt_isbn, :custom_isbn, :code_isbn, :tag)
-    end
+  def set_custom_isbn
+    @custom_isbn = CustomIsbn.find(params[:id])
+  end
+
+  def custom_isbn_params
+    params.require(:custom_isbn).permit(:text_isbn, :alt_isbn, :custom_isbn, :code_isbn, :tag)
+  end
 end

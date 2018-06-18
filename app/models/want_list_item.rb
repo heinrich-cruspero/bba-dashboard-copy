@@ -1,12 +1,15 @@
+# frozen_string_literal: true
+
+##
 class WantListItem < ApplicationRecord
   validates :ean, presence: true
   validates_uniqueness_of :ean, scope: %i[want_list_id ean]
 
   belongs_to :want_list
 
-  has_one :user, :through => :want_list, :source => 'owner'
+  has_one :user, through: :want_list, source: 'owner'
 
-  belongs_to :book, :foreign_key => :ean, :primary_key => :ean, optional: true
+  belongs_to :book, foreign_key: :ean, primary_key: :ean, optional: true
 
   def self.to_csv
     attributes = %w[EAN Quantity QuantityPurchased MaxPrice Author Title Publisher Edition ListPrice PercentOfList]
