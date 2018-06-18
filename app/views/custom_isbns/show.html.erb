@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Text isbn:</strong>
+  <%= @custom_isbn.text_isbn %>
+</p>
+
+<p>
+  <strong>Alt isbn:</strong>
+  <%= @custom_isbn.alt_isbn %>
+</p>
+
+<p>
+  <strong>Custom isbn:</strong>
+  <%= @custom_isbn.custom_isbn %>
+</p>
+
+<p>
+  <strong>Code isbn:</strong>
+  <%= @custom_isbn.code_isbn %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @custom_isbn.tag %>
+</p>
+
+<%= link_to 'Edit', edit_custom_isbn_path(@custom_isbn) %> |
+<%= link_to 'Back', custom_isbns_path %>

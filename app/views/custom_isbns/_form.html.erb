@@ -1,0 +1,42 @@
+<%= form_with(model: custom_isbn, local: true) do |form| %>
+  <% if custom_isbn.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(custom_isbn.errors.count, "error") %> prohibited this custom_isbn from being saved:</h2>
+
+      <ul>
+      <% custom_isbn.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :text_isbn %>
+    <%= form.text_field :text_isbn, id: :custom_isbn_text_isbn %>
+  </div>
+
+  <div class="field">
+    <%= form.label :alt_isbn %>
+    <%= form.text_field :alt_isbn, id: :custom_isbn_alt_isbn %>
+  </div>
+
+  <div class="field">
+    <%= form.label :custom_isbn %>
+    <%= form.text_field :custom_isbn, id: :custom_isbn_custom_isbn %>
+  </div>
+
+  <div class="field">
+    <%= form.label :code_isbn %>
+    <%= form.text_field :code_isbn, id: :custom_isbn_code_isbn %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tag %>
+    <%= form.text_field :tag, id: :custom_isbn_tag %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

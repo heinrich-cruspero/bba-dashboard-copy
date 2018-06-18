@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180529175618) do
+ActiveRecord::Schema.define(version: 20180618170702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,21 @@ ActiveRecord::Schema.define(version: 20180529175618) do
     t.index ["ean"], name: "index_books_on_ean", unique: true
     t.index ["isbn"], name: "index_books_on_isbn", unique: true
     t.index ["title"], name: "index_books_on_title"
+  end
+
+  create_table "custom_isbns", force: :cascade do |t|
+    t.string "text_isbn"
+    t.string "alt_isbn"
+    t.string "custom_isbn"
+    t.string "code_isbn"
+    t.string "tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["alt_isbn"], name: "index_custom_isbns_on_alt_isbn"
+    t.index ["code_isbn"], name: "index_custom_isbns_on_code_isbn"
+    t.index ["custom_isbn"], name: "index_custom_isbns_on_custom_isbn"
+    t.index ["tag"], name: "index_custom_isbns_on_tag"
+    t.index ["text_isbn"], name: "index_custom_isbns_on_text_isbn"
   end
 
   create_table "guide_data", force: :cascade do |t|

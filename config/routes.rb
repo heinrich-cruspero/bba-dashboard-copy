@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :custom_isbns
   resources :books, except: %i[new, create, edit, update, destroy, show] do
     member do
       get :details
