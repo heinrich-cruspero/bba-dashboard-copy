@@ -26,9 +26,9 @@ class CustomIsbnDatatable < AjaxDatatablesRails::Base
         custom_isbn: custom_isbn.custom_isbn,
         code_isbn: custom_isbn.code_isbn,
         tag: custom_isbn.tag,
-        actions: link_to('Show', edit_custom_isbn_path(custom_isbn)) + ' ' +
-          link_to('Edit', custom_isbn_path(custom_isbn)) + ' ' +
-          link_to('Delete', custom_isbn, method: :delete, data: { confirm: 'Are you sure?' })
+        actions: "#{link_to('Show', edit_custom_isbn_path(custom_isbn))}
+                  #{link_to('Edit', custom_isbn_path(custom_isbn))}
+                  #{link_to('Delete', custom_isbn, method: :delete, data: { confirm: 'Are you sure?' })}".html_safe
       }
     end
   end
