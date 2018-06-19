@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'custom_isbns/new', type: :view do
   before(:each) do
+    allow(controller).to receive(:action_name).and_return('new')
     assign(:custom_isbn, CustomIsbn.new(
                            text_isbn: 'MyString',
                            alt_isbn: 'MyString',

@@ -7,7 +7,10 @@ class CustomIsbnsController < ApplicationController
   before_action :set_custom_isbn, only: %i[show edit update destroy]
 
   def index
-    @custom_isbns = CustomIsbn.all
+    respond_to do |format|
+      format.html
+      format.json { render json: CustomIsbnDatatable.new(view_context) }
+    end
   end
 
   def show; end

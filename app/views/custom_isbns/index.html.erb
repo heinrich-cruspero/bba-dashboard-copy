@@ -1,34 +1,30 @@
+<%= javascript_include_tag 'custom_isbns' %>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Custom Isbns</h1>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-color-text--grey">
+    <h5>Custom Isbns</h5>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Text isbn</th>
-      <th>Alt isbn</th>
-      <th>Custom isbn</th>
-      <th>Code isbn</th>
-      <th>Tag</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="mdl-cell mdl-cell--12-col">
+    <table id="custom_isbns-table", data-source="<%= custom_isbns_path(format: :json) %>", class="mdl-data-table" width="100%" >
+      <thead>
+        <tr>
+          <th>Text isbn</th>
+          <th>Alt isbn</th>
+          <th>Custom isbn</th>
+          <th>Code isbn</th>
+          <th>Tag</th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @custom_isbns.each do |custom_isbn| %>
-      <tr>
-        <td><%= custom_isbn.text_isbn %></td>
-        <td><%= custom_isbn.alt_isbn %></td>
-        <td><%= custom_isbn.custom_isbn %></td>
-        <td><%= custom_isbn.code_isbn %></td>
-        <td><%= custom_isbn.tag %></td>
-        <td><%= link_to 'Show', custom_isbn %></td>
-        <td><%= link_to 'Edit', edit_custom_isbn_path(custom_isbn) %></td>
-        <td><%= link_to 'Destroy', custom_isbn, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <br>
 
