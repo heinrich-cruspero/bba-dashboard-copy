@@ -8,7 +8,7 @@
       <%= form_with(model: custom_isbn, local: true) do |form| %>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
           <%= form.label :text_isbn, class: "mdl-textfield__label" %>
-          <%= form.text_field :text_isbn, id: :custom_isbn_text_isbn, class: "mdl-textfield__input" %>
+          <%= form.text_field :text_isbn, id: :custom_isbn_text_isbn, class: "mdl-textfield__input", required: true %>
           <% custom_isbn.errors.full_messages_for(:text_isbn).each do |message| %>
             <span class="mdl-textfield__error"><%= message %></span>
           <% end %>
@@ -24,7 +24,7 @@
 
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
           <%= form.label :custom_isbn, class: "mdl-textfield__label" %>
-          <%= form.text_field :custom_isbn, id: :custom_isbn_custom_isbn, class: "mdl-textfield__input" %>
+          <%= form.text_field :custom_isbn, id: :custom_isbn_custom_isbn, class: "mdl-textfield__input", required: true %>
           <% custom_isbn.errors.full_messages_for(:custom_isbn).each do |message| %>
             <span class="mdl-textfield__error"><%= message %></span>
           <% end %>
