@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -7,6 +9,7 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module BbaDashboard
+  ##
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
@@ -16,12 +19,12 @@ module BbaDashboard
     # -- all .rb files in that directory are automatically loaded.
 
     config.action_mailer.smtp_settings = {
-        :address => "email-smtp.us-east-1.amazonaws.com",
-        :port => 587,
-        :user_name => ENV["SES_SMTP_USERNAME"], #Your SMTP user
-        :password => ENV["SES_SMTP_PASSWORD"], #Your SMTP password
-        :authentication => :login,
-        :enable_starttls_auto => true
+      address: 'email-smtp.us-east-1.amazonaws.com',
+      port: 587,
+      user_name: ENV['SES_SMTP_USERNAME'], # Your SMTP user
+      password: ENV['SES_SMTP_PASSWORD'], # Your SMTP password
+      authentication: :login,
+      enable_starttls_auto: true
     }
 
     config.action_mailer.perform_deliveries = true

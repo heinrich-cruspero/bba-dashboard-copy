@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
+##
 class UsersController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: %i[edit update destroy]
 
   # GET /users
   def index
@@ -12,8 +15,7 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit
-  end
+  def edit; end
 
   # PATCH/PUT /users/1
   def update
@@ -35,13 +37,14 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:admin)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:admin)
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class WantListsControllerTest < ActionDispatch::IntegrationTest
@@ -8,17 +10,17 @@ class WantListsControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get want_lists_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_want_list_url
     assert_response :success
   end
 
-  test "should create want_list" do
+  test 'should create want_list' do
     assert_difference('WantList.count') do
       post want_lists_url, params: { want_list: { name: @want_list.name, user_id: @want_list.user_id, want_list_privacy_id: @want_list.want_list_privacy_id } }
     end
@@ -26,17 +28,17 @@ class WantListsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to want_lists_url
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_want_list_url(@want_list)
     assert_response :success
   end
 
-  test "should update want_list" do
+  test 'should update want_list' do
     patch want_list_url(@want_list), params: { want_list: { name: @want_list.name, user_id: @want_list.user_id, want_list_privacy_id: @want_list.want_list_privacy_id } }
     assert_redirected_to want_lists_url
   end
 
-  test "should destroy want_list" do
+  test 'should destroy want_list' do
     assert_difference('WantList.count', -1) do
       delete want_list_url(@want_list)
     end
@@ -44,7 +46,7 @@ class WantListsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to want_lists_url
   end
 
-  test "should get items" do
+  test 'should get items' do
     get items_want_list_url(@want_list)
     assert_response :success
   end
