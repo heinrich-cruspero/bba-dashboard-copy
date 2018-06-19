@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
+##
 class WantListsController < ApplicationController
   load_and_authorize_resource
 
   require 'csv'
 
-  before_action :set_want_list, only: [:edit, :update, :destroy, :items, :export]
+  before_action :set_want_list, only: %i[edit update destroy items export]
 
-  after_action :upload_items, only: [:update, :create]
+  after_action :upload_items, only: %i[update create]
 
   # GET /want_lists
   def index
@@ -21,8 +24,7 @@ class WantListsController < ApplicationController
   end
 
   # GET /want_lists/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /want_lists
   def create
@@ -61,8 +63,8 @@ class WantListsController < ApplicationController
   # GET /items/1
   def items
     respond_to do |format|
-       format.html
-       format.json { render json: WantListItemDatatable.new(view_context, want_list_id: @want_list.id) }
+      format.html
+      format.json { render json: WantListItemDatatable.new(view_context, want_list_id: @want_list.id) }
     end
   end
 
@@ -71,24 +73,25 @@ class WantListsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_want_list
-      @want_list = WantList.find(params[:id])
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_want_list
+    @want_list = WantList.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def want_list_params
+    params.require(:want_list).permit(:name, :want_list_privacy_id, :valore_account_id, :active, user_ids: [])
+  end
+
+  # After update & create process items file if exist
+  def upload_items
+    return if params[:want_list][:want_list_items].nil?
+
+    @want_list.want_list_items.delete_all if params[:want_list][:reset] == '1'
+
+    CSV.foreach(params[:want_list][:want_list_items].path, headers: true) do |row|
+      WantListItem.where(want_list_id: @want_list.id, ean: row.to_hash['ean']).first_or_create.update(row.to_hash)
     end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def want_list_params
-      params.require(:want_list).permit(:name, :want_list_privacy_id, :valore_account_id, :active, :user_ids => [])
-    end
-
-    # After update & create process items file if exist
-    def upload_items
-      return if params[:want_list][:want_list_items].nil?
-
-      @want_list.want_list_items.delete_all if params[:want_list][:reset] == "1"
-
-      CSV.foreach(params[:want_list][:want_list_items].path, headers: true) do |row|
-        WantListItem.where(want_list_id: @want_list.id, ean: row.to_hash['ean']).first_or_create().update(row.to_hash)
-      end
-    end
+  end
 end

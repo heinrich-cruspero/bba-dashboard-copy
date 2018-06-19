@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+##
 class WantListPrivacy < ApplicationRecord
   validates :name, uniqueness: true
 
