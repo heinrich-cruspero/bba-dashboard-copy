@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180625173049) do
+ActiveRecord::Schema.define(version: 20180625173709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,16 @@ ActiveRecord::Schema.define(version: 20180625173049) do
     t.index ["name"], name: "index_source_types_on_name", unique: true
   end
 
+  create_table "sources", force: :cascade do |t|
+    t.bigint "source_type_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_sources_on_name"
+    t.index ["source_type_id", "name"], name: "index_sources_on_source_type_id_and_name", unique: true
+    t.index ["source_type_id"], name: "index_sources_on_source_type_id"
+  end
+
   create_table "tmp_indaba_data", id: false, force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "indaba_instance_id", null: false
@@ -247,6 +257,7 @@ ActiveRecord::Schema.define(version: 20180625173049) do
   add_foreign_key "indaba_instance_data", "indaba_instances"
   add_foreign_key "indaba_orders", "books"
   add_foreign_key "indaba_orders", "indaba_instances"
+  add_foreign_key "sources", "source_types"
   add_foreign_key "users_want_lists", "users"
   add_foreign_key "users_want_lists", "want_lists"
   add_foreign_key "valore_orders", "valore_accounts"
