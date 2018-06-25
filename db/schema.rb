@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180618170702) do
+ActiveRecord::Schema.define(version: 20180625173049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,13 @@ ActiveRecord::Schema.define(version: 20180618170702) do
     t.index ["indaba_instance_id"], name: "index_indaba_orders_on_indaba_instance_id"
     t.index ["market_book_order_id"], name: "index_indaba_orders_on_market_book_order_id"
     t.index ["market_name"], name: "index_indaba_orders_on_market_name"
+  end
+
+  create_table "source_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_source_types_on_name", unique: true
   end
 
   create_table "tmp_indaba_data", id: false, force: :cascade do |t|
