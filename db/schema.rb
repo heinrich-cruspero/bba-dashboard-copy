@@ -10,10 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180618170702) do
+ActiveRecord::Schema.define(version: 20180626144701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.bigint "source_id", null: false
+    t.string "name", null: false
+    t.string "account_number", null: false
+    t.string "address_ln1", null: false
+    t.string "address_ln2"
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "zip", null: false
+    t.string "phone_number"
+    t.string "extension"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_number"], name: "index_accounts_on_account_number"
+    t.index ["address_ln1"], name: "index_accounts_on_address_ln1"
+    t.index ["city"], name: "index_accounts_on_city"
+    t.index ["name"], name: "index_accounts_on_name"
+    t.index ["phone_number"], name: "index_accounts_on_phone_number"
+    t.index ["source_id", "name"], name: "index_accounts_on_source_id_and_name", unique: true
+    t.index ["source_id"], name: "index_accounts_on_source_id"
+    t.index ["state"], name: "index_accounts_on_state"
+    t.index ["zip"], name: "index_accounts_on_zip"
+  end
 
   create_table "amazon_data", force: :cascade do |t|
     t.bigint "book_id", null: false
@@ -129,6 +153,23 @@ ActiveRecord::Schema.define(version: 20180618170702) do
     t.index ["market_name"], name: "index_indaba_orders_on_market_name"
   end
 
+  create_table "source_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_source_types_on_name", unique: true
+  end
+
+  create_table "sources", force: :cascade do |t|
+    t.bigint "source_type_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_sources_on_name"
+    t.index ["source_type_id", "name"], name: "index_sources_on_source_type_id_and_name", unique: true
+    t.index ["source_type_id"], name: "index_sources_on_source_type_id"
+  end
+
   create_table "tmp_indaba_data", id: false, force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "indaba_instance_id", null: false
@@ -233,6 +274,7 @@ ActiveRecord::Schema.define(version: 20180618170702) do
     t.index ["want_list_privacy_id"], name: "index_want_lists_on_want_list_privacy_id"
   end
 
+  add_foreign_key "accounts", "sources"
   add_foreign_key "amazon_data", "books"
   add_foreign_key "guide_data", "books"
   add_foreign_key "indaba_data", "books"
@@ -240,6 +282,7 @@ ActiveRecord::Schema.define(version: 20180618170702) do
   add_foreign_key "indaba_instance_data", "indaba_instances"
   add_foreign_key "indaba_orders", "books"
   add_foreign_key "indaba_orders", "indaba_instances"
+  add_foreign_key "sources", "source_types"
   add_foreign_key "users_want_lists", "users"
   add_foreign_key "users_want_lists", "want_lists"
   add_foreign_key "valore_orders", "valore_accounts"
