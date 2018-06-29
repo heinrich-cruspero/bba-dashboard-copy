@@ -90,8 +90,21 @@ class WantListsController < ApplicationController
 
     @want_list.want_list_items.delete_all if params[:want_list][:reset] == '1'
 
-    CSV.foreach(params[:want_list][:want_list_items].path, headers: true) do |row|
-      WantListItem.where(want_list_id: @want_list.id, ean: row.to_hash['ean']).first_or_create.update(row.to_hash)
+    empty_want_list = @want_list.want_list_items.count.zero?
+
+    want_list_id = @want_list.id
+
+    Thread.new do
+      CSV.foreach(params[:want_list][:want_list_items].path, headers: true) do |row|
+        row_hash = row.to_hash
+        row_hash['want_list_id'] = want_list_id
+
+        if empty_want_list
+          WantListItem.create(row_hash)
+        else
+          WantListItem.where(want_list_id: want_list_id, ean: row_hash['ean']).first_or_create.update(row_hash)
+        end
+      end
     end
   end
 end
