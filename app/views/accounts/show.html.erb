@@ -1,0 +1,60 @@
+<div class="mdl-layout mdl-js-layout">
+  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+    <div class="mdl-card__supporting-text">
+      <p id="notice"><%= notice %></p>
+
+      <p>
+        <strong>Source:</strong>
+        <%= @account.source.source_type.name + " - " + @account.source.name %>
+      </p>
+
+      <p>
+        <strong>Name:</strong>
+        <%= @account.name %>
+      </p>
+
+      <p>
+        <strong>Account number:</strong>
+        <%= @account.account_number %>
+      </p>
+
+      <p>
+        <strong>Address ln1:</strong>
+        <%= @account.address_ln1 %>
+      </p>
+
+      <p>
+        <strong>Address ln2:</strong>
+        <%= @account.address_ln2 %>
+      </p>
+
+      <p>
+        <strong>City:</strong>
+        <%= @account.city %>
+      </p>
+
+      <p>
+        <strong>State:</strong>
+        <%= @account.state %>
+      </p>
+
+      <p>
+        <strong>Zip:</strong>
+        <%= @account.zip %>
+      </p>
+
+      <p>
+        <strong>Phone number:</strong>
+        <%= @account.phone_number %>
+      </p>
+
+      <p>
+        <strong>Extension:</strong>
+        <%= @account.extension %>
+      </p>
+
+      <%= link_to 'Edit', edit_account_path(@account) %> |
+      <%= link_to 'Back', accounts_path %>
+    </div>
+  </div>
+</div>
