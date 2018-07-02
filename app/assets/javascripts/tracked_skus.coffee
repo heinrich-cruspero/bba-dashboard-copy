@@ -5,7 +5,6 @@ $ ->
     ajax: $('#tracked_skus-table').data('source')
     pagingType: 'full_numbers'
     pageLength: 10
-    scrollCollapse: true
     scrollX: true
     columns: [
       {data: 'asin', orderable: true, searchable: true}
