@@ -1,0 +1,39 @@
+<%= javascript_include_tag 'tracked_skus' %>
+
+<p id="notice"><%= notice %></p>
+
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-color-text--grey">
+    <h5>Tracked SKUs</h5>
+  </div>
+
+  <div class="mdl-cell mdl-cell--12-col">
+    <table id="tracked_skus-table", data-source="<%= tracked_skus_path(format: :json) %>", class="mdl-data-table" width="100%">
+      <thead>
+      <tr>
+        <th>ASIN</th>
+        <th>ISBN</th>
+        <th>PublicationDate</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Publisher</th>
+        <th>Binding</th>
+        <th>Condition</th>
+        <th>Location</th>
+        <th>SKU</th>
+        <th>LocatorCode</th>
+        <th>Suffix</th>
+        <th>DateCreated</th>
+        <th>InternalPrice4</th>
+        <th>InternalNotes1</th>
+        <th>InternalNotes2</th>
+        <th>InternalNotes3</th>
+        <th>Audited</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>

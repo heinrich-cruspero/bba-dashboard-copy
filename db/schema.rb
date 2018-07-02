@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180626144701) do
+ActiveRecord::Schema.define(version: 20180702140555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -187,6 +187,29 @@ ActiveRecord::Schema.define(version: 20180626144701) do
     t.float "whole_sale", default: 0.0, null: false
     t.index ["book_id"], name: "index_tmp_indaba_data_on_book_id"
     t.index ["indaba_instance_id"], name: "index_tmp_indaba_data_on_indaba_instance_id"
+  end
+
+  create_table "tracked_skus", force: :cascade do |t|
+    t.string "asin"
+    t.string "isbn"
+    t.date "publication_date"
+    t.string "title"
+    t.string "author"
+    t.string "publisher"
+    t.string "binding"
+    t.string "condition"
+    t.string "location"
+    t.string "sku"
+    t.string "locator_code"
+    t.string "suffix"
+    t.datetime "date_created"
+    t.string "internal_price_4"
+    t.string "internal_notes_1"
+    t.string "internal_notes_2"
+    t.string "internal_notes_3"
+    t.boolean "audited"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
