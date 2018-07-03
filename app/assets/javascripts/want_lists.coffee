@@ -11,5 +11,6 @@ $ ->
       {data: 'privacy', orderable: true, searchable: true}
       {data: 'active', orderable: true, searchable: false}
       {data: 'valore_account', orderable: true, searchable: true}
+      {data: 'upload_status', orderable: true, searchable: true}
       {data: 'actions', orderable: false, searchable: false}
     ]

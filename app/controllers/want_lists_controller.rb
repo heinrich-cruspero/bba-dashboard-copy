@@ -95,6 +95,7 @@ class WantListsController < ApplicationController
     want_list_id = @want_list.id
 
     Thread.new do
+      @want_list.update(upload_status: 'Processing File')
       CSV.foreach(params[:want_list][:want_list_items].path, headers: true) do |row|
         row_hash = row.to_hash
         row_hash['want_list_id'] = want_list_id
@@ -105,6 +106,7 @@ class WantListsController < ApplicationController
           WantListItem.where(want_list_id: want_list_id, ean: row_hash['ean']).first_or_create.update(row_hash)
         end
       end
+      @want_list.update(upload_status: 'Processed')
     end
   end
 end
