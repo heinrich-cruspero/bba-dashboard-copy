@@ -14,7 +14,8 @@ class WantListDatatable < AjaxDatatablesRails::Base
       email: { source: 'User.email', cond: :like, searchable: true, orderable: true },
       privacy: { source: 'WantListPrivacy.name', cond: :like, searchable: true, orderable: true },
       active: { source: 'WantList.active', cond: :eq, searchable: false, orderable: true },
-      valore_account: { source: 'ValoreAccount.name', cond: :like, searchable: true, orderable: true }
+      valore_account: { source: 'ValoreAccount.name', cond: :like, searchable: true, orderable: true },
+      upload_status: { source: 'WantList.upload_status', cond: :like, searchable: true, orderable: true }
     }
   end
 
@@ -26,6 +27,7 @@ class WantListDatatable < AjaxDatatablesRails::Base
         privacy: want_list.want_list_privacy.name,
         active: want_list.active,
         valore_account: want_list.valore_account.nil? ? '' : want_list.valore_account.name,
+        upload_status: want_list.upload_status,
         actions: "#{link_to('Items', items_want_list_path(want_list))}
                   #{link_to('Export', export_want_list_path(want_list)) if @view.can? :export, want_list}
                   #{link_to('Edit', edit_want_list_path(want_list)) if @view.can? :update, want_list}
