@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Source, type: :model do
-  let!(:source_type) { SourceType.create(name: 'Test') }
+  let(:source_type) { create(:source_type) }
 
   it 'is valid with valid attributes' do
-    expect(Source.new(source_type: source_type, name: 'Test')).to be_valid
+    expect(Source.new(source_type: source_type, name: Faker::Company.name)).to be_valid
   end
 
   it 'is not valid with no name' do
@@ -14,6 +14,6 @@ RSpec.describe Source, type: :model do
   end
 
   it 'is not valid with no source_tye' do
-    expect(Source.new(name: 'Test')).to_not be_valid
+    expect(Source.new(name: Faker::Company.name)).to_not be_valid
   end
 end
