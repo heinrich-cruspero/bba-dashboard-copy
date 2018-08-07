@@ -15,6 +15,16 @@ ActiveRecord::Schema.define(version: 20180703143703) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "abe_accounts", force: :cascade do |t|
+    t.string "email"
+    t.string "client_key"
+    t.string "access_key"
+    t.string "secret_key"
+    t.string "cc_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "accounts", force: :cascade do |t|
     t.bigint "source_id", null: false
     t.string "name", null: false
@@ -292,6 +302,8 @@ ActiveRecord::Schema.define(version: 20180703143703) do
     t.boolean "active"
     t.bigint "valore_account_id"
     t.string "upload_status"
+    t.bigint "abe_account_id"
+    t.index ["abe_account_id"], name: "index_want_lists_on_abe_account_id"
     t.index ["name"], name: "index_want_lists_on_name"
     t.index ["user_id"], name: "index_want_lists_on_user_id"
     t.index ["valore_account_id"], name: "index_want_lists_on_valore_account_id"
@@ -311,6 +323,7 @@ ActiveRecord::Schema.define(version: 20180703143703) do
   add_foreign_key "users_want_lists", "want_lists"
   add_foreign_key "valore_orders", "valore_accounts"
   add_foreign_key "want_list_items", "want_lists"
+  add_foreign_key "want_lists", "abe_accounts"
   add_foreign_key "want_lists", "users"
   add_foreign_key "want_lists", "valore_accounts"
   add_foreign_key "want_lists", "want_list_privacies"
