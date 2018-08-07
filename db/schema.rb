@@ -10,19 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180529175620) do
+ActiveRecord::Schema.define(version: 20180703143703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "abe_accounts", force: :cascade do |t|
-    t.string "email"
-    t.string "client_key"
-    t.string "access_key"
-    t.string "secret_key"
-    t.string "cc_token"
+  create_table "accounts", force: :cascade do |t|
+    t.bigint "source_id", null: false
+    t.string "name", null: false
+    t.string "account_number", null: false
+    t.string "address_ln1", null: false
+    t.string "address_ln2"
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "zip", null: false
+    t.string "phone_number"
+    t.string "extension"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["account_number"], name: "index_accounts_on_account_number"
+    t.index ["address_ln1"], name: "index_accounts_on_address_ln1"
+    t.index ["city"], name: "index_accounts_on_city"
+    t.index ["name"], name: "index_accounts_on_name"
+    t.index ["phone_number"], name: "index_accounts_on_phone_number"
+    t.index ["source_id", "name"], name: "index_accounts_on_source_id_and_name", unique: true
+    t.index ["source_id"], name: "index_accounts_on_source_id"
+    t.index ["state"], name: "index_accounts_on_state"
+    t.index ["zip"], name: "index_accounts_on_zip"
   end
 
   create_table "amazon_data", force: :cascade do |t|
@@ -49,6 +63,21 @@ ActiveRecord::Schema.define(version: 20180529175620) do
     t.index ["ean"], name: "index_books_on_ean", unique: true
     t.index ["isbn"], name: "index_books_on_isbn", unique: true
     t.index ["title"], name: "index_books_on_title"
+  end
+
+  create_table "custom_isbns", force: :cascade do |t|
+    t.string "text_isbn"
+    t.string "alt_isbn"
+    t.string "custom_isbn"
+    t.string "code_isbn"
+    t.string "tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["alt_isbn"], name: "index_custom_isbns_on_alt_isbn"
+    t.index ["code_isbn"], name: "index_custom_isbns_on_code_isbn"
+    t.index ["custom_isbn"], name: "index_custom_isbns_on_custom_isbn"
+    t.index ["tag"], name: "index_custom_isbns_on_tag"
+    t.index ["text_isbn"], name: "index_custom_isbns_on_text_isbn"
   end
 
   create_table "guide_data", force: :cascade do |t|
@@ -124,6 +153,23 @@ ActiveRecord::Schema.define(version: 20180529175620) do
     t.index ["market_name"], name: "index_indaba_orders_on_market_name"
   end
 
+  create_table "source_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_source_types_on_name", unique: true
+  end
+
+  create_table "sources", force: :cascade do |t|
+    t.bigint "source_type_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_sources_on_name"
+    t.index ["source_type_id", "name"], name: "index_sources_on_source_type_id_and_name", unique: true
+    t.index ["source_type_id"], name: "index_sources_on_source_type_id"
+  end
+
   create_table "tmp_indaba_data", id: false, force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "indaba_instance_id", null: false
@@ -141,6 +187,29 @@ ActiveRecord::Schema.define(version: 20180529175620) do
     t.float "whole_sale", default: 0.0, null: false
     t.index ["book_id"], name: "index_tmp_indaba_data_on_book_id"
     t.index ["indaba_instance_id"], name: "index_tmp_indaba_data_on_indaba_instance_id"
+  end
+
+  create_table "tracked_skus", force: :cascade do |t|
+    t.string "asin"
+    t.string "isbn"
+    t.date "publication_date"
+    t.string "title"
+    t.string "author"
+    t.string "publisher"
+    t.string "binding"
+    t.string "condition"
+    t.string "location"
+    t.string "sku"
+    t.string "locator_code"
+    t.string "suffix"
+    t.datetime "date_created"
+    t.string "internal_price_4"
+    t.string "internal_notes_1"
+    t.string "internal_notes_2"
+    t.string "internal_notes_3"
+    t.boolean "audited"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -222,14 +291,14 @@ ActiveRecord::Schema.define(version: 20180529175620) do
     t.datetime "updated_at", null: false
     t.boolean "active"
     t.bigint "valore_account_id"
-    t.bigint "abe_account_id"
-    t.index ["abe_account_id"], name: "index_want_lists_on_abe_account_id"
+    t.string "upload_status"
     t.index ["name"], name: "index_want_lists_on_name"
     t.index ["user_id"], name: "index_want_lists_on_user_id"
     t.index ["valore_account_id"], name: "index_want_lists_on_valore_account_id"
     t.index ["want_list_privacy_id"], name: "index_want_lists_on_want_list_privacy_id"
   end
 
+  add_foreign_key "accounts", "sources"
   add_foreign_key "amazon_data", "books"
   add_foreign_key "guide_data", "books"
   add_foreign_key "indaba_data", "books"
@@ -237,11 +306,11 @@ ActiveRecord::Schema.define(version: 20180529175620) do
   add_foreign_key "indaba_instance_data", "indaba_instances"
   add_foreign_key "indaba_orders", "books"
   add_foreign_key "indaba_orders", "indaba_instances"
+  add_foreign_key "sources", "source_types"
   add_foreign_key "users_want_lists", "users"
   add_foreign_key "users_want_lists", "want_lists"
   add_foreign_key "valore_orders", "valore_accounts"
   add_foreign_key "want_list_items", "want_lists"
-  add_foreign_key "want_lists", "abe_accounts"
   add_foreign_key "want_lists", "users"
   add_foreign_key "want_lists", "valore_accounts"
   add_foreign_key "want_lists", "want_list_privacies"

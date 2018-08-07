@@ -1,0 +1,35 @@
+<div class="mdl-layout mdl-js-layout">
+  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+    <div class="mdl-card__supporting-text">
+      <p id="notice"><%= notice %></p>
+
+      <p>
+        <strong>Text isbn:</strong>
+        <%= @custom_isbn.text_isbn %>
+      </p>
+
+      <p>
+        <strong>Alt isbn:</strong>
+        <%= @custom_isbn.alt_isbn %>
+      </p>
+
+      <p>
+        <strong>Custom isbn:</strong>
+        <%= @custom_isbn.custom_isbn %>
+      </p>
+
+      <p>
+        <strong>Code isbn:</strong>
+        <%= @custom_isbn.code_isbn %>
+      </p>
+
+      <p>
+        <strong>Tag:</strong>
+        <%= @custom_isbn.tag %>
+      </p>
+
+      <%= link_to 'Edit', edit_custom_isbn_path(@custom_isbn) %>
+      <%= link_to 'Back', custom_isbns_path %>
+    </div>
+  </div>
+</div>

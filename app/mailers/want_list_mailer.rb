@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+##
 class WantListMailer < ApplicationMailer
   default from: 'noreply@bbabackoffice.com'
 

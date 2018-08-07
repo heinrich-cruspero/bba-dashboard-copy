@@ -1,0 +1,31 @@
+<%= javascript_include_tag 'custom_isbns' %>
+
+<p id="notice"><%= notice %></p>
+
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-color-text--grey">
+    <h5>Custom Isbns</h5>
+  </div>
+
+  <div class="mdl-cell mdl-cell--12-col">
+    <table id="custom_isbns-table", data-source="<%= custom_isbns_path(format: :json) %>", class="mdl-data-table" width="100%" >
+      <thead>
+        <tr>
+          <th>Text isbn</th>
+          <th>Alt isbn</th>
+          <th>Custom isbn</th>
+          <th>Code isbn</th>
+          <th>Tag</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Custom Isbn', new_custom_isbn_path %>

@@ -1,4 +1,6 @@
-require "application_system_test_case"
+# frozen_string_literal: true
+
+require 'application_system_test_case'
 
 class WantListItemsTest < ApplicationSystemTestCase
   # test "visiting the index" do
