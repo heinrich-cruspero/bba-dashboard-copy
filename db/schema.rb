@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20180815155402) do
 
   create_table "abe_listings", force: :cascade do |t|
     t.bigint "abe_order_id", null: false
-    t.integer "listing_id", null: false
+    t.string "listing_id", null: false
     t.integer "quantity", null: false
     t.string "title", null: false
     t.string "isbn", null: false
