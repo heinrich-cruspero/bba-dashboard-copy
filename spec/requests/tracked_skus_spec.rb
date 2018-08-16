@@ -4,9 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'TrackedSkus', type: :request do
   before(:each) do
-    user = User.create(email: 'user@example.org', password: 'very-secret', admin: true)
-
-    sign_in user
+    sign_in create(:admin_user)
   end
 
   describe 'GET /tracked_skus' do

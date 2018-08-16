@@ -4,13 +4,10 @@ require 'rails_helper'
 
 RSpec.describe AccountsController, type: :controller do
   before(:each) do
-    user = User.create(email: 'user@example.org', password: 'very-secret', admin: true)
-
-    sign_in user
+    sign_in create(:admin_user)
   end
 
-  let(:source_type) { SourceType.create(name: Faker::Company.name) }
-  let(:source) { Source.create(source_type: source_type, name: Faker::Company.name) }
+  let(:source) { create(:source) }
 
   let(:valid_attributes) do
     { source_id: source.id, name: Faker::Company.name, account_number: Faker::Company.ein,

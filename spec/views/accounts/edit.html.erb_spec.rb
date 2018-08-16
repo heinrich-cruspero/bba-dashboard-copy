@@ -3,8 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'accounts/edit', type: :view do
-  let!(:source_type) { SourceType.create(name: Faker::Company.name) }
-  let!(:source) { Source.create(source_type: source_type, name: Faker::Company.name) }
+  let(:source) { create(:source) }
 
   before(:each) do
     allow(controller).to receive(:action_name).and_return('edit')

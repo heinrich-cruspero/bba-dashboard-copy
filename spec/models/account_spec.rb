@@ -3,8 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Account, type: :model do
-  let!(:source_type) { SourceType.create(name: Faker::Company.name) }
-  let!(:source) { Source.create(source_type: source_type, name: Faker::Company.name) }
+  let(:source) { create(:source) }
 
   it 'is valid with valid attributes' do
     expect(Account.new(source: source, name: Faker::Company.name, account_number: Faker::Company.ein,
