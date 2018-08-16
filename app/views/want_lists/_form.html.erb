@@ -56,8 +56,19 @@
 
         <% if current_user.admin? %>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <%= form.label :valore_account_id, 'Valore Account', class: "mdl-checkbox__label" %></br>
             <%= form.select :valore_account_id, ValoreAccount.all.collect {|x| [x.name, x.id]}, {include_blank: 'Select Valore Account'} %>
             <% want_list.errors.full_messages_for(:valore_account_id).each do |message| %>
+              <span class="mdl-textfield__error"><%= message %></span>
+            <% end %>
+          </div>
+
+          </br>
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <%= form.label :abe_account_id, 'Abe Account', class: "mdl-checkbox__label" %></br>
+            <%= form.select :abe_account_id, AbeAccount.all.collect {|x| [x.email, x.id]}, {include_blank: 'Select Abe Account'} %>
+            <% want_list.errors.full_messages_for(:abe_account_id).each do |message| %>
               <span class="mdl-textfield__error"><%= message %></span>
             <% end %>
           </div>

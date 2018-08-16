@@ -10,10 +10,64 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180703143703) do
+ActiveRecord::Schema.define(version: 20180815155402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "abe_accounts", force: :cascade do |t|
+    t.string "email"
+    t.string "client_key"
+    t.string "access_key"
+    t.string "secret_key"
+    t.string "cc_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "vendor_ids"
+  end
+
+  create_table "abe_listings", force: :cascade do |t|
+    t.bigint "abe_order_id", null: false
+    t.bigint "listing_id", null: false
+    t.integer "quantity", null: false
+    t.string "title", null: false
+    t.string "isbn", null: false
+    t.integer "vendor_id", null: false
+    t.integer "min_shipping_days", null: false
+    t.integer "max_shipping_days", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["abe_order_id"], name: "index_abe_listings_on_abe_order_id"
+    t.index ["isbn"], name: "index_abe_listings_on_isbn"
+    t.index ["listing_id"], name: "index_abe_listings_on_listing_id"
+    t.index ["vendor_id"], name: "index_abe_listings_on_vendor_id"
+  end
+
+  create_table "abe_order_items", force: :cascade do |t|
+    t.bigint "abe_listing_id", null: false
+    t.bigint "abe_order_id", null: false
+    t.float "cost", null: false
+    t.float "shipcost", null: false
+    t.integer "status", null: false
+    t.integer "order_item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["abe_listing_id"], name: "index_abe_order_items_on_abe_listing_id"
+    t.index ["abe_order_id"], name: "index_abe_order_items_on_abe_order_id"
+    t.index ["order_item_id"], name: "index_abe_order_items_on_order_item_id"
+    t.index ["status"], name: "index_abe_order_items_on_status"
+  end
+
+  create_table "abe_orders", force: :cascade do |t|
+    t.string "order_id", null: false
+    t.boolean "dryrun", null: false
+    t.string "reference_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dryrun"], name: "index_abe_orders_on_dryrun"
+    t.index ["order_id"], name: "index_abe_orders_on_order_id"
+    t.index ["reference_id"], name: "index_abe_orders_on_reference_id"
+  end
 
   create_table "accounts", force: :cascade do |t|
     t.bigint "source_id", null: false
@@ -292,12 +346,17 @@ ActiveRecord::Schema.define(version: 20180703143703) do
     t.boolean "active"
     t.bigint "valore_account_id"
     t.string "upload_status"
+    t.bigint "abe_account_id"
+    t.index ["abe_account_id"], name: "index_want_lists_on_abe_account_id"
     t.index ["name"], name: "index_want_lists_on_name"
     t.index ["user_id"], name: "index_want_lists_on_user_id"
     t.index ["valore_account_id"], name: "index_want_lists_on_valore_account_id"
     t.index ["want_list_privacy_id"], name: "index_want_lists_on_want_list_privacy_id"
   end
 
+  add_foreign_key "abe_listings", "abe_orders"
+  add_foreign_key "abe_order_items", "abe_listings"
+  add_foreign_key "abe_order_items", "abe_orders"
   add_foreign_key "accounts", "sources"
   add_foreign_key "amazon_data", "books"
   add_foreign_key "guide_data", "books"
@@ -311,6 +370,7 @@ ActiveRecord::Schema.define(version: 20180703143703) do
   add_foreign_key "users_want_lists", "want_lists"
   add_foreign_key "valore_orders", "valore_accounts"
   add_foreign_key "want_list_items", "want_lists"
+  add_foreign_key "want_lists", "abe_accounts"
   add_foreign_key "want_lists", "users"
   add_foreign_key "want_lists", "valore_accounts"
   add_foreign_key "want_lists", "want_list_privacies"
