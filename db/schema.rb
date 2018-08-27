@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180822133300) do
+ActiveRecord::Schema.define(version: 20180827200922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -348,6 +348,7 @@ ActiveRecord::Schema.define(version: 20180822133300) do
     t.bigint "valore_account_id"
     t.string "upload_status"
     t.bigint "abe_account_id"
+    t.datetime "last_submitted_at"
     t.index ["abe_account_id"], name: "index_want_lists_on_abe_account_id"
     t.index ["name"], name: "index_want_lists_on_name"
     t.index ["user_id"], name: "index_want_lists_on_user_id"
