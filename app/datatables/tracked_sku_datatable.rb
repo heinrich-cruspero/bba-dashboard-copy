@@ -2,6 +2,8 @@
 
 ##
 class TrackedSkuDatatable < AjaxDatatablesRails::Base
+  def_delegator :@view, :link_to
+
   def view_columns
     @view_columns ||= {
       asin: { source: 'TrackedSku.asin', cond: :like, searchable: true, orderable: true },
@@ -20,8 +22,7 @@ class TrackedSkuDatatable < AjaxDatatablesRails::Base
       internal_price_4: { source: 'TrackedSku.internal_price_4', cond: :like, searchable: true, orderable: true },
       internal_notes_1: { source: 'TrackedSku.internal_notes_1', cond: :like, searchable: true, orderable: true },
       internal_notes_2: { source: 'TrackedSku.internal_notes_2', cond: :like, searchable: true, orderable: true },
-      internal_notes_3: { source: 'TrackedSku.internal_notes_3', cond: :like, searchable: true, orderable: true },
-      audited: { source: 'TrackedSku.audited', cond: :like, searchable: true, orderable: true }
+      internal_notes_3: { source: 'TrackedSku.internal_notes_3', cond: :like, searchable: true, orderable: true }
     }
   end
 
@@ -47,7 +48,7 @@ class TrackedSkuDatatable < AjaxDatatablesRails::Base
         internal_notes_1: tracked_sku.internal_notes_1,
         internal_notes_2: tracked_sku.internal_notes_2,
         internal_notes_3: tracked_sku.internal_notes_3,
-        audited: tracked_sku.audited
+        actions: "#{link_to('Audit', '')}".html_safe
       }
     end
   end

@@ -24,5 +24,5 @@ $ ->
       {data: 'internal_notes_1', orderable: true, searchable: true}
       {data: 'internal_notes_2', orderable: true, searchable: true}
       {data: 'internal_notes_3', orderable: true, searchable: true}
-      {data: 'audited', orderable: true, searchable: true}
+      {data: 'actions', orderable: false, searchable: false}
     ]
