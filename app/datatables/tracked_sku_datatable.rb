@@ -48,7 +48,7 @@ class TrackedSkuDatatable < AjaxDatatablesRails::Base
         internal_notes_1: tracked_sku.internal_notes_1,
         internal_notes_2: tracked_sku.internal_notes_2,
         internal_notes_3: tracked_sku.internal_notes_3,
-        actions: "#{link_to('Audit', '')}".html_safe
+        actions: link_to('Audit', '').to_s.html_safe
       }
     end
   end

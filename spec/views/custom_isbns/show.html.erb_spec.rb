@@ -10,7 +10,7 @@ RSpec.describe 'custom_isbns/show', type: :view do
                                           custom_isbn: 'Custom Isbn',
                                           code_isbn: 'Code Isbn',
                                           tag: 'Tag'
-    ))
+                                        ))
   end
 
   it 'renders attributes in <p>' do

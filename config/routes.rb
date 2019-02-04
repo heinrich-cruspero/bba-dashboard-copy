@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :audits
   resources :tracked_skus, only: %i[index]
   resources :accounts
   resources :custom_isbns

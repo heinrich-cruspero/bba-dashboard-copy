@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sku:</strong>
+  <%= @audit.sku %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @audit.status %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @audit.notes %>
+</p>
+
+<p>
+  <strong>Internal price 1:</strong>
+  <%= @audit.internal_price_1 %>
+</p>
+
+<p>
+  <strong>Internal price 2:</strong>
+  <%= @audit.internal_price_2 %>
+</p>
+
+<p>
+  <strong>Internal price 3:</strong>
+  <%= @audit.internal_price_3 %>
+</p>
+
+<p>
+  <strong>Internal price 4:</strong>
+  <%= @audit.internal_price_4 %>
+</p>
+
+<p>
+  <strong>Date created:</strong>
+  <%= @audit.date_created %>
+</p>
+
+<%= link_to 'Edit', edit_audit_path(@audit) %> |
+<%= link_to 'Back', audits_path %>

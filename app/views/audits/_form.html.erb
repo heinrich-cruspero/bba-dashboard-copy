@@ -1,0 +1,57 @@
+<%= form_with(model: audit, local: true) do |form| %>
+  <% if audit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(audit.errors.count, "error") %> prohibited this audit from being saved:</h2>
+
+      <ul>
+      <% audit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :sku %>
+    <%= form.text_field :sku, id: :audit_sku %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status, id: :audit_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes, id: :audit_notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :internal_price_1 %>
+    <%= form.text_field :internal_price_1, id: :audit_internal_price_1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :internal_price_2 %>
+    <%= form.text_field :internal_price_2, id: :audit_internal_price_2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :internal_price_3 %>
+    <%= form.text_field :internal_price_3, id: :audit_internal_price_3 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :internal_price_4 %>
+    <%= form.text_field :internal_price_4, id: :audit_internal_price_4 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_created %>
+    <%= form.date_select :date_created, id: :audit_date_created %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
