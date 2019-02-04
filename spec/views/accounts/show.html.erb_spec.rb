@@ -17,7 +17,7 @@ RSpec.describe 'accounts/show', type: :view do
                                   zip: 'Zip',
                                   phone_number: 'Phone Number',
                                   extension: 'Extension'
-                                ))
+    ))
   end
 
   it 'renders attributes in <p>' do

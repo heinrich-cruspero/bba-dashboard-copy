@@ -19,7 +19,7 @@ RSpec.describe 'accounts/edit', type: :view do
                                   zip: 'MyString',
                                   phone_number: 'MyString',
                                   extension: 'MyString'
-                                ))
+    ))
   end
 
   it 'renders the edit account form' do

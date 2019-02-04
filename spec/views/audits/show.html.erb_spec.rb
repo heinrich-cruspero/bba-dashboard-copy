@@ -12,7 +12,7 @@ RSpec.describe 'audits/show', type: :view do
                               internal_price_2: 3.5,
                               internal_price_3: 4.5,
                               internal_price_4: 5.5
-                            ))
+    ))
   end
 
   it 'renders attributes in <p>' do

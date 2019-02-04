@@ -17,7 +17,7 @@ RSpec.describe 'accounts/new', type: :view do
                        zip: 'MyString',
                        phone_number: 'MyString',
                        extension: 'MyString'
-                     ))
+    ))
   end
 
   it 'renders new account form' do

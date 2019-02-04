@@ -12,7 +12,7 @@ RSpec.describe 'audits/new', type: :view do
                      internal_price_2: 1.5,
                      internal_price_3: 1.5,
                      internal_price_4: 1.5
-                   ))
+    ))
   end
 
   it 'renders new audit form' do

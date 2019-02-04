@@ -11,7 +11,7 @@ RSpec.describe 'custom_isbns/new', type: :view do
                            custom_isbn: 'MyString',
                            code_isbn: 'MyString',
                            tag: 'MyString'
-                         ))
+    ))
   end
 
   it 'renders new custom_isbn form' do
