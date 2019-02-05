@@ -2,5 +2,5 @@
 
 ##
 class Audit < ApplicationRecord
-  belongs_to :tracked_sku, foreign_key: 'sku', primary_key: 'sku'
+  belongs_to :tracked_sku, foreign_key: 'sku', primary_key: 'sku', optional: true
 end
