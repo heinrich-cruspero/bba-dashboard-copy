@@ -12,6 +12,16 @@ class AuditsController < ApplicationController
 
   def new
     @audit = Audit.new
+    return redirect_to tracked_skus_path if params[:tracked_sku].nil? || TrackedSku.find_by_id(params[:tracked_sku]).nil?
+
+    tracked_sku = TrackedSku.find_by_id(params[:tracked_sku])
+
+    @audit.sku = tracked_sku.sku
+    @audit.internal_price_4 = tracked_sku.internal_price_4
+    @audit.internal_notes_1 = tracked_sku.internal_notes_1
+    @audit.internal_notes_2 = tracked_sku.internal_notes_2
+    @audit.internal_notes_3 = tracked_sku.internal_notes_3
+    @audit.date_created = tracked_sku.date_created
   end
 
   def edit; end
@@ -52,6 +62,6 @@ class AuditsController < ApplicationController
   end
 
   def audit_params
-    params.require(:audit).permit(:sku, :status, :notes, :internal_price_1, :internal_price_2, :internal_price_3, :internal_price_4, :date_created)
+    params.require(:audit).permit(:sku, :status, :notes, :internal_price_4, :internal_notes_1, :internal_notes_2, :internal_notes_3, :date_created)
   end
 end

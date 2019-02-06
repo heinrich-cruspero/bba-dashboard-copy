@@ -9,16 +9,16 @@ RSpec.describe AuditsController, type: :controller do
 
   let(:valid_attributes) do
     { sku: Faker::String.random(10), status: Faker::Boolean, notes: Faker::Lorem.sentence,
-      internal_price_1: Faker::Number.decimal(2), internal_price_2: Faker::Number.decimal(2),
-      internal_price_3: Faker::Number.decimal(2), internal_price_4: Faker::Number.decimal(2),
-      date_created: Faker::Date.backward(100) }
+      internal_price_4: Faker::Number.decimal(2),
+      internal_notes_1: Faker::Lorem.sentence, internal_notes_2: Faker::Lorem.sentence,
+      internal_notes_3: Faker::Lorem.sentence, date_created: Faker::Date.backward(100) }
   end
 
   let(:invalid_attributes) do
     { sku: nil, status: Faker::Boolean.boolean, notes: Faker::Lorem.sentence,
-      internal_price_1: Faker::Number.decimal(2), internal_price_2: Faker::Number.decimal(2),
-      internal_price_3: Faker::Number.decimal(2), internal_price_4: Faker::Number.decimal(2),
-      date_created: Faker::Date.backward(100) }
+      internal_price_4: Faker::Number.decimal(2),
+      internal_notes_1: Faker::Lorem.sentence, internal_notes_2: Faker::Lorem.sentence,
+      internal_notes_3: Faker::Lorem.sentence, date_created: Faker::Date.backward(100) }
   end
 
   let(:valid_session) { {} }
@@ -39,9 +39,23 @@ RSpec.describe AuditsController, type: :controller do
   end
 
   describe 'GET #new' do
-    it 'returns a success response' do
-      get :new, params: {}, session: valid_session
-      expect(response).to be_success
+    context 'with valid params' do
+      it 'returns a success response' do
+        get :new, params: { tracked_sku: create(:tracked_sku) }, session: valid_session
+        expect(response).to be_success
+      end
+    end
+
+    context 'with invalid params' do
+      it 'redirects to the tracked_skus_path' do
+        get :new, params: { tracked_sku: 0 }, session: valid_session
+        expect(response).to redirect_to(tracked_skus_path)
+      end
+
+      it 'redirects to the tracked_skus_path' do
+        get :new, params: {}, session: valid_session
+        expect(response).to redirect_to(tracked_skus_path)
+      end
     end
   end
 

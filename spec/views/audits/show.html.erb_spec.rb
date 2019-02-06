@@ -12,10 +12,10 @@ RSpec.describe 'audits/show', type: :view do
     expect(rendered).to match(/#{@audit.sku}/)
     expect(rendered).to match(/#{@audit.status}/)
     expect(rendered).to match(/#{@audit.notes}/)
-    expect(rendered).to match(/#{@audit.internal_price_1}/)
-    expect(rendered).to match(/#{@audit.internal_price_2}/)
-    expect(rendered).to match(/#{@audit.internal_price_3}/)
     expect(rendered).to match(/#{@audit.internal_price_4}/)
+    expect(rendered).to match(/#{@audit.internal_notes_1}/)
+    expect(rendered).to match(/#{@audit.internal_notes_2}/)
+    expect(rendered).to match(/#{@audit.internal_notes_3}/)
     expect(rendered).to match(/#{@audit.date_created}/)
   end
 end

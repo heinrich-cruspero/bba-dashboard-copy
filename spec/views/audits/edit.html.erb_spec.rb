@@ -17,13 +17,13 @@ RSpec.describe 'audits/edit', type: :view do
 
       assert_select 'textarea[name=?]', 'audit[notes]'
 
-      assert_select 'input[name=?]', 'audit[internal_price_1]'
-
-      assert_select 'input[name=?]', 'audit[internal_price_2]'
-
-      assert_select 'input[name=?]', 'audit[internal_price_3]'
-
       assert_select 'input[name=?]', 'audit[internal_price_4]'
+
+      assert_select 'input[name=?]', 'audit[internal_notes_1]'
+
+      assert_select 'input[name=?]', 'audit[internal_notes_2]'
+
+      assert_select 'input[name=?]', 'audit[internal_notes_3]'
 
       assert_select 'select[name=?]', 'audit[date_created(1i)]'
       assert_select 'select[name=?]', 'audit[date_created(2i)]'

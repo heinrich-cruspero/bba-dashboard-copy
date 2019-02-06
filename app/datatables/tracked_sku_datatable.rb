@@ -3,6 +3,7 @@
 ##
 class TrackedSkuDatatable < AjaxDatatablesRails::Base
   def_delegator :@view, :link_to
+  def_delegator :@view, :new_audit_path
 
   def view_columns
     @view_columns ||= {
@@ -48,7 +49,7 @@ class TrackedSkuDatatable < AjaxDatatablesRails::Base
         internal_notes_1: tracked_sku.internal_notes_1,
         internal_notes_2: tracked_sku.internal_notes_2,
         internal_notes_3: tracked_sku.internal_notes_3,
-        actions: link_to('Audit', '').to_s.html_safe
+        actions: link_to('Audit', new_audit_path(tracked_sku: tracked_sku)).to_s.html_safe
       }
     end
   end

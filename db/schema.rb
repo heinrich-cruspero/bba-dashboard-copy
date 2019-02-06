@@ -108,10 +108,10 @@ ActiveRecord::Schema.define(version: 20190131204830) do
     t.string "sku", null: false
     t.boolean "status", default: false, null: false
     t.text "notes"
-    t.float "internal_price_1", default: 0.0, null: false
-    t.float "internal_price_2", default: 0.0, null: false
-    t.float "internal_price_3", default: 0.0, null: false
     t.float "internal_price_4", default: 0.0, null: false
+    t.string "internal_notes_1"
+    t.string "internal_notes_2"
+    t.string "internal_notes_3"
     t.date "date_created"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
