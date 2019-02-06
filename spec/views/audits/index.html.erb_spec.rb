@@ -11,13 +11,13 @@ RSpec.describe 'audits/index', type: :view do
 
   it 'renders a list of audits' do
     render
-    assert_select 'tr>td', text: audit.sku, count: 2
-    assert_select 'tr>td', text: audit.status.to_s, count: 2
-    assert_select 'tr>td', text: audit.notes, count: 2
-    assert_select 'tr>td', text: audit.internal_price_4.to_s, count: 2
-    assert_select 'tr>td', text: audit.internal_notes_1.to_s, count: 2
-    assert_select 'tr>td', text: audit.internal_notes_2.to_s, count: 2
-    assert_select 'tr>td', text: audit.internal_notes_3.to_s, count: 2
-    assert_select 'tr>td', text: audit.date_created.to_s, count: 2
+    assert_select 'tr>th', text: 'Sku', count: 1
+    assert_select 'tr>th', text: 'Status', count: 1
+    assert_select 'tr>th', text: 'Notes', count: 1
+    assert_select 'tr>th', text: 'Internal price 4', count: 1
+    assert_select 'tr>th', text: 'Internal note 1', count: 1
+    assert_select 'tr>th', text: 'Internal note 2', count: 1
+    assert_select 'tr>th', text: 'Internal note 3', count: 1
+    assert_select 'tr>th', text: 'Date created', count: 1
   end
 end

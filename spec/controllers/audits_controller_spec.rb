@@ -44,6 +44,14 @@ RSpec.describe AuditsController, type: :controller do
         get :new, params: { tracked_sku: create(:tracked_sku) }, session: valid_session
         expect(response).to be_success
       end
+
+      it 'redirects to the edit_audit_path' do
+        tracked_sku = create(:tracked_sku)
+        audit = create(:audit, sku: tracked_sku.sku)
+
+        get :new, params: { tracked_sku: tracked_sku }, session: valid_session
+        expect(response).to redirect_to(edit_audit_path(audit))
+      end
     end
 
     context 'with invalid params' do

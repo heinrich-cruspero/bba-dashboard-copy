@@ -1,41 +1,30 @@
+<%= javascript_include_tag 'audits' %>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Audits</h1>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-color-text--grey">
+    <h5>Audits</h5>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Sku</th>
-      <th>Status</th>
-      <th>Notes</th>
-      <th>Internal price 4</th>
-      <th>Internal note 1</th>
-      <th>Internal note 2</th>
-      <th>Internal note 3</th>
-      <th>Date created</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @audits.each do |audit| %>
+  <div class="mdl-cell mdl-cell--12-col">
+    <table id="audits-table", data-source="<%= audits_path(format: :json) %>", class="mdl-data-table" width="100%" >
+      <thead>
       <tr>
-        <td><%= audit.sku %></td>
-        <td><%= audit.status %></td>
-        <td><%= audit.notes %></td>
-        <td><%= audit.internal_price_4 %></td>
-        <td><%= audit.internal_notes_1 %></td>
-        <td><%= audit.internal_notes_2 %></td>
-        <td><%= audit.internal_notes_3 %></td>
-        <td><%= audit.date_created %></td>
-        <td><%= link_to 'Show', audit %></td>
-        <td><%= link_to 'Edit', edit_audit_path(audit) %></td>
-        <td><%= link_to 'Destroy', audit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Sku</th>
+        <th>Status</th>
+        <th>Notes</th>
+        <th>Internal price 4</th>
+        <th>Internal note 1</th>
+        <th>Internal note 2</th>
+        <th>Internal note 3</th>
+        <th>Date created</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      </thead>
 
-<br>
-
-<%= link_to 'New Audit', new_audit_path %>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>

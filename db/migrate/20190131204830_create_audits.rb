@@ -5,7 +5,7 @@ class CreateAudits < ActiveRecord::Migration[5.1]
       t.string :sku, null: false, index: true
       t.boolean :status, null: false, default: false
       t.text :notes
-      t.float :internal_price_4, null: false, default: 0.00
+      t.float :internal_price_4
       t.string :internal_notes_1
       t.string :internal_notes_2
       t.string :internal_notes_3

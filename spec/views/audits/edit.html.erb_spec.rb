@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe 'audits/edit', type: :view do
   before(:each) do
     @audit = create(:audit)
+    controller.action_name = 'edit'
   end
 
   it 'renders the edit audit form' do
@@ -13,7 +14,7 @@ RSpec.describe 'audits/edit', type: :view do
     assert_select 'form[action=?][method=?]', audit_path(@audit), 'post' do
       assert_select 'input[name=?]', 'audit[sku]'
 
-      assert_select 'input[name=?]', 'audit[status]'
+      assert_select 'select[name=?]', 'audit[status]'
 
       assert_select 'textarea[name=?]', 'audit[notes]'
 

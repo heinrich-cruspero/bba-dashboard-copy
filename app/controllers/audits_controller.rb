@@ -2,10 +2,15 @@
 
 ##
 class AuditsController < ApplicationController
+  load_and_authorize_resource
+
   before_action :set_audit, only: %i[show edit update destroy]
 
   def index
-    @audits = Audit.all
+    respond_to do |format|
+      format.html
+      format.json { render json: AuditDatatable.new(view_context) }
+    end
   end
 
   def show; end
@@ -15,6 +20,8 @@ class AuditsController < ApplicationController
     return redirect_to tracked_skus_path if params[:tracked_sku].nil? || TrackedSku.find_by_id(params[:tracked_sku]).nil?
 
     tracked_sku = TrackedSku.find_by_id(params[:tracked_sku])
+
+    return redirect_to edit_audit_path(Audit.find_by_sku(tracked_sku.sku)) unless Audit.find_by_sku(tracked_sku.sku).nil?
 
     @audit.sku = tracked_sku.sku
     @audit.internal_price_4 = tracked_sku.internal_price_4
