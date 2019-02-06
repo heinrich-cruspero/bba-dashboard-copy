@@ -4,15 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'audits/edit', type: :view do
   before(:each) do
-    @audit = assign(:audit, Audit.create!(
-                              sku: 'MyString',
-                              status: '',
-                              notes: 'MyText',
-                              internal_price_1: 1.5,
-                              internal_price_2: 1.5,
-                              internal_price_3: 1.5,
-                              internal_price_4: 1.5
-    ))
+    @audit = create(:audit)
   end
 
   it 'renders the edit audit form' do
@@ -32,6 +24,10 @@ RSpec.describe 'audits/edit', type: :view do
       assert_select 'input[name=?]', 'audit[internal_price_3]'
 
       assert_select 'input[name=?]', 'audit[internal_price_4]'
+
+      assert_select 'select[name=?]', 'audit[date_created(1i)]'
+      assert_select 'select[name=?]', 'audit[date_created(2i)]'
+      assert_select 'select[name=?]', 'audit[date_created(3i)]'
     end
   end
 end

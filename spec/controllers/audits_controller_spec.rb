@@ -8,17 +8,17 @@ RSpec.describe AuditsController, type: :controller do
   end
 
   let(:valid_attributes) do
-    { sku: Faker::String.random(10), status: Faker::Boolean.boolean, notes: Faker::Lorem.sentence,
+    { sku: Faker::String.random(10), status: Faker::Boolean, notes: Faker::Lorem.sentence,
       internal_price_1: Faker::Number.decimal(2), internal_price_2: Faker::Number.decimal(2),
       internal_price_3: Faker::Number.decimal(2), internal_price_4: Faker::Number.decimal(2),
-      date_created: Faker::Date }
+      date_created: Faker::Date.backward(100) }
   end
 
   let(:invalid_attributes) do
-    { status: Faker::Boolean.boolean, notes: Faker::Lorem.sentence,
+    { sku: nil, status: Faker::Boolean.boolean, notes: Faker::Lorem.sentence,
       internal_price_1: Faker::Number.decimal(2), internal_price_2: Faker::Number.decimal(2),
       internal_price_3: Faker::Number.decimal(2), internal_price_4: Faker::Number.decimal(2),
-      date_created: Faker::Date }
+      date_created: Faker::Date.backward(100) }
   end
 
   let(:valid_session) { {} }
