@@ -1,0 +1,17 @@
+@media screen and (min-width: 480px) {
+  #tracked_skus-table_wrapper {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 980px) {
+  #tracked_skus-table_wrapper {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 1441px) {
+  #tracked_skus-table_wrapper {
+    width: 75%;
+  }
+}

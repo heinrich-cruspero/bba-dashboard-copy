@@ -1,0 +1,71 @@
+<div class="mdl-layout mdl-js-layout">
+  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h5 class="mdl-card__title-text mdl-color-text--grey"> <%= action_name.humanize %> Audit</h5>
+    </div>
+
+    <div class="mdl-card__supporting-text">
+      <%= form_with(model: audit, local: true) do |form| %>
+        <% if audit.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(audit.errors.count, "error") %> prohibited this audit from being saved:</h2>
+
+            <ul>
+              <% audit.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="hidden">
+          <%= form.label :sku %>
+          <%= form.text_field :sku, id: :audit_sku %>
+        </div>
+
+        <div>
+          <%= form.label :status %>
+          <%= form.select :status, [true,false] %>
+        </div>
+
+        </br>
+
+        <div>
+          <%= form.label :notes %>
+          <%= form.text_area :notes, id: :audit_notes %>
+        </div>
+
+        <div class="hidden">
+          <%= form.label :internal_price_4 %>
+          <%= form.text_field :internal_price_4, id: :audit_internal_price_4 %>
+        </div>
+
+        <div class="hidden">
+          <%= form.label :internal_notes_1 %>
+          <%= form.text_field :internal_notes_1, id: :audit_internal_notes_1 %>
+        </div>
+
+        <div class="hidden">
+          <%= form.label :internal_notes_2 %>
+          <%= form.text_field :internal_notes_2, id: :audit_internal_notes_2 %>
+        </div>
+
+        <div class="hidden">
+          <%= form.label :internal_notes_3 %>
+          <%= form.text_field :internal_notes_3, id: :audit_internal_notes_3 %>
+        </div>
+
+        <div class="hidden">
+          <%= form.label :date_created %>
+          <%= form.date_select :date_created, id: :audit_date_created %>
+        </div>
+
+        <div class="mdl-card__actions">
+          <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
+        </div>
+      <% end %>
+
+      <%= link_to 'Back', audits_path %>
+    </div>
+  </div>
+</div>

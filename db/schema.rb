@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180827200922) do
+ActiveRecord::Schema.define(version: 20190131204830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,20 @@ ActiveRecord::Schema.define(version: 20180827200922) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_amazon_data_on_book_id", unique: true
+  end
+
+  create_table "audits", force: :cascade do |t|
+    t.string "sku", null: false
+    t.boolean "status", default: false, null: false
+    t.text "notes"
+    t.float "internal_price_4"
+    t.string "internal_notes_1"
+    t.string "internal_notes_2"
+    t.string "internal_notes_3"
+    t.date "date_created"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sku"], name: "index_audits_on_sku"
   end
 
   create_table "books", force: :cascade do |t|
@@ -262,7 +276,6 @@ ActiveRecord::Schema.define(version: 20180827200922) do
     t.string "internal_notes_1"
     t.string "internal_notes_2"
     t.string "internal_notes_3"
-    t.boolean "audited"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
