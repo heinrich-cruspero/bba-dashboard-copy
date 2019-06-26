@@ -12,6 +12,7 @@ class WantList < ApplicationRecord
 
   belongs_to :valore_account, optional: true
   belongs_to :abe_account, optional: true
+  belongs_to :thrift_account, optional: true
 
   before_save do
     self.last_submitted_at = nil

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190131204830) do
+ActiveRecord::Schema.define(version: 20190626152604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -239,6 +239,14 @@ ActiveRecord::Schema.define(version: 20190131204830) do
     t.index ["source_type_id"], name: "index_sources_on_source_type_id"
   end
 
+  create_table "thrift_accounts", force: :cascade do |t|
+    t.string "name"
+    t.string "token"
+    t.string "address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tmp_indaba_data", id: false, force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "indaba_instance_id", null: false
@@ -362,8 +370,10 @@ ActiveRecord::Schema.define(version: 20190131204830) do
     t.string "upload_status"
     t.bigint "abe_account_id"
     t.datetime "last_submitted_at"
+    t.bigint "thrift_account_id"
     t.index ["abe_account_id"], name: "index_want_lists_on_abe_account_id"
     t.index ["name"], name: "index_want_lists_on_name"
+    t.index ["thrift_account_id"], name: "index_want_lists_on_thrift_account_id"
     t.index ["user_id"], name: "index_want_lists_on_user_id"
     t.index ["valore_account_id"], name: "index_want_lists_on_valore_account_id"
     t.index ["want_list_privacy_id"], name: "index_want_lists_on_want_list_privacy_id"
@@ -386,6 +396,7 @@ ActiveRecord::Schema.define(version: 20190131204830) do
   add_foreign_key "valore_orders", "valore_accounts"
   add_foreign_key "want_list_items", "want_lists"
   add_foreign_key "want_lists", "abe_accounts"
+  add_foreign_key "want_lists", "thrift_accounts"
   add_foreign_key "want_lists", "users"
   add_foreign_key "want_lists", "valore_accounts"
   add_foreign_key "want_lists", "want_list_privacies"
