@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190626152604) do
+ActiveRecord::Schema.define(version: 20190722192048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -247,6 +247,24 @@ ActiveRecord::Schema.define(version: 20190626152604) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "thrift_order_items", force: :cascade do |t|
+    t.bigint "thrift_order_id"
+    t.string "sku"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["thrift_order_id"], name: "index_thrift_order_items_on_thrift_order_id"
+  end
+
+  create_table "thrift_orders", force: :cascade do |t|
+    t.string "cart_id"
+    t.string "external_order_id"
+    t.bigint "want_list_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["want_list_id"], name: "index_thrift_orders_on_want_list_id"
+  end
+
   create_table "tmp_indaba_data", id: false, force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "indaba_instance_id", null: false
@@ -391,6 +409,8 @@ ActiveRecord::Schema.define(version: 20190626152604) do
   add_foreign_key "indaba_orders", "books"
   add_foreign_key "indaba_orders", "indaba_instances"
   add_foreign_key "sources", "source_types"
+  add_foreign_key "thrift_order_items", "thrift_orders"
+  add_foreign_key "thrift_orders", "want_lists"
   add_foreign_key "users_want_lists", "users"
   add_foreign_key "users_want_lists", "want_lists"
   add_foreign_key "valore_orders", "valore_accounts"
