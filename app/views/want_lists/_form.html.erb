@@ -72,6 +72,16 @@
               <span class="mdl-textfield__error"><%= message %></span>
             <% end %>
           </div>
+
+          </br>
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <%= form.label :thrift_account_id, 'Thrift Account', class: "mdl-checkbox__label" %></br>
+            <%= form.select :thrift_account_id, ThriftAccount.all.collect {|x| [x.name, x.id]}, {include_blank: 'Select Thrift Account'} %>
+            <% want_list.errors.full_messages_for(:thrift_account_id).each do |message| %>
+              <span class="mdl-textfield__error"><%= message %></span>
+            <% end %>
+          </div>
         <% end %>
 
         <div class="mdl-card__actions">

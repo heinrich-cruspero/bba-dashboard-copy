@@ -1,0 +1,50 @@
+<div class="mdl-layout mdl-js-layout">
+  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+    <div class="mdl-card__supporting-text">
+      <p id="notice"><%= notice %></p>
+
+      <p>
+        <strong>Sku:</strong>
+        <%= @audit.sku %>
+      </p>
+
+      <p>
+        <strong>Status:</strong>
+        <%= @audit.status %>
+      </p>
+
+      <p>
+        <strong>Notes:</strong>
+        <%= @audit.notes %>
+      </p>
+
+      <p>
+        <strong>Internal price 4:</strong>
+        <%= @audit.internal_price_4 %>
+      </p>
+
+      <p>
+        <strong>Internal note 1:</strong>
+        <%= @audit.internal_notes_1 %>
+      </p>
+
+      <p>
+        <strong>Internal note 2:</strong>
+        <%= @audit.internal_notes_2 %>
+      </p>
+
+      <p>
+        <strong>Internal note 3:</strong>
+        <%= @audit.internal_notes_3 %>
+      </p>
+
+      <p>
+        <strong>Date created:</strong>
+        <%= @audit.date_created %>
+      </p>
+
+      <%= link_to 'Edit', edit_audit_path(@audit) %> |
+      <%= link_to 'Back', audits_path %>
+    </div>
+  </div>
+</div>
