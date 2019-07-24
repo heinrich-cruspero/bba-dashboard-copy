@@ -1,0 +1,27 @@
+<%= javascript_include_tag 'thrift_order_items' %>
+
+<p id="notice"><%= notice %></p>
+
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-color-text--grey">
+    <h5>Thrift Order Items</h5>
+  </div>
+
+  <div class="mdl-cell mdl-cell--10-col">
+    <table id="thrift_order_items-table" data-source="<%= items_thrift_order_url(id: params[:id], format: :json) %>" class="mdl-data-table">
+      <thead>
+      <tr>
+        <th>SKU</th>
+        <th>ASIN</th>
+        <th>Price</th>
+        <th>Condition</th>
+        <th>Status</th>
+        <th>Tracking</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
