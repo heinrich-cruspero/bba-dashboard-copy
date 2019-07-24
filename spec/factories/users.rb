@@ -7,7 +7,7 @@ FactoryBot.define do
 
     factory :admin_user do
       admin true
-      email 'admin@sexample.com'
+      email { Faker::Internet.email }
     end
   end
 end

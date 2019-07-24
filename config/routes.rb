@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :thrift_orders, only: %i[index] do
+    member do
+      get :items
+    end
+  end
   resources :audits
   resources :tracked_skus, only: %i[index]
   resources :accounts

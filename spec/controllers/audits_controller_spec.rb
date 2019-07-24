@@ -8,7 +8,7 @@ RSpec.describe AuditsController, type: :controller do
   end
 
   let(:valid_attributes) do
-    { sku: Faker::String.random(10), status: Faker::Boolean, notes: Faker::Lorem.sentence,
+    { sku: Faker::String.random(10).delete("\u0000"), status: Faker::Boolean, notes: Faker::Lorem.sentence,
       internal_price_4: Faker::Number.decimal(2),
       internal_notes_1: Faker::Lorem.sentence, internal_notes_2: Faker::Lorem.sentence,
       internal_notes_3: Faker::Lorem.sentence, date_created: Faker::Date.backward(100) }
@@ -100,7 +100,7 @@ RSpec.describe AuditsController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        { sku: Faker::String.random(10) }
+        { sku: Faker::String.random(10).delete("\u0000") }
       end
 
       it 'updates the requested audit' do
