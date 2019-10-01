@@ -14,4 +14,5 @@ $ ->
       {data: 'city', orderable: true, searchable: true}
       {data: 'state', orderable: true, searchable: true}
       {data: 'zip_code', orderable: true, searchable: true}
+      {data: 'actions', orderable: false, searchable: false}
     ]

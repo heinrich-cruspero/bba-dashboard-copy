@@ -6,6 +6,8 @@ class RentalReturn < ApplicationRecord
 
   validates :fedex_account_id, :email, :name, :phone_number, :street, :city, :state, :zip_code, presence: true
 
+  require 'csv'
+
   def return_label_message
     {
       WebAuthenticationDetail:
@@ -138,5 +140,11 @@ class RentalReturn < ApplicationRecord
                     }
             }
     }
+  end
+
+  def self.import(file, fedex_account_id)
+    CSV.foreach(file.path, headers: true) do |row|
+      RentalReturn.create! row.to_hash.merge('fedex_account_id' => fedex_account_id)
+    end
   end
 end

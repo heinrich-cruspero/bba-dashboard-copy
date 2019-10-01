@@ -7,6 +7,20 @@
     <h5>Rental Returns</h5>
   </div>
 
+  <%= form_with url: import_rental_returns_path do |form| %>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= form.select :fedex_account_id, FedexAccount.all.collect {|x| ["#{x.company_name}", x.id]}, {include_blank: 'Select Fedex Account', required: true} %>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= form.file_field :rental_returns_file, class: "mdl-textfield__input" %>
+    </div>
+
+    <div class="mdl-card__actions">
+      <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
+    </div>
+  <% end %>
+
   <div class="mdl-cell mdl-cell--12-col">
     <table id="rental_returns-table", data-source="<%= rental_returns_path(format: :json) %>", class="mdl-data-table" width="100%" >
       <thead>
@@ -31,4 +45,4 @@
 
 <br>
 
-<%= link_to 'New Rental Return', new_rental_return_path %>
+<%= link_to 'Import', import_rental_returns_path %>

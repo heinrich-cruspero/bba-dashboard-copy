@@ -48,6 +48,12 @@ class RentalReturnsController < ApplicationController
     end
   end
 
+  def import
+    RentalReturn.import(params[:rental_returns_file], params[:fedex_account_id])
+    GenerateReturnsJob.perform_later
+    redirect_to rental_returns_path, notice: 'Rental Returns Imported'
+  end
+
   private
 
   def set_rental_return
