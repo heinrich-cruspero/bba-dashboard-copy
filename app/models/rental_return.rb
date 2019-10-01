@@ -4,6 +4,8 @@
 class RentalReturn < ApplicationRecord
   belongs_to :fedex_account
 
+  validates :fedex_account_id, :email, :name, :phone_number, :street, :city, :state, :zip_code, presence: true
+
   def return_label_message
     {
       WebAuthenticationDetail:
@@ -107,7 +109,7 @@ class RentalReturn < ApplicationRecord
                                     {
                                       Recipients:
                                           {
-                                            EmailAddress: 'recipeint@company.com',
+                                            EmailAddress: email,
                                             Role: 'SHIPMENT_COMPLETOR'
                                           }
                                     }

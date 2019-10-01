@@ -1,0 +1,79 @@
+<div class="mdl-layout mdl-js-layout">
+  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h5 class="mdl-card__title-text mdl-color-text--grey"> <%= action_name.humanize %> Account</h5>
+    </div>
+
+    <div class="mdl-card__supporting-text">
+      <%= form_with(model: rental_return, local: true) do |form| %>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.select :fedex_account_id, FedexAccount.all.collect {|x| ["#{x.company_name}", x.id]}, {include_blank: 'Select Fedex Account', required: true} %>
+          <% rental_return.errors.full_messages_for(:fedex_account_id).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :email, class: "mdl-textfield__label" %>
+          <%= form.text_field :email, id: :rental_return_email, class: "mdl-textfield__input", required: true %>
+          <% rental_return.errors.full_messages_for(:email).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :name, class: "mdl-textfield__label" %>
+          <%= form.text_field :name, id: :rental_return_name, class: "mdl-textfield__input", required: true %>
+          <% rental_return.errors.full_messages_for(:name).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :phone_number, class: "mdl-textfield__label" %>
+          <%= form.text_field :phone_number, id: :rental_return_phone_number, class: "mdl-textfield__input", required: true %>
+          <% rental_return.errors.full_messages_for(:phone_number).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :street, class: "mdl-textfield__label" %>
+          <%= form.text_field :street, id: :rental_return_street, class: "mdl-textfield__input", required: true %>
+          <% rental_return.errors.full_messages_for(:street).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :city, class: "mdl-textfield__label" %>
+          <%= form.text_field :city, id: :rental_return_city, class: "mdl-textfield__input", required: true %>
+          <% rental_return.errors.full_messages_for(:city).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :state, class: "mdl-textfield__label" %>
+          <%= form.text_field :state, id: :rental_return_state, class: "mdl-textfield__input", required: true %>
+          <% rental_return.errors.full_messages_for(:state).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :zip_code, class: "mdl-textfield__label" %>
+          <%= form.text_field :zip_code, id: :rental_return_zip_code, class: "mdl-textfield__input", required: true %>
+          <% rental_return.errors.full_messages_for(:zip_code).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-card__actions">
+          <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
+        </div>
+      <% end %>
+      <%= link_to 'Back', rental_returns_path %>
+    </div>
+  </div>
+</div>

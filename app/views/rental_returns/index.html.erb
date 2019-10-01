@@ -1,0 +1,34 @@
+<%= javascript_include_tag 'rental_returns' %>
+
+<p id="notice"><%= notice %></p>
+
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-color-text--grey">
+    <h5>Rental Returns</h5>
+  </div>
+
+  <div class="mdl-cell mdl-cell--12-col">
+    <table id="rental_returns-table", data-source="<%= rental_returns_path(format: :json) %>", class="mdl-data-table" width="100%" >
+      <thead>
+        <tr>
+          <th>Fedex account</th>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Phone number</th>
+          <th>Street</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip code</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Rental Return', new_rental_return_path %>
