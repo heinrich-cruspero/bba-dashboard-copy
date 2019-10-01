@@ -1,0 +1,65 @@
+<div class="mdl-layout mdl-js-layout">
+  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+    <div class="mdl-card__supporting-text">
+      <p id="notice"><%= notice %></p>
+
+      <p>
+        <strong>Key:</strong>
+        <%= @fedex_account.key %>
+      </p>
+
+      <p>
+        <strong>Password:</strong>
+        <%= @fedex_account.password %>
+      </p>
+
+      <p>
+        <strong>Account number:</strong>
+        <%= @fedex_account.account_number %>
+      </p>
+
+      <p>
+        <strong>Meter number:</strong>
+        <%= @fedex_account.meter_number %>
+      </p>
+
+      <p>
+        <strong>Name:</strong>
+        <%= @fedex_account.name %>
+      </p>
+
+      <p>
+        <strong>Company name:</strong>
+        <%= @fedex_account.company_name %>
+      </p>
+
+      <p>
+        <strong>Phone number:</strong>
+        <%= @fedex_account.phone_number %>
+      </p>
+
+      <p>
+        <strong>Street:</strong>
+        <%= @fedex_account.street %>
+      </p>
+
+      <p>
+        <strong>City:</strong>
+        <%= @fedex_account.city %>
+      </p>
+
+      <p>
+        <strong>State:</strong>
+        <%= @fedex_account.state %>
+      </p>
+
+      <p>
+        <strong>Zip code:</strong>
+        <%= @fedex_account.zip_code %>
+      </p>
+
+      <%= link_to 'Edit', edit_fedex_account_path(@fedex_account) %> |
+      <%= link_to 'Back', fedex_accounts_path %>
+    </div>
+  </div>
+</div>
