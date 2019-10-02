@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190930192610) do
+ActiveRecord::Schema.define(version: 20191002124751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,6 +163,7 @@ ActiveRecord::Schema.define(version: 20190930192610) do
     t.string "zip_code", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "prod", default: false
   end
 
   create_table "guide_data", force: :cascade do |t|
@@ -250,6 +251,7 @@ ActiveRecord::Schema.define(version: 20190930192610) do
     t.text "response"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "submitted", default: false
     t.index ["fedex_account_id"], name: "index_rental_returns_on_fedex_account_id"
   end
 

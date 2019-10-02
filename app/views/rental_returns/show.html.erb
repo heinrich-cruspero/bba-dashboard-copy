@@ -43,6 +43,11 @@
         <%= @rental_return.zip_code %>
       </p>
 
+      <p>
+        <strong>Submitted:</strong>
+        <%= @rental_return.submitted %>
+      </p>
+
       <%= link_to 'Edit', edit_rental_return_path(@rental_return) %> |
       <%= link_to 'Back', rental_returns_path %>
     </div>

@@ -15,7 +15,9 @@ class RentalReturnDatatable < AjaxDatatablesRails::Base
       street: { source: 'RentalReturn.street', cond: :like, searchable: true, orderable: true },
       city: { source: 'RentalReturn.city', cond: :like, searchable: true, orderable: true },
       state: { source: 'RentalReturn.state', cond: :like, searchable: true, orderable: true },
-      zip_code: { source: 'RentalReturn.zip_code', cond: :like, searchable: true, orderable: true }
+      zip_code: { source: 'RentalReturn.zip_code', cond: :like, searchable: true, orderable: true },
+      submitted: { source: 'RentalReturn.submitted', cond: :like, searchable: true, orderable: true },
+      created_at: { source: 'RentalReturn.created_at', cond: :like, searchable: true, orderable: true }
     }
   end
 
@@ -32,6 +34,8 @@ class RentalReturnDatatable < AjaxDatatablesRails::Base
         city: rental_return.city,
         state: rental_return.state,
         zip_code: rental_return.zip_code,
+        submitted: rental_return.submitted,
+        created_at: rental_return.created_at.in_time_zone('Central Time (US & Canada)').strftime('%m-%d-%Y %H:%M'),
         actions: "#{link_to('Show', edit_rental_return_path(rental_return))}
                   #{link_to('Edit', rental_return_path(rental_return))}
                   #{link_to('Delete', rental_return, method: :delete, data: { confirm: 'Are you sure?' })}".html_safe

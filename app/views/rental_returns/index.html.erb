@@ -7,13 +7,13 @@
     <h5>Rental Returns</h5>
   </div>
 
-  <%= form_with url: import_rental_returns_path do |form| %>
+  <%= form_with url: import_rental_returns_path, local: true do |form| %>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <%= form.select :fedex_account_id, FedexAccount.all.collect {|x| ["#{x.company_name}", x.id]}, {include_blank: 'Select Fedex Account', required: true} %>
+      <%= form.select :fedex_account_id, FedexAccount.all.collect {|x| ["#{x.company_name}", x.id]}, {include_blank: 'Select Fedex Account'}, required: true %>
     </div>
 
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <%= form.file_field :rental_returns_file, class: "mdl-textfield__input" %>
+      <%= form.file_field :rental_returns_file, class: "mdl-textfield__input", required: true %>
     </div>
 
     <div class="mdl-card__actions">
@@ -33,6 +33,7 @@
           <th>City</th>
           <th>State</th>
           <th>Zip code</th>
+          <th>Submitted</th>
           <th></th>
         </tr>
       </thead>

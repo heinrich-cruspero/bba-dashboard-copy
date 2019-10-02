@@ -2,7 +2,7 @@ $ ->
   $('#rental_returns-table').dataTable
     processing: true
     serverSide: true
-    ajax: $('#rental_returnstable').data('source')
+    ajax: $('#rental_returns-table').data('source')
     pagingType: 'full_numbers'
     pageLength: 10
     columns: [
@@ -14,5 +14,9 @@ $ ->
       {data: 'city', orderable: true, searchable: true}
       {data: 'state', orderable: true, searchable: true}
       {data: 'zip_code', orderable: true, searchable: true}
-      {data: 'actions', orderable: false, searchable: false}
+      {data: 'submitted', orderable: true, searchable: true}
+      {data: 'created_at', orderable: true, searchable: true}
+    ]
+    order: [
+      [9, "desc"]
     ]
