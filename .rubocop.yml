@@ -21,3 +21,8 @@ Metrics/CyclomaticComplexity:
 
 Metrics/PerceivedComplexity:
   Enabled: false
+
+Metrics/ClassLength:
+  Exclude:
+    - 'app/jobs/generate_returns_job.rb'
+    - 'app/models/rental_return.rb'
