@@ -9,7 +9,7 @@
 
   <%= form_with url: import_rental_returns_path, local: true do |form| %>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <%= form.select :fedex_account_id, FedexAccount.all.collect {|x| ["#{x.company_name}", x.id]}, {include_blank: 'Select Fedex Account'}, required: true %>
+      <%= form.select :fedex_account_id, FedexAccount.all.collect {|x| ["#{x.company_name} - #{x.name}", x.id]}, {include_blank: 'Select Fedex Account'}, required: true %>
     </div>
 
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

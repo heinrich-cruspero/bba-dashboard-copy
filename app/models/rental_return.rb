@@ -136,7 +136,7 @@ class RentalReturn < ApplicationRecord
                               "Units": 'LB',
                               "Value": '1'
                             },
-                      "ItemDescription": 'Description'
+                      "ItemDescription": 'Textbooks for ItemDescription'
                     }
             }
     }
