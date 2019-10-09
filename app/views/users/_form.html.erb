@@ -7,14 +7,14 @@
     <div class="mdl-card__supporting-text">
 
     <%= form_with(model: user, local: true) do |form| %>
-    <div class="mdl-textfield mdl-js-textfield">
-      <%= form.label :admin, class: "mdl-check_box__label" %>
-      <%= form.check_box :admin, class: "mdl-check_box__input" %>
-    </div>
+      <div class="mdl-textfield mdl-js-textfield">
+        <%= form.label :role, class: "mdl-check_box__label" %>
+        <%= form.select :role, User.roles.keys, class: "mdl-check_box__input" %>
+      </div>
 
-    <div class="mdl-card__actions">
-      <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
-    </div>
+      <div class="mdl-card__actions">
+        <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
+      </div>
     <% end %>
 
     <%= link_to 'Back', users_path %>

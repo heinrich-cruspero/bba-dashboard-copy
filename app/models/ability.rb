@@ -7,7 +7,7 @@ class Ability
   def initialize(user)
     if user.admin?
       can :manage, :all
-    else
+    elsif user.user?
       can %i[index details], Book
 
       can [:create], WantListItem
@@ -18,6 +18,9 @@ class Ability
         (want_list.owner == user || want_list.want_list_privacy_id == 1)
       end
       can %i[items export], WantList, id: user.all_want_lists.pluck(:id)
+    elsif user.warehouse?
+      can :manage, RentalReturn
+      can %i[index details], Book
     end
   end
 end

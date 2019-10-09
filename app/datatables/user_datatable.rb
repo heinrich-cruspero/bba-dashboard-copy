@@ -10,7 +10,7 @@ class UserDatatable < AjaxDatatablesRails::Base
   def view_columns
     @view_columns ||= {
       email: { source: 'User.email', cond: :like, searchable: true, orderable: true },
-      admin: { source: 'User.admin', cond: :like, searchable: true, orderable: true }
+      role: { source: 'User.role', cond: :like, searchable: true, orderable: true }
     }
   end
 
@@ -20,7 +20,7 @@ class UserDatatable < AjaxDatatablesRails::Base
     records.map do |user|
       {
         email: user.email,
-        admin: user.admin,
+        role: user.role,
         actions: "#{link_to('edit', edit_user_path(user))}
                   #{link_to('Delete', user, method: :delete, data: { confirm: 'Are you sure?' })}".html_safe
       }
