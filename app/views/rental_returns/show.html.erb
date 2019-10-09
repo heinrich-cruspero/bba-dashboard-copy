@@ -1,0 +1,55 @@
+<div class="mdl-layout mdl-js-layout">
+  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+    <div class="mdl-card__supporting-text">
+      <p id="notice"><%= notice %></p>
+
+      <p>
+        <strong>Fedex account:</strong>
+        <%= @rental_return.fedex_account.company_name %>
+      </p>
+
+      <p>
+        <strong>Email:</strong>
+        <%= @rental_return.email %>
+      </p>
+
+      <p>
+        <strong>Name:</strong>
+        <%= @rental_return.name %>
+      </p>
+
+      <p>
+        <strong>Phone number:</strong>
+        <%= @rental_return.phone_number %>
+      </p>
+
+      <p>
+        <strong>Street:</strong>
+        <%= @rental_return.street %>
+      </p>
+
+      <p>
+        <strong>City:</strong>
+        <%= @rental_return.city %>
+      </p>
+
+      <p>
+        <strong>State:</strong>
+        <%= @rental_return.state %>
+      </p>
+
+      <p>
+        <strong>Zip code:</strong>
+        <%= @rental_return.zip_code %>
+      </p>
+
+      <p>
+        <strong>Submitted:</strong>
+        <%= @rental_return.submitted %>
+      </p>
+
+      <%= link_to 'Edit', edit_rental_return_path(@rental_return) %> |
+      <%= link_to 'Back', rental_returns_path %>
+    </div>
+  </div>
+</div>

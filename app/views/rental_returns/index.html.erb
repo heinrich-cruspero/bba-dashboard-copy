@@ -1,0 +1,49 @@
+<%= javascript_include_tag 'rental_returns' %>
+
+<p id="notice"><%= notice %></p>
+
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-color-text--grey">
+    <h5>Rental Returns</h5>
+  </div>
+
+  <%= form_with url: import_rental_returns_path, local: true do |form| %>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= form.select :fedex_account_id, FedexAccount.all.collect {|x| ["#{x.company_name} - #{x.name}", x.id]}, {include_blank: 'Select Fedex Account'}, required: true %>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= form.file_field :rental_returns_file, class: "mdl-textfield__input", required: true %>
+    </div>
+
+    <div class="mdl-card__actions">
+      <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
+    </div>
+  <% end %>
+
+  <div class="mdl-cell mdl-cell--12-col">
+    <table id="rental_returns-table", data-source="<%= rental_returns_path(format: :json) %>", class="mdl-data-table" width="100%" >
+      <thead>
+        <tr>
+          <th>Fedex account</th>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Phone number</th>
+          <th>Street</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip code</th>
+          <th>Submitted</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'Import', import_rental_returns_path %>

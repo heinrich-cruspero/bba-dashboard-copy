@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190723174504) do
+ActiveRecord::Schema.define(version: 20191009150537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,23 @@ ActiveRecord::Schema.define(version: 20190723174504) do
     t.index ["text_isbn"], name: "index_custom_isbns_on_text_isbn"
   end
 
+  create_table "fedex_accounts", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "password", null: false
+    t.string "account_number", null: false
+    t.string "meter_number", null: false
+    t.string "name", null: false
+    t.string "company_name", null: false
+    t.string "phone_number", null: false
+    t.string "street", null: false
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "zip_code", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "prod", default: false
+  end
+
   create_table "guide_data", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.float "list_price", default: 0.0, null: false
@@ -220,6 +237,22 @@ ActiveRecord::Schema.define(version: 20190723174504) do
     t.index ["indaba_instance_id"], name: "index_indaba_orders_on_indaba_instance_id"
     t.index ["market_book_order_id"], name: "index_indaba_orders_on_market_book_order_id"
     t.index ["market_name"], name: "index_indaba_orders_on_market_name"
+  end
+
+  create_table "rental_returns", force: :cascade do |t|
+    t.bigint "fedex_account_id", null: false
+    t.string "email", null: false
+    t.string "name", null: false
+    t.string "phone_number", null: false
+    t.string "street", null: false
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "zip_code", null: false
+    t.text "response"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "submitted", default: false
+    t.index ["fedex_account_id"], name: "index_rental_returns_on_fedex_account_id"
   end
 
   create_table "source_types", force: :cascade do |t|
@@ -322,9 +355,9 @@ ActiveRecord::Schema.define(version: 20190723174504) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -413,6 +446,7 @@ ActiveRecord::Schema.define(version: 20190723174504) do
   add_foreign_key "indaba_instance_data", "indaba_instances"
   add_foreign_key "indaba_orders", "books"
   add_foreign_key "indaba_orders", "indaba_instances"
+  add_foreign_key "rental_returns", "fedex_accounts"
   add_foreign_key "sources", "source_types"
   add_foreign_key "thrift_order_items", "thrift_orders"
   add_foreign_key "thrift_orders", "want_lists"

@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-color-text--grey">
+    <h5>Fedex Accounts</h5>
+  </div>
+
+  <div class="mdl-cell mdl-cell--12-col">
+    <table id="accounts-table", data-source="<%= accounts_path(format: :json) %>", class="mdl-data-table" >
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Password</th>
+          <th>Account number</th>
+          <th>Meter number</th>
+          <th>Company name</th>
+          <th>Phone number</th>
+          <th>Street</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip code</th>
+          <th>Prod</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @fedex_accounts.each do |fedex_account| %>
+          <tr>
+            <td><%= fedex_account.key %></td>
+            <td><%= fedex_account.password %></td>
+            <td><%= fedex_account.account_number %></td>
+            <td><%= fedex_account.meter_number %></td>
+            <td><%= fedex_account.company_name %></td>
+            <td><%= fedex_account.phone_number %></td>
+            <td><%= fedex_account.street %></td>
+            <td><%= fedex_account.city %></td>
+            <td><%= fedex_account.state %></td>
+            <td><%= fedex_account.zip_code %></td>
+            <td><%= fedex_account.prod %></td>
+            <td><%= link_to 'Show', fedex_account %></td>
+            <td><%= link_to 'Edit', edit_fedex_account_path(fedex_account) %></td>
+            <td><%= link_to 'Destroy', fedex_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Fedex Account', new_fedex_account_path %>

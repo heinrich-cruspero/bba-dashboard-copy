@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :owned_want_lists, class_name: 'WantList', dependent: :destroy
   has_and_belongs_to_many :want_lists, dependent: :destroy
 
+  enum role: %i[user admin warehouse]
+
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(email: data['email']).first
