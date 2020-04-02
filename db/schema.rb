@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191009150537) do
+ActiveRecord::Schema.define(version: 20200402013043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -427,6 +427,10 @@ ActiveRecord::Schema.define(version: 20191009150537) do
     t.bigint "abe_account_id"
     t.datetime "last_submitted_at"
     t.bigint "thrift_account_id"
+    t.integer "valore_want_list_id"
+    t.string "valore_po_number"
+    t.date "valore_shipment_date"
+    t.string "valore_shipment_frequency"
     t.index ["abe_account_id"], name: "index_want_lists_on_abe_account_id"
     t.index ["name"], name: "index_want_lists_on_name"
     t.index ["thrift_account_id"], name: "index_want_lists_on_thrift_account_id"
