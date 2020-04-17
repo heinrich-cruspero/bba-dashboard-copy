@@ -31,7 +31,7 @@ class WantListDatatable < AjaxDatatablesRails::Base
         actions: "#{link_to('Items', items_want_list_path(want_list))}
                   #{link_to('Export', export_want_list_path(want_list)) if @view.can? :export, want_list}
                   #{link_to('Edit', edit_want_list_path(want_list)) if @view.can? :update, want_list}
-                  #{link_to('Delete', want_list, method: :delete, data: { confirm: 'Are you sure?' }) if @view.can? :destroy, want_list}".html_safe
+                  #{link_to('Delete', want_list, method: :delete, data: { confirm: 'Make sure to delete the want list from any third party integrated platforms!' }) if @view.can? :destroy, want_list}".html_safe
       }
     end
   end

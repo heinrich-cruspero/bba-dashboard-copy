@@ -24,7 +24,14 @@ class WantListsController < ApplicationController
   end
 
   # GET /want_lists/1/edit
-  def edit; end
+  def edit
+    return if @want_list.valore_account_id.nil?
+
+    if @want_list.last_submitted_at.nil? ||
+       (@want_list.active && !(['PROCESSED', 'PROCESSED WITH ERRORS'].include? @want_list.upload_status))
+      redirect_to want_lists_path, notice: 'Unable to edit this want list!'
+    end
+  end
 
   # POST /want_lists
   def create
@@ -81,7 +88,9 @@ class WantListsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def want_list_params
-    params.require(:want_list).permit(:name, :want_list_privacy_id, :valore_account_id, :abe_account_id, :thrift_account_id, :active, user_ids: [])
+    params.require(:want_list).permit(:name, :want_list_privacy_id, :valore_account_id,
+                                      :valore_want_list_id, :valore_po_number, :valore_shipment_date, :valore_shipment_frequency,
+                                      :abe_account_id, :thrift_account_id, :active, user_ids: [])
   end
 
   # After update & create process items file if exist
@@ -95,7 +104,7 @@ class WantListsController < ApplicationController
     want_list_id = @want_list.id
 
     Thread.new do
-      @want_list.update(upload_status: 'Processing File')
+      @want_list.update(upload_status: 'IMPORTING FILE')
       CSV.foreach(params[:want_list][:want_list_items].path, headers: true) do |row|
         row_hash = row.to_hash
         row_hash['want_list_id'] = want_list_id
@@ -106,7 +115,7 @@ class WantListsController < ApplicationController
           WantListItem.where(want_list_id: want_list_id, ean: row_hash['ean']).first_or_create.update(row_hash)
         end
       end
-      @want_list.update(upload_status: 'Processed')
+      @want_list.update(upload_status: 'IMPORTED')
     end
   end
 end
