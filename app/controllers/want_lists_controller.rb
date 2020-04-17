@@ -24,7 +24,14 @@ class WantListsController < ApplicationController
   end
 
   # GET /want_lists/1/edit
-  def edit; end
+  def edit
+    return if @want_list.valore_account_id.nil?
+
+    if @want_list.last_submitted_at.nil? ||
+       (@want_list.active && !(['PROCESSED', 'PROCESSED WITH ERRORS'].include? @want_list.upload_status))
+      redirect_to want_lists_path, notice: 'Unable to edit this want list!'
+    end
+  end
 
   # POST /want_lists
   def create
@@ -97,7 +104,7 @@ class WantListsController < ApplicationController
     want_list_id = @want_list.id
 
     Thread.new do
-      @want_list.update(upload_status: 'Processing File')
+      @want_list.update(upload_status: 'IMPORTING FILE')
       CSV.foreach(params[:want_list][:want_list_items].path, headers: true) do |row|
         row_hash = row.to_hash
         row_hash['want_list_id'] = want_list_id
@@ -108,7 +115,7 @@ class WantListsController < ApplicationController
           WantListItem.where(want_list_id: want_list_id, ean: row_hash['ean']).first_or_create.update(row_hash)
         end
       end
-      @want_list.update(upload_status: 'Processed')
+      @want_list.update(upload_status: 'IMPORTED')
     end
   end
 end
