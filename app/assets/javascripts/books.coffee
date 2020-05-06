@@ -10,7 +10,7 @@ $ ->
     scrollX: true
     pageLength: 100
     fixedColumns: {
-        leftColumns: 3
+        leftColumns: 4
     }
     columns: [
       {data: 'ean', orderable: false, searchable: true}

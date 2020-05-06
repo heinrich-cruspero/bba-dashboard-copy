@@ -38,7 +38,6 @@ class BookDatatable < AjaxDatatablesRails::Base
 
   def data
     records.map do |record|
-      puts "#{record}" if record.indaba_datum.nil?
       {
         'DT_RowId' => record.id,
         ean: record.ean,
