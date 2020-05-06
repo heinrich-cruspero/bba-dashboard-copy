@@ -7,6 +7,7 @@ $ ->
     pageLength: 10
     columns: [
       {data: 'ean', orderable: true, searchable: true}
+      {data: 'isbn', orderable: true, searchable: true}
       {data: 'quantity', orderable: true, searchable: false}
       {data: 'quantity_purchased', orderable: true, searchable: false}
       {data: 'max_price', orderable: true, searchable: false}

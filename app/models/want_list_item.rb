@@ -16,13 +16,14 @@ class WantListItem < ApplicationRecord
   end
 
   def self.to_csv
-    attributes = %w[EAN Quantity QuantityPurchased MaxPrice Author Title Publisher Edition ListPrice PercentOfList]
+    attributes = %w[EAN ISBN Quantity QuantityPurchased MaxPrice Author Title Publisher Edition ListPrice PercentOfList]
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
 
       all.each do |want_list_item|
         csv << [want_list_item.ean,
+                want_list_item.book.nil? ? '' : want_list_item.book.isbn,
                 want_list_item.quantity,
                 want_list_item.quantity_purchased,
                 want_list_item.max_price,
