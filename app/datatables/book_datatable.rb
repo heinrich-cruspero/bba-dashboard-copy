@@ -7,6 +7,7 @@ class BookDatatable < AjaxDatatablesRails::Base
 
   def view_columns
     @view_columns ||= {
+      ean: { source: 'Book.ean', cond: :eq, searchable: true, orderable: false },
       isbn: { source: 'Book.isbn', cond: :eq, searchable: true, orderable: false },
       author: { source: 'Book.author', cond: :eq, searchable: true, orderable: false },
       title: { source: 'Book.title', cond: :eq, searchable: true, orderable: false },
@@ -37,8 +38,10 @@ class BookDatatable < AjaxDatatablesRails::Base
 
   def data
     records.map do |record|
+      puts "#{record}" if record.indaba_datum.nil?
       {
         'DT_RowId' => record.id,
+        ean: record.ean,
         isbn: record.isbn,
         author: record.author,
         title: record.title,

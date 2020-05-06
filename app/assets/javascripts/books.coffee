@@ -13,6 +13,7 @@ $ ->
         leftColumns: 3
     }
     columns: [
+      {data: 'ean', orderable: false, searchable: true}
       {data: 'isbn', orderable: false, searchable: true}
       {data: 'author', orderable: false, searchable: true}
       {data: 'title', orderable: false, searchable: true}
