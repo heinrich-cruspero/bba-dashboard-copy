@@ -10,7 +10,22 @@ class BooksController < ApplicationController
   def index
     respond_to do |format|
       format.html
-      format.json { render json: BookDatatable.new(view_context) }
+      format.json {
+        search_length = params[:search][:value].length
+        if [10,13].include? params[:search][:value].length
+          case search_length
+          when 10
+            result = Book.find_by_isbn(params[:search][:value])
+          when 13
+            result = Book.find_by_ean(params[:search][:value])
+          end
+
+          if result.nil?
+            Book.create(ean: '1111111111111', isbn: '1111111111', author: '', title: '')
+          end
+        end
+        render json: BookDatatable.new(view_context)
+      }
     end
   end
 
