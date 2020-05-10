@@ -5,8 +5,7 @@ module Api
     ##
     class ValoreOrdersController < Api::V1::BaseController
       def pending_orders
-        valore_orders = ValoreOrder.select(:isbn).group(:isbn).where(status: ['pending', 'in-transit', 'accepted']).count
-        render json: valore_orders
+        render json: ValoreOrder.valore_pending_count
       end
     end
   end
