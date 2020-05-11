@@ -6,6 +6,14 @@ class WantListItemsController < ApplicationController
 
   before_action :set_want_list_item, only: %i[edit update destroy]
 
+  # GET /want_list_items
+  def index
+    respond_to do |format|
+      format.html
+      format.json { render json: WantListItemDatatable.new(view_context) }
+    end
+  end
+
   # POST /want_list_items.json
   def create
     @want_list_item = WantListItem.where(want_list_id: params[:want_list_item][:want_list_id], ean: params[:want_list_item][:ean]).first
@@ -31,7 +39,7 @@ class WantListItemsController < ApplicationController
   def update
     respond_to do |format|
       if @want_list_item.update(want_list_item_params)
-        format.html { redirect_to items_want_list_path(@want_list_item.want_list), notice: 'Want list item was successfully updated.' }
+        format.html { redirect_to want_list_items_url, notice: 'Want list item was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -42,7 +50,7 @@ class WantListItemsController < ApplicationController
   def destroy
     @want_list_item.destroy
     respond_to do |format|
-      format.html { redirect_to items_want_list_path(@want_list_item.want_list), notice: 'Want list item was successfully destroyed.' }
+      format.html { redirect_to want_list_items_url, notice: 'Want list item was successfully destroyed.' }
     end
   end
 

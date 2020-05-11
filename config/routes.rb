@@ -22,11 +22,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :want_list_items, except: %i[index new show]
+  resources :want_list_items, except: %i[new show]
 
   resources :want_lists, except: %i[show] do
     member do
-      get :items
       get :export
     end
   end

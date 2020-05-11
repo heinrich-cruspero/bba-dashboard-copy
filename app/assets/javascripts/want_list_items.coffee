@@ -6,6 +6,7 @@ $ ->
     pagingType: 'full_numbers'
     pageLength: 10
     columns: [
+      {data: 'name', orderable: true, searchable: true}
       {data: 'ean', orderable: true, searchable: true}
       {data: 'isbn', orderable: true, searchable: true}
       {data: 'quantity', orderable: true, searchable: false}
