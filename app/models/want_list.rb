@@ -4,7 +4,7 @@
 class WantList < ApplicationRecord
   validates :name, :want_list_privacy_id, presence: true
   validates :abe_account_id, uniqueness: true, allow_nil: true
-  validates :valore_want_list_id, uniqueness: true, allow_nil: true
+  validates_uniqueness_of :valore_want_list_id, scope: %i[valore_want_list_id valore_account_id], allow_nil: true
 
   belongs_to :want_list_privacy
   belongs_to :owner, class_name: 'User', foreign_key: 'user_id'
