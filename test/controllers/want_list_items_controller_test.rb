@@ -21,7 +21,7 @@ class WantListItemsControllerTest < ActionDispatch::IntegrationTest
                                                                            quantity_purchased: @want_list_item.quantity_purchased,
                                                                            max_price: @want_list_item.max_price,
                                                                            want_list_id: @want_list_item.want_list_id } }
-    assert_redirected_to items_want_list_url(@want_list_item.want_list)
+    assert_redirected_to want_list_items_url
   end
 
   test 'should destroy want_list_item' do
@@ -29,6 +29,6 @@ class WantListItemsControllerTest < ActionDispatch::IntegrationTest
       delete want_list_item_url(@want_list_item)
     end
 
-    assert_redirected_to items_want_list_url(@want_list_item.want_list)
+    assert_redirected_to want_list_items_url
   end
 end
