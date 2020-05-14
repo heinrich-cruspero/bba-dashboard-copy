@@ -40,7 +40,10 @@ class WantListItemsController < ApplicationController
   def update
     respond_to do |format|
       if @want_list_item.update(want_list_item_params)
-        format.html { redirect_to session[:request_referer], notice: 'Want list item was successfully updated.' }
+        format.html do
+          redirect_to session[:request_referer].nil? ? request.referer : session[:request_referer],
+                      notice: 'Want list item was successfully updated.'
+        end
       else
         format.html { render :edit }
       end
