@@ -8,28 +8,28 @@
   <div class="mdl-cell mdl-cell--12-col">
     <table id="want-list-items-table" data-source="<%= items_want_list_path(@want_list, format: :json)%>" class="mdl-data-table" width="100%">
       <thead>
-      <tr>
-        <th>EAN</th>
-        <th>ISBN</th>
-        <th>Quantity</th>
-        <th>Quantity Purchased</th>
-        <th>Max Price</th>
-        <th>Author</th>
-        <th>Title</th>
-        <th>Publisher</th>
-        <th>Edition</th>
-        <th>List Price</th>
-        <th>% Of List</th>
-        <th></th>
-      </tr>
+        <tr>
+          <th>EAN</th>
+          <th>ISBN</th>
+          <th>Quantity</th>
+          <th>Quantity Purchased</th>
+          <th>Max Price</th>
+          <th>Author</th>
+          <th>Title</th>
+          <th>Publisher</th>
+          <th>Edition</th>
+          <th>List Price</th>
+          <th>% Of List</th>
+          <th></th>
+        </tr>
       </thead>
 
       <tbody>
       </tbody>
     </table>
+  </div>
 
-    <div class="mdl-cell mdl-cell--12-col">
-     <%= link_to 'Back', want_lists_path %>
-    </div>
+  <div class="mdl-cell mdl-cell--12-col">
+    <%= link_to 'Back', want_lists_path %>
   </div>
 </div>
