@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ##
-class WantListItemDatatable < AjaxDatatablesRails::Base
+class AllWantListItemDatatable < AjaxDatatablesRails::Base
   def_delegator :@view, :link_to
   def_delegator :@view, :edit_want_list_item_path
   def_delegator :@view, :tooltip_field
@@ -39,7 +39,7 @@ class WantListItemDatatable < AjaxDatatablesRails::Base
         list_price: record.book.nil? ? '' : record.book.guide_datum.list_price,
         percent_of_list: record.book.nil? ? '' : record.book.guide_datum.list_price * 0.50,
         actions: "#{link_to('Edit', edit_want_list_item_path(record), method: :get, class: 'mdl-js-ripple-effect')}
-                  #{link_to('Delete', record, method: :delete, data: { confirm: 'Are you sure?' }) if @view.can? :destroy, record}".html_safe
+          #{link_to('Delete', record, method: :delete, data: { confirm: 'Are you sure?' }) if @view.can? :destroy, record}".html_safe
       }
     end
   end
@@ -47,7 +47,7 @@ class WantListItemDatatable < AjaxDatatablesRails::Base
   private
 
   def get_raw_records(*)
-    WantListItem.where("want_list_id = #{options[:want_list_id]}")
-                .includes(:book).references(:book).all
+    WantListItem.includes(:book).references(:book).all
+                .includes(:want_list).references(:want_list).all
   end
 end

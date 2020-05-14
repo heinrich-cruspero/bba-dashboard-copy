@@ -10,7 +10,7 @@ class WantListItemsController < ApplicationController
   def index
     respond_to do |format|
       format.html
-      format.json { render json: WantListItemDatatable.new(view_context) }
+      format.json { render json: AllWantListItemDatatable.new(view_context) }
     end
   end
 
@@ -39,7 +39,7 @@ class WantListItemsController < ApplicationController
   def update
     respond_to do |format|
       if @want_list_item.update(want_list_item_params)
-        format.html { redirect_to want_list_items_url, notice: 'Want list item was successfully updated.' }
+        format.html { redirect_to items_want_list_path(@want_list_item.want_list), notice: 'Want list item was successfully destroyed.' }
       else
         format.html { render :edit }
       end
@@ -50,7 +50,7 @@ class WantListItemsController < ApplicationController
   def destroy
     @want_list_item.destroy
     respond_to do |format|
-      format.html { redirect_to want_list_items_url, notice: 'Want list item was successfully destroyed.' }
+      format.html { redirect_to items_want_list_path(@want_list_item.want_list), notice: 'Want list item was successfully updated.' }
     end
   end
 

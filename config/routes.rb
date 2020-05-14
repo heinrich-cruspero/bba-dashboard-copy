@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   resources :want_lists, except: %i[show] do
     member do
+      get :items
       get :export
     end
   end

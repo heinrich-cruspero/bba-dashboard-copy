@@ -46,4 +46,8 @@ class WantListsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to want_lists_url
   end
 
+  test 'should get items' do
+    get items_want_list_url(@want_list)
+    assert_response :success
+  end
 end
