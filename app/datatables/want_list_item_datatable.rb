@@ -8,7 +8,6 @@ class WantListItemDatatable < AjaxDatatablesRails::Base
 
   def view_columns
     @view_columns ||= {
-      name: { source: 'WantList.name', cond: :eq, searchable: true, orderable: false },
       ean: { source: 'WantListItem.ean', cond: :eq, searchable: true, orderable: false },
       isbn: { source: 'Book.isbn', cond: :eq, searchable: true, orderable: true },
       quantity: { source: 'WantListItem.quantity', cond: :eq, searchable: false, orderable: true },
@@ -26,7 +25,6 @@ class WantListItemDatatable < AjaxDatatablesRails::Base
   def data
     records.map do |record|
       {
-        name: record.want_list.name,
         ean: record.ean,
         isbn: record.book.nil? ? '' : record.book.isbn,
         quantity: record.quantity,
