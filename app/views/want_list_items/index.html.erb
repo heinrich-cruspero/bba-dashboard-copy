@@ -1,0 +1,34 @@
+<%= javascript_include_tag 'all_want_list_items' %>
+
+<p id="notice" ><%= notice %></p>
+
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-color-text--grey">
+    <h5>Wantlist Items</h5>
+  </div>
+
+  <div class="mdl-cell mdl-cell--12-col">
+    <table id="all-want-list-items-table" data-source="<%= want_list_items_path(format: :json)%>" class="mdl-data-table" width="100%">
+      <thead>
+      <tr>
+        <th>WantList Name</th>
+        <th>EAN</th>
+        <th>ISBN</th>
+        <th>Quantity</th>
+        <th>Quantity Purchased</th>
+        <th>Max Price</th>
+        <th>Author</th>
+        <th>Title</th>
+        <th>Publisher</th>
+        <th>Edition</th>
+        <th>List Price</th>
+        <th>% Of List</th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
