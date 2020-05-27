@@ -36,7 +36,7 @@ class AllWantListItemDatatable < AjaxDatatablesRails::Base
         title: record.book.nil? ? '' : tooltip_field('title', record.book.id, record.book.title),
         publisher: record.book.nil? ? '' : record.book.publisher,
         edition: record.book.nil? ? '' : record.book.edition,
-        list_price: record.book.nil? || record.book.guide_datum.nil? ? ''  : record.book.guide_datum.list_price,
+        list_price: record.book.nil? || record.book.guide_datum.nil? ? '' : record.book.guide_datum.list_price,
         percent_of_list: record.book.nil? || record.book.guide_datum.nil? ? '' : record.book.guide_datum.list_price * 0.50,
         actions: "#{link_to('Edit', edit_want_list_item_path(record), method: :get, class: 'mdl-js-ripple-effect')}
           #{link_to('Delete', record, method: :delete, data: { confirm: 'Are you sure?' }) if @view.can? :destroy, record}".html_safe

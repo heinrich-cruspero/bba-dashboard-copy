@@ -108,6 +108,11 @@ class WantListsController < ApplicationController
       CSV.foreach(params[:want_list][:want_list_items].path, headers: true) do |row|
         row_hash = row.to_hash
         row_hash['want_list_id'] = want_list_id
+        valore_account = @want_list.valore_account
+
+        unless valore_account.nil?
+          row_hash['fees'] = ((row_hash['max_price'].to_f * valore_account.percentage_fee / 100) + valore_account.flat_fee).round(2)
+        end
 
         if empty_want_list
           WantListItem.create(row_hash)
