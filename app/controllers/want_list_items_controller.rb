@@ -20,8 +20,10 @@ class WantListItemsController < ApplicationController
     @want_list_item = WantListItem.where(want_list_id: params[:want_list_item][:want_list_id], ean: params[:want_list_item][:ean]).first
     if @want_list_item.nil?
       @want_list_item = WantListItem.new(want_list_item_params)
+      @want_list_item.expiration_date = Date.parse("Oct 31 2020")
     else
       @want_list_item.update(want_list_item_params)
+      @want_list_item.expiration_date = Date.parse("Oct 31 2020")
     end
 
     respond_to do |format|
