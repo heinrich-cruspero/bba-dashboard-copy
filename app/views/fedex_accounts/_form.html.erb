@@ -99,6 +99,11 @@
           <%= form.check_box :prod, id: :fedex_account_prod, class: "mdl-check_box__input" %>
         </div>
 
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :user_id, 'Store Manager', class: "mdl-checkbox__label" %></br>
+          <%= form.select :user_id, User.all.collect {|x| [x.email, x.id]}, {include_blank: 'Select Store Manager'}, selected: 3, required: true %>
+        </div>
+
         <div class="mdl-card__actions">
           <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
         </div>

@@ -6,7 +6,7 @@ class RentalReturnsController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html
+      format.html { @user_stores = UserStore.where(user_id: current_user.id).all }
       format.json { render json: RentalReturnDatatable.new(view_context) }
     end
   end
