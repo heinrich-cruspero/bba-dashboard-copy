@@ -31,8 +31,8 @@ class WantListItem < ApplicationRecord
                 want_list_item.book.nil? ? '' : want_list_item.book.title,
                 want_list_item.book.nil? ? '' : want_list_item.book.publisher,
                 want_list_item.book.nil? ? '' : want_list_item.book.edition,
-                want_list_item.book.nil? ? '' : want_list_item.book.guide_datum.list_price,
-                want_list_item.book.nil? ? '' : want_list_item.book.guide_datum.list_price * 0.50]
+                want_list_item.book.nil? || want_list_item.book.guide_datum.nil? ? '' : want_list_item.book.guide_datum.list_price,
+                want_list_item.book.nil? || want_list_item.book.guide_datum.nil? ? '' : want_list_item.book.guide_datum.list_price * 0.50]
       end
     end
   end
