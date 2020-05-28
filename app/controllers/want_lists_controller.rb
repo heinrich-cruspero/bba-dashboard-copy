@@ -111,7 +111,18 @@ class WantListsController < ApplicationController
         valore_account = @want_list.valore_account
 
         unless valore_account.nil?
-          row_hash['fees'] = ((row_hash['max_price'].to_f * valore_account.percentage_fee / 100) + valore_account.flat_fee).round(2)
+          max_price = row_hash['max_price'].to_f
+          fees = ((max_price * valore_account.percentage_fee / 100) + valore_account.flat_fee).round(2)
+          book = Book.find_by_ean(row_hash['ean'])
+          max_price_ceiling = 200
+          max_price_ceiling = (book.list_price * 0.80) unless book.nil? || book.list_price.zero?
+
+          unless (max_price + fees) < max_price_ceiling
+            fees = 0
+            row_hash['max_price'] = max_price_ceiling
+          end
+
+          row_hash['fees'] = fees
         end
 
         if empty_want_list
