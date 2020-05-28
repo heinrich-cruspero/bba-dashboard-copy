@@ -17,8 +17,8 @@ class WantListItemDatatable < AjaxDatatablesRails::Base
       title: { source: 'Book.title', cond: :like, searchable: true, orderable: true },
       publisher: { source: 'Book.publisher', cond: :like, searchable: true, orderable: true },
       edition: { source: 'Book.edition', cond: :like, searchable: true, orderable: true },
-      list_price: { source: 'GuideDatum.list_price', cond: :like, searchable: false, orderable: true },
-      percent_of_list: { source: 'GuideDatum.list_price', cond: :like, searchable: false, orderable: true },
+      list_price: { source: 'Book.list_price', cond: :like, searchable: false, orderable: true },
+      percent_of_list: { source: 'Book.list_price', cond: :like, searchable: false, orderable: true },
       max_bs: { source: 'Book.max_bs', cond: :eq, searchable: false, orderable: true }
     }
   end
@@ -35,8 +35,8 @@ class WantListItemDatatable < AjaxDatatablesRails::Base
         title: record.book.nil? ? '' : tooltip_field('title', record.book.id, record.book.title),
         publisher: record.book.nil? ? '' : record.book.publisher,
         edition: record.book.nil? ? '' : record.book.edition,
-        list_price: record.book.nil? || record.book.guide_datum.nil? ? '' : record.book.guide_datum.list_price,
-        percent_of_list: record.book.nil? || record.book.guide_datum.nil? ? '' : record.book.guide_datum.list_price * 0.50,
+        list_price: record.book.nil? ? '' : record.book.list_price,
+        percent_of_list: record.book.nil? ? '' : record.book.list_price * 0.50,
         max_bs: record.book.nil? ? '' : record.book.max_bs,
         actions: "#{link_to('Edit', edit_want_list_item_path(record), method: :get, class: 'mdl-js-ripple-effect')}
                   #{link_to('Delete', record, method: :delete, data: { confirm: 'Are you sure?' }) if @view.can? :destroy, record}".html_safe
@@ -48,6 +48,6 @@ class WantListItemDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records(*)
     WantListItem.where("want_list_id = #{options[:want_list_id]}")
-                .includes(book: [:guide_datum]).references(:book).all
+                .includes(:book).references(:book).all
   end
 end
