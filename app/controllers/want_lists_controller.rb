@@ -112,17 +112,21 @@ class WantListsController < ApplicationController
 
         unless valore_account.nil?
           max_price = row_hash['max_price'].to_f
-          fees = ((max_price * valore_account.percentage_fee / 100) + valore_account.flat_fee).round(2)
+          row_hash['fees'] = ((max_price * valore_account.percentage_fee / 100) + valore_account.flat_fee).round(2)
           book = Book.find_by_ean(row_hash['ean'])
+
           max_price_ceiling = 200
           max_price_ceiling = (book.list_price * 0.80) unless book.nil? || book.list_price.zero?
 
-          unless (max_price + fees) < max_price_ceiling
-            fees = 0
+          unless (max_price + row_hash['fees']) < max_price_ceiling
+            row_hash['fees'] = 0
             row_hash['max_price'] = max_price_ceiling
           end
 
-          row_hash['fees'] = fees
+          unless book.nil?
+            result = DataWhApiService.new.get_book('ean', row_hash['ean'])
+            Book.create_from_data_wh_result(result) unless result.empty?
+          end
         end
 
         if empty_want_list
