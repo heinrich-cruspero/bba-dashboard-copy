@@ -22,15 +22,7 @@
 
   <br>
 
-  <%= form.submit "Submit", id: "submit", class: "mdl-button mdl-js-button mdl-button--raised" %>
+  <%= form.submit "Submit", id: "submit_wantlist_item", class: "mdl-button mdl-js-button mdl-button--raised" %>
 <% end %>
 
-<script>
-  document.getElementById("submit").addEventListener("click", function(){
-      sessionStorage.setItem('expirationDate', document.getElementById('expirationDate').value);
-  });
-
-  if(sessionStorage.getItem('expirationDate') === null) {
-    document.getElementById('expirationDate').value = sessionStorage.getItem('expirationDate');
-  }
-</script>
+<%= javascript_include_tag 'expiration_date' %>
