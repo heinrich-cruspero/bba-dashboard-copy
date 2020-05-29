@@ -20,10 +20,8 @@ class WantListItemsController < ApplicationController
     @want_list_item = WantListItem.where(want_list_id: params[:want_list_item][:want_list_id], ean: params[:want_list_item][:ean]).first
     if @want_list_item.nil?
       @want_list_item = WantListItem.new(want_list_item_params)
-      @want_list_item.expiration_date = Date.parse("Oct 31 2020")
     else
       @want_list_item.update(want_list_item_params)
-      @want_list_item.expiration_date = Date.parse("Oct 31 2020")
     end
 
     respond_to do |format|
@@ -69,7 +67,7 @@ class WantListItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def want_list_item_params
-    params.require(:want_list_item).permit(:ean, :want_list_id, :quantity, :quantity_purchased, :max_price)
+    params.require(:want_list_item).permit(:ean, :want_list_id, :quantity, :quantity_purchased, :max_price, :expiration_date)
   end
 
   def set_session_referer

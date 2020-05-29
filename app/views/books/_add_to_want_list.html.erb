@@ -15,5 +15,22 @@
     <%= form.text_field :max_price, class: "mdl-textfield__input", value: 0.00 %>
   </div>
 
-  <%= form.submit "Submit", class: "mdl-button mdl-js-button mdl-button--raised" %>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
+    <%= form.label :expiration_date, class: "mdl-textfield__label" %>
+    <%= form.date_field :expiration_date, id: "expirationDate", class: "mdl-textfield__input", value: Date.today %>
+  </div>
+
+  <br>
+
+  <%= form.submit "Submit", id: "submit", class: "mdl-button mdl-js-button mdl-button--raised" %>
 <% end %>
+
+<script>
+  document.getElementById("submit").addEventListener("click", function(){
+      sessionStorage.setItem('expirationDate', document.getElementById('expirationDate').value);
+  });
+
+  if(sessionStorage.getItem('expirationDate') === null) {
+    document.getElementById('expirationDate').value = sessionStorage.getItem('expirationDate');
+  }
+</script>
