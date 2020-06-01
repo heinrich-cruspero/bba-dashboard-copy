@@ -75,3 +75,7 @@ $ ->
           searching: false
           info:     false
           scrollY: '20vh'
+
+
+  $(document).on 'click', '#submit_wantlist_item', (event) ->
+    sessionStorage.setItem('expirationDate', document.getElementById('expirationDate').value)
