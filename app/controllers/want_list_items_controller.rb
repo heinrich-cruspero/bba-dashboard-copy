@@ -5,7 +5,7 @@ class WantListItemsController < ApplicationController
   load_and_authorize_resource
 
   before_action :set_want_list_item, only: %i[edit update destroy]
-  before_action :set_session_referer, only: %i[edit]
+  before_action :set_session_referer, only: %i[edit new]
 
   # GET /want_list_items
   def index
@@ -13,6 +13,10 @@ class WantListItemsController < ApplicationController
       format.html
       format.json { render json: AllWantListItemDatatable.new(view_context) }
     end
+  end
+
+  def new
+    @want_list_item = WantListItem.new
   end
 
   # POST /want_list_items.json
@@ -26,8 +30,15 @@ class WantListItemsController < ApplicationController
 
     respond_to do |format|
       if @want_list_item.save
+        if @want_list_item.book.nil?
+          result = DataWhApiService.new.get_book('ean', @want_list_item.ean)
+          Book.create_from_data_wh_result(result) unless result.empty?
+        end
+
+        format.html { redirect_to session[:request_referer].nil? ? request.referer : session[:request_referer], notice: 'Want_list_item was successfully created.' }
         format.json { render status: :created, location: @want_list_item }
       else
+        format.html { render :new }
         format.json { render status: :unprocessable_entity, location: @want_list_item }
       end
     end
@@ -67,7 +78,7 @@ class WantListItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def want_list_item_params
-    params.require(:want_list_item).permit(:ean, :want_list_id, :quantity, :quantity_purchased, :max_price)
+    params.require(:want_list_item).permit(:ean, :want_list_id, :quantity, :quantity_purchased, :max_price, :expiration_date)
   end
 
   def set_session_referer

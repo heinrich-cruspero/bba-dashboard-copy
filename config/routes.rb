@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :want_list_items, except: %i[new show]
+  resources :want_list_items, except: %i[show]
 
   resources :want_lists, except: %i[show] do
     member do
