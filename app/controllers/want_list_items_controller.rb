@@ -16,7 +16,7 @@ class WantListItemsController < ApplicationController
   end
 
   def new
-    @want_list_item = WantListItem.new
+    @want_list_item = WantListItem.new(expiration_date: session[:expiration_date])
   end
 
   # POST /want_list_items.json
@@ -34,6 +34,8 @@ class WantListItemsController < ApplicationController
           result = DataWhApiService.new.get_book('ean', @want_list_item.ean)
           Book.create_from_data_wh_result(result) unless result.empty?
         end
+
+        session[:expiration_date] = @want_list_item.expiration_date
 
         format.html { redirect_to session[:request_referer].nil? ? request.referer : session[:request_referer], notice: 'Want_list_item was successfully created.' }
         format.json { render status: :created, location: @want_list_item }
