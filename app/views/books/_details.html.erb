@@ -63,4 +63,4 @@
   </tbody>
 </table>
 
-<%= render 'add_to_want_list', want_list_item: WantListItem.new(), ean: @book.ean %>
+<%= render 'add_to_want_list', want_list_item: WantListItem.new(expiration_date: session[:expiration_date]), ean: @book.ean %>

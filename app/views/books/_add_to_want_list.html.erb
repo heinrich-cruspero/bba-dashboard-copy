@@ -17,12 +17,10 @@
 
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty">
     <%= form.label :expiration_date, class: "mdl-textfield__label" %>
-    <%= form.date_field :expiration_date, id: "expirationDate", class: "mdl-textfield__input", value: Date.today %>
+    <%= form.date_field :expiration_date, class: "mdl-textfield__input" %>
   </div>
 
   <br>
 
-  <%= form.submit "Submit", id: "submit_wantlist_item", class: "mdl-button mdl-js-button mdl-button--raised" %>
+  <%= form.submit "Submit", class: "mdl-button mdl-js-button mdl-button--raised" %>
 <% end %>
-
-<%= javascript_include_tag 'expiration_date' %>
