@@ -12,4 +12,11 @@ class Book < ApplicationRecord
   has_many :indaba_orders, dependent: :destroy
 
   has_many :want_list_items, foreign_key: :ean, primary_key: :ean
+
+  def self.create_from_data_wh_result(result)
+    Book.create(ean: result[0]['ean'], isbn: result[0]['isbn'],
+                author: result[0]['author'], title: result[0]['title'],
+                publisher:  result[0]['publisher'], edition: result[0]['edition'],
+                publication_date: result[0]['publication_date'])
+  end
 end

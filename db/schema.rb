@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200413153504) do
+ActiveRecord::Schema.define(version: 20200528204651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,8 @@ ActiveRecord::Schema.define(version: 20200413153504) do
     t.date "publication_date"
     t.string "publisher"
     t.string "edition"
+    t.float "max_bs", default: 0.0, null: false
+    t.float "list_price", default: 0.0, null: false
     t.index ["author"], name: "index_books_on_author"
     t.index ["ean"], name: "index_books_on_ean", unique: true
     t.index ["isbn"], name: "index_books_on_isbn", unique: true
@@ -378,6 +380,8 @@ ActiveRecord::Schema.define(version: 20200413153504) do
     t.string "queue_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "percentage_fee", default: 0.0, null: false
+    t.float "flat_fee", default: 0.0, null: false
   end
 
   create_table "valore_orders", force: :cascade do |t|
@@ -404,6 +408,7 @@ ActiveRecord::Schema.define(version: 20200413153504) do
     t.integer "quantity_purchased", default: 0, null: false
     t.datetime "expiration_date"
     t.float "valore_suggested_price", default: 0.0, null: false
+    t.float "fees", default: 0.0, null: false
     t.index ["ean"], name: "index_want_list_items_on_ean"
     t.index ["want_list_id", "ean"], name: "index_want_list_items_on_want_list_id_and_ean", unique: true
     t.index ["want_list_id"], name: "index_want_list_items_on_want_list_id"
