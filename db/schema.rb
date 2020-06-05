@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200522052512) do
+ActiveRecord::Schema.define(version: 20200602071859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,6 +164,14 @@ ActiveRecord::Schema.define(version: 20200522052512) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "prod", default: false
+  end
+
+  create_table "fedex_accounts_users", id: false, force: :cascade do |t|
+    t.bigint "fedex_account_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["fedex_account_id", "user_id"], name: "index_fedex_accounts_users_on_fedex_account_id_and_user_id", unique: true
+    t.index ["fedex_account_id"], name: "index_fedex_accounts_users_on_fedex_account_id"
+    t.index ["user_id"], name: "index_fedex_accounts_users_on_user_id"
   end
 
   create_table "guide_data", force: :cascade do |t|
@@ -344,13 +352,6 @@ ActiveRecord::Schema.define(version: 20200522052512) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_stores", force: :cascade do |t|
-    t.bigint "fedex_account_id", null: false
-    t.bigint "user_id", null: false
-    t.index ["fedex_account_id"], name: "index_user_stores_on_fedex_account_id"
-    t.index ["user_id"], name: "index_user_stores_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -452,6 +453,8 @@ ActiveRecord::Schema.define(version: 20200522052512) do
   add_foreign_key "abe_order_items", "abe_orders"
   add_foreign_key "accounts", "sources"
   add_foreign_key "amazon_data", "books"
+  add_foreign_key "fedex_accounts_users", "fedex_accounts"
+  add_foreign_key "fedex_accounts_users", "users"
   add_foreign_key "guide_data", "books"
   add_foreign_key "indaba_data", "books"
   add_foreign_key "indaba_instance_data", "books"
@@ -462,8 +465,6 @@ ActiveRecord::Schema.define(version: 20200522052512) do
   add_foreign_key "sources", "source_types"
   add_foreign_key "thrift_order_items", "thrift_orders"
   add_foreign_key "thrift_orders", "want_lists"
-  add_foreign_key "user_stores", "fedex_accounts"
-  add_foreign_key "user_stores", "users"
   add_foreign_key "users_want_lists", "users"
   add_foreign_key "users_want_lists", "want_lists"
   add_foreign_key "valore_orders", "valore_accounts"

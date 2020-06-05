@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :owned_want_lists, class_name: 'WantList', dependent: :destroy
   has_and_belongs_to_many :want_lists, dependent: :destroy
+  has_and_belongs_to_many :fedex_accounts, dependent: :destroy
 
   enum role: %i[user admin warehouse]
 

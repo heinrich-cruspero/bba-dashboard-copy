@@ -17,10 +17,9 @@ class FedexAccountsController < ApplicationController
   def edit; end
 
   def create
-    @fedex_account = FedexAccount.new(fedex_attrs)
+    @fedex_account = FedexAccount.new(fedex_account_params)
     respond_to do |format|
       if @fedex_account.save
-        UserStore.create(fedex_account_id: @fedex_account.id, user_id: params[:fedex_account][:user_id])
         format.html { redirect_to @fedex_account, notice: 'Fedex account was successfully created.' }
       else
         format.html { render :new }
@@ -30,12 +29,7 @@ class FedexAccountsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @fedex_account.update(fedex_attrs)
-        if UserStore.exists?(fedex_account_id: @fedex_account.id, user_id: params[:fedex_account][:user_id])
-          UserStore.update(fedex_account_id: @fedex_account.id, user_id: params[:fedex_account][:user_id])
-        else
-          UserStore.create(fedex_account_id: @fedex_account.id, user_id: params[:fedex_account][:user_id])
-        end
+      if @fedex_account.update(fedex_account_params)
         format.html { redirect_to @fedex_account, notice: 'Fedex account was successfully updated.' }
       else
         format.html { render :edit }
@@ -56,15 +50,7 @@ class FedexAccountsController < ApplicationController
     @fedex_account = FedexAccount.find(params[:id])
   end
 
-  def fedex_attrs
-    attrs = fedex_account_params.deep_dup
-    attrs.delete(:user_id)
-    attrs
-  end
-
   def fedex_account_params
-    params.require(:fedex_account).permit(:key, :password, :account_number, :meter_number, :name, :company_name, :phone_number, :street, :city, :state, :zip_code, :prod).tap do |whitelist|
-      whitelist[:user_id] = params[:fedex_account][:user_id]
-    end
+    params.require(:fedex_account).permit(:key, :password, :account_number, :meter_number, :name, :company_name, :phone_number, :street, :city, :state, :zip_code, :prod, user_ids: [])
   end
 end

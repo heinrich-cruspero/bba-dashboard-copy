@@ -99,9 +99,12 @@
           <%= form.check_box :prod, id: :fedex_account_prod, class: "mdl-check_box__input" %>
         </div>
 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :user_id, 'Store Manager', class: "mdl-checkbox__label" %></br>
-          <%= form.select :user_id, User.all.collect {|x| [x.email, x.id]}, {include_blank: 'Select Store Manager'}, selected: 3, required: true %>
+        <div class="mdl-cell mdl-cell--12-col no-margin" id="select_managers_div">
+          <%= hidden_field_tag "fedex_account[user_ids][]", nil %>
+          <% User.where.not(id: current_user.id).each do |user| %>
+              <%= check_box_tag "fedex_account[user_ids][]", user.id, @fedex_account.users.include?(user), id: dom_id(user) %>
+              <%= label_tag dom_id(user), user.email %><br>
+          <% end %>
         </div>
 
         <div class="mdl-card__actions">
