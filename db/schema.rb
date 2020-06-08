@@ -128,6 +128,8 @@ ActiveRecord::Schema.define(version: 20200602071859) do
     t.date "publication_date"
     t.string "publisher"
     t.string "edition"
+    t.float "max_bs", default: 0.0, null: false
+    t.float "list_price", default: 0.0, null: false
     t.index ["author"], name: "index_books_on_author"
     t.index ["ean"], name: "index_books_on_ean", unique: true
     t.index ["isbn"], name: "index_books_on_isbn", unique: true
@@ -311,25 +313,6 @@ ActiveRecord::Schema.define(version: 20200602071859) do
     t.index ["want_list_id"], name: "index_thrift_orders_on_want_list_id"
   end
 
-  create_table "tmp_indaba_data", id: false, force: :cascade do |t|
-    t.bigint "book_id", null: false
-    t.bigint "indaba_instance_id", null: false
-    t.integer "tqs", default: 0, null: false
-    t.integer "total_quantity", default: 0, null: false
-    t.integer "quantity_online", default: 0, null: false
-    t.float "lowest_price", default: 0.0, null: false
-    t.float "list_price", default: 0.0, null: false
-    t.float "lowest_good_price", default: 0.0, null: false
-    t.float "lowest_fba", default: 0.0, null: false
-    t.integer "sales_rank", default: 0, null: false
-    t.float "bbap", default: 0.0, null: false
-    t.float "direct", default: 0.0, null: false
-    t.float "w_nw", default: 0.0, null: false
-    t.float "whole_sale", default: 0.0, null: false
-    t.index ["book_id"], name: "index_tmp_indaba_data_on_book_id"
-    t.index ["indaba_instance_id"], name: "index_tmp_indaba_data_on_indaba_instance_id"
-  end
-
   create_table "tracked_skus", force: :cascade do |t|
     t.string "asin"
     t.string "isbn"
@@ -386,6 +369,8 @@ ActiveRecord::Schema.define(version: 20200602071859) do
     t.string "queue_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "percentage_fee", default: 0.0, null: false
+    t.float "flat_fee", default: 0.0, null: false
   end
 
   create_table "valore_orders", force: :cascade do |t|
@@ -412,6 +397,7 @@ ActiveRecord::Schema.define(version: 20200602071859) do
     t.integer "quantity_purchased", default: 0, null: false
     t.datetime "expiration_date"
     t.float "valore_suggested_price", default: 0.0, null: false
+    t.float "fees", default: 0.0, null: false
     t.index ["ean"], name: "index_want_list_items_on_ean"
     t.index ["want_list_id", "ean"], name: "index_want_list_items_on_want_list_id_and_ean", unique: true
     t.index ["want_list_id"], name: "index_want_list_items_on_want_list_id"
@@ -432,8 +418,8 @@ ActiveRecord::Schema.define(version: 20200602071859) do
     t.datetime "updated_at", null: false
     t.boolean "active"
     t.bigint "valore_account_id"
-    t.string "upload_status"
     t.bigint "abe_account_id"
+    t.string "upload_status"
     t.datetime "last_submitted_at"
     t.bigint "thrift_account_id"
     t.integer "valore_want_list_id"
