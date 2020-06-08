@@ -45,8 +45,8 @@ class RentalReturnDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records(*)
     RentalReturn.joins(:fedex_account)
-        .joins('LEFT JOIN "fedex_accounts_users" ON "fedex_accounts_users"."fedex_account_id" = "fedex_accounts"."id"')
-        .where("fedex_accounts_users.user_id=#{@view.current_user.id}")
-        .distinct
+                .joins('LEFT JOIN "fedex_accounts_users" ON "fedex_accounts_users"."fedex_account_id" = "fedex_accounts"."id"')
+                .where("fedex_accounts_users.user_id=#{@view.current_user.id}")
+                .distinct
   end
 end

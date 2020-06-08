@@ -18,6 +18,7 @@ class FedexAccountsController < ApplicationController
 
   def create
     @fedex_account = FedexAccount.new(fedex_account_params)
+
     respond_to do |format|
       if @fedex_account.save
         format.html { redirect_to @fedex_account, notice: 'Fedex account was successfully created.' }
