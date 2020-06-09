@@ -13,7 +13,7 @@ class WantListItem < ApplicationRecord
   belongs_to :book, foreign_key: :ean, primary_key: :ean, optional: true
 
   before_save do
-    want_list.update(last_submitted_at: nil)
+    self.submitted = false
   end
 
   def self.to_csv
