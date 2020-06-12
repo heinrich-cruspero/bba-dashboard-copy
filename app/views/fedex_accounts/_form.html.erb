@@ -99,12 +99,9 @@
           <%= form.check_box :prod, id: :fedex_account_prod, class: "mdl-check_box__input" %>
         </div>
 
-        <div class="mdl-cell mdl-cell--12-col no-margin" id="select_managers_div">
-          <%= hidden_field_tag "fedex_account[user_ids][]", nil %>
-          <% User.all.each do |user| %>
-              <%= check_box_tag "fedex_account[user_ids][]", user.id, @fedex_account.users.include?(user) %>
-              <%= label_tag dom_id(user), user.email %><br>
-          <% end %>
+        <div class="mdl-selectfield">
+          <label>Select Users</label><br>
+          <%= select_tag "fedex_account[user_ids][]", options_for_select(User.all.map{|user| [user.email, user.id]}, @fedex_account.users.pluck(:id)), multiple: true, class: 'browser-default', size: 10 %>
         </div>
 
         <div class="mdl-card__actions">

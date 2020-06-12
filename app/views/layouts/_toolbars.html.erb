@@ -14,7 +14,7 @@
     </div>
   </header>
   <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-    <%= link_to(image_tag("big_bba_solutions.png", class: "logo"), root_url) %>
+    <%= link_to(image_tag("big_bba_solutions.png", class: "logo"), current_user.warehouse? ? rental_returns_path : root_url) %>
     <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
       <% if current_user.user? %>
         <a class="mdl-navigation__link" href="<%= books_url %>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">library_books</i>Books</a>
