@@ -313,6 +313,25 @@ ActiveRecord::Schema.define(version: 20200609071859) do
     t.index ["want_list_id"], name: "index_thrift_orders_on_want_list_id"
   end
 
+  create_table "tmp_indaba_data", id: false, force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "indaba_instance_id", null: false
+    t.integer "tqs", default: 0, null: false
+    t.integer "total_quantity", default: 0, null: false
+    t.integer "quantity_online", default: 0, null: false
+    t.float "lowest_price", default: 0.0, null: false
+    t.float "list_price", default: 0.0, null: false
+    t.float "lowest_good_price", default: 0.0, null: false
+    t.float "lowest_fba", default: 0.0, null: false
+    t.integer "sales_rank", default: 0, null: false
+    t.float "bbap", default: 0.0, null: false
+    t.float "direct", default: 0.0, null: false
+    t.float "w_nw", default: 0.0, null: false
+    t.float "whole_sale", default: 0.0, null: false
+    t.index ["book_id"], name: "index_tmp_indaba_data_on_book_id"
+    t.index ["indaba_instance_id"], name: "index_tmp_indaba_data_on_indaba_instance_id"
+  end
+
   create_table "tracked_skus", force: :cascade do |t|
     t.string "asin"
     t.string "isbn"
@@ -419,8 +438,8 @@ ActiveRecord::Schema.define(version: 20200609071859) do
     t.datetime "updated_at", null: false
     t.boolean "active"
     t.bigint "valore_account_id"
-    t.bigint "abe_account_id"
     t.string "upload_status"
+    t.bigint "abe_account_id"
     t.datetime "last_submitted_at"
     t.bigint "thrift_account_id"
     t.integer "valore_want_list_id"
@@ -440,8 +459,6 @@ ActiveRecord::Schema.define(version: 20200609071859) do
   add_foreign_key "abe_order_items", "abe_orders"
   add_foreign_key "accounts", "sources"
   add_foreign_key "amazon_data", "books"
-  add_foreign_key "fedex_accounts_users", "fedex_accounts"
-  add_foreign_key "fedex_accounts_users", "users"
   add_foreign_key "guide_data", "books"
   add_foreign_key "indaba_data", "books"
   add_foreign_key "indaba_instance_data", "books"
