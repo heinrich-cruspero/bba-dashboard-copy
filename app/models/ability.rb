@@ -20,6 +20,7 @@ class Ability
       can %i[items export], WantList, id: user.all_want_lists.pluck(:id)
     elsif user.warehouse?
       can :manage, RentalReturn
+      can %i[index], Book
     end
   end
 end
