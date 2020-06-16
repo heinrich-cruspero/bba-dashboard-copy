@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe 'fedex_accounts/new', type: :view do
   before(:each) do
     allow(controller).to receive(:action_name).and_return('new')
+    current_user = create(:user)
+    allow(view).to receive(:current_user).and_return(current_user)
 
     assign(:fedex_account, FedexAccount.new(
                              key: 'MyString',
