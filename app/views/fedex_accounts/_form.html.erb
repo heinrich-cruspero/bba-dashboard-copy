@@ -99,6 +99,11 @@
           <%= form.check_box :prod, id: :fedex_account_prod, class: "mdl-check_box__input" %>
         </div>
 
+        <div class="mdl-selectfield">
+          <label>Select Users</label><br>
+          <%= select_tag "fedex_account[user_ids][]", options_for_select(User.all.map{|user| [user.email, user.id]}, @fedex_account.users.pluck(:id)), multiple: true, class: 'browser-default', size: 10 %>
+        </div>
+
         <div class="mdl-card__actions">
           <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
         </div>

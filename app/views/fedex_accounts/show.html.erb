@@ -63,6 +63,11 @@
         <%= @fedex_account.prod %>
       </p>
 
+      <p>
+        <strong>User:</strong>
+        <%= @fedex_account.users.map{ |user| user.email }.join(', ') %>
+      </p>
+
       <%= link_to 'Edit', edit_fedex_account_path(@fedex_account) %> |
       <%= link_to 'Back', fedex_accounts_path %>
     </div>

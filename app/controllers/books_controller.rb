@@ -4,6 +4,7 @@
 class BooksController < ApplicationController
   load_and_authorize_resource
 
+  before_action :check_permission, only: [:index]
   before_action :set_book, only: [:details]
   before_action :import_book, only: [:index]
 
@@ -54,5 +55,9 @@ class BooksController < ApplicationController
 
     result = DataWhApiService.new.get_book(field, val)
     Book.create_from_data_wh_result(result) unless result.empty?
+  end
+
+  def check_permission
+    redirect_to rental_returns_path if current_user.warehouse?
   end
 end
