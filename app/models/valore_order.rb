@@ -11,4 +11,11 @@ class ValoreOrder < ApplicationRecord
                         (Time.now - 24.hours))
                  .count
   }
+
+  scope :accepted_or_rejected, ->(valore_account_id) {
+    select(:isbn)
+    where('(status IN (?) AND updated_at >= ? AND valore_account_id = ?)',
+          %w[accepted rejected],
+          (Time.now - 24.hours), valore_account_id)
+  }
 end

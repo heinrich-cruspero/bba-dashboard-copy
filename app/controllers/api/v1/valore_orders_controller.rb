@@ -7,6 +7,10 @@ module Api
       def pending_orders
         render json: ValoreOrder.valore_pending_count
       end
+
+      def order_status
+        render json: ValoreOrder.accepted_or_rejected(params[:valore_account_id])
+      end
     end
   end
 end
