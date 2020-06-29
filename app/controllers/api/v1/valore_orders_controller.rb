@@ -8,8 +8,12 @@ module Api
         render json: ValoreOrder.valore_pending_count
       end
 
-      def order_status
-        render json: ValoreOrder.accepted_or_rejected(params[:valore_account_id])
+      def search
+        valore_account_id = params[:valore_account_id]
+        status = params[:status]
+        last_n_hours = params[:last_n_hours]
+        result = ValoreOrder.search(status: status, last_n_hours: last_n_hours, valore_account_id: valore_account_id)
+        render json: result
       end
     end
   end
