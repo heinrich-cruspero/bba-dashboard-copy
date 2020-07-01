@@ -42,7 +42,7 @@ Rails.application.routes.draw do
       resources :valore_orders, only: %i[] do
         collection do
           get :pending_orders
-          get :search
+          get :search_status
         end
       end
     end

@@ -12,7 +12,7 @@ class ValoreOrder < ApplicationRecord
                  .count
   }
 
-  def self.search(status: nil, last_n_hours: nil, valore_account_id: nil)
+  def self.search_status(status: nil, last_n_hours: nil, valore_account_id: nil)
     select(:id, :order_id, :item_id, :isbn, :status, :created_at, :updated_at)
       .where('(status IN (?) AND updated_at >= ? AND valore_account_id = ?)',
              status,
