@@ -7,6 +7,14 @@ module Api
       def pending_orders
         render json: ValoreOrder.valore_pending_count
       end
+
+      def search_status
+        valore_account_id = params[:valore_account_id]
+        status = params[:status]
+        last_n_hours = params[:last_n_hours]
+        result = ValoreOrder.search_status(status: status, last_n_hours: last_n_hours, valore_account_id: valore_account_id)
+        render json: result
+      end
     end
   end
 end
