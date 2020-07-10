@@ -10,11 +10,11 @@ module Api
 
       def search_status
         offset = params[:offset]
-        valore_account_id = params[:valore_account_id]
+        buyer_id = params[:buyer_id]
         status = params[:status]
         last_n_hours = params[:last_n_hours]
         result = ValoreOrder.search_status(
-          status: status, last_n_hours: last_n_hours, valore_account_id: valore_account_id,
+          status: status, last_n_hours: last_n_hours, buyer_id: buyer_id,
           offset: offset
         )
         render json: result

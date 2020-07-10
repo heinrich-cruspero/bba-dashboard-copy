@@ -12,13 +12,15 @@ class ValoreOrder < ApplicationRecord
                  .count
   }
 
-  def self.search_status(status: nil, last_n_hours: nil, valore_account_id: nil, offset: nil)
-    valore_orders = select(:id, :order_id, :item_id, :isbn, :status, :created_at, :updated_at)
-                    .where('(status IN (?) AND updated_at >= ? AND valore_account_id = ?)',
+  def self.search_status(status: nil, last_n_hours: nil, buyer_id: nil, offset: nil)
+    valore_orders = ValoreOrder
+                    .joins('INNER JOIN valore_accounts ON valore_orders.valore_account_id = valore_accounts.id')
+                    .where('(valore_accounts.buyer_id = ? AND valore_orders.status IN (?) AND valore_orders.updated_at >= ?)',
+                           buyer_id,
                            status,
-                           (Time.now - last_n_hours.to_i.hours),
-                           valore_account_id)
+                           (Time.now - last_n_hours.to_i.hours)).select('valore_orders.id, valore_orders.order_id, valore_orders.item_id, valore_orders.isbn, valore_orders.status, valore_orders.created_at, valore_orders.updated_at')
     total = valore_orders.length
+    valore_orders = valore_orders.limit(25)
     valore_orders = valore_orders.offset(offset) if offset.present?
     { total: total, valore_orders: valore_orders }
   end
