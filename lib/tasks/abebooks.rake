@@ -14,7 +14,10 @@ namespace :abebooks do
       vendor_ids = books.map { |r_book| r_book['vendorId'].to_i }.uniq
       next unless vendor_ids.present?
       vendor_ids.each do |vendorId|
-        uri = "http://search2.abebooks.com/search?clientkey=f3bd4168-61f8-4e83-b9a3-f8f6e79bba3c&vendorid=#{vendorId}&minsellerrating=4&pt=book&vendorlocation=US"
+        data_query = "SELECT COUNT(*) FROM abebooks_temp WHERE vendor_id = #{vendorId}"
+        total_records = ActiveRecord::Base.connection.exec_query(data_query).rows.flatten.first.to_i
+        next if total_records > 0
+        uri = "http://search2.abebooks.com/search?clientkey=f3bd4168-61f8-4e83-b9a3-f8f6e79bba3c&minsellerrating=4&pt=book&vendorlocation=US&vendorid=#{vendorId}&maxresults=200"
         s = HTTP.get(URI.parse(uri))
         details = Hash.from_xml(s)
         search_Result = details['searchResults']
