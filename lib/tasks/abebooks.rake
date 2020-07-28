@@ -2,10 +2,10 @@
 
 namespace :abebooks do
   desc 'Temp way to get abebooks data job'
-  task perform: :environment do
-    puts "performing abbooks rake task ============"
+  task :perform, [:client_key] => :environment do |_t, args|
+    puts "performing abbooks rake task for cleint key #{args[:client_key]}============"
     Book.all.each do |book|
-      uri = "http://search2.abebooks.com/search?clientkey=f3bd4168-61f8-4e83-b9a3-f8f6e79bba3c&isbn=#{book.ean}&minsellerrating=4&pt=book"
+      uri = "http://search2.abebooks.com/search?clientkey=#{args[:client_key]}&isbn=#{book.ean}&minsellerrating=4&pt=book"
       response = HTTP.get(URI.parse(uri))
       data = Hash.from_xml(response)
       search_Result = data['searchResults']
@@ -20,8 +20,8 @@ namespace :abebooks do
         total_records = ActiveRecord::Base.connection.exec_query(data_query).rows.flatten.first.to_i
         puts "total records for vendor_id #{vendorId} is #{total_records}"
         next if total_records > 0
-        puts "calling abebooks api to get vendor result for all books"
-        uri = "http://search2.abebooks.com/search?clientkey=f3bd4168-61f8-4e83-b9a3-f8f6e79bba3c&minsellerrating=4&pt=book&vendorlocation=US&vendorid=#{vendorId}&maxresults=200"
+        puts 'calling abebooks api to get vendor result for all books'
+        uri = "http://search2.abebooks.com/search?clientkey=#{args[:client_key]}&minsellerrating=4&pt=book&vendorlocation=US&vendorid=#{vendorId}&maxresults=200"
         s = HTTP.get(URI.parse(uri))
         details = Hash.from_xml(s)
         search_Result = details['searchResults']
@@ -34,9 +34,9 @@ namespace :abebooks do
         query = "INSERT INTO abebooks_temp (vendor_id, vendor_name, quantity, ean) VALUES (#{vendorId}, '#{vendorName}', #{quantity}, #{book.ean})"
         ActiveRecord::Base.connection.execute(query)
         puts "****** ended execution for the vendorId #{vendorId} *****"
-        puts ""
+        puts ''
       end
     end
-    puts "completed abbooks rake task ============"
+    puts 'completed abbooks rake task ============'
   end
 end
