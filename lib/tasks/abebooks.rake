@@ -2,8 +2,8 @@
 
 namespace :abebooks do
   desc 'Temp way to get abebooks data job'
-  task :perform, [:client_key] => :environment do |_t, args|
-    puts "performing abbooks rake task for cleint key #{args[:client_key]}============"
+    task :perform, [:client_key] => :environment do |_t, args|
+    puts "performing abebooks rake task for client key #{args[:client_key]}============"
     Book.all.each do |book|
       uri = "http://search2.abebooks.com/search?clientkey=#{args[:client_key]}&isbn=#{book.ean}&minsellerrating=4&pt=book"
       response = HTTP.get(URI.parse(uri))
