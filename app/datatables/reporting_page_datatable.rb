@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 class ReportingPageDatatable < AjaxDatatablesRails::Base
-  def_delegator :@view, :link_to
   def_delegator :@view, :reporting_page_path
-  def_delegator :@view, :number_to_currency
-  def_delegator :@view, :number_with_delimiter
+  def_delegator :@view, :tooltip_field
 
   def view_columns
     @view_columns ||= {
@@ -12,7 +10,12 @@ class ReportingPageDatatable < AjaxDatatablesRails::Base
       order_count: { source: 'ValoreOrder.order_count', searchable: false },
       max_price: { source: 'ValoreOrder.max_price', searchable: false },
       avg_price: { source: 'ValoreOrder.avg_price', searchable: false },
-      title: { source: 'Book.title', searchable: false }
+      author: { source: 'ValoreOrder.author', searchable: false },
+      title: { source: 'ValoreOrder.title', searchable: false },
+      publisher: { source: 'ValoreOrder.publisher', searchable: false },
+      publication_date: { source: 'ValoreOrder.publication_date', searchable: false },
+      edition: { source: 'ValoreOrder.edition', searchable: false },
+      list_price: { source: 'ValoreOrder.list_price', searchable: false }
     }
   end
 
@@ -25,7 +28,12 @@ class ReportingPageDatatable < AjaxDatatablesRails::Base
         order_count: valore_order.order_count,
         max_price: valore_order.max_price,
         avg_price: valore_order.avg_price,
-        title: valore_order.title
+        author: valore_order.author.nil? ? '' : tooltip_field('author', valore_order.isbn, valore_order.author),
+        title: valore_order.title.nil? ? '' : tooltip_field('title', valore_order.isbn, valore_order.title),
+        publisher: valore_order.publisher.nil? ? '' : valore_order.publisher,
+        publication_date: valore_order.publication_date.nil? ? '' : valore_order.publication_date,
+        edition: valore_order.edition.nil? ? '' : valore_order.edition,
+        list_price: valore_order.list_price.nil? ? '' : valore_order.list_price
       }
     end
   end
@@ -33,7 +41,9 @@ class ReportingPageDatatable < AjaxDatatablesRails::Base
   def get_raw_records(*)
     base_query = ValoreOrder.joins('JOIN "books" ON "valore_orders"."isbn" = "books"."ean"')
                             .select('valore_orders.isbn, count(valore_orders.order_id) AS order_count,
-                   max(valore_orders.price) AS max_price, avg(valore_orders.price) AS avg_price, books.title')
+                            max(valore_orders.price) AS max_price, ROUND(AVG(valore_orders.price)::numeric,2) AS avg_price,
+                            books.author,  books.title, books.publisher, books.publication_date,
+                            books.edition, books.list_price')
     if params['data'].present?
       from_date = params['data']['from_date']
       to_date = params['data']['to_date']
@@ -42,10 +52,12 @@ class ReportingPageDatatable < AjaxDatatablesRails::Base
                         AND valore_orders.created_at BETWEEN ? AND ?
                         AND valore_orders.status != ?',
                        valore_account_ids, from_date, to_date, 'rejected')
-                .group('valore_orders.isbn, books.title')
+                .group('valore_orders.isbn, books.author, books.title, books.publisher,
+                        books.publication_date, books.edition, books.list_price')
     else
       base_query.where('valore_orders.status != ?', 'rejected')
-                .group('valore_orders.isbn, books.title')
+                .group('valore_orders.isbn, books.author, books.title, books.publisher,
+                       books.publication_date, books.edition, books.list_price')
     end
   end
 end
