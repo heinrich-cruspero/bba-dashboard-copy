@@ -1,0 +1,40 @@
+<%= javascript_include_tag 'reporting_pages_index' %>
+<%= javascript_include_tag 'reporting_pages' %>
+
+  <%= form_tag reporting_pages_url, method: :get, class:'mdl-cell mdl-cell--12-col graybox' do %> 
+
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--6-col">
+    <label>Select Account</label>
+      <% @valore_accounts.each do |valore_account| %>
+      <%= check_box_tag "data[valore_account_ids][]", valore_account.id, nil%>
+      <%= label_tag valore_account.name %>
+      <% end %>
+  </div>
+
+  <div class="mdl-cell mdl-cell--6-col">
+    <label>  Select Date  </label> 
+      <%= text_field_tag "data[from_date]", nil, id: 'from_date', class: 'mdl-cell mdl-cell--3-col', autocomplete: 'off' %>
+      <%= text_field_tag "data[to_date]", nil, id: 'to_date', class: 'mdl-cell mdl-cell--3-col', autocomplete: 'off' %>
+      <%= submit_tag 'Search', name: nil, id: 'search_data', class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %> 
+  </div>
+</div>
+
+  <%end%>
+
+  <div class="mdl-cell mdl-cell--12-col">
+    <table id="reporting-pages-table", data-source="<%= reporting_pages_path(format: :json, data: @data  ) %>", class="mdl-data-table" width="100%" >
+      <thead>
+      <tr>
+        <th>ISBN</th>
+        <th>OrderCount</th>
+        <th>MaxPrice</th>
+        <th>AvgPrice</th>
+        <th>Title</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      </tbody>
+    </table>
+  </div>

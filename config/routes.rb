@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
   end
   resources :fedex_accounts
+  resources :reporting_pages
   resources :thrift_orders, only: %i[index] do
     member do
       get :items
