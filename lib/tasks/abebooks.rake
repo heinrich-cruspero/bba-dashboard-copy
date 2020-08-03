@@ -29,7 +29,7 @@ namespace :abebooks do
         books = search_Result['Book']
         next unless books.present?
         quantity = books.map { |r_book| r_book['quantity'].to_i }.reduce(0, :+)
-        vendorName = books.last['vendorName']
+        vendorName = books.last['vendorName'].gsub("'", '')
         puts "***** calculated_quantity and vendorId #{quantity} ---- #{vendorId} *****"
         query = "INSERT INTO abebooks_temp (vendor_id, vendor_name, quantity, ean) VALUES (#{vendorId}, '#{vendorName}', #{quantity}, #{book.ean})"
         ActiveRecord::Base.connection.execute(query)
