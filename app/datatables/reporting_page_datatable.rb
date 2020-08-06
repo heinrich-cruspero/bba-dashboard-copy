@@ -48,12 +48,26 @@ class ReportingPageDatatable < AjaxDatatablesRails::Base
       from_date = params['data']['from_date']
       to_date = params['data']['to_date']
       valore_account_ids = params['data']['valore_account_ids']
-      base_query.where('valore_orders.valore_account_id IN (?)
-                        AND valore_orders.created_at BETWEEN ? AND ?
+      if valore_account_ids.present? && from_date.present? && to_date.present?
+        base_query.where('valore_orders.valore_account_id IN (?)
+                          AND valore_orders.created_at BETWEEN ? AND ?
+                          AND valore_orders.status != ?',
+                         valore_account_ids, from_date, to_date, 'rejected')
+                  .group('valore_orders.isbn, books.author, books.title, books.publisher,
+                          books.publication_date, books.edition, books.list_price')
+      elsif valore_account_ids.present?
+        base_query.where('valore_orders.valore_account_id IN (?)
                         AND valore_orders.status != ?',
-                       valore_account_ids, from_date, to_date, 'rejected')
-                .group('valore_orders.isbn, books.author, books.title, books.publisher,
+                         valore_account_ids, 'rejected')
+                  .group('valore_orders.isbn, books.author, books.title, books.publisher,
                         books.publication_date, books.edition, books.list_price')
+      elsif from_date.present? && to_date.present?
+        base_query.where('valore_orders.created_at BETWEEN ? AND ?
+                        AND valore_orders.status != ?',
+                         from_date, to_date, 'rejected')
+                  .group('valore_orders.isbn, books.author, books.title, books.publisher,
+                        books.publication_date, books.edition, books.list_price')
+      end
     else
       base_query.where('valore_orders.status != ?', 'rejected')
                 .group('valore_orders.isbn, books.author, books.title, books.publisher,
