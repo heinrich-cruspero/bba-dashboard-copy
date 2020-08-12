@@ -6,20 +6,18 @@ class ReportingPageDatatable < AjaxDatatablesRails::Base
 
   def view_columns
     @view_columns ||= {
-      isbn: { source: 'ValoreOrder.isbn', cond: :eq },
-      order_count: { source: 'ValoreOrder.order_count', searchable: false },
-      max_price: { source: 'ValoreOrder.max_price', searchable: false },
-      avg_price: { source: 'ValoreOrder.avg_price', searchable: false },
-      author: { source: 'ValoreOrder.author', searchable: false },
-      title: { source: 'ValoreOrder.title', searchable: false },
-      publisher: { source: 'ValoreOrder.publisher', searchable: false },
-      publication_date: { source: 'ValoreOrder.publication_date', searchable: false },
-      edition: { source: 'ValoreOrder.edition', searchable: false },
-      list_price: { source: 'ValoreOrder.list_price', searchable: false }
+      isbn: { source: 'ValoreOrder.isbn', cond: :eq, searchable: true, orderable: false },
+      order_count: { source: 'ValoreOrder.order_count', searchable: false, orderable: false },
+      max_price: { source: 'ValoreOrder.max_price', searchable: false, orderable: false },
+      avg_price: { source: 'ValoreOrder.avg_price', searchable: false, orderable: false },
+      author: { source: 'ValoreOrder.author', searchable: false, orderable: false },
+      title: { source: 'ValoreOrder.title', searchable: false, orderable: false },
+      publisher: { source: 'ValoreOrder.publisher', searchable: false, orderable: false },
+      publication_date: { source: 'ValoreOrder.publication_date', searchable: false, orderable: false },
+      edition: { source: 'ValoreOrder.edition', searchable: false, orderable: false },
+      list_price: { source: 'ValoreOrder.list_price', searchable: false, orderable: false }
     }
   end
-
-  private
 
   def data
     records.map do |valore_order|
@@ -36,6 +34,15 @@ class ReportingPageDatatable < AjaxDatatablesRails::Base
         list_price: valore_order.list_price.nil? ? '' : valore_order.list_price
       }
     end
+  end
+
+  def as_json(*)
+    {
+      draw: params[:draw].to_i,
+      recordsTotal: get_raw_records.length,
+      recordsFiltered: filter_records(get_raw_records).length,
+      data: data
+    }
   end
 
   def get_raw_records(*)

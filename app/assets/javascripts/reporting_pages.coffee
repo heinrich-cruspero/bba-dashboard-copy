@@ -6,16 +6,16 @@ $ ->
     pagingType: 'full_numbers'
     pageLength: 10
     columns: [
-      {data: 'isbn', orderable: false, searchable: true}
-      {data: 'order_count', orderable: false, searchable: false}
-      {data: 'max_price', orderable: false, searchable: false}
-      {data: 'avg_price', orderable: false, searchable: false}
-      {data: 'author', orderable: false, searchable: false}
-      {data: 'title', orderable: false, searchable: false}
-      {data: 'publisher', orderable: false, searchable: false}
-      {data: 'publication_date', orderable: false, searchable: false}
-      {data: 'edition', orderable: false, searchable: false}
-      {data: 'list_price', orderable: false, searchable: false}
+      {data: 'isbn', searchable: true, orderable: false}
+      {data: 'order_count', searchable: false, orderable: false}
+      {data: 'max_price', searchable: false, orderable: false}
+      {data: 'avg_price', searchable: false, orderable: false}
+      {data: 'author', searchable: false, orderable: false}
+      {data: 'title', searchable: false, orderable: false}
+      {data: 'publisher', searchable: false, orderable: false}
+      {data: 'publication_date', searchable: false, orderable: false}
+      {data: 'edition', searchable: false, orderable: false}
+      {data: 'list_price', searchable: false, orderable: false}
     ]
 
 
