@@ -6,16 +6,16 @@ class ReportingPageDatatable < AjaxDatatablesRails::Base
 
   def view_columns
     @view_columns ||= {
-      isbn: { source: 'ValoreOrder.isbn', cond: :eq, searchable: true, orderable: false },
-      order_count: { source: 'ValoreOrder.order_count', searchable: false, orderable: false },
-      max_price: { source: 'ValoreOrder.max_price', searchable: false, orderable: false },
-      avg_price: { source: 'ValoreOrder.avg_price', searchable: false, orderable: false },
-      author: { source: 'ValoreOrder.author', searchable: false, orderable: false },
-      title: { source: 'ValoreOrder.title', searchable: false, orderable: false },
-      publisher: { source: 'ValoreOrder.publisher', searchable: false, orderable: false },
-      publication_date: { source: 'ValoreOrder.publication_date', searchable: false, orderable: false },
-      edition: { source: 'ValoreOrder.edition', searchable: false, orderable: false },
-      list_price: { source: 'ValoreOrder.list_price', searchable: false, orderable: false }
+      isbn: { source: 'ValoreOrder.isbn', cond: :eq, searchable: true, sortable: false },
+      order_count: { source: 'order_count', searchable: false, orderable: true },
+      max_price: { source: 'max_price', searchable: false, orderable: true },
+      avg_price: { source: 'avg_price', searchable: false, orderable: true },
+      author: { source: 'author', searchable: false, orderable: true },
+      title: { source: 'title', searchable: false, orderable: true },
+      publisher: { source: 'publisher', searchable: false, orderable: true },
+      publication_date: { source: 'publication_date', searchable: false, orderable: true },
+      edition: { source: 'edition', searchable: false, orderable: true },
+      list_price: { source: 'list_price', searchable: false, orderable: true }
     }
   end
 
