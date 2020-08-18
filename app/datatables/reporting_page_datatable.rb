@@ -6,7 +6,7 @@ class ReportingPageDatatable < AjaxDatatablesRails::Base
 
   def view_columns
     @view_columns ||= {
-      isbn: { source: 'ValoreOrder.isbn', cond: :eq, searchable: true, sortable: false },
+      isbn: { source: 'ValoreOrder.isbn', cond: :eq, searchable: true, orderable: false },
       order_count: { source: 'order_count', searchable: false, orderable: true },
       max_price: { source: 'max_price', searchable: false, orderable: true },
       avg_price: { source: 'avg_price', searchable: false, orderable: true },
