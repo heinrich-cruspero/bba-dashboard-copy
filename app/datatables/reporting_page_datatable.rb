@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+#
 class ReportingPageDatatable < AjaxDatatablesRails::Base
   def_delegator :@view, :reporting_page_path
   def_delegator :@view, :tooltip_field

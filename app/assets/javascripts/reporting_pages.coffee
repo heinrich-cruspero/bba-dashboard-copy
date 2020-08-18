@@ -17,5 +17,3 @@ $ ->
       {data: 'edition', searchable: false, orderable: true}
       {data: 'list_price', searchable: false, orderable: true}
     ]
-
-
