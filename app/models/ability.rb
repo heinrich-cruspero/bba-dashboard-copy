@@ -7,6 +7,7 @@ class Ability
   def initialize(user)
     if user.admin?
       can :manage, :all
+      can :index, ReportingPagesController
     elsif user.user?
       can %i[index details], Book
 
