@@ -12,8 +12,8 @@
     </div>
 
     <label>Select Order Created Date</label>
-    <%= text_field_tag "data[from_date]", (params['data'] ? params['data']['from_date'] : nil), id: 'from_date', class: 'mdl-cell mdl-cell--3-col', autocomplete: 'off' %>
-    <%= text_field_tag "data[to_date]", (params['data'] ? params['data']['to_date'] : nil), id: 'to_date', class: 'mdl-cell mdl-cell--3-col', autocomplete: 'off' %>
+    <%= text_field_tag "data[from_date]", (params['data'] ? params['data']['from_date'] : nil), id: 'from_date', class: 'mdl-cell mdl-cell--2-col', autocomplete: 'off' %>
+    <%= text_field_tag "data[to_date]", (params['data'] ? params['data']['to_date'] : nil), id: 'to_date', class: 'mdl-cell mdl-cell--2-col', autocomplete: 'off' %>
     <%= submit_tag 'Search', name: nil, id: 'search_valore_orders', class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
     <%= link_to 'Reset', reporting_pages_url %>
   </div>
