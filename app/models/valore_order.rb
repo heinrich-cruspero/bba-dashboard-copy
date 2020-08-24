@@ -18,7 +18,7 @@ class ValoreOrder < ApplicationRecord
                     .where('(valore_accounts.buyer_id = ? AND valore_orders.status IN (?) AND valore_orders.updated_at >= ?)',
                            buyer_id,
                            status,
-                           (Time.now - last_n_hours.to_i.hours)).select('valore_orders.id, valore_orders.order_id, valore_orders.isbn, valore_orders.price, valore_orders.status')
+                           (Time.now - last_n_hours.to_i.hours)).select('valore_orders.id, valore_orders.order_id, valore_orders.item_id, valore_orders.isbn, valore_orders.price, valore_orders.status')
     total = valore_orders.length
     valore_orders = valore_orders.limit(25)
     valore_orders = valore_orders.offset(offset) if offset.present?
