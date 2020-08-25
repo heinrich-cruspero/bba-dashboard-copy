@@ -53,7 +53,7 @@ namespace :abebooks do
     puts 'Getting vendors for all records in the books table'
 
     Book.order(:id).find_each do |book|
-      puts "Book #{book.ean}"
+      puts "Book #{book.id}"
       uri = "http://search2.abebooks.com/search?clientkey=#{@client_key}&isbn=#{book.ean}&minsellerrating=4&pt=book"
       response = HTTP.get(URI.parse(uri))
       response_hash = Hash.from_xml(response)
