@@ -57,6 +57,7 @@ namespace :abebooks do
       uri = "http://search2.abebooks.com/search?clientkey=#{@client_key}&isbn=#{book.ean}&minsellerrating=4&pt=book"
       response = HTTP.get(URI.parse(uri))
       data = Hash.from_xml(response)
+      next if data.nil?
       search_result = data['searchResults']
       next unless search_result.present?
       book_results = search_result['Book']
@@ -81,6 +82,7 @@ namespace :abebooks do
       uri = "http://search2.abebooks.com/search?clientkey=#{@client_key}&minsellerrating=4&pt=book&vendorlocation=US&vendorid=#{vendor['vendor_id']}&maxresults=200"
       s = HTTP.get(URI.parse(uri))
       details = Hash.from_xml(s)
+      next if data.nil?
       search_result = details['searchResults']
       next unless search_result.present?
       books = search_result['Book']
