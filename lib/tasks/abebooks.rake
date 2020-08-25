@@ -7,7 +7,7 @@ namespace :abebooks do
 
     @client_key = args[:client_key]
 
-    create_tables
+    #create_tables
     vendors
     vendor_books
 
@@ -52,13 +52,13 @@ namespace :abebooks do
   def vendors
     puts 'Getting vendors for all records in the books table'
 
-    Book.find_each do |book|
-      # puts "Book #{book.ean}"
+    Book.order(:id).find_each do |book|
+      puts "Book #{book.ean}"
       uri = "http://search2.abebooks.com/search?clientkey=#{@client_key}&isbn=#{book.ean}&minsellerrating=4&pt=book"
       response = HTTP.get(URI.parse(uri))
-      data = Hash.from_xml(response)
-      next if data.nil?
-      search_result = data['searchResults']
+      response_hash = Hash.from_xml(response)
+      next if response_hash.nil?
+      search_result = response_hash['searchResults']
       next unless search_result.present?
       book_results = search_result['Book']
       next unless book_results.present?
@@ -75,20 +75,21 @@ namespace :abebooks do
   def vendor_books
     puts 'Getting vendor book quantity for all records in the vendors table'
 
-    vendors = ActiveRecord::Base.connection.execute('select * from tmp_abe_books_vendors')
+    vendors = ActiveRecord::Base.connection.execute('select * from tmp_abe_books_vendors order by id')
     vendors.each do |vendor|
-      # puts "Vendor #{vendor}"
+      puts "Vendor #{vendor}"
 
       uri = "http://search2.abebooks.com/search?clientkey=#{@client_key}&minsellerrating=4&pt=book&vendorlocation=US&vendorid=#{vendor['vendor_id']}&maxresults=200"
-      s = HTTP.get(URI.parse(uri))
-      details = Hash.from_xml(s)
-      next if data.nil?
-      search_result = details['searchResults']
+      response = HTTP.get(URI.parse(uri))
+      response_hash = Hash.from_xml(response)
+      next if response_hash.nil?
+      search_result = response_hash['searchResults']
       next unless search_result.present?
       books = search_result['Book']
       next unless books.present?
 
       if books.class == Hash
+        next if book['isbn13'].nil?
         ActiveRecord::Base.connection.execute("INSERT INTO tmp_abe_books_vendor_books (vendor_id, ean, quantity) VALUES (#{vendor['id']}, #{ActiveRecord::Base.connection.quote(book['isbn13'])}, #{book['quantity']}) ON CONFLICT (vendor_id, ean) DO UPDATE set quantity = ((select quantity from tmp_abe_books_vendor_books where vendor_id = #{vendor['id']} and ean = #{ActiveRecord::Base.connection.quote(book['isbn13'])}) + #{book['quantity']})")
       else
         books.each do |book|
