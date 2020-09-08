@@ -39,7 +39,7 @@ class RentalReturn < ApplicationRecord
             {
               ShipTimestamp: Time.now.to_datetime,
               DropoffType: 'REGULAR_PICKUP',
-              ServiceType: 'FEDEX_2_DAY',
+              ServiceType: fedex_account.service_type.to_s,
               PackagingType: 'YOUR_PACKAGING',
               Shipper:
                     {
