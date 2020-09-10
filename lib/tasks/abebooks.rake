@@ -7,7 +7,7 @@ namespace :abebooks do
 
     @client_key = args[:client_key]
 
-    #create_tables
+    # create_tables
     vendors
     vendor_books
 

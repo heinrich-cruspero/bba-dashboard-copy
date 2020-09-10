@@ -20,6 +20,7 @@
           <th>State</th>
           <th>Zip code</th>
           <th>Prod</th>
+          <th>Service Type</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -38,6 +39,7 @@
             <td><%= fedex_account.state %></td>
             <td><%= fedex_account.zip_code %></td>
             <td><%= fedex_account.prod %></td>
+            <td><%= fedex_account.service_type %></td>
             <td><%= link_to 'Show', fedex_account %></td>
             <td><%= link_to 'Edit', edit_fedex_account_path(fedex_account) %></td>
             <td><%= link_to 'Destroy', fedex_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -52,6 +52,6 @@ class FedexAccountsController < ApplicationController
   end
 
   def fedex_account_params
-    params.require(:fedex_account).permit(:key, :password, :account_number, :meter_number, :name, :company_name, :phone_number, :street, :city, :state, :zip_code, :prod, user_ids: [])
+    params.require(:fedex_account).permit(:key, :password, :account_number, :meter_number, :name, :company_name, :phone_number, :street, :city, :state, :zip_code, :prod, :service_type, user_ids: [])
   end
 end

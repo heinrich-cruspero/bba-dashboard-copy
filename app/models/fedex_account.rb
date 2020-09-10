@@ -6,4 +6,6 @@ class FedexAccount < ApplicationRecord
 
   has_many :rental_returns, dependent: :destroy
   has_and_belongs_to_many :users
+
+  enum service_type: %w[FEDEX_2_DAY FEDEX_GROUND]
 end
