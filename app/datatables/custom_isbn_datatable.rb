@@ -1,10 +1,17 @@
 # frozen_string_literal: true
 
 ##
-class CustomIsbnDatatable < AjaxDatatablesRails::Base
+class CustomIsbnDatatable < AjaxDatatablesRails::ActiveRecord
+  extend Forwardable
+
   def_delegator :@view, :link_to
   def_delegator :@view, :edit_custom_isbn_path
   def_delegator :@view, :custom_isbn_path
+
+  def initialize(params, opts = {})
+    @view = opts[:view_context]
+    super
+  end
 
   def view_columns
     @view_columns ||= {

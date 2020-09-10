@@ -9,7 +9,7 @@ class AccountsController < ApplicationController
   def index
     respond_to do |format|
       format.html
-      format.json { render json: AccountDatatable.new(view_context) }
+      format.json { render json: AccountDatatable.new(params, view_context: view_context)  }
     end
   end
 

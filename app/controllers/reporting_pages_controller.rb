@@ -10,7 +10,7 @@ class ReportingPagesController < ApplicationController
     respond_to do |format|
       @data = params[:data]
       format.html
-      format.json { render json: ReportingPageDatatable.new(view_context, params: params) }
+      format.json { render json: ReportingPageDatatable.new(params) }
     end
   end
 end

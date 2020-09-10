@@ -60,10 +60,10 @@ end
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Added gems
-gem 'ajax-datatables-rails'
+gem 'ajax-datatables-rails', '~> 1.1.0'
 gem 'cancancan', '~> 2.0'
 gem 'devise'
-gem 'jquery-datatables-rails'
+gem 'jquery-datatables-rails', '~> 3.4.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'material_design_lite-sass'

@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 #
-class ReportingPageDatatable < AjaxDatatablesRails::Base
+class ReportingPageDatatable < AjaxDatatablesRails::ActiveRecord
+  extend Forwardable
+
   def_delegator :@view, :reporting_page_path
-  def_delegator :@view, :tooltip_field
 
   def view_columns
     @view_columns ||= {
-      isbn: { source: 'ValoreOrder.isbn', cond: :eq, searchable: true, orderable: false },
+      isbn: { source: 'ValoreOrder.isbn', cond: :like, searchable: true, orderable: false },
       order_count: { source: 'order_count', searchable: false, orderable: true },
       max_price: { source: 'max_price', searchable: false, orderable: true },
       avg_price: { source: 'avg_price', searchable: false, orderable: true },
@@ -27,8 +28,8 @@ class ReportingPageDatatable < AjaxDatatablesRails::Base
         order_count: valore_order.order_count,
         max_price: valore_order.max_price,
         avg_price: valore_order.avg_price,
-        author: valore_order.author.nil? ? '' : tooltip_field('author', valore_order.isbn, valore_order.author),
-        title: valore_order.title.nil? ? '' : tooltip_field('title', valore_order.isbn, valore_order.title),
+        author: valore_order.author.nil? ? '' : valore_order.author,
+        title: valore_order.title.nil? ? '' : valore_order.title,
         publisher: valore_order.publisher.nil? ? '' : valore_order.publisher,
         publication_date: valore_order.publication_date.nil? ? '' : valore_order.publication_date,
         edition: valore_order.edition.nil? ? '' : valore_order.edition,
