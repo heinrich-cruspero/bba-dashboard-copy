@@ -23,19 +23,23 @@ class ReportingPageDatatable < AjaxDatatablesRails::ActiveRecord
 
   def data
     records.map do |valore_order|
-      {
-        isbn: valore_order.isbn,
-        order_count: valore_order.order_count,
-        max_price: valore_order.max_price,
-        avg_price: valore_order.avg_price,
-        author: valore_order.author.nil? ? '' : valore_order.author,
-        title: valore_order.title.nil? ? '' : valore_order.title,
-        publisher: valore_order.publisher.nil? ? '' : valore_order.publisher,
-        publication_date: valore_order.publication_date.nil? ? '' : valore_order.publication_date,
-        edition: valore_order.edition.nil? ? '' : valore_order.edition,
-        list_price: valore_order.list_price.nil? ? '' : valore_order.list_price
-      }
+      record_map(valore_order)
     end
+  end
+
+  def record_map(valore_order)
+    {
+      isbn: valore_order.isbn,
+      order_count: valore_order.order_count,
+      max_price: valore_order.max_price,
+      avg_price: valore_order.avg_price,
+      author: valore_order.author.nil? ? '' : valore_order.author,
+      title: valore_order.title.nil? ? '' : valore_order.title,
+      publisher: valore_order.publisher.nil? ? '' : valore_order.publisher,
+      publication_date: valore_order.publication_date.nil? ? '' : valore_order.publication_date,
+      edition: valore_order.edition.nil? ? '' : valore_order.edition,
+      list_price: valore_order.list_price.nil? ? '' : valore_order.list_price
+    }
   end
 
   def as_json(*)

@@ -11,6 +11,12 @@ class ReportingPagesController < ApplicationController
       @data = params[:data]
       format.html
       format.json { render json: ReportingPageDatatable.new(params) }
+
+      format.csv do
+        CsvDownloadJob.perform_later(params.to_h, 'ReportingPageDatatable', 'valore_orders.csv',
+                                   current_user.id)
+        head :ok
+      end
     end
   end
 end

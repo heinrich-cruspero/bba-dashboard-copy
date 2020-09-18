@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   get '/reporting_pages', to: 'reporting_pages#index'
+  mount ActionCable.server => '/cable'
 
   resources :rental_returns do
     collection do
