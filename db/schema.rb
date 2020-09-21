@@ -181,6 +181,8 @@ ActiveRecord::Schema.define(version: 20200914041000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "prod", default: false
+    t.integer "service_type", default: 0, null: false
+    t.index ["service_type"], name: "index_fedex_accounts_on_service_type"
   end
 
   create_table "fedex_accounts_users", id: false, force: :cascade do |t|
