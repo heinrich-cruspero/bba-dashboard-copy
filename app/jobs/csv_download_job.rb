@@ -20,7 +20,7 @@ class CsvDownloadJob < ApplicationJob
     params = ActionController::Parameters.new(params)
     datatable = datatable_class.constantize.send('new', params)
 
-    key = "bba-dashboard/downloads/#{user_id}/#{Time.now}/#{file_name}"
+    key = "downloads/#{user_id}/#{Time.now}/#{file_name}"
     s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
     obj = s3.bucket(ENV['S3_BUCKET_NAME']).object(key)
     obj.upload_stream(tempfile: true) do |write_stream|

@@ -27,7 +27,7 @@ gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 4.0'
+# gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -40,7 +40,6 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
-  gem 'daemons'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails'
@@ -66,6 +65,7 @@ gem 'aws-sdk-rails'
 gem 'aws-sdk-s3'
 gem 'cancancan', '~> 2.0'
 gem 'delayed_job_active_record'
+gem 'daemons'
 gem 'devise'
 gem 'jquery-datatables-rails', '~> 3.4.0'
 gem 'jquery-rails'
