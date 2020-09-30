@@ -1,5 +1,7 @@
 <%= javascript_include_tag 'reporting_pages_date_range' %>
 <%= javascript_include_tag 'reporting_pages' %>
+<%= javascript_include_tag 'channels/file_download_channel' %>
+
 <%= form_tag reporting_pages_url, method: :get, class:'mdl-cell mdl-cell--12-col graybox' do %>
   <% searched_valore_ids = params['data'] ? params['data']['valore_account_ids'] : nil %>
   <div class="mdl-grid">
@@ -18,6 +20,17 @@
     <%= link_to 'Reset', reporting_pages_url %>
   </div>
 <% end %>
+
+<%# Export CSV filter %>
+<div class="clearfix">
+  <div class="row float-right">
+    <div class="input-group align-items-center justify-content-center">
+      <div class="m-2 align-self-center">
+        <a href="<%= reporting_pages_path(format: :csv, data: @data) %>" class="btn btn-secondary csv-btn" id="export-valore-orders-button">Export CSV</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="mdl-cell mdl-cell--12-col">
   <table id="reporting-pages-table", data-source="<%= reporting_pages_path(format: :json, data: @data  ) %>", class="mdl-data-table" width="100%" >
@@ -40,3 +53,9 @@
     </tbody>
   </table>
 </div>
+
+<dialog id="blockModal" class="mdl-dialog mdl-typography--text-center">
+  <div class="mdl-dialog__content">
+    <div class="mdl-spinner mdl-js-spinner is-active"></div>
+  </div>
+</dialog>

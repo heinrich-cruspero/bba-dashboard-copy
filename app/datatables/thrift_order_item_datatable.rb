@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
 ##
-class ThriftOrderItemDatatable < AjaxDatatablesRails::Base
+class ThriftOrderItemDatatable < AjaxDatatablesRails::ActiveRecord
+  extend Forwardable
+
   def_delegator :@view, :link_to
+
+  def initialize(params, opts = {})
+    @view = opts[:view_context]
+    super
+  end
 
   def view_columns
     @view_columns ||= {

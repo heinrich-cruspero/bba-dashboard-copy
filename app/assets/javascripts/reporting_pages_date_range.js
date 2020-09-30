@@ -24,4 +24,19 @@ $(function() {
             return false
         }
     });
+
+    $('#export-valore-orders-button').on('click', function(e) {
+         e.preventDefault();
+         const url = $(this).attr('href');
+         const params = $.param($('#reporting-pages-table').DataTable().ajax.params());
+
+         if(url.split('?').length > 1) {
+             $.get(url + '&' + params);
+         } else {
+             $.get(url + '?' + params);
+         }
+
+          var dialog = document.querySelector('dialog');
+          dialog.showModal();
+    });
 });
