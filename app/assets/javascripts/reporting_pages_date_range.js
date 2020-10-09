@@ -39,6 +39,7 @@ $(function() {
         var dialog = document.querySelector('dialog');
         dialog.showModal();
         $.ajax({
+            dataType: "json",
             url: url,
             })
             .fail(function() {
