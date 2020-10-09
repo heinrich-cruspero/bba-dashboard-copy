@@ -1,10 +1,17 @@
 # frozen_string_literal: true
 
 ##
-class WantListItemDatatable < AjaxDatatablesRails::Base
+class WantListItemDatatable < AjaxDatatablesRails::ActiveRecord
+  extend Forwardable
+
   def_delegator :@view, :link_to
   def_delegator :@view, :edit_want_list_item_path
   def_delegator :@view, :tooltip_field
+
+  def initialize(params, opts = {})
+    @view = opts[:view_context]
+    super
+  end
 
   def view_columns
     @view_columns ||= {

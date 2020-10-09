@@ -1,16 +1,23 @@
 # frozen_string_literal: true
 
 ##
-class AllWantListItemDatatable < AjaxDatatablesRails::Base
+class AllWantListItemDatatable < AjaxDatatablesRails::ActiveRecord
+  extend Forwardable
+
   def_delegator :@view, :link_to
   def_delegator :@view, :edit_want_list_item_path
   def_delegator :@view, :tooltip_field
 
+  def initialize(params, opts = {})
+    @view = opts[:view_context]
+    super
+  end
+
   def view_columns
     @view_columns ||= {
-      name: { source: 'WantList.name', cond: :eq, searchable: true, orderable: false },
-      ean: { source: 'WantListItem.ean', cond: :eq, searchable: true, orderable: false },
-      isbn: { source: 'Book.isbn', cond: :eq, searchable: true, orderable: true },
+      name: { source: 'WantList.name', cond: :like, searchable: true, orderable: false },
+      ean: { source: 'WantListItem.ean', cond: :like, searchable: true, orderable: false },
+      isbn: { source: 'Book.isbn', cond: :like, searchable: true, orderable: true },
       quantity: { source: 'WantListItem.quantity', cond: :eq, searchable: false, orderable: true },
       quantity_purchased: { source: 'WantListItem.quantity_purchased', cond: :eq, searchable: false, orderable: true },
       max_price: { source: 'WantListItem.max_price', cond: :eq, searchable: false, orderable: true },

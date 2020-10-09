@@ -1,10 +1,17 @@
 # frozen_string_literal: true
 
 ##
-class AuditDatatable < AjaxDatatablesRails::Base
+class AuditDatatable < AjaxDatatablesRails::ActiveRecord
+  extend Forwardable
+
   def_delegator :@view, :link_to
   def_delegator :@view, :edit_audit_path
   def_delegator :@view, :audit_path
+
+  def initialize(params, opts = {})
+    @view = opts[:view_context]
+    super
+  end
 
   def view_columns
     @view_columns ||= {

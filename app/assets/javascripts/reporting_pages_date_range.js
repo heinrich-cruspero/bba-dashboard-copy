@@ -24,4 +24,32 @@ $(function() {
             return false
         }
     });
+
+    $('#export-valore-orders-button').on('click', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        const params = $.param($('#reporting-pages-table').DataTable().ajax.params());
+
+        if(url.split('?').length > 1) {
+            url = url + '&' + params
+        } else {
+            url = url + '?' + params
+        }
+
+        var dialog = document.querySelector('dialog');
+        dialog.showModal();
+        $.ajax({
+            dataType: "json",
+            url: url,
+            })
+            .fail(function() {
+                alert( "error" );
+            })
+            .done(function( data ) {
+                window.location.href = data.download_url;
+            })
+            .always(function( data ) {
+                dialog.close();
+            });
+    });
 });

@@ -4,3 +4,4 @@
 //= require jquery-ui
 //= require dataTables/jquery.dataTables
 //= require dataTables.fixedColumns.min
+//= require_tree ./channels

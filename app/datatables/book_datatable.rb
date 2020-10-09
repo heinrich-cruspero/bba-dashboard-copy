@@ -1,17 +1,24 @@
 # frozen_string_literal: true
 
 ##
-class BookDatatable < AjaxDatatablesRails::Base
+class BookDatatable < AjaxDatatablesRails::ActiveRecord
+  extend Forwardable
+
   def_delegator :@view, :number_with_delimiter
   def_delegator :@view, :tooltip_field
 
+  def initialize(params, opts = {})
+    @view = opts[:view_context]
+    super
+  end
+
   def view_columns
     @view_columns ||= {
-      ean: { source: 'Book.ean', cond: :eq, searchable: true, orderable: false },
-      isbn: { source: 'Book.isbn', cond: :eq, searchable: true, orderable: false },
-      author: { source: 'Book.author', cond: :eq, searchable: true, orderable: false },
-      title: { source: 'Book.title', cond: :eq, searchable: true, orderable: false },
-      publication_date: { source: 'Book.publication_date', cond: :eq, searchable: true, orderable: false },
+      ean: { source: 'Book.ean', cond: :like, searchable: true, orderable: false },
+      isbn: { source: 'Book.isbn', cond: :like, searchable: true, orderable: false },
+      author: { source: 'Book.author', cond: :like, searchable: true, orderable: false },
+      title: { source: 'Book.title', cond: :like, searchable: true, orderable: false },
+      publication_date: { source: 'Book.publication_date', cond: :like, searchable: true, orderable: false },
       tqs: { source: 'IndabaDatum.tqs', cond: :eq, searchable: false, orderable: true },
       daily_sqad: { source: 'IndabaDatum.daily_sqad', cond: :eq, searchable: false, orderable: true },
       weekly_sqad: { source: 'IndabaDatum.weekly_sqad', cond: :eq, searchable: false, orderable: true },
