@@ -37,9 +37,10 @@ class CsvDownloadJob < ApplicationJob
                             expires_in: 30,
                             response_content_disposition: "attachment;  filename=#{file_name}")
 
-    ActionCable.server.broadcast(
-      "file_download_channel:#{user_id}",
-      download_url: url
-    )
+    #     ActionCable.server.broadcast(
+    #       "file_download_channel:#{user_id}",
+    #       download_url: url
+    #     )
+    url
   end
 end

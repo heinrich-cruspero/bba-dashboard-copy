@@ -7,4 +7,4 @@ class FileDownloadChannel < ApplicationCable::Channel
   end
 
   def unsubscribed; end
- end
+end

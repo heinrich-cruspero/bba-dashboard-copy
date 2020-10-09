@@ -1,5 +1,5 @@
 $(function() {
-    $('#export-valore-orders-button').on('click', function(e) {
+    /*$('#export-valore-orders-button').on('click', function(e) {
         App.cable.subscriptions.create("FileDownloadChannel", {
             connected: function() {
                 // Called when the subscription is ready for use on the server
@@ -22,5 +22,5 @@ $(function() {
                 App.cable.disconnect()
             }
         });
-    });
+    });*/
 });

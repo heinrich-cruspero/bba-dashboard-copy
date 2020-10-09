@@ -13,9 +13,9 @@ class ReportingPagesController < ApplicationController
       format.json { render json: ReportingPageDatatable.new(params) }
 
       format.csv do
-        CsvDownloadJob.perform_later(params.to_h, 'ReportingPageDatatable', 'valore_orders.csv',
-                                   current_user.id)
-        head :ok
+        url = CsvDownloadJob.perform_now(params.to_h, 'ReportingPageDatatable', 'valore_orders.csv',
+                                         current_user.id)
+        render json: { download_url: url }
       end
     end
   end
