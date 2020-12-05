@@ -1,0 +1,107 @@
+<div class="mdl-layout mdl-js-layout">
+  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h5 class="mdl-card__title-text mdl-color-text--grey"> <%= action_name.humanize %> Account</h5>
+    </div>
+
+    <div class="mdl-card__supporting-text">
+      <%= form_with(model: easy_post_account, local: true) do |form| %>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :key, class: "mdl-textfield__label" %>
+          <%= form.text_field :key, id: :easy_post_account_key, class: "mdl-textfield__input", required: true %>
+          <% easy_post_account.errors.full_messages_for(:key).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :account_number, class: "mdl-textfield__label" %>
+          <%= form.text_field :account_number, id: :easy_post_account_account_number, class: "mdl-textfield__input", required: true %>
+          <% easy_post_account.errors.full_messages_for(:account_number).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :name, class: "mdl-textfield__label" %>
+          <%= form.text_field :name, id: :easy_post_account_name, class: "mdl-textfield__input", required: true %>
+          <% easy_post_account.errors.full_messages_for(:name).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :company_name, class: "mdl-textfield__label" %>
+          <%= form.text_field :company_name, id: :easy_post_account_company_name, class: "mdl-textfield__input", required: true %>
+          <% easy_post_account.errors.full_messages_for(:company_name).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :phone_number, class: "mdl-textfield__label" %>
+          <%= form.text_field :phone_number, id: :easy_post_account_phone_number, class: "mdl-textfield__input", required: true %>
+          <% easy_post_account.errors.full_messages_for(:phone_number).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :street, class: "mdl-textfield__label" %>
+          <%= form.text_field :street, id: :easy_post_account_street, class: "mdl-textfield__input", required: true %>
+          <% easy_post_account.errors.full_messages_for(:street).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :city, class: "mdl-textfield__label" %>
+          <%= form.text_field :city, id: :easy_post_account_city, class: "mdl-textfield__input", required: true %>
+          <% easy_post_account.errors.full_messages_for(:city).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :state, class: "mdl-textfield__label" %>
+          <%= form.text_field :state, id: :easy_post_account_state, class: "mdl-textfield__input", required: true %>
+          <% easy_post_account.errors.full_messages_for(:state).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :zip_code, class: "mdl-textfield__label" %>
+          <%= form.text_field :zip_code, id: :easy_post_account_zip_code, class: "mdl-textfield__input", required: true %>
+          <% easy_post_account.errors.full_messages_for(:zip_code).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :country, class: "mdl-textfield__label" %>
+          <%= form.text_field :country, id: :easy_post_account_country, class: "mdl-textfield__input", required: true %>
+          <% easy_post_account.errors.full_messages_for(:state).each do |message| %>
+              <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield">
+          <%= form.label :prod, class: "mdl-check_box__label" %>
+          <%= form.check_box :prod, id: :easy_post_account_prod, class: "mdl-check_box__input" %>
+        </div>
+
+        <div class="mdl-selectfield">
+          <label>Select Users</label><br>
+          <%= select_tag "easy_post_account[user_ids][]", options_for_select(User.all.map{|user| [user.email, user.id]}, @easy_post_account.users.pluck(:id)), multiple: true, class: 'browser-default', size: 10 %>
+        </div>
+
+        <div class="mdl-card__actions">
+          <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
+        </div>
+      <% end %>
+
+      <%= link_to 'Back', easy_post_accounts_path %>
+    </div>
+  </div>
+</div>

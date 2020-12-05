@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200914041000) do
+ActiveRecord::Schema.define(version: 20201204170323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(version: 20200914041000) do
     t.index ["dryrun"], name: "index_abe_orders_on_dryrun"
     t.index ["order_id"], name: "index_abe_orders_on_order_id"
     t.index ["reference_id"], name: "index_abe_orders_on_reference_id"
+  end
+
+  create_table "abebooks_temp", id: false, force: :cascade do |t|
+    t.string "vendor_id", limit: 255
+    t.string "vendor_name", limit: 255
+    t.bigint "quantity"
+    t.string "ean", limit: 255
+    t.index ["ean", "vendor_name"], name: "abebooks_temp_ean_vendor_name_index"
   end
 
   create_table "accounts", force: :cascade do |t|
@@ -164,6 +172,29 @@ ActiveRecord::Schema.define(version: 20200914041000) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "easy_post_accounts", id: :serial, force: :cascade do |t|
+    t.string "key", null: false
+    t.string "account_number", null: false
+    t.string "name", null: false
+    t.string "company_name", null: false
+    t.string "phone_number", null: false
+    t.string "street", null: false
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "zip_code", null: false
+    t.string "country", null: false
+    t.boolean "prod", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "easy_post_accounts_users", force: :cascade do |t|
+    t.bigint "easy_post_account_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["easy_post_account_id"], name: "index_easy_post_accounts_users_on_easy_post_account_id"
+    t.index ["user_id"], name: "index_easy_post_accounts_users_on_user_id"
   end
 
   create_table "fedex_accounts", force: :cascade do |t|
@@ -267,7 +298,7 @@ ActiveRecord::Schema.define(version: 20200914041000) do
   end
 
   create_table "rental_returns", force: :cascade do |t|
-    t.bigint "fedex_account_id", null: false
+    t.bigint "accountable_id", null: false
     t.string "email", null: false
     t.string "name", null: false
     t.string "phone_number", null: false
@@ -279,7 +310,10 @@ ActiveRecord::Schema.define(version: 20200914041000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "submitted", default: false
-    t.index ["fedex_account_id"], name: "index_rental_returns_on_fedex_account_id"
+    t.string "tracking_number"
+    t.string "accountable_type"
+    t.string "label_url"
+    t.index ["accountable_id"], name: "index_rental_returns_on_accountable_id"
   end
 
   create_table "source_types", force: :cascade do |t|
@@ -330,23 +364,20 @@ ActiveRecord::Schema.define(version: 20200914041000) do
     t.index ["want_list_id"], name: "index_thrift_orders_on_want_list_id"
   end
 
-  create_table "tmp_indaba_data", id: false, force: :cascade do |t|
-    t.bigint "book_id", null: false
-    t.bigint "indaba_instance_id", null: false
-    t.integer "tqs", default: 0, null: false
-    t.integer "total_quantity", default: 0, null: false
-    t.integer "quantity_online", default: 0, null: false
-    t.float "lowest_price", default: 0.0, null: false
-    t.float "list_price", default: 0.0, null: false
-    t.float "lowest_good_price", default: 0.0, null: false
-    t.float "lowest_fba", default: 0.0, null: false
-    t.integer "sales_rank", default: 0, null: false
-    t.float "bbap", default: 0.0, null: false
-    t.float "direct", default: 0.0, null: false
-    t.float "w_nw", default: 0.0, null: false
-    t.float "whole_sale", default: 0.0, null: false
-    t.index ["book_id"], name: "index_tmp_indaba_data_on_book_id"
-    t.index ["indaba_instance_id"], name: "index_tmp_indaba_data_on_indaba_instance_id"
+  create_table "tmp_abe_books_vendor_books", id: false, force: :cascade do |t|
+    t.integer "vendor_id"
+    t.string "ean", limit: 13, null: false
+    t.bigint "quantity"
+    t.index ["ean"], name: "tmp_abe_books_vendor_books_ean_index"
+    t.index ["vendor_id", "ean"], name: "tmp_abe_books_vendor_books_vendor_id_ean_index", unique: true
+  end
+
+  create_table "tmp_abe_books_vendors", force: :cascade do |t|
+    t.string "vendor_id", limit: 255, null: false
+    t.string "vendor_name", limit: 255
+    t.index ["vendor_id", "vendor_name"], name: "tmp_abe_books_vendors_vendor_id_vendor_name_index"
+    t.index ["vendor_id"], name: "tmp_abe_books_vendors_vendor_id_uindex", unique: true
+    t.index ["vendor_name"], name: "tmp_abe_books_vendors_vendor_name_index"
   end
 
   create_table "tracked_skus", force: :cascade do |t|
@@ -455,8 +486,8 @@ ActiveRecord::Schema.define(version: 20200914041000) do
     t.datetime "updated_at", null: false
     t.boolean "active"
     t.bigint "valore_account_id"
-    t.string "upload_status"
     t.bigint "abe_account_id"
+    t.string "upload_status"
     t.datetime "last_submitted_at"
     t.bigint "thrift_account_id"
     t.integer "valore_want_list_id"
@@ -476,16 +507,18 @@ ActiveRecord::Schema.define(version: 20200914041000) do
   add_foreign_key "abe_order_items", "abe_orders"
   add_foreign_key "accounts", "sources"
   add_foreign_key "amazon_data", "books"
+  add_foreign_key "fedex_accounts_users", "fedex_accounts"
+  add_foreign_key "fedex_accounts_users", "users"
   add_foreign_key "guide_data", "books"
   add_foreign_key "indaba_data", "books"
   add_foreign_key "indaba_instance_data", "books"
   add_foreign_key "indaba_instance_data", "indaba_instances"
   add_foreign_key "indaba_orders", "books"
   add_foreign_key "indaba_orders", "indaba_instances"
-  add_foreign_key "rental_returns", "fedex_accounts"
   add_foreign_key "sources", "source_types"
   add_foreign_key "thrift_order_items", "thrift_orders"
   add_foreign_key "thrift_orders", "want_lists"
+  add_foreign_key "tmp_abe_books_vendor_books", "tmp_abe_books_vendors", column: "vendor_id", name: "tmp_abe_books_vendor_books_tmp_abe_books_vendors_id_fk"
   add_foreign_key "users_want_lists", "users"
   add_foreign_key "users_want_lists", "want_lists"
   add_foreign_key "valore_orders", "valore_accounts"

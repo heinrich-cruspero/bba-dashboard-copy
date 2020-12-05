@@ -49,8 +49,22 @@ class RentalReturnsController < ApplicationController
   end
 
   def import
-    RentalReturn.import(params[:rental_returns_file], params[:fedex_account_id])
-    GenerateReturnsJob.perform_later
+    if params[:fedex_account_id].present?
+      accountable_id = params[:fedex_account_id]
+      accountable_type = 'FedexAccount'
+    elsif params[:easy_post_account_id].present?
+      accountable_id = params[:easy_post_account_id]
+      accountable_type = 'EasyPostAccount'
+    else
+      return redirect_to rental_returns_path, notice: 'Please select one of the account'
+    end
+    RentalReturn.import(params[:rental_returns_file], accountable_id, accountable_type)
+    if accountable_type = 'FedexAccount'
+      GenerateReturnsJob.perform_now
+    elsif accountable_type = 'EasyPostAccount'
+      puts 'easy_post'
+      EasyPostAccountsJob.perform_now
+    end
     redirect_to rental_returns_path, notice: 'Rental Returns Imported'
   end
 
@@ -61,6 +75,6 @@ class RentalReturnsController < ApplicationController
   end
 
   def rental_return_params
-    params.require(:rental_return).permit(:fedex_account_id, :email, :name, :phone_number, :street, :city, :state, :zip_code, :response)
+    params.require(:rental_return).permit(:fedex_account_id, :email, :name, :phone_number, :street, :city, :state, :zip_code, :accountable_type, :response)
   end
 end

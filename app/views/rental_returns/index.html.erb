@@ -9,7 +9,11 @@
 
   <%= form_with url: import_rental_returns_path, local: true do |form| %>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <%= form.select :fedex_account_id, FedexAccount.includes(:users).where(users: { id: current_user.id}).all.collect {|x| ["#{x.company_name}", x.id]}, {include_blank: 'Select Fedex Account'}, required: true %>
+      <%= form.select :fedex_account_id, FedexAccount.includes(:users).where(users: {id: current_user.id}).all.collect {|x| ["#{x.company_name}", x.id]}, {include_blank: 'Select Fedex Account'} %>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= form.select :easy_post_account_id, EasyPostAccount.includes(:users).where(users: {id: current_user.id}).all.collect {|x| ["#{x.company_name}", x.id]}, {include_blank: 'Select EasyPost Account'} %>
     </div>
 
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -25,7 +29,7 @@
     <table id="rental_returns-table", data-source="<%= rental_returns_path(format: :json) %>", class="mdl-data-table" width="100%" >
       <thead>
         <tr>
-          <th>Fedex account</th>
+          <th>Account Type</th>
           <th>Email</th>
           <th>Name</th>
           <th>Phone number</th>
