@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201204170323) do
+ActiveRecord::Schema.define(version: 20201205072021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,6 +188,10 @@ ActiveRecord::Schema.define(version: 20201204170323) do
     t.boolean "prod", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "parcel_width"
+    t.float "parcel_length"
+    t.float "parcel_height"
+    t.float "parcel_weight"
   end
 
   create_table "easy_post_accounts_users", force: :cascade do |t|

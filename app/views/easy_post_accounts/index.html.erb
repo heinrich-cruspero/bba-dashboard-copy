@@ -17,6 +17,10 @@
           <th>City</th>
           <th>State</th>
           <th>Zip code</th>
+          <th>Parcel Width</th>
+          <th>Parcel Length</th>
+          <th>Parcel Height</th>
+          <th>Parcel Weight</th>
           <th>Prod</th>
           <th colspan="3"></th>
         </tr>
@@ -33,6 +37,10 @@
             <td><%= easy_post_account.city %></td>
             <td><%= easy_post_account.state %></td>
             <td><%= easy_post_account.zip_code %></td>
+            <td><%= easy_post_account.parcel_width %></td>
+            <td><%= easy_post_account.parcel_length %></td>
+            <td><%= easy_post_account.parcel_height %></td>
+            <td><%= easy_post_account.parcel_weight %></td>
             <td><%= easy_post_account.prod %></td>
             <td><%= link_to 'Show', easy_post_account %></td>
             <td><%= link_to 'Edit', edit_easy_post_account_path(easy_post_account) %></td>

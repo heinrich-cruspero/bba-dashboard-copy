@@ -59,12 +59,7 @@ class RentalReturnsController < ApplicationController
       return redirect_to rental_returns_path, notice: 'Please select one of the account'
     end
     RentalReturn.import(params[:rental_returns_file], accountable_id, accountable_type)
-    if accountable_type = 'FedexAccount'
-      GenerateReturnsJob.perform_now
-    elsif accountable_type = 'EasyPostAccount'
-      puts 'easy_post'
-      EasyPostAccountsJob.perform_now
-    end
+    GenerateReturnsJob.perform_later(accountable_type)
     redirect_to rental_returns_path, notice: 'Rental Returns Imported'
   end
 

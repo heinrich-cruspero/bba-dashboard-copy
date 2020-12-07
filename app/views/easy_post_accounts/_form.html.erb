@@ -86,6 +86,38 @@
           <% end %>
         </div>
 
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :parcel_width, class: "mdl-textfield__label" %>
+          <%= form.text_field :parcel_width, id: :easy_post_account_parcel_width, class: "mdl-textfield__input", required: true %>
+          <% easy_post_account.errors.full_messages_for(:state).each do |message| %>
+              <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :parcel_length, class: "mdl-textfield__label" %>
+          <%= form.text_field :parcel_length, id: :easy_post_account_parcel_length, class: "mdl-textfield__input", required: true %>
+          <% easy_post_account.errors.full_messages_for(:state).each do |message| %>
+              <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :parcel_height, class: "mdl-textfield__label" %>
+          <%= form.text_field :parcel_height, id: :easy_post_account_parcel_height, class: "mdl-textfield__input", required: true %>
+          <% easy_post_account.errors.full_messages_for(:state).each do |message| %>
+              <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :parcel_weight, class: "mdl-textfield__label" %>
+          <%= form.text_field :parcel_weight, id: :easy_post_account_parcel_weight, class: "mdl-textfield__input", required: true %>
+          <% easy_post_account.errors.full_messages_for(:state).each do |message| %>
+              <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
         <div class="mdl-textfield mdl-js-textfield">
           <%= form.label :prod, class: "mdl-check_box__label" %>
           <%= form.check_box :prod, id: :easy_post_account_prod, class: "mdl-check_box__input" %>

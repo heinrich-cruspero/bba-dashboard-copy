@@ -1,4 +1,5 @@
 <%= javascript_include_tag 'rental_returns' %>
+<%= javascript_include_tag 'rental_returns_accounts' %>
 
 <p id="notice"><%= notice %></p>
 
@@ -9,11 +10,11 @@
 
   <%= form_with url: import_rental_returns_path, local: true do |form| %>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <%= form.select :fedex_account_id, FedexAccount.includes(:users).where(users: {id: current_user.id}).all.collect {|x| ["#{x.company_name}", x.id]}, {include_blank: 'Select Fedex Account'} %>
+      <%= form.select :fedex_account_id, FedexAccount.includes(:users).where(users: {id: current_user.id}).all.collect {|x| ["#{x.company_name}", x.id]}, {include_blank: 'Select Fedex Account'}, id: "fedex_accounts"  %>
     </div>
 
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <%= form.select :easy_post_account_id, EasyPostAccount.includes(:users).where(users: {id: current_user.id}).all.collect {|x| ["#{x.company_name}", x.id]}, {include_blank: 'Select EasyPost Account'} %>
+      <%= form.select :easy_post_account_id, EasyPostAccount.includes(:users).where(users: {id: current_user.id}).all.collect {|x| ["#{x.company_name}", x.id]}, {include_blank: 'Select EasyPost Account'}, id: "easy_post_accounts" %>
     </div>
 
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

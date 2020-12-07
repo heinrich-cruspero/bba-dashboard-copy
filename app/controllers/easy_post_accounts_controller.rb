@@ -52,6 +52,6 @@ class EasyPostAccountsController < ApplicationController
   end
 
   def easy_post_account_params
-    params.require(:easy_post_account).permit(:key, :account_number, :name, :company_name, :phone_number, :street, :city, :state, :zip_code, :country, :prod, user_ids: [])
+    params.require(:easy_post_account).permit(:key, :account_number, :name, :company_name, :phone_number, :street, :city, :state, :zip_code, :country, :parcel_width, :parcel_length, :parcel_height, :parcel_weight, :prod, user_ids: [])
   end
 end
