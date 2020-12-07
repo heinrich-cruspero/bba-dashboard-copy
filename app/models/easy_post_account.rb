@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EasyPostAccount < ApplicationRecord
   validates :key,
             :account_number,

@@ -51,12 +51,12 @@ class RentalReturnDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records(*)
-    RentalReturn.
-        joins("LEFT JOIN fedex_accounts ON rental_returns.accountable_id = fedex_accounts.id AND rental_returns.accountable_type = 'FedexAccount'").
-        joins("LEFT JOIN easy_post_accounts ON rental_returns.accountable_id = easy_post_accounts.id AND rental_returns.accountable_type = 'EasyPostAccount'").
-        joins('LEFT JOIN "fedex_accounts_users" ON "fedex_accounts_users"."fedex_account_id" = "fedex_accounts"."id"').
-        joins('LEFT JOIN "easy_post_accounts_users" ON "easy_post_accounts_users"."easy_post_account_id" = "easy_post_accounts"."id"').
-        where("fedex_accounts_users.user_id=#{@view.current_user.id} OR easy_post_accounts_users.user_id=#{@view.current_user.id}").
-        distinct
+    RentalReturn
+      .joins("LEFT JOIN fedex_accounts ON rental_returns.accountable_id = fedex_accounts.id AND rental_returns.accountable_type = 'FedexAccount'")
+      .joins("LEFT JOIN easy_post_accounts ON rental_returns.accountable_id = easy_post_accounts.id AND rental_returns.accountable_type = 'EasyPostAccount'")
+      .joins('LEFT JOIN "fedex_accounts_users" ON "fedex_accounts_users"."fedex_account_id" = "fedex_accounts"."id"')
+      .joins('LEFT JOIN "easy_post_accounts_users" ON "easy_post_accounts_users"."easy_post_account_id" = "easy_post_accounts"."id"')
+      .where("fedex_accounts_users.user_id=#{@view.current_user.id} OR easy_post_accounts_users.user_id=#{@view.current_user.id}")
+      .distinct
   end
 end

@@ -144,7 +144,7 @@ class RentalReturn < ApplicationRecord
 
   def self.import(file, accountable_id, accountable_type)
     CSV.foreach(file.path, headers: true) do |row|
-      RentalReturn.create! row.to_hash.merge('accountable_id' => accountable_id, 'accountable_type' =>  accountable_type)
+      RentalReturn.create! row.to_hash.merge('accountable_id' => accountable_id, 'accountable_type' => accountable_type)
     end
   end
 end

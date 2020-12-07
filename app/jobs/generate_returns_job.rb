@@ -36,13 +36,12 @@ class GenerateReturnsJob < ActiveJob::Base
     rental_returns.each do |rental_return|
       service = EasyPostService.new(rental_return)
       label_url = service.generate_label_url
-      if label_url.present?
-        rental_return.update(
-          label_url: label_url,
-          submitted: true
-        )
-        EasyPostMailer.email_label_url(rental_return).deliver_later
-      end
+      next unless label_url.present?
+      rental_return.update(
+        label_url: label_url,
+        submitted: true
+      )
+      EasyPostMailer.email_label_url(rental_return).deliver_later
     end
   end
 end
