@@ -6,7 +6,7 @@ RSpec.describe RentalReturn, type: :model do
   let(:fedex_account) { create(:fedex_account) }
 
   it 'is valid with valid attributes' do
-    expect(RentalReturn.new(fedex_account: fedex_account,
+    expect(RentalReturn.new(accountable: fedex_account,
                             email: Faker::Internet.email,
                             name: Faker::Name.name,
                             phone_number: Faker::PhoneNumber.phone_number,

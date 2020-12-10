@@ -12,6 +12,10 @@ class CreateEasyPostAccounts < ActiveRecord::Migration[5.1]
       t.string :zip_code, null: false
       t.string :country, null: false
       t.boolean :prod, default: false
+      t.float   :parcel_width, null: false
+      t.float   :parcel_length, null: false
+      t.float   :parcel_height, null: false
+      t.float   :parcel_weight, null: false
       t.timestamps
     end
   end
