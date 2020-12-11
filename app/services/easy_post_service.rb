@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-##
 require 'easypost'
 
+##
 class EasyPostService
   def initialize(rental_return)
     @rental_return = rental_return
