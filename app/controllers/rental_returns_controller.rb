@@ -70,6 +70,6 @@ class RentalReturnsController < ApplicationController
   end
 
   def rental_return_params
-    params.require(:rental_return).permit(:fedex_account_id, :email, :name, :phone_number, :street, :city, :state, :zip_code, :accountable_type, :response)
+    params.require(:rental_return).permit(:accountable_id, :email, :name, :phone_number, :street, :city, :state, :zip_code, :accountable_type, :response)
   end
 end

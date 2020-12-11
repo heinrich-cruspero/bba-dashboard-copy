@@ -9,7 +9,7 @@ RSpec.describe 'rental_returns/edit', type: :view do
     allow(controller).to receive(:action_name).and_return('edit')
 
     @rental_return = assign(:rental_return, RentalReturn.create!(
-                                              fedex_account: fedex_account,
+                                              accountable: fedex_account,
                                               email: 'MyString',
                                               name: 'MyString',
                                               phone_number: 'MyString',

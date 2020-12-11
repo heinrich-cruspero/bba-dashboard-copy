@@ -8,7 +8,7 @@
       <%= form_with(model: rental_return, local: true) do |form| %>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
           <%= form.select :fedex_account_id, FedexAccount.all.collect {|x| ["#{x.company_name}", x.id]}, {include_blank: 'Select Fedex Account', required: true} %>
-          <% rental_return.errors.full_messages_for(:fedex_account_id).each do |message| %>
+          <% rental_return.errors.full_messages_for(:accountable_id).each do |message| %>
             <span class="mdl-textfield__error"><%= message %></span>
           <% end %>
         </div>
