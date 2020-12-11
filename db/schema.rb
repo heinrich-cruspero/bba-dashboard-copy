@@ -70,14 +70,6 @@ ActiveRecord::Schema.define(version: 20201204030701) do
     t.index ["reference_id"], name: "index_abe_orders_on_reference_id"
   end
 
-  create_table "abebooks_temp", id: false, force: :cascade do |t|
-    t.string "vendor_id", limit: 255
-    t.string "vendor_name", limit: 255
-    t.bigint "quantity"
-    t.string "ean", limit: 255
-    t.index ["ean", "vendor_name"], name: "abebooks_temp_ean_vendor_name_index"
-  end
-
   create_table "accounts", force: :cascade do |t|
     t.bigint "source_id", null: false
     t.string "name", null: false
@@ -186,12 +178,12 @@ ActiveRecord::Schema.define(version: 20201204030701) do
     t.string "zip_code", null: false
     t.string "country", null: false
     t.boolean "prod", default: false
+    t.float "parcel_width", null: false
+    t.float "parcel_length", null: false
+    t.float "parcel_height", null: false
+    t.float "parcel_weight", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "parcel_width"
-    t.float "parcel_length"
-    t.float "parcel_height"
-    t.float "parcel_weight"
   end
 
   create_table "easy_post_accounts_users", force: :cascade do |t|
@@ -314,7 +306,6 @@ ActiveRecord::Schema.define(version: 20201204030701) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "submitted", default: false
-    t.string "tracking_number"
     t.string "accountable_type"
     t.string "label_url"
     t.index ["accountable_id"], name: "index_rental_returns_on_accountable_id"
@@ -382,6 +373,25 @@ ActiveRecord::Schema.define(version: 20201204030701) do
     t.index ["vendor_id", "vendor_name"], name: "tmp_abe_books_vendors_vendor_id_vendor_name_index"
     t.index ["vendor_id"], name: "tmp_abe_books_vendors_vendor_id_uindex", unique: true
     t.index ["vendor_name"], name: "tmp_abe_books_vendors_vendor_name_index"
+  end
+
+  create_table "tmp_indaba_data", id: false, force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "indaba_instance_id", null: false
+    t.integer "tqs", default: 0, null: false
+    t.integer "total_quantity", default: 0, null: false
+    t.integer "quantity_online", default: 0, null: false
+    t.float "lowest_price", default: 0.0, null: false
+    t.float "list_price", default: 0.0, null: false
+    t.float "lowest_good_price", default: 0.0, null: false
+    t.float "lowest_fba", default: 0.0, null: false
+    t.integer "sales_rank", default: 0, null: false
+    t.float "bbap", default: 0.0, null: false
+    t.float "direct", default: 0.0, null: false
+    t.float "w_nw", default: 0.0, null: false
+    t.float "whole_sale", default: 0.0, null: false
+    t.index ["book_id"], name: "index_tmp_indaba_data_on_book_id"
+    t.index ["indaba_instance_id"], name: "index_tmp_indaba_data_on_indaba_instance_id"
   end
 
   create_table "tracked_skus", force: :cascade do |t|
@@ -490,8 +500,8 @@ ActiveRecord::Schema.define(version: 20201204030701) do
     t.datetime "updated_at", null: false
     t.boolean "active"
     t.bigint "valore_account_id"
-    t.bigint "abe_account_id"
     t.string "upload_status"
+    t.bigint "abe_account_id"
     t.datetime "last_submitted_at"
     t.bigint "thrift_account_id"
     t.integer "valore_want_list_id"
@@ -511,8 +521,6 @@ ActiveRecord::Schema.define(version: 20201204030701) do
   add_foreign_key "abe_order_items", "abe_orders"
   add_foreign_key "accounts", "sources"
   add_foreign_key "amazon_data", "books"
-  add_foreign_key "fedex_accounts_users", "fedex_accounts"
-  add_foreign_key "fedex_accounts_users", "users"
   add_foreign_key "guide_data", "books"
   add_foreign_key "indaba_data", "books"
   add_foreign_key "indaba_instance_data", "books"
