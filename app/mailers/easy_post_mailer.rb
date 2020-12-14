@@ -2,12 +2,12 @@
 
 ##
 class EasyPostMailer < ApplicationMailer
-  default from: ENV['FROM_EMAIL'] || 'noreply@bbabackoffice.com'
+  default from: 'noreply@bbabackoffice.com'
 
   def email_label_url(rental_return)
     @rental_return = rental_return
     @easy_post = rental_return.accountable
 
-    mail(to: @rental_return.email, subject: 'Confirmation from EasyPost Email/Online Label')
+    mail(from: "'#{@easy_post.company_name}' <#{@easy_post.email}>", to: @rental_return.email, subject: 'Confirmation from EasyPost Email/Online Label')
   end
 end

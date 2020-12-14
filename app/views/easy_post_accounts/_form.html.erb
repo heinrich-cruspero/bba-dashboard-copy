@@ -39,6 +39,14 @@
         </div>
 
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= form.label :email, class: "mdl-textfield__label" %>
+          <%= form.text_field :email, id: :easy_post_account_email, class: "mdl-textfield__input", required: true %>
+          <% easy_post_account.errors.full_messages_for(:email).each do |message| %>
+              <span class="mdl-textfield__error"><%= message %></span>
+          <% end %>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
           <%= form.label :phone_number, class: "mdl-textfield__label" %>
           <%= form.text_field :phone_number, id: :easy_post_account_phone_number, class: "mdl-textfield__input", required: true %>
           <% easy_post_account.errors.full_messages_for(:phone_number).each do |message| %>

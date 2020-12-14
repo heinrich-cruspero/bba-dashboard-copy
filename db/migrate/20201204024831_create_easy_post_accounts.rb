@@ -6,6 +6,7 @@ class CreateEasyPostAccounts < ActiveRecord::Migration[5.1]
       t.string :name, null: false
       t.string :company_name, null: false
       t.string :phone_number, null: false
+      t.string :email, null: false
       t.string :street, null: false
       t.string :city, null: false
       t.string :state, null: false
