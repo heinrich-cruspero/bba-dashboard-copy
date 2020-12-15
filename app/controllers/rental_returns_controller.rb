@@ -49,17 +49,11 @@ class RentalReturnsController < ApplicationController
   end
 
   def import
-    if params[:fedex_account_id].present?
-      accountable_id = params[:fedex_account_id]
-      accountable_type = 'FedexAccount'
-    elsif params[:easy_post_account_id].present?
-      accountable_id = params[:easy_post_account_id]
-      accountable_type = 'EasyPostAccount'
-    else
+    unless params[:accountable_id].present?
       return redirect_to rental_returns_path, notice: 'Please select one of the account'
     end
-    RentalReturn.import(params[:rental_returns_file], accountable_id, accountable_type)
-    GenerateReturnsJob.perform_later(accountable_type)
+    RentalReturn.import(params[:rental_returns_file], params[:accountable_id], params[:accountable_type])
+    GenerateReturnsJob.perform_later(params[:accountable_type])
     redirect_to rental_returns_path, notice: 'Rental Returns Imported'
   end
 

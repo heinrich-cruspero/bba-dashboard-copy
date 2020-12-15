@@ -1,10 +1,12 @@
+<%= stylesheet_link_tag 'easy_post_accounts', media: 'all' %>
+
 <div class="mdl-layout mdl-js-layout">
   <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
     <div class="mdl-card__title">
       <h5 class="mdl-card__title-text mdl-color-text--grey"> <%= action_name.humanize %> Account</h5>
     </div>
 
-    <div class="mdl-card__supporting-text">
+    <div class="mdl-card__supporting-text easy_post_form">
       <%= form_with(model: easy_post_account, local: true) do |form| %>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
           <%= form.label :key, class: "mdl-textfield__label" %>

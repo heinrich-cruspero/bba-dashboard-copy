@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
+<%= javascript_include_tag 'easy_post_accounts' %>
+<%= stylesheet_link_tag 'easy_post_accounts', media: 'all' %>
 
 <div class="mdl-grid">
   <div class="mdl-cell mdl-cell--12-col mdl-color-text--grey">
@@ -6,14 +8,15 @@
   </div>
 
   <div class="mdl-cell mdl-cell--12-col">
-    <table id="east-post-accounts-table", class="mdl-data-table" >
+    <table id="easy_post_accounts-table", data-source="<%= easy_post_accounts_path(format: :json) %>", class="mdl-data-table" width="100%" >
       <thead>
         <tr>
           <th>Key</th>
           <th>Account number</th>
+          <th>Name</th>
           <th>Company name</th>
-          <th>Email</th>
           <th>Phone number</th>
+          <th>Email</th>
           <th>Street</th>
           <th>City</th>
           <th>State</th>
@@ -23,32 +26,12 @@
           <th>Parcel Height</th>
           <th>Parcel Weight</th>
           <th>Prod</th>
+          <th></th>
           <th colspan="3"></th>
         </tr>
       </thead>
 
       <tbody>
-        <% @easy_post_accounts.each do |easy_post_account| %>
-          <tr>
-            <td><%= easy_post_account.key %></td>
-            <td><%= easy_post_account.account_number %></td>
-            <td><%= easy_post_account.company_name %></td>
-            <td><%= easy_post_account.email %></td>
-            <td><%= easy_post_account.phone_number %></td>
-            <td><%= easy_post_account.street %></td>
-            <td><%= easy_post_account.city %></td>
-            <td><%= easy_post_account.state %></td>
-            <td><%= easy_post_account.zip_code %></td>
-            <td><%= easy_post_account.parcel_width %></td>
-            <td><%= easy_post_account.parcel_length %></td>
-            <td><%= easy_post_account.parcel_height %></td>
-            <td><%= easy_post_account.parcel_weight %></td>
-            <td><%= easy_post_account.prod %></td>
-            <td><%= link_to 'Show', easy_post_account %></td>
-            <td><%= link_to 'Edit', edit_easy_post_account_path(easy_post_account) %></td>
-            <td><%= link_to 'Destroy', easy_post_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
       </tbody>
     </table>
   </div>

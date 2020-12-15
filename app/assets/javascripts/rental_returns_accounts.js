@@ -4,6 +4,7 @@ $(function() {
             $('#easy_post_accounts').attr('disabled', false);
         } else {
             $('#easy_post_accounts').attr('disabled', 'disabeld');
+            $('.accountable_type_input').val('FedexAccount');
         }
     });
 
@@ -12,6 +13,7 @@ $(function() {
             $('#fedex_accounts').attr('disabled', false);
         } else {
             $('#fedex_accounts').attr('disabled', 'disabeld');
+            $('.accountable_type_input').val('EasyPostAccount');
         }
     });
 });

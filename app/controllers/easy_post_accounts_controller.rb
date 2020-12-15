@@ -5,7 +5,10 @@ class EasyPostAccountsController < ApplicationController
   before_action :set_easy_post_account, only: %i[show edit update destroy]
 
   def index
-    @easy_post_accounts = EasyPostAccount.all
+    respond_to do |format|
+      format.html
+      format.json { render json: EasyPostAccountDatatable.new(params, view_context: view_context) }
+    end
   end
 
   def show; end

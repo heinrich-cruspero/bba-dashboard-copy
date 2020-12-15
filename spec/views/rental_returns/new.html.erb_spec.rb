@@ -25,7 +25,7 @@ RSpec.describe 'rental_returns/new', type: :view do
     render
 
     assert_select 'form[action=?][method=?]', rental_returns_path, 'post' do
-      assert_select 'select[name=?]', 'rental_return[fedex_account_id]'
+      assert_select 'select[name=?]', 'rental_return[accountable_id]'
 
       assert_select 'input[name=?]', 'rental_return[email]'
 
