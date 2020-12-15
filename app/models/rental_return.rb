@@ -2,9 +2,9 @@
 
 ##
 class RentalReturn < ApplicationRecord
-  belongs_to :fedex_account
+  belongs_to :accountable, polymorphic: true
 
-  validates :fedex_account_id, :email, :name, :phone_number, :street, :city, :state, :zip_code, presence: true
+  validates :accountable_id, :email, :name, :phone_number, :street, :city, :state, :zip_code, presence: true
 
   require 'csv'
 
@@ -14,14 +14,14 @@ class RentalReturn < ApplicationRecord
           {
             UserCredential:
                   {
-                    Key: fedex_account.key.to_s,
-                    Password: fedex_account.password.to_s
+                    Key: accountable.key.to_s,
+                    Password: accountable.password.to_s
                   }
           },
       ClientDetail:
             {
-              AccountNumber: fedex_account.account_number.to_s,
-              MeterNumber: fedex_account.meter_number.to_s
+              AccountNumber: accountable.account_number.to_s,
+              MeterNumber: accountable.meter_number.to_s
             },
       TransactionDetail:
             {
@@ -39,7 +39,7 @@ class RentalReturn < ApplicationRecord
             {
               ShipTimestamp: Time.now.to_datetime,
               DropoffType: 'REGULAR_PICKUP',
-              ServiceType: fedex_account.service_type.to_s,
+              ServiceType: accountable.service_type.to_s,
               PackagingType: 'YOUR_PACKAGING',
               Shipper:
                     {
@@ -62,16 +62,16 @@ class RentalReturn < ApplicationRecord
                     {
                       Contact:
                           {
-                            PersonName: fedex_account.name.to_s,
-                            CompanyName: fedex_account.company_name.to_s,
-                            PhoneNumber: fedex_account.phone_number.to_s
+                            PersonName: accountable.name.to_s,
+                            CompanyName: accountable.company_name.to_s,
+                            PhoneNumber: accountable.phone_number.to_s
                           },
                       Address:
                             {
-                              StreetLines: fedex_account.street.to_s,
-                              City: fedex_account.city.to_s,
-                              StateOrProvinceCode: fedex_account.state.to_s,
-                              PostalCode: fedex_account.zip_code.to_s,
+                              StreetLines: accountable.street.to_s,
+                              City: accountable.city.to_s,
+                              StateOrProvinceCode: accountable.state.to_s,
+                              PostalCode: accountable.zip_code.to_s,
                               CountryCode: 'US',
                               Residential: 'false'
                             }
@@ -83,7 +83,7 @@ class RentalReturn < ApplicationRecord
                             {
                               ResponsibleParty:
                                   {
-                                    AccountNumber: fedex_account.account_number.to_s,
+                                    AccountNumber: accountable.account_number.to_s,
                                     Address:
                                           {
                                             CountryCode: 'US'
@@ -99,7 +99,7 @@ class RentalReturn < ApplicationRecord
                               ReturnType: 'PENDING',
                               ReturnEMailDetail:
                                     {
-                                      MerchantPhoneNumber: fedex_account.phone_number.to_s,
+                                      MerchantPhoneNumber: accountable.phone_number.to_s,
                                       AllowedSpecialServices: 'SATURDAY_DELIVERY'
                                     }
                             },
@@ -142,9 +142,9 @@ class RentalReturn < ApplicationRecord
     }
   end
 
-  def self.import(file, fedex_account_id)
+  def self.import(file, accountable_id, accountable_type)
     CSV.foreach(file.path, headers: true) do |row|
-      RentalReturn.create! row.to_hash.merge('fedex_account_id' => fedex_account_id)
+      RentalReturn.create! row.to_hash.merge('accountable_id' => accountable_id, 'accountable_type' => accountable_type)
     end
   end
 end
