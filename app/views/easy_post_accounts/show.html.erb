@@ -1,0 +1,97 @@
+<%= stylesheet_link_tag 'easy_post_accounts', media: 'all' %>
+
+<div class="mdl-layout mdl-js-layout">
+  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+    <div class="mdl-card__supporting-text easy_post_form">
+      <p id="notice"><%= notice %></p>
+
+      <p>
+        <strong>Key:</strong>
+        <%= @easy_post_account.key %>
+      </p>
+
+      <p>
+        <strong>Account number:</strong>
+        <%= @easy_post_account.account_number %>
+      </p>
+
+      <p>
+        <strong>Name:</strong>
+        <%= @easy_post_account.name %>
+      </p>
+
+      <p>
+        <strong>Company name:</strong>
+        <%= @easy_post_account.company_name %>
+      </p>
+
+      <p>
+        <strong>Company name:</strong>
+        <%= @easy_post_account.email %>
+      </p>
+
+      <p>
+        <strong>Phone number:</strong>
+        <%= @easy_post_account.phone_number %>
+      </p>
+
+      <p>
+        <strong>Street:</strong>
+        <%= @easy_post_account.street %>
+      </p>
+
+      <p>
+        <strong>City:</strong>
+        <%= @easy_post_account.city %>
+      </p>
+
+      <p>
+        <strong>State:</strong>
+        <%= @easy_post_account.state %>
+      </p>
+
+      <p>
+        <strong>Zip code:</strong>
+        <%= @easy_post_account.zip_code %>
+      </p>
+
+      <p>
+        <strong>Zip code:</strong>
+        <%= @easy_post_account.country %>
+      </p>
+
+      <p>
+        <strong>Parcel Length:</strong>
+        <%= @easy_post_account.parcel_length %>
+      </p>
+
+      <p>
+        <strong>Parcel Height:</strong>
+        <%= @easy_post_account.parcel_height %>
+      </p>
+
+      <p>
+        <strong>Parcel Weight:</strong>
+        <%= @easy_post_account.parcel_weight %>
+      </p>
+
+      <p>
+        <strong>Parcel Width:</strong>
+        <%= @easy_post_account.parcel_width %>
+      </p>
+
+      <p>
+        <strong>Prod:</strong>
+        <%= @easy_post_account.prod %>
+      </p>
+
+      <p>
+        <strong>User:</strong>
+        <%= @easy_post_account.users.map{ |user| user.email }.join(', ') %>
+      </p>
+
+      <%= link_to 'Edit', edit_easy_post_account_path(@easy_post_account) %> |
+      <%= link_to 'Back', easy_post_accounts_path %>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,7 @@ RSpec.describe 'rental_returns/show', type: :view do
 
   before(:each) do
     @rental_return = assign(:rental_return, RentalReturn.create!(
-                                              fedex_account: fedex_account,
+                                              accountable: fedex_account,
                                               email: 'Email',
                                               name: 'Name',
                                               phone_number: 'Phone Number',
@@ -21,7 +21,7 @@ RSpec.describe 'rental_returns/show', type: :view do
 
   it 'renders attributes in <p>' do
     render
-    expect(rendered).to match(/#{fedex_account.company_name}/)
+    expect(rendered).to match(/Fedex account/)
     expect(rendered).to match(/Email/)
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/Phone Number/)

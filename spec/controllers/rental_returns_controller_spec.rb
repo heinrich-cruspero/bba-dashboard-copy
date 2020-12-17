@@ -11,15 +11,16 @@ RSpec.describe RentalReturnsController, type: :controller do
 
   let(:valid_attributes) do
     {
-      fedex_account_id: fedex_account.id, email: Faker::Internet.email, name: Faker::Name.name,
+      accountable_id: fedex_account.id, email: Faker::Internet.email, name: Faker::Name.name,
       phone_number: Faker::PhoneNumber.phone_number, street: Faker::Address.street_address,
-      city: Faker::Address.city, state: Faker::Address.state, zip_code: Faker::Address.zip_code
+      city: Faker::Address.city, state: Faker::Address.state, zip_code: Faker::Address.zip_code,
+      accountable_type: 'FedexAccount'
     }
   end
 
   let(:invalid_attributes) do
     {
-      fedex_account_id: nil, email: Faker::Internet.email, name: Faker::Name.name,
+      accountable_id: nil, email: Faker::Internet.email, name: Faker::Name.name,
       phone_number: Faker::PhoneNumber.phone_number, street: Faker::Address.street_address,
       city: Faker::Address.city, state: Faker::Address.state, zip_code: Faker::Address.zip_code
     }
@@ -83,7 +84,7 @@ RSpec.describe RentalReturnsController, type: :controller do
     context 'with valid params' do
       let(:new_attributes) do
         {
-          fedex_account_id: fedex_account.id, email: Faker::Internet.email, name: Faker::Name.name,
+          accountable_id: fedex_account.id, email: Faker::Internet.email, name: Faker::Name.name,
           phone_number: Faker::PhoneNumber.phone_number, street: Faker::Address.street_address,
           city: Faker::Address.city, state: Faker::Address.state, zip_code: Faker::Address.zip_code
         }

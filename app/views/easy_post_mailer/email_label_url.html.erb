@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <p>Hello <%= @rental_return.name %></p>
+  <p><%= @easy_post.company_name %> has provided 1 shipping label for your convenience.</p>
+  <p>You can print the label by the clicking on the following link <%= @rental_return.label_url %></p>
+  <p>Please pack your rental textbooks in a box or envelope securely and attach the above label.</p>
+  <p>Thank you,</p>
+  <p><%= @easy_post.company_name %></p>
+</body>
+</html>
