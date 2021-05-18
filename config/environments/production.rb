@@ -90,19 +90,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = true
-
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :smtp
-
-  config.action_mailer.smtp_settings = {
-    port: Rails.application.secrets.smtp[:port],
-    address: Rails.application.secrets.smtp[:host],
-    user_name: Rails.application.secrets.smtp[:username],
-    password: Rails.application.secrets.smtp[:password],
-    enable_starttls_auto: true,
-    authentication: 'plain'
-  }
 end
