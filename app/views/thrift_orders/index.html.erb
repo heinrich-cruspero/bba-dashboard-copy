@@ -1,26 +1,29 @@
-<%= javascript_include_tag 'thrift_orders' %>
 
-<p id="notice"><%= notice %></p>
-
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--12-col mdl-color-text--grey">
-    <h5>Thrift Orders</h5>
+<div class="row">
+  <div class="col-sm">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+      <h1 class="h2">Thrift Orders</h1>
+    </div>
   </div>
+  <div class="col-sm">
 
-  <div class="mdl-cell mdl-cell--10-col">
-    <table id="thrift_orders-table" data-source="<%= thrift_orders_path(format: :json) %>" class="mdl-data-table">
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <table id="thrift_orders-table" data-source="<%= thrift_orders_path(format: :json) %>"  data-turbolinks='false'>
       <thead>
-      <tr>
+        <tr>
         <th>ExternalOrderId</th>
         <th>WantList</th>
         <th>Status</th>
         <th>CreatedAt</th>
         <th>UpdatedAt</th>
         <th></th>
-      </tr>
+        </tr>
       </thead>
-
       <tbody>
+
       </tbody>
     </table>
   </div>

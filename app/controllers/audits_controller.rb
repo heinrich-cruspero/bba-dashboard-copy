@@ -2,7 +2,6 @@
 
 ##
 class AuditsController < ApplicationController
-  load_and_authorize_resource
 
   before_action :set_audit, only: %i[show edit update destroy]
 

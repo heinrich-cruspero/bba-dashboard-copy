@@ -2,7 +2,6 @@
 
 ##
 class WantListItemsController < ApplicationController
-  load_and_authorize_resource
 
   before_action :set_want_list_item, only: %i[edit update destroy]
   before_action :set_session_referer, only: %i[edit new]

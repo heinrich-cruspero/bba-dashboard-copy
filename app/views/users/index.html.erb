@@ -1,12 +1,16 @@
-<%= javascript_include_tag 'users' %>
-
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--12-col mdl-color-text--grey">
-    <h5>Manage Users</h5>
+<div class="row">
+  <div class="col-sm">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+      <h1 class="h2">Manage Users</h1>
+    </div>
   </div>
+  <div class="col-sm">
 
-  <div class="mdl-cell mdl-cell--12-col">
-    <table id="users-table", data-source="<%= users_path(format: :json) %>", class="mdl-data-table" width="100%" >
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <table id="users-table" data-source="<%= users_path(format: :json) %>" data-turbolinks='false'>
       <thead>
         <tr>
           <th>Email</th>
@@ -14,8 +18,8 @@
           <th></th>
         </tr>
       </thead>
-
       <tbody>
+
       </tbody>
     </table>
   </div>

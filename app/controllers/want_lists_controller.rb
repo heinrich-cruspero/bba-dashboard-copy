@@ -2,7 +2,6 @@
 
 ##
 class WantListsController < ApplicationController
-  load_and_authorize_resource
 
   require 'csv'
 

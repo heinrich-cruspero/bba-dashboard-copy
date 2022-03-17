@@ -3,7 +3,7 @@
 ##
 class ReportingPagesController < ApplicationController
   def index
-    authorize! :index, ReportingPagesController
+    # authorize! :index, ReportingPagesController
 
     @valore_accounts = ValoreAccount.all.select(:id, :name)
     params.permit!

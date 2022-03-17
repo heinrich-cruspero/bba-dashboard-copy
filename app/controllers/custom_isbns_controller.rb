@@ -2,7 +2,6 @@
 
 ##
 class CustomIsbnsController < ApplicationController
-  load_and_authorize_resource
 
   before_action :set_custom_isbn, only: %i[show edit update destroy]
 

@@ -1,14 +1,17 @@
-<%= javascript_include_tag 'want_lists' %>
 
-<p id="notice" ><%= notice %></p>
-
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--12-col mdl-color-text--grey">
-    <h5>Manage Wantlists</h5>
+<div class="row">
+  <div class="col-sm">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+      <h1 class="h2">Manage Wantlists</h1>
+    </div>
   </div>
+  <div class="col-sm">
 
-  <div class="mdl-cell mdl-cell--12-col">
-    <table id="want-lists-table" data-source="<%= want_lists_path(format: :json) %>" class="mdl-data-table" width="100%">
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <table id="want-lists-table" data-source="<%= want_lists_path(format: :json) %>" data-turbolinks='false'>
       <thead>
         <tr>
           <th>Name</th>
@@ -20,13 +23,9 @@
           <th></th>
         </tr>
       </thead>
-
       <tbody>
+
       </tbody>
     </table>
-  </div>
-
-  <div class="mdl-cell mdl-cell--12-col">
-    <%= button_to 'New Want List', new_want_list_path, :method => "get", class: "mdl-button mdl-button--colored" %>
   </div>
 </div>

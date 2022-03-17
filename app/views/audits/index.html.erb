@@ -1,29 +1,31 @@
-<%= javascript_include_tag 'audits' %>
-
-<p id="notice"><%= notice %></p>
-
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--12-col mdl-color-text--grey">
-    <h5>Audits</h5>
+<div class="row">
+  <div class="col-sm">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+      <h1 class="h2">Audits</h1>
+    </div>
   </div>
+  <div class="col-sm">
 
-  <div class="mdl-cell mdl-cell--12-col">
-    <table id="audits-table", data-source="<%= audits_path(format: :json) %>", class="mdl-data-table" width="100%" >
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <table id="audits-table" data-source="<%= audits_path(format: :json) %>" data-turbolinks='false'>
       <thead>
-      <tr>
-        <th>Sku</th>
-        <th>Status</th>
-        <th>Notes</th>
-        <th>Internal price 4</th>
-        <th>Internal note 1</th>
-        <th>Internal note 2</th>
-        <th>Internal note 3</th>
-        <th>Date created</th>
-        <th></th>
-      </tr>
+        <tr>
+          <th>Sku</th>
+          <th>Status</th>
+          <th>Notes</th>
+          <th>Internal price 4</th>
+          <th>Internal note 1</th>
+          <th>Internal note 2</th>
+          <th>Internal note 3</th>
+          <th>Date created</th>
+          <th></th>
+        </tr>
       </thead>
-
       <tbody>
+
       </tbody>
     </table>
   </div>

@@ -1,6 +1,3 @@
-<%= javascript_include_tag 'reporting_pages_date_range' %>
-<%= javascript_include_tag 'reporting_pages' %>
-<%= javascript_include_tag 'channels/file_download_channel' %>
 
 <%= form_tag reporting_pages_url, method: :get, class:'mdl-cell mdl-cell--12-col graybox' do %>
   <% searched_valore_ids = params['data'] ? params['data']['valore_account_ids'] : nil %>
@@ -32,26 +29,28 @@
   </div>
 </div>
 
-<div class="mdl-cell mdl-cell--12-col">
-  <table id="reporting-pages-table", data-source="<%= reporting_pages_path(format: :json, data: @data  ) %>", class="mdl-data-table" width="100%" >
-    <thead>
-      <tr>
-        <th>ISBN</th>
-        <th>OrderCount</th>
-        <th>MaxPrice</th>
-        <th>AvgPrice</th>
-        <th>Author</th>
-        <th>Title</th>
-        <th>Publisher</th>
-        <th>PubDate</th>
-        <th>Edition</th>
-        <th>List</th>
-      </tr>
-    </thead>
+<div class="row">
+  <div class="col-sm">
+    <table id="reporting-pages-table" data-source="<%= reporting_pages_path(format: :json) %>" data-turbolinks='false'>
+      <thead>
+        <tr>
+          <th>ISBN</th>
+          <th>OrderCount</th>
+          <th>MaxPrice</th>
+          <th>AvgPrice</th>
+          <th>Author</th>
+          <th>Title</th>
+          <th>Publisher</th>
+          <th>PubDate</th>
+          <th>Edition</th>
+          <th>List</th>
+        </tr>
+      </thead>
+      <tbody>
 
-    <tbody>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <dialog id="blockModal" class="mdl-dialog mdl-typography--text-center">

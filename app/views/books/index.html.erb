@@ -1,41 +1,49 @@
-<%= javascript_include_tag 'books' %>
-<%= stylesheet_link_tag 'books', media: 'all' %>
+<div class="row">
+  <div class="col-sm">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+      <h1 class="h2">Books</h1>
+    </div>
+  </div>
+  <div class="col-sm">
 
-<table id="books-table" data-source="<%= books_path(format: :json) %>" class="mdl-cell mdl-cell--10-col mdl-data-table" cellspacing="0" width="100%">
-  <thead>
-  <tr>
-    <th>EAN</th>
-    <th>ISBN</th>
-    <th>Author</th>
-    <th>Title</th>
-    <th>PubDate</th>
-    <th>TQS</th>
-    <th><div id='DayDirect'>DD</div><div class='mdl-tooltip' data-mdl-for='DayDirect'>DayDirect</div></th>
-    <th><div id='WeekDirect'>WD</div><div class='mdl-tooltip' data-mdl-for='WeekDirect'>WeekDirect</div></th>
-    <th><div id='MonthDirect'>MD</div><div class='mdl-tooltip' data-mdl-for='MonthDirect'>MonthDirect</div></th>
-    <th><div id='YearDirect'>YD</div><div class='mdl-tooltip' data-mdl-for='YearDirect'>YearDirect</div></th>
-    <th>BBAP</th>
-    <th>7SQMD</th>
-    <th>Low</th>
-    <th>FBALow</th>
-    <th>SalesRank</th>
-    <th>ListPrice</th>
-    <th>W/NW</th>
-    <th><div id='WholeSale'>WS</div><div class='mdl-tooltip' data-mdl-for='WholeSale'>WholeSale</div></th>
-    <th>Direct</th>
-    <th>1DQCA</th>
-    <th>7DQCA</th>
-    <th><div id='DayAmz'>DA</div><div class='mdl-tooltip' data-mdl-for='DayAmz'>DayAmz</div></th>
-    <th><div id='WeekAmz'>WA</div><div class='mdl-tooltip' data-mdl-for='WeekAmz'>WeekAmz</div></th>
-    <th><div id='MonthAmz'>MA</div><div class='mdl-tooltip' data-mdl-for='MonthAmz'>MonthAmz</div></th>
-    <th><div id='YearAmz'>YA</div><div class='mdl-tooltip' data-mdl-for='YearAmz'>YearAmz</div></th>
-    <th>Last Update</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<div id="details" class="mdl-cell mdl-cell--2-col">
+  </div>
 </div>
+<div class="row">
+  <div class="col-sm">
+    <table id="books-datatable" data-source="<%= books_path(format: :json) %>" data-turbolinks='false'>
+      <thead>
+        <tr>
+          <th>EAN</th>
+          <th>ISBN</th>
+          <th>Author</th>
+          <th>Title</th>
+          <th>PubDate</th>
+          <th>TQS</th>
+          <th><div id='DayDirect'>DD</div><div class='mdl-tooltip' data-mdl-for='DayDirect'>DayDirect</div></th>
+          <th><div id='WeekDirect'>WD</div><div class='mdl-tooltip' data-mdl-for='WeekDirect'>WeekDirect</div></th>
+          <th><div id='MonthDirect'>MD</div><div class='mdl-tooltip' data-mdl-for='MonthDirect'>MonthDirect</div></th>
+          <th><div id='YearDirect'>YD</div><div class='mdl-tooltip' data-mdl-for='YearDirect'>YearDirect</div></th>
+          <th>BBAP</th>
+          <th>7SQMD</th>
+          <th>Low</th>
+          <th>FBALow</th>
+          <th>SalesRank</th>
+          <th>ListPrice</th>
+          <th>W/NW</th>
+          <th><div id='WholeSale'>WS</div><div class='mdl-tooltip' data-mdl-for='WholeSale'>WholeSale</div></th>
+          <th>Direct</th>
+          <th>1DQCA</th>
+          <th>7DQCA</th>
+          <th><div id='DayAmz'>DA</div><div class='mdl-tooltip' data-mdl-for='DayAmz'>DayAmz</div></th>
+          <th><div id='WeekAmz'>WA</div><div class='mdl-tooltip' data-mdl-for='WeekAmz'>WeekAmz</div></th>
+          <th><div id='MonthAmz'>MA</div><div class='mdl-tooltip' data-mdl-for='MonthAmz'>MonthAmz</div></th>
+          <th><div id='YearAmz'>YA</div><div class='mdl-tooltip' data-mdl-for='YearAmz'>YearAmz</div></th>
+          <th>Last Update</th>
+        </tr>
+      </thead>
+      <tbody>
 
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -6,7 +6,7 @@ class WantListItemDatatable < AjaxDatatablesRails::ActiveRecord
 
   def_delegator :@view, :link_to
   def_delegator :@view, :edit_want_list_item_path
-  def_delegator :@view, :tooltip_field
+  # def_delegator :@view, :tooltip_field
 
   def initialize(params, opts = {})
     @view = opts[:view_context]
@@ -38,8 +38,8 @@ class WantListItemDatatable < AjaxDatatablesRails::ActiveRecord
         quantity: record.quantity,
         quantity_purchased: record.quantity_purchased,
         max_price: record.max_price,
-        author: record.book.nil? ? '' : tooltip_field('author', record.book.id, record.book.author),
-        title: record.book.nil? ? '' : tooltip_field('title', record.book.id, record.book.title),
+        author: record.book.nil? ? '', # : tooltip_field('author', record.book.id, record.book.author),
+        title: record.book.nil? ? '', #: tooltip_field('title', record.book.id, record.book.title),
         publisher: record.book.nil? ? '' : record.book.publisher,
         edition: record.book.nil? ? '' : record.book.edition,
         list_price: record.book.nil? ? '' : record.book.list_price,

@@ -2,7 +2,6 @@
 
 ##
 class BooksController < ApplicationController
-  load_and_authorize_resource
 
   before_action :check_permission, only: [:index]
   before_action :set_book, only: [:details]
