@@ -10,6 +10,15 @@
 </div>
 <div class="row">
   <div class="col-sm">
+    <div class="btn-toolbar mb-2 mb-md-0 float-end">
+      <div class="btn-grp mr-2">
+        <%= button_to 'New EasyPost Account', new_easy_post_account_path, :method => "get", class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
     <table id="easy_post_accounts-table" data-source="<%= easy_post_accounts_path(format: :json) %>" data-turbolinks='false'>
       <thead>
         <tr>

@@ -88,3 +88,5 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap4'
 
 gem 'cssbundling-rails'
+gem 'aws-sdk-rails'
+gem 'aws-sdk-s3'

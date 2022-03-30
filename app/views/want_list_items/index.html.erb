@@ -6,6 +6,17 @@
   </div>
   <div class="col-sm"></div>
 </div>
+
+<div class="row">
+  <div class="col-sm">
+    <div class="btn-toolbar mb-2 mb-md-0 float-end">
+      <div class="btn-grp mr-2">
+        <%= button_to 'New Want List Item', new_want_list_item_path, :method => "get", class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-sm">
     <table id="all-want-list-items-table" data-source="<%= want_list_items_path(format: :json)%>" data-turbolinks='false'>
