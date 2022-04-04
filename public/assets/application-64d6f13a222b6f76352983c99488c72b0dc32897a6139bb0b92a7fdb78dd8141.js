@@ -17,4 +17,4 @@ import "custom/tracked_skus_datatable"
 import "custom/audits_datatable"
 import "custom/thrift_orders_datatable"
 import "custom/easy_post_accounts_datatable"
-import "custom/reporting_pages_datatable"
+import "custom/reporting_pages_datatable";
