@@ -7,11 +7,10 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm">
+<div class="row w-50">
     <%= form_with(model: want_list, local: true) do |form| %>
       <div class="form-group">
-        <%= form.label :name, class: "" %>
+        <%= form.label :name, class: "form-label" %>
         <%= form.text_field :name, id: :want_list_name, class: "form-control" %>
         <% want_list.errors.full_messages_for(:name).each do |message| %>
           <span class="alert alert-primary"><%= message %></span>
@@ -20,8 +19,10 @@
 
       </br>
 
-      <div class="btn-group" data-toggle="buttons-radio">
-        <%= form.collection_radio_buttons :want_list_privacy_id, WantListPrivacy.all, :id, :name, class: 'radio' %>
+      <div class="form-check" data-toggle="buttons-radio">
+        <%= form.collection_radio_buttons :want_list_privacy_id, WantListPrivacy.all, :id, :name do |b| %>
+          <%= b.label { b.radio_button(class: "form-check-input") + " " + b.text } %> <br>
+        <% end %>
         <% want_list.errors.full_messages_for(:want_list_privacy_id).each do |message| %>
           <span class="alert alert-primary"><%= message %></span>
         <% end %>
@@ -39,27 +40,27 @@
 
       </br>
 
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <%= form.file_field :want_list_items, class: "mdl-textfield__input" %>
+      <div class="mb-3">
+        <%= form.file_field :want_list_items, class: "form-control" %>
         <% want_list.errors.full_messages_for(:want_list_items).each do |message| %>
           <span class="mdl-textfield__error"><%= message %></span>
         <% end %>
       </div>
 
-      <div>
-        <%= form.label :active, class: "mdl-checkbox__label" %>
-        <%= form.check_box :active, class: "mdl-checkbox__input" %>
+      <div class="mb-3">
+        <%= form.label :active, class: "form-label" %>
+        <%= form.check_box :active, class: "form-check-input" %>
       </div>
 
-      <div>
-        <%= form.label :reset, class: "mdl-checkbox__label" %>
-        <%= form.check_box :reset, class: "mdl-checkbox__input" %>
+      <div class="mb-3">
+        <%= form.label :reset, class: "form-label" %>
+        <%= form.check_box :reset, class: "form-check-input" %>
       </div>
 
       <% if current_user.admin? %>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :valore_account_id, 'Valore Account', class: "mdl-checkbox__label" %></br>
-          <%= form.select :valore_account_id, ValoreAccount.all.collect {|x| [x.name, x.id]}, {include_blank: 'Select Valore Account'} %>
+        <div class="mb-3">
+          <%= form.label :valore_account_id, 'Valore Account', class: "form-label" %></br>
+          <%= form.select :valore_account_id, ValoreAccount.all.collect {|x| [x.name, x.id]}, {include_blank: 'Select Valore Account'}, class: "form-control" %>
           <% want_list.errors.full_messages_for(:valore_account_id).each do |message| %>
             <span class="mdl-textfield__error"><%= message %></span>
           <% end %>
@@ -67,9 +68,9 @@
 
         </br>
 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :valore_want_list_id, 'Valore Want List ID', class: "mdl-checkbox__label" %></br>
-          <%= form.select :valore_want_list_id, [1,2,3,4,5], {include_blank: 'Select Valore Want list ID'} %>
+        <div class="mb-3">
+          <%= form.label :valore_want_list_id, 'Valore Want List ID', class: "form-label" %></br>
+          <%= form.select :valore_want_list_id, [1,2,3,4,5], {include_blank: 'Select Valore Want list ID'}, class: "form-control" %>
           <% want_list.errors.full_messages_for(:valore_want_list_id).each do |message| %>
             <span class="mdl-textfield__error"><%= message %></span>
           <% end %>
@@ -77,9 +78,9 @@
 
         </br>
 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <div class="mb-3">
           <%= form.label :valore_po_number, class: "mdl-textfield__label" %>
-          <%= form.text_field :valore_po_number, id: :want_list_valore_po_number, class: "mdl-textfield__input" %>
+          <%= form.text_field :valore_po_number, id: :want_list_valore_po_number, class: "form-control" %>
           <% want_list.errors.full_messages_for(:valore_po_number).each do |message| %>
             <span class="mdl-textfield__error"><%= message %></span>
           <% end %>
@@ -89,7 +90,7 @@
 
         <div class="mdl-textfield mdl-js-textfield">
           <%= form.label :valore_shipment_date %>
-          <%= form.date_field :valore_shipment_date, id: :want_list_valore_shipment_date, class: "mdl-textfield__input" %>
+          <%= form.date_field :valore_shipment_date, id: :want_list_valore_shipment_date, class: "form-control" %>
           <% want_list.errors.full_messages_for(:valore_shipment_date).each do |message| %>
             <span class="mdl-textfield__error"><%= message %></span>
           <% end %>
@@ -97,9 +98,9 @@
 
         </br>
 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :valore_shipment_frequency, 'Valore Shipment Frequency', class: "mdl-checkbox__label" %></br>
-          <%= form.select :valore_shipment_frequency, %i[Weekly Pallet Scheduled], {include_blank: 'Select Valore Shipment Frequency'} %>
+        <div class="mb-3">
+          <%= form.label :valore_shipment_frequency, 'Valore Shipment Frequency', class: "form-label" %></br>
+          <%= form.select :valore_shipment_frequency, %i[Weekly Pallet Scheduled], {include_blank: 'Select Valore Shipment Frequency'}, class: "form-control" %>
           <% want_list.errors.full_messages_for(:valore_shipment_frequency).each do |message| %>
             <span class="mdl-textfield__error"><%= message %></span>
           <% end %>
@@ -107,9 +108,9 @@
 
         </br>
 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :abe_account_id, 'Abe Account', class: "mdl-checkbox__label" %></br>
-          <%= form.select :abe_account_id, AbeAccount.all.collect {|x| [x.email, x.id]}, {include_blank: 'Select Abe Account'} %>
+        <div class="mb-3">
+          <%= form.label :abe_account_id, 'Abe Account', class: "form-label" %></br>
+          <%= form.select :abe_account_id, AbeAccount.all.collect {|x| [x.email, x.id]}, {include_blank: 'Select Abe Account'}, class: "form-control" %>
           <% want_list.errors.full_messages_for(:abe_account_id).each do |message| %>
             <span class="mdl-textfield__error"><%= message %></span>
           <% end %>
@@ -117,9 +118,9 @@
 
         </br>
 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :thrift_account_id, 'Thrift Account', class: "mdl-checkbox__label" %></br>
-          <%= form.select :thrift_account_id, ThriftAccount.all.collect {|x| [x.name, x.id]}, {include_blank: 'Select Thrift Account'} %>
+        <div class="mb-3">
+          <%= form.label :thrift_account_id, 'Thrift Account', class: "form-label" %></br>
+          <%= form.select :thrift_account_id, ThriftAccount.all.collect {|x| [x.name, x.id]}, {include_blank: 'Select Thrift Account'}, class: "form-control" %>
           <% want_list.errors.full_messages_for(:thrift_account_id).each do |message| %>
             <span class="mdl-textfield__error"><%= message %></span>
           <% end %>
@@ -127,10 +128,8 @@
       <% end %>
 
       <div class="mdl-card__actions">
+        <%= link_to 'Back', want_lists_path, class: "btn btn-secondary"%>
         <%= form.submit "Submit", class: "btn btn-success" %>
       </div>
     <% end %>
-
-    <%= link_to 'Back', want_lists_path, class: "btn btn-secondary" %>
-  </div>
 </div>

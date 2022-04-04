@@ -1,58 +1,58 @@
-<div class="mdl-layout mdl-js-layout">
-  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
-    <div class="mdl-card__title">
-      <h5 class="mdl-card__title-text mdl-color-text--grey">New Items</h5>
-    </div>
-
-    <div class="mdl-card__supporting-text">
-      <%= form_with(model: want_list_item, local: true) do |form| %>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :want_list_id, class: "mdl-textfield__label"  %>
-          <%= form.select :want_list_id, current_user.all_want_lists.collect { |x| [x.name, x.id] }, {}, {class: "mdl-textfield__input"} %>
-        </div>
-
-        <br />
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :ean, class: "mdl-textfield__label" %>
-          <%= form.text_field :ean, id: :want_list_item_ean, class: "mdl-textfield__input", required: true %>
-          <% want_list_item.errors.full_messages_for(:ean).each do |message| %>
-              <span class="mdl-textfield__error"><%= message %></span>
-              <br />
-          <% end %>
-        </div>
-
-        <br />
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :quantity, class: "mdl-textfield__label" %>
-          <%= form.number_field :quantity, id: :want_list_item_quantity, class: "mdl-textfield__input" %>
-          <% want_list_item.errors.full_messages_for(:quantity).each do |message| %>
-              <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <br>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :max_price, class: "mdl-textfield__label" %>
-          <%= form.text_field :max_price, id: :want_list_item_max_price, class: "mdl-textfield__input" %>
-          <% want_list_item.errors.full_messages_for(:max_price).each do |message| %>
-              <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <br />
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :expiration_date %>
-          <%= form.date_field :expiration_date, class: "mdl-textfield__input" %>
-        </div>
-
-        <div class="mdl-card__actions">
-          <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
-        </div>
-      <% end %>
+<div class="row">
+  <div class="col-sm">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-1">
+      <h5 class="h2">New Items</h5>
     </div>
   </div>
+</div>
+
+<div class="row w-50">
+  <%= form_with(model: want_list_item, local: true) do |form| %>
+    <div class="mb-1">
+      <%= form.label :want_list_id, class: "mdl-textfield__label"  %>
+      <%= form.select :want_list_id, current_user.all_want_lists.collect { |x| [x.name, x.id] }, {}, {class: "form-control"} %>
+    </div>
+
+    <br />
+
+    <div class="mb-1">
+      <%= form.label :ean, class: "mdl-textfield__label" %>
+      <%= form.text_field :ean, id: :want_list_item_ean, class: "form-control", required: true %>
+      <% want_list_item.errors.full_messages_for(:ean).each do |message| %>
+          <span class="mdl-textfield__error"><%= message %></span>
+          <br />
+      <% end %>
+    </div>
+
+    <br />
+
+    <div class="mb-1">
+      <%= form.label :quantity, class: "mdl-textfield__label" %>
+      <%= form.number_field :quantity, id: :want_list_item_quantity, class: "form-control" %>
+      <% want_list_item.errors.full_messages_for(:quantity).each do |message| %>
+          <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <br>
+
+    <div class="mb-1">
+      <%= form.label :max_price, class: "mdl-textfield__label" %>
+      <%= form.text_field :max_price, id: :want_list_item_max_price, class: "form-control" %>
+      <% want_list_item.errors.full_messages_for(:max_price).each do |message| %>
+          <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <br />
+
+    <div class="mb-1">
+      <%= form.label :expiration_date %>
+      <%= form.date_field :expiration_date, class: "form-control" %>
+    </div>
+
+    <div class="mb-1">
+      <%= form.submit "Submit", class: "btn btn-success" %>
+    </div>
+  <% end %>
 </div>
