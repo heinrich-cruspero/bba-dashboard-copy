@@ -587,6 +587,6 @@ table.records_table th {
   float: right !important;
 }
 
-.dataTables_paginate.paging_full_numbers {
+.dataTables_paginate .paging_full_numbers {
   float: right !important;
 }
