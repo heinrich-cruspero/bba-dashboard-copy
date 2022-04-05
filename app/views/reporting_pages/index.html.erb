@@ -2,19 +2,25 @@
 <%= form_tag reporting_pages_url, method: :get, class:'mdl-cell mdl-cell--12-col graybox' do %>
   <% searched_valore_ids = params['data'] ? params['data']['valore_account_ids'] : nil %>
   <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--6-col">
+    <div class="mb-3">
       <label>Select Account</label>
-      <% @valore_accounts.each do |valore_account| %>
-        <%= check_box_tag "data[valore_account_ids][]", valore_account.id, (searched_valore_ids ? searched_valore_ids.include?(valore_account.id.to_s) : nil)%>
+      <% @valore_accounts.each do |valore_account| %><br>
+        <%= check_box_tag "data[valore_account_ids][]", valore_account.id, (searched_valore_ids ? searched_valore_ids.include?(valore_account.id.to_s) : nil), class: "form-check-input" %>
         <%= label_tag valore_account.name %>
       <% end %>
     </div>
 
-    <label>Select Order Created Date</label>
-    <%= text_field_tag "data[from_date]", (params['data'] ? params['data']['from_date'] : nil), id: 'from_date', class: 'mdl-cell mdl-cell--2-col', autocomplete: 'off' %>
-    <%= text_field_tag "data[to_date]", (params['data'] ? params['data']['to_date'] : nil), id: 'to_date', class: 'mdl-cell mdl-cell--2-col', autocomplete: 'off' %>
-    <%= submit_tag 'Search', name: nil, id: 'search_valore_orders', class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
-    <%= link_to 'Reset', reporting_pages_url %>
+    <div class="mb-3">
+      <label>Select Order Created Date</label>
+      <%= text_field_tag "data[from_date]", (params['data'] ? params['data']['from_date'] : nil), id: 'from_date', class: 'form-control w-25', autocomplete: 'off' %>
+      <%= text_field_tag "data[to_date]", (params['data'] ? params['data']['to_date'] : nil), id: 'to_date', class: 'form-control w-25', autocomplete: 'off' %>
+    </div>
+
+    <div class="mb-3">
+      <%= submit_tag 'Search', name: nil, id: 'search_valore_orders', class: 'btn btn-secondary' %>
+      <%= link_to 'Reset', reporting_pages_url, class: "btn btn-secondary" %>
+    </div>
+
   </div>
 <% end %>
 

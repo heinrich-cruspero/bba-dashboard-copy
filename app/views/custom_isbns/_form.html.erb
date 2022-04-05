@@ -1,57 +1,56 @@
-<div class="mdl-layout mdl-js-layout">
-  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
-    <div class="mdl-card__title">
-      <h5 class="mdl-card__title-text mdl-color-text--grey"> <%= action_name.humanize %> Custom Isbn</h5>
-    </div>
-
-    <div class="mdl-card__supporting-text">
-      <%= form_with(model: custom_isbn, local: true) do |form| %>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :text_isbn, class: "mdl-textfield__label" %>
-          <%= form.text_field :text_isbn, id: :custom_isbn_text_isbn, class: "mdl-textfield__input", required: true %>
-          <% custom_isbn.errors.full_messages_for(:text_isbn).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :alt_isbn, class: "mdl-textfield__label" %>
-          <%= form.text_field :alt_isbn, id: :custom_isbn_alt_isbn, class: "mdl-textfield__input" %>
-          <% custom_isbn.errors.full_messages_for(:alt_isbn).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :custom_isbn, class: "mdl-textfield__label" %>
-          <%= form.text_field :custom_isbn, id: :custom_isbn_custom_isbn, class: "mdl-textfield__input", required: true %>
-          <% custom_isbn.errors.full_messages_for(:custom_isbn).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :code_isbn, class: "mdl-textfield__label" %>
-          <%= form.text_field :code_isbn, id: :custom_isbn_code_isbn, class: "mdl-textfield__input" %>
-          <% custom_isbn.errors.full_messages_for(:code_isbn).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :tag, class: "mdl-textfield__label" %>
-          <%= form.text_field :tag, id: :custom_isbn_tag, class: "mdl-textfield__input" %>
-          <% custom_isbn.errors.full_messages_for(:tag).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-card__actions">
-          <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
-        </div>
-      <% end %>
-
-      <%= link_to 'Back', custom_isbns_path %>
+<div class="row">
+  <div class="col-sm">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 md-5">
+      <h5 class="h2"> <%= action_name.humanize %> Custom Isbn</h5>
     </div>
   </div>
+</div>
+
+<div class="row w-50">
+  <%= form_with(model: custom_isbn, local: true) do |form| %>
+    <div class="mb-3">
+      <%= form.label :text_isbn, class: "mdl-textfield__label" %>
+      <%= form.text_field :text_isbn, id: :custom_isbn_text_isbn, class: "form-control", required: true %>
+      <% custom_isbn.errors.full_messages_for(:text_isbn).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :alt_isbn, class: "mdl-textfield__label" %>
+      <%= form.text_field :alt_isbn, id: :custom_isbn_alt_isbn, class: "form-control" %>
+      <% custom_isbn.errors.full_messages_for(:alt_isbn).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :custom_isbn, class: "mdl-textfield__label" %>
+      <%= form.text_field :custom_isbn, id: :custom_isbn_custom_isbn, class: "form-control", required: true %>
+      <% custom_isbn.errors.full_messages_for(:custom_isbn).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :code_isbn, class: "mdl-textfield__label" %>
+      <%= form.text_field :code_isbn, id: :custom_isbn_code_isbn, class: "form-control" %>
+      <% custom_isbn.errors.full_messages_for(:code_isbn).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :tag, class: "mdl-textfield__label" %>
+      <%= form.text_field :tag, id: :custom_isbn_tag, class: "form-control" %>
+      <% custom_isbn.errors.full_messages_for(:tag).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= link_to 'Back', custom_isbns_path,  class: "btn btn-secondary" %>
+      <%= form.submit "Submit", class: "btn btn-success" %>
+    </div>
+  <% end %>
 </div>

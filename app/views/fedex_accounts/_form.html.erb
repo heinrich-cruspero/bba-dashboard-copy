@@ -1,120 +1,120 @@
-<div class="mdl-layout mdl-js-layout">
-  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
-    <div class="mdl-card__title">
-      <h5 class="mdl-card__title-text mdl-color-text--grey"> <%= action_name.humanize %> Account</h5>
-    </div>
-
-    <div class="mdl-card__supporting-text">
-      <%= form_with(model: fedex_account, local: true) do |form| %>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :key, class: "mdl-textfield__label" %>
-          <%= form.text_field :key, id: :fedex_account_key, class: "mdl-textfield__input", required: true %>
-          <% fedex_account.errors.full_messages_for(:key).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :password, class: "mdl-textfield__label" %>
-          <%= form.text_field :password, id: :fedex_account_password, class: "mdl-textfield__input", required: true %>
-          <% fedex_account.errors.full_messages_for(:password).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :account_number, class: "mdl-textfield__label" %>
-          <%= form.text_field :account_number, id: :fedex_account_account_number, class: "mdl-textfield__input", required: true %>
-          <% fedex_account.errors.full_messages_for(:account_number).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :meter_number, class: "mdl-textfield__label" %>
-          <%= form.text_field :meter_number, id: :fedex_account_meter_number, class: "mdl-textfield__input", required: true %>
-          <% fedex_account.errors.full_messages_for(:meter_number).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :name, class: "mdl-textfield__label" %>
-          <%= form.text_field :name, id: :fedex_account_name, class: "mdl-textfield__input", required: true %>
-          <% fedex_account.errors.full_messages_for(:name).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :company_name, class: "mdl-textfield__label" %>
-          <%= form.text_field :company_name, id: :fedex_account_company_name, class: "mdl-textfield__input", required: true %>
-          <% fedex_account.errors.full_messages_for(:company_name).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :phone_number, class: "mdl-textfield__label" %>
-          <%= form.text_field :phone_number, id: :fedex_account_phone_number, class: "mdl-textfield__input", required: true %>
-          <% fedex_account.errors.full_messages_for(:phone_number).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :street, class: "mdl-textfield__label" %>
-          <%= form.text_field :street, id: :fedex_account_street, class: "mdl-textfield__input", required: true %>
-          <% fedex_account.errors.full_messages_for(:street).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :city, class: "mdl-textfield__label" %>
-          <%= form.text_field :city, id: :fedex_account_city, class: "mdl-textfield__input", required: true %>
-          <% fedex_account.errors.full_messages_for(:city).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :state, class: "mdl-textfield__label" %>
-          <%= form.text_field :state, id: :fedex_account_state, class: "mdl-textfield__input", required: true %>
-          <% fedex_account.errors.full_messages_for(:state).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <%= form.label :zip_code, class: "mdl-textfield__label" %>
-          <%= form.text_field :zip_code, id: :fedex_account_zip_code, class: "mdl-textfield__input", required: true %>
-          <% fedex_account.errors.full_messages_for(:zip_code).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield">
-          <%= form.label :prod, class: "mdl-check_box__label" %>
-          <%= form.check_box :prod, id: :fedex_account_prod, class: "mdl-check_box__input" %>
-        </div>
-
-        <div class="mdl-selectfield">
-          <label>Select Users</label><br>
-          <%= select_tag "fedex_account[user_ids][]", options_for_select(User.all.map{|user| [user.email, user.id]}, @fedex_account.users.pluck(:id)), multiple: true, class: 'browser-default', size: 10 %>
-        </div>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <label>Service Type</label><br>
-          <%= form.select :service_type, options_for_select(FedexAccount.service_types.keys) %>
-        </div>
-
-        <div class="mdl-card__actions">
-          <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
-        </div>
-      <% end %>
-
-      <%= link_to 'Back', fedex_accounts_path %>
+<div class="row">
+  <div class="col-sm">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 md-5">
+      <h5 class="h2"> <%= action_name.humanize %> Account</h5>
     </div>
   </div>
+</div>
+
+<div class="row w-50">
+  <%= form_with(model: fedex_account, local: true) do |form| %>
+    <div class="mb-3">
+      <%= form.label :key, class: "mdl-textfield__label" %>
+      <%= form.text_field :key, id: :fedex_account_key, class: "form-control", required: true %>
+      <% fedex_account.errors.full_messages_for(:key).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :password, class: "mdl-textfield__label" %>
+      <%= form.text_field :password, id: :fedex_account_password, class: "form-control", required: true %>
+      <% fedex_account.errors.full_messages_for(:password).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :account_number, class: "mdl-textfield__label" %>
+      <%= form.text_field :account_number, id: :fedex_account_account_number, class: "form-control", required: true %>
+      <% fedex_account.errors.full_messages_for(:account_number).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :meter_number, class: "mdl-textfield__label" %>
+      <%= form.text_field :meter_number, id: :fedex_account_meter_number, class: "form-control", required: true %>
+      <% fedex_account.errors.full_messages_for(:meter_number).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :name, class: "mdl-textfield__label" %>
+      <%= form.text_field :name, id: :fedex_account_name, class: "form-control", required: true %>
+      <% fedex_account.errors.full_messages_for(:name).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :company_name, class: "mdl-textfield__label" %>
+      <%= form.text_field :company_name, id: :fedex_account_company_name, class: "form-control", required: true %>
+      <% fedex_account.errors.full_messages_for(:company_name).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :phone_number, class: "mdl-textfield__label" %>
+      <%= form.text_field :phone_number, id: :fedex_account_phone_number, class: "form-control", required: true %>
+      <% fedex_account.errors.full_messages_for(:phone_number).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :street, class: "mdl-textfield__label" %>
+      <%= form.text_field :street, id: :fedex_account_street, class: "form-control", required: true %>
+      <% fedex_account.errors.full_messages_for(:street).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :city, class: "mdl-textfield__label" %>
+      <%= form.text_field :city, id: :fedex_account_city, class: "form-control", required: true %>
+      <% fedex_account.errors.full_messages_for(:city).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :state, class: "mdl-textfield__label" %>
+      <%= form.text_field :state, id: :fedex_account_state, class: "form-control", required: true %>
+      <% fedex_account.errors.full_messages_for(:state).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :zip_code, class: "mdl-textfield__label" %>
+      <%= form.text_field :zip_code, id: :fedex_account_zip_code, class: "form-control", required: true %>
+      <% fedex_account.errors.full_messages_for(:zip_code).each do |message| %>
+        <span class="mdl-textfield__error"><%= message %></span>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :prod, class: "mdl-check_box__label" %>
+      <%= form.check_box :prod, id: :fedex_account_prod, class: "form-check-input" %>
+    </div>
+
+    <div class="mb-3">
+      <label>Select Users</label><br>
+      <%= select_tag "fedex_account[user_ids][]", options_for_select(User.all.map{|user| [user.email, user.id]}, @fedex_account.users.pluck(:id)), multiple: true, class: 'form-select', size: 10 %>
+    </div>
+
+    <div class="mb-3">
+      <label>Service Type</label><br>
+      <%= form.select :service_type, options_for_select(FedexAccount.service_types.keys), {},  class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= link_to 'Back', fedex_accounts_path,  class: "btn btn-secondary" %>
+      <%= form.submit "Submit", class: "btn btn-success" %>
+    </div>
+  <% end %>
+
 </div>
