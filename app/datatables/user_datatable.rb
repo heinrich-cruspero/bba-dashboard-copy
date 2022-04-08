@@ -28,7 +28,7 @@ class UserDatatable < AjaxDatatablesRails::ActiveRecord
       {
         email: user.email,
         role: user.role,
-        actions: "#{link_to('edit', edit_user_path(user))}
+        actions: "#{link_to('Edit', edit_user_path(user))} |
                   #{link_to('Delete', user, method: :delete, data: { confirm: 'Are you sure?' })}".html_safe
       }
     end

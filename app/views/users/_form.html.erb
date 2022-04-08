@@ -1,23 +1,24 @@
-<div class="mdl-layout mdl-js-layout">
-  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
-    <div class="mdl-card__title">
-      <h5 class="mdl-card__title-text mdl-color-text--grey"> Edit User Role</h5>
-    </div>
-
-    <div class="mdl-card__supporting-text">
-
-    <%= form_with(model: user, local: true) do |form| %>
-      <div class="mdl-textfield mdl-js-textfield">
-        <%= form.label :role, class: "mdl-check_box__label" %>
-        <%= form.select :role, User.roles.keys, class: "mdl-check_box__input" %>
-      </div>
-
-      <div class="mdl-card__actions">
-        <%= form.submit "Submit", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" %>
-      </div>
-    <% end %>
-
-    <%= link_to 'Back', users_path %>
+<div class="row">
+  <div class="col-sm">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 md-5">
+      <h5 class="h2"> Edit User Role</h5>
     </div>
   </div>
+</div>
+
+
+<div class="row w-50">
+
+  <%= form_with(model: user, local: true) do |form| %>
+    <div class="mb-3">
+      <%= form.label :role, class: "mdl-check_box__label" %>
+      <%= form.select :role, User.roles.keys, {}, class: "form-control" %>
+    </div>
+
+    <div class="mdl-card__actions">
+      <%= link_to 'Back', users_path, class: "btn btn-secondary"%>
+      <%= form.submit "Submit", class: "btn btn-success" %>
+    </div>
+  <% end %>
+
 </div>
