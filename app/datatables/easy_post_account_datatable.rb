@@ -54,9 +54,9 @@ class EasyPostAccountDatatable < AjaxDatatablesRails::ActiveRecord
         parcel_height: easy_post_account.parcel_height,
         parcel_weight: easy_post_account.parcel_weight,
         prod: easy_post_account.prod,
-        actions: "#{link_to('Edit', edit_easy_post_account_path(easy_post_account))}
-          #{link_to('Show', easy_post_account_path(easy_post_account))}
-          #{link_to('Delete', easy_post_account, method: :delete, data: { confirm: 'Are you sure?' })}".html_safe
+        actions: "#{link_to('Show', easy_post_account_path(easy_post_account))} |
+                  #{link_to('Edit', edit_easy_post_account_path(easy_post_account))} |
+                  #{link_to('Delete', easy_post_account_path(easy_post_account), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' })}".html_safe
       }
     end
   end

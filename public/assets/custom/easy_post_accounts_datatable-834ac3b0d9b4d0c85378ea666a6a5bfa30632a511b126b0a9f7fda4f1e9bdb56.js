@@ -4,7 +4,6 @@ $(document).on("turbo:load", function () {
     serverSide: true,
     ajax: $('#easy_post_accounts-table').data('source'),
     pagingType: 'full_numbers',
-    pageLength: 10,
     columns: [
       { data: 'key', orderable: true, searchable: true },
       { data: 'account_number', orderable: true, searchable: true },

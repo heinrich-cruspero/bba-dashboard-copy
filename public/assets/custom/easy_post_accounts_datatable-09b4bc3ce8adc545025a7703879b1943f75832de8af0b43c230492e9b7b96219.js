@@ -4,7 +4,6 @@ $(document).on("turbo:load", function () {
     serverSide: true,
     ajax: $('#easy_post_accounts-table').data('source'),
     pagingType: 'full_numbers',
-    pageLength: 10,
     columns: [
       { data: 'key', orderable: true, searchable: true },
       { data: 'account_number', orderable: true, searchable: true },
@@ -21,7 +20,7 @@ $(document).on("turbo:load", function () {
       { data: 'parcel_height', orderable: false, searchable: false },
       { data: 'parcel_weight', orderable: false, searchable: false },
       { data: 'prod', orderable: false, searchable: false },
-      { data: 'actions', orderable: false, searchable: false },
+      // { data: 'actions', orderable: false, searchable: false },
     ]
   });
 
