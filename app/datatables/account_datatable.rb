@@ -45,9 +45,9 @@ class AccountDatatable < AjaxDatatablesRails::ActiveRecord
         zip: account.zip,
         phone_number: account.phone_number,
         extension: account.extension,
-        actions: "#{link_to('Show', edit_account_path(account))}
-                  #{link_to('Edit', account_path(account))}
-                  #{link_to('Delete', account, method: :delete, data: { confirm: 'Are you sure?' })}".html_safe
+        actions: "#{link_to('Show', account_path(account))} |
+                  #{link_to('Edit', edit_account_path(account))} |
+                  #{link_to('Delete', account_path(account), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' })}".html_safe
       }
     end
   end
