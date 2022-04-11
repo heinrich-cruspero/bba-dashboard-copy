@@ -41,7 +41,7 @@ class WantListsController < ApplicationController
       if @want_list.save
         format.html { redirect_to want_lists_url, notice: 'Want list was successfully created.' }
       else
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity}
       end
     end
   end

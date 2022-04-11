@@ -8,128 +8,86 @@
 </div>
 
 <div class="row w-50">
-    <%= form_with(model: want_list, local: true) do |form| %>
-      <div class="form-group">
-        <%= form.label :name, class: "form-label" %>
-        <%= form.text_field :name, id: :want_list_name, class: "form-control" %>
-        <% want_list.errors.full_messages_for(:name).each do |message| %>
-          <span class="alert alert-primary"><%= message %></span>
-        <% end %>
-      </div>
+  <%= bootstrap_form_with(model: want_list, local: true) do |form| %>
+    <div class="form-group">
+      <%= form.text_field :name, id: :want_list_name %>
+    </div>
 
-      </br>
-
-      <div class="form-check" data-toggle="buttons-radio">
-        <%= form.collection_radio_buttons :want_list_privacy_id, WantListPrivacy.all, :id, :name do |b| %>
-          <%= b.label { b.radio_button(class: "form-check-input") + " " + b.text } %> <br>
-        <% end %>
-        <% want_list.errors.full_messages_for(:want_list_privacy_id).each do |message| %>
-          <span class="alert alert-primary"><%= message %></span>
-        <% end %>
-      </div>
-
-      </br>
-
-      <div class="mdl-cell mdl-cell--12-col no-margin" id="users_select_div" <% if @want_list.nil? || @want_list.want_list_privacy_id != 3 %> hidden <% end %> >
-        <%= hidden_field_tag "want_list[user_ids][]", nil %>
-        <% User.where.not(id: current_user.id).each do |user| %>
-          <%= check_box_tag "want_list[user_ids][]", user.id, @want_list.users.include?(user), id: dom_id(user) %>
-          <%= label_tag dom_id(user), user.email %><br>
-        <% end %>
-      </div>
-
-      </br>
-
-      <div class="mb-3">
-        <%= form.file_field :want_list_items, class: "form-control" %>
-        <% want_list.errors.full_messages_for(:want_list_items).each do |message| %>
-          <span class="mdl-textfield__error"><%= message %></span>
-        <% end %>
-      </div>
-
-      <div class="mb-3">
-        <%= form.label :active, class: "form-label" %>
-        <%= form.check_box :active, class: "form-check-input" %>
-      </div>
-
-      <div class="mb-3">
-        <%= form.label :reset, class: "form-label" %>
-        <%= form.check_box :reset, class: "form-check-input" %>
-      </div>
-
-      <% if current_user.admin? %>
-        <div class="mb-3">
-          <%= form.label :valore_account_id, 'Valore Account', class: "form-label" %></br>
-          <%= form.select :valore_account_id, ValoreAccount.all.collect {|x| [x.name, x.id]}, {include_blank: 'Select Valore Account'}, class: "form-control" %>
-          <% want_list.errors.full_messages_for(:valore_account_id).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        </br>
-
-        <div class="mb-3">
-          <%= form.label :valore_want_list_id, 'Valore Want List ID', class: "form-label" %></br>
-          <%= form.select :valore_want_list_id, [1,2,3,4,5], {include_blank: 'Select Valore Want list ID'}, class: "form-control" %>
-          <% want_list.errors.full_messages_for(:valore_want_list_id).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        </br>
-
-        <div class="mb-3">
-          <%= form.label :valore_po_number, class: "mdl-textfield__label" %>
-          <%= form.text_field :valore_po_number, id: :want_list_valore_po_number, class: "form-control" %>
-          <% want_list.errors.full_messages_for(:valore_po_number).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        </br>
-
-        <div class="mdl-textfield mdl-js-textfield">
-          <%= form.label :valore_shipment_date %>
-          <%= form.date_field :valore_shipment_date, id: :want_list_valore_shipment_date, class: "form-control" %>
-          <% want_list.errors.full_messages_for(:valore_shipment_date).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        </br>
-
-        <div class="mb-3">
-          <%= form.label :valore_shipment_frequency, 'Valore Shipment Frequency', class: "form-label" %></br>
-          <%= form.select :valore_shipment_frequency, %i[Weekly Pallet Scheduled], {include_blank: 'Select Valore Shipment Frequency'}, class: "form-control" %>
-          <% want_list.errors.full_messages_for(:valore_shipment_frequency).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        </br>
-
-        <div class="mb-3">
-          <%= form.label :abe_account_id, 'Abe Account', class: "form-label" %></br>
-          <%= form.select :abe_account_id, AbeAccount.all.collect {|x| [x.email, x.id]}, {include_blank: 'Select Abe Account'}, class: "form-control" %>
-          <% want_list.errors.full_messages_for(:abe_account_id).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
-
-        </br>
-
-        <div class="mb-3">
-          <%= form.label :thrift_account_id, 'Thrift Account', class: "form-label" %></br>
-          <%= form.select :thrift_account_id, ThriftAccount.all.collect {|x| [x.name, x.id]}, {include_blank: 'Select Thrift Account'}, class: "form-control" %>
-          <% want_list.errors.full_messages_for(:thrift_account_id).each do |message| %>
-            <span class="mdl-textfield__error"><%= message %></span>
-          <% end %>
-        </div>
+    <div class="mb-3">
+      <%= form.collection_radio_buttons :want_list_privacy_id, WantListPrivacy.all, :id, :name do |b| %>
+        <%= b.label { b.radio_button(class: "form-check-input") + " " + b.text } %> <br>
       <% end %>
+    </div>
 
-      <div class="mdl-card__actions">
-        <%= link_to 'Back', want_lists_path, class: "btn btn-secondary"%>
-        <%= form.submit "Submit", class: "btn btn-success" %>
+    </br>
+
+    <div class="mb-3" id="users_select_div" <% if @want_list.nil? || @want_list.want_list_privacy_id != 3 %> hidden <% end %> >
+      <%= hidden_field_tag "want_list[user_ids][]", nil %>
+      <% User.where.not(id: current_user.id).each do |user| %>
+        <%= check_box_tag "want_list[user_ids][]", user.id, @want_list.users.include?(user), id: dom_id(user) %>
+        <%= label_tag dom_id(user), user.email %><br>
+      <% end %>
+    </div>
+
+    </br>
+
+    <div class="mb-3">
+      <%= form.file_field :want_list_items %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.check_box :active, class: "form-check-input" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.check_box :reset, class: "form-check-input" %>
+    </div>
+
+    <% if current_user.admin? %>
+      <div class="mb-3">
+        <%= form.select :valore_account_id, ValoreAccount.all.collect {|x| [x.name, x.id]}, {include_blank: 'Select Valore Account'}, {:required => true} %>
+      </div>
+
+      </br>
+
+      <div class="mb-3">
+        <%= form.select :valore_want_list_id, [1,2,3,4,5], {include_blank: 'Select Valore Want list ID'}, {:required => true} %>
+      </div>
+
+      </br>
+
+      <div class="mb-3">
+        <%= form.text_field :valore_po_number, id: :want_list_valore_po_number %>
+      </div>
+
+      </br>
+
+      <div class="mdl-textfield mdl-js-textfield">
+        <%= form.date_field :valore_shipment_date, id: :want_list_valore_shipment_date %>
+      </div>
+
+      </br>
+
+      <div class="mb-3">
+        <%= form.select :valore_shipment_frequency, %i[Weekly Pallet Scheduled], {include_blank: 'Select Valore Shipment Frequency'}, {:required => true} %>
+      </div>
+
+      </br>
+
+      <div class="mb-3">
+        <%= form.select :abe_account_id, AbeAccount.all.collect {|x| [x.email, x.id]}, {include_blank: 'Select Abe Account'}, {:required => true} %>
+      </div>
+
+      </br>
+
+      <div class="mb-3">
+        <%= form.select :thrift_account_id, ThriftAccount.all.collect {|x| [x.name, x.id]}, {include_blank: 'Select Thrift Account'}, {:required => true} %>
       </div>
     <% end %>
+
+    <div class="mdl-card__actions">
+      <%= link_to 'Back', want_lists_path, class: "btn btn-secondary"%>
+      <%= form.submit "Submit", class: "btn btn-success" %>
+    </div>
+  <% end %>
 </div>
