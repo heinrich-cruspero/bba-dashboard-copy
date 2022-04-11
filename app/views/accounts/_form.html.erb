@@ -7,84 +7,45 @@
 </div>
 
 <div class="row w-50">
-  <%= form_with(model: account, local: true) do |form| %>
+  <%= bootstrap_form_with(model: @account, local: true) do |form| %>
     <div class="mb-3">
-      <%= form.select :source_id, Source.all.collect {|x| ["#{x.source_type.name} - #{x.name}", x.id]}, {include_blank: 'Select Source', required: true}, class: "form-control" %>
-      <% account.errors.full_messages_for(:source_id).each do |message| %>
-        <span class="mdl-textfield__error"><%= message %></span>
-      <% end %>
+      <%= form.select :source_id, Source.all.collect {|x| ["#{x.source_type.name} - #{x.name}", x.id]}, {:include_blank => true}, {:required => true} %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :name, class: "mdl-textfield__label" %>
-      <%= form.text_field :name, id: :account_name, class: "form-control", required: true, class: "form-control" %>
-      <% account.errors.full_messages_for(:name).each do |message| %>
-        <span class="mdl-textfield__error"><%= message %></span>
-      <% end %>
+      <%= form.text_field :name, id: :account_name %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :account_number, class: "mdl-textfield__label" %>
-      <%= form.text_field :account_number, id: :account_account_number, class: "form-control", required: true %>
-      <% account.errors.full_messages_for(:account_number).each do |message| %>
-        <span class="mdl-textfield__error"><%= message %></span>
-      <% end %>
+      <%= form.text_field :account_number, id: :account_account_number %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :address_ln1, class: "mdl-textfield__label" %>
-      <%= form.text_field :address_ln1, id: :account_address_ln1, class: "form-control", required: true %>
-      <% account.errors.full_messages_for(:address_ln1).each do |message| %>
-        <span class="mdl-textfield__error"><%= message %></span>
-      <% end %>
+      <%= form.text_field :address_ln1, id: :account_address_ln1 %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :address_ln2, class: "mdl-textfield__label" %>
-      <%= form.text_field :address_ln2, id: :account_address_ln2, class: "form-control" %>
-      <% account.errors.full_messages_for(:address_ln2).each do |message| %>
-        <span class="mdl-textfield__error"><%= message %></span>
-      <% end %>
+      <%= form.text_field :address_ln2, id: :account_address_ln2 %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :city, class: "mdl-textfield__label" %>
-      <%= form.text_field :city, id: :account_city, class: "form-control", required: true %>
-      <% account.errors.full_messages_for(:city).each do |message| %>
-        <span class="mdl-textfield__error"><%= message %></span>
-      <% end %>
+      <%= form.text_field :city, id: :account_city %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :state, class: "mdl-textfield__label" %>
-      <%= form.text_field :state, id: :account_state, class: "form-control", required: true %>
-      <% account.errors.full_messages_for(:state).each do |message| %>
-        <span class="mdl-textfield__error"><%= message %></span>
-      <% end %>
+      <%= form.text_field :state, id: :account_state %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :zip, class: "mdl-textfield__label" %>
-      <%= form.text_field :zip, id: :account_zip, class: "form-control", required: true %>
-      <% account.errors.full_messages_for(:zip).each do |message| %>
-        <span class="mdl-textfield__error"><%= message %></span>
-      <% end %>
+      <%= form.text_field :zip, id: :account_zip %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :phone_number, class: "mdl-textfield__label" %>
-      <%= form.text_field :phone_number, id: :account_phone_number, class: "form-control" %>
-      <% account.errors.full_messages_for(:phone_number).each do |message| %>
-        <span class="mdl-textfield__error"><%= message %></span>
-      <% end %>
+      <%= form.text_field :phone_number, id: :account_phone_number %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :extension, class: "mdl-textfield__label" %>
-      <%= form.text_field :extension, id: :account_extension, class: "form-control" %>
-      <% account.errors.full_messages_for(:extension).each do |message| %>
-        <span class="mdl-textfield__error"><%= message %></span>
-      <% end %>
+      <%= form.text_field :extension, id: :account_extension %>
     </div>
 
     <div class="mb-3">

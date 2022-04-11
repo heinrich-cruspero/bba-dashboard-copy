@@ -90,3 +90,6 @@ gem 'will_paginate-bootstrap4'
 gem 'cssbundling-rails'
 gem 'aws-sdk-rails'
 gem 'aws-sdk-s3'
+
+gem "bootstrap", "~> 5.0"
+gem "bootstrap_form", "~> 5.0"

@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
       if @account.save
         format.html { redirect_to @account, notice: 'Account was successfully created.' }
       else
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity}
       end
     end
   end
