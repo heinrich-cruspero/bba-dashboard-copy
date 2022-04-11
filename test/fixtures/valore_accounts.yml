@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  buyer_id: MyString
+  access_key_id: MyString
+  secret_access_key: MyString
+  queue_url: MyString
+
+two:
+  name: MyString
+  buyer_id: MyString
+  access_key_id: MyString
+  secret_access_key: MyString
+  queue_url: MyString
