@@ -4,6 +4,7 @@ $(document).on("turbo:load", function () {
     serverSide: true,
     ajax: $('#accounts-table').data('source'),
     pagingType: 'full_numbers',
+    "scrollX": true,
     pageLength: 10,
     columns: [
       { data: 'name', orderable: true, searchable: true },
