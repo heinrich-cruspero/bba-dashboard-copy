@@ -47,8 +47,7 @@ class AllWantListItemDatatable < AjaxDatatablesRails::ActiveRecord
         list_price: record.book.nil? ? '' : record.book.list_price,
         percent_of_list: record.book.nil? ? '' : record.book.list_price * 0.50,
         max_bs: record.book.nil? ? '' : record.book.max_bs,
-        # actions: "#{link_to('Edit', edit_want_list_item_path(record), method: :get, class: 'mdl-js-ripple-effect')}
-          #{link_to('Delete', record, method: :delete, data: { confirm: 'Are you sure?' }) if @view.can? :destroy, record}".html_safe
+        actions: "#{link_to('Edit', edit_want_list_item_path(record))}".html_safe
       }
     end
   end

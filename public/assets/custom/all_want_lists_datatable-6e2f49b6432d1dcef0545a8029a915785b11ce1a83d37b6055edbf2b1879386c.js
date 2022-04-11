@@ -19,7 +19,7 @@ $(document).on("turbo:load", function () {
             { data: 'list_price', orderable: true, searchable: false },
             { data: 'percent_of_list', orderable: true, searchable: false },
             { data: 'max_bs', orderable: true, searchable: false },
-            { data: 'actions', orderable: false, searchable: false },
+            {data: 'actions', orderable: false, searchable: false},
         ],
     });
 

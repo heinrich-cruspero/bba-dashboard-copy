@@ -2,7 +2,7 @@
 
 ##
 class WantListItem < ApplicationRecord
-  validates :ean, presence: true
+  validates :ean, :quantity, :quantity_purchased, :max_price, presence: true
   validates :ean, length: { is: 13 }
   validates_uniqueness_of :ean, scope: %i[want_list_id ean]
 

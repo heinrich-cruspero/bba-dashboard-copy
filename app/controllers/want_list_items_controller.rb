@@ -39,7 +39,7 @@ class WantListItemsController < ApplicationController
         format.html { redirect_to session[:request_referer].nil? ? request.referer : session[:request_referer], notice: 'Want_list_item was successfully created.' }
         format.json { render status: :created, location: @want_list_item }
       else
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity}
         format.json { render status: :unprocessable_entity, location: @want_list_item }
       end
     end
@@ -57,7 +57,7 @@ class WantListItemsController < ApplicationController
                       notice: 'Want list item was successfully updated.'
         end
       else
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity}
       end
     end
   end

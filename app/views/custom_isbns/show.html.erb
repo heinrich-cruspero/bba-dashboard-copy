@@ -1,35 +1,43 @@
-<div class="mdl-layout mdl-js-layout">
-  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
-    <div class="mdl-card__supporting-text">
-      <p id="notice"><%= notice %></p>
+<div class="row w-50">
+  <p id="notice"><%= notice %></p>
 
-      <p>
-        <strong>Text isbn:</strong>
-        <%= @custom_isbn.text_isbn %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Text isbn:</strong>
+      <%= @custom_isbn.text_isbn %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Alt isbn:</strong>
-        <%= @custom_isbn.alt_isbn %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Alt isbn:</strong>
+      <%= @custom_isbn.alt_isbn %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Custom isbn:</strong>
-        <%= @custom_isbn.custom_isbn %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Custom isbn:</strong>
+      <%= @custom_isbn.custom_isbn %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Code isbn:</strong>
-        <%= @custom_isbn.code_isbn %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Code isbn:</strong>
+      <%= @custom_isbn.code_isbn %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Tag:</strong>
-        <%= @custom_isbn.tag %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Tag:</strong>
+      <%= @custom_isbn.tag %>
+    </p>
+  </div>
 
-      <%= link_to 'Edit', edit_custom_isbn_path(@custom_isbn) %>
-      <%= link_to 'Back', custom_isbns_path %>
-    </div>
+  <div class="mb-3">
+    <%= link_to 'Edit', edit_custom_isbn_path(@custom_isbn), class: "btn btn-success" %>
+    <%= link_to 'Back', custom_isbns_path, class: "btn btn-secondary" %>
   </div>
 </div>

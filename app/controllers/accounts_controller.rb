@@ -37,7 +37,7 @@ class AccountsController < ApplicationController
       if @account.update(account_params)
         format.html { redirect_to @account, notice: 'Account was successfully updated.' }
       else
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity}
       end
     end
   end

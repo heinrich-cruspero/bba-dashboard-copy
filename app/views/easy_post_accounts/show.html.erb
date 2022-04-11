@@ -1,96 +1,127 @@
+<div class="row w-50">
+  <p id="notice"><%= notice %></p>
 
-<div class="mdl-layout mdl-js-layout">
-  <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
-    <div class="mdl-card__supporting-text easy_post_form">
-      <p id="notice"><%= notice %></p>
+  <div class="mb-3">
+    <p>
+      <strong>Key:</strong>
+      <%= @easy_post_account.key %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Key:</strong>
-        <%= @easy_post_account.key %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Account number:</strong>
+      <%= @easy_post_account.account_number %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Account number:</strong>
-        <%= @easy_post_account.account_number %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Name:</strong>
+      <%= @easy_post_account.name %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Name:</strong>
-        <%= @easy_post_account.name %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Company name:</strong>
+      <%= @easy_post_account.company_name %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Company name:</strong>
-        <%= @easy_post_account.company_name %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Company name:</strong>
+      <%= @easy_post_account.email %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Company name:</strong>
-        <%= @easy_post_account.email %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Phone number:</strong>
+      <%= @easy_post_account.phone_number %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Phone number:</strong>
-        <%= @easy_post_account.phone_number %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Street:</strong>
+      <%= @easy_post_account.street %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Street:</strong>
-        <%= @easy_post_account.street %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>City:</strong>
+      <%= @easy_post_account.city %>
+    </p>
+  </div>
 
-      <p>
-        <strong>City:</strong>
-        <%= @easy_post_account.city %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>State:</strong>
+      <%= @easy_post_account.state %>
+    </p>
+  </div>
 
-      <p>
-        <strong>State:</strong>
-        <%= @easy_post_account.state %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Zip code:</strong>
+      <%= @easy_post_account.zip_code %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Zip code:</strong>
-        <%= @easy_post_account.zip_code %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Zip code:</strong>
+      <%= @easy_post_account.country %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Zip code:</strong>
-        <%= @easy_post_account.country %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Parcel Length:</strong>
+      <%= @easy_post_account.parcel_length %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Parcel Length:</strong>
-        <%= @easy_post_account.parcel_length %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Parcel Height:</strong>
+      <%= @easy_post_account.parcel_height %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Parcel Height:</strong>
-        <%= @easy_post_account.parcel_height %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Parcel Weight:</strong>
+      <%= @easy_post_account.parcel_weight %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Parcel Weight:</strong>
-        <%= @easy_post_account.parcel_weight %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Parcel Width:</strong>
+      <%= @easy_post_account.parcel_width %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Parcel Width:</strong>
-        <%= @easy_post_account.parcel_width %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>Prod:</strong>
+      <%= @easy_post_account.prod %>
+    </p>
+  </div>
 
-      <p>
-        <strong>Prod:</strong>
-        <%= @easy_post_account.prod %>
-      </p>
+  <div class="mb-3">
+    <p>
+      <strong>User:</strong>
+      <%= @easy_post_account.users.map{ |user| user.email }.join(', ') %>
+    </p>
+  </div>
 
-      <p>
-        <strong>User:</strong>
-        <%= @easy_post_account.users.map{ |user| user.email }.join(', ') %>
-      </p>
-
-      <%= link_to 'Edit', edit_easy_post_account_path(@easy_post_account) %> |
-      <%= link_to 'Back', easy_post_accounts_path %>
-    </div>
+  <div class="mb-3">
+    <%= link_to 'Edit', edit_easy_post_account_path(@easy_post_account), class: "btn btn-success" %>
+    <%= link_to 'Back', easy_post_accounts_path, class: "btn btn-secondary" %>
   </div>
 </div>
