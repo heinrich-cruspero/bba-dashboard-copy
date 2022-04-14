@@ -12,7 +12,7 @@
     <% if current_user.warehouse? %>
       <li> <a href="<%= rental_returns_path %>">Rental Returns</a> </li>
     <% end %>
-    <% if not current_user.admin? %>
+    <% if current_user.admin? %>
       <li> <a href="<%= books_url %>">Books</a> </li>
       <li> <a href="<%= want_lists_url %>">Want Lists</a> </li>
       <li> <a href="<%= want_list_items_url %>">WantList Items</a> </li>
