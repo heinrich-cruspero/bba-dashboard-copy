@@ -1,5 +1,33 @@
-<%= form_for(resource, :html => {class: "form-signin"}, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= bootstrap_form_for(resource, :html => {class: "form-signin"}, as: resource_name, url: session_path(resource_name)) do |f| %>
   <h1 class="h3 mb-3 font-weight-normal">BBA Dashboard</h1>
+
+
+      <div class="mb-3">
+        <%= f.email_field :email, autofocus: true, class: "mdl-textfield__input" %>
+        <% resource.errors.full_messages_for(:email).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+        <% end %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.password_field :password, autocomplete: "off", class: "mdl-textfield__input" %>
+        <% resource.errors.full_messages_for(:password).each do |message| %>
+            <span class="mdl-textfield__error"><%= message %></span>
+        <% end %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+          <div class="mb-3">
+            <%= f.check_box :remember_me, class: "mdl-checkbox__input" %>
+          </div>
+      <% end -%>
+
+      <div class="mdl-card__actions mdl-card--border">
+        <%= f.submit "Log in", class: "btn btn-success" %>
+      </div>
+
+      <%= render "devise/shared/links" %>
+
 
   <%= link_to '<i class="fab fa-google"></i> Sign in with Google'.html_safe, user_google_oauth2_omniauth_authorize_path, class: "btn btn-lg btn-primary btn-block" %><br />
 <% end %>
