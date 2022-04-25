@@ -6,6 +6,7 @@ class WantListItemDatatable < AjaxDatatablesRails::ActiveRecord
 
   def_delegator :@view, :link_to
   def_delegator :@view, :edit_want_list_item_path
+  def_delegator :@view, :want_list_item_path
   # def_delegator :@view, :tooltip_field
 
   def initialize(params, opts = {})
@@ -38,15 +39,15 @@ class WantListItemDatatable < AjaxDatatablesRails::ActiveRecord
         quantity: record.quantity,
         quantity_purchased: record.quantity_purchased,
         max_price: record.max_price,
-        author: record.book.nil? ? '', # : tooltip_field('author', record.book.id, record.book.author),
-        title: record.book.nil? ? '', #: tooltip_field('title', record.book.id, record.book.title),
+        author: record.book.nil? ? '' : record.book.author,
+        title: record.book.nil? ? '' : record.book.title,
         publisher: record.book.nil? ? '' : record.book.publisher,
         edition: record.book.nil? ? '' : record.book.edition,
         list_price: record.book.nil? ? '' : record.book.list_price,
         percent_of_list: record.book.nil? ? '' : record.book.list_price * 0.50,
         max_bs: record.book.nil? ? '' : record.book.max_bs,
-        actions: "#{link_to('Edit', edit_want_list_item_path(record), method: :get, class: 'mdl-js-ripple-effect')}
-                  #{link_to('Delete', record, method: :delete, data: { confirm: 'Are you sure?' }) if @view.can? :destroy, record}".html_safe
+        actions: "#{link_to('Edit', edit_want_list_item_path(record))} |
+                  #{link_to('Delete', want_list_item_path(record), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' })}".html_safe
       }
     end
   end

@@ -70,7 +70,7 @@ class WantListsController < ApplicationController
   def items
     respond_to do |format|
       format.html
-      format.json { render json: WantListItemDatatable.new(view_context, want_list_id: @want_list.id) }
+      format.json { render json: WantListItemDatatable.new(params, view_context: view_context, want_list_id: @want_list.id) }
     end
   end
 
