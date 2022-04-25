@@ -1,28 +1,35 @@
 
-<div class="row">
-<%= form_tag reporting_pages_url, method: :get, class:'' do %>
+<div>
+<%= form_tag reporting_pages_url, method: :get, class:'row' do %>
   <% searched_valore_ids = params['data'] ? params['data']['valore_account_ids'] : nil %>
-  <div class="mdl-grid">
-    <div class="mb-3">
-      <label>Select Account</label>
-      <% @valore_accounts.each do |valore_account| %><br>
-        <%= check_box_tag "data[valore_account_ids][]", valore_account.id, (searched_valore_ids ? searched_valore_ids.include?(valore_account.id.to_s) : nil), class: "form-check-input" %>
-        <%= label_tag valore_account.name %>
-      <% end %>
+
+    <div class="col-sm-6">
+      <div class="form-check form-check-inline">
+        <label>Select Account</label>
+        <% @valore_accounts.each do |valore_account| %><br>
+          <%= check_box_tag "data[valore_account_ids][]", valore_account.id, (searched_valore_ids ? searched_valore_ids.include?(valore_account.id.to_s) : nil), class: "form-check-input" %>
+          <%= label_tag valore_account.name %>
+        <% end %>
+      </div>
     </div>
 
-    <div class="mb-3">
-      <label>Select Order Created Date</label>
-      <%= text_field_tag "data[from_date]", (params['data'] ? params['data']['from_date'] : nil), id: 'from_date', class: 'form-control w-25', autocomplete: 'off' %>
-      <%= text_field_tag "data[to_date]", (params['data'] ? params['data']['to_date'] : nil), id: 'to_date', class: 'form-control w-25', autocomplete: 'off' %>
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="col-sm-12">
+          <label>Select Order Created Date</label>
+        </div>
+        <div class="col-sm-4">
+          <%= text_field_tag "data[from_date]", (params['data'] ? params['data']['from_date'] : nil), id: 'from_date', class: 'form-control', autocomplete: 'off' %>
+        </div>
+        <div class="col-sm-4">
+          <%= text_field_tag "data[to_date]", (params['data'] ? params['data']['to_date'] : nil), id: 'to_date', class: 'form-control', autocomplete: 'off' %>
+        </div>
+        <div class="col-sm-4">
+          <%= submit_tag 'Search', name: nil, id: 'search_valore_orders', class: 'btn btn-secondary' %>
+          <%= link_to 'Reset', reporting_pages_url, class: "btn btn-secondary" %>
+        </div>
+      </div>
     </div>
-
-    <div class="mb-3">
-      <%= submit_tag 'Search', name: nil, id: 'search_valore_orders', class: 'btn btn-secondary' %>
-      <%= link_to 'Reset', reporting_pages_url, class: "btn btn-secondary" %>
-    </div>
-
-  </div>
 <% end %>
 </div>
 
