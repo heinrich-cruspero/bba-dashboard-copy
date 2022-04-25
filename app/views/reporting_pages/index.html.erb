@@ -1,5 +1,6 @@
 
-<%= form_tag reporting_pages_url, method: :get, class:'mdl-cell mdl-cell--12-col graybox' do %>
+<div class="row">
+<%= form_tag reporting_pages_url, method: :get, class:'' do %>
   <% searched_valore_ids = params['data'] ? params['data']['valore_account_ids'] : nil %>
   <div class="mdl-grid">
     <div class="mb-3">
@@ -23,6 +24,7 @@
 
   </div>
 <% end %>
+</div>
 
 <%# Export CSV filter %>
 <div class="clearfix">

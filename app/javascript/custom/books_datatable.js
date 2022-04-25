@@ -9,9 +9,9 @@ $(document).on("turbo:load", function () {
     scrollCollapse: true,
     scrollX: true,
     pageLength: 100,
-    fixedColumns:   {
-      left: 4,
-    },
+    // fixedColumns:   {
+    //   leftColumns: 4,
+    // },
     columns: [
       { data: 'ean', orderable: false, searchable: true },
       { data: 'isbn', orderable: false, searchable: true },

@@ -2,8 +2,11 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 // import "bootstrap"
-import "src/jquery"
 import "src/datatables-bs5"
+import "src/jquery"
+import "src/jquery-ui"
+
+import "custom/reporting_pages_date_range"
 
 import "custom/sidebar"
 import "custom/books_datatable"
@@ -19,3 +22,4 @@ import "custom/thrift_orders_datatable"
 import "custom/easy_post_accounts_datatable"
 import "custom/reporting_pages_datatable"
 import "custom/want_list_items_datatable"
+import "custom/dataTable.fixedColumn.min"
