@@ -124,6 +124,7 @@ a:focus {
   border: none;
   border-radius: 0;
   margin-bottom: 20px;
+  background-color: #374750;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -159,7 +160,7 @@ a:focus {
   left: 0;
   height: 100vh;
   z-index: 999;
-  background: #343a40;
+  background: #374750;
   color: #fff;
   transition: all 0.3s;
 }
@@ -170,7 +171,7 @@ a:focus {
 
 #sidebar .sidebar-header {
   padding: 20px;
-  background: #343a40;
+  background: #374750;
 }
 
 #sidebar ul.components {

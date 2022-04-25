@@ -1,5 +1,5 @@
 $(document).on("turbo:load", function () {
-  let $dataTable = $('#books-datatable').dataTable({
+  let $dataTable = $('#books-datatable').DataTable({
     processing: true,
     serverSide: true,
     ajax: $('#books-datatable').data('source'),
@@ -9,8 +9,8 @@ $(document).on("turbo:load", function () {
     scrollCollapse: true,
     scrollX: true,
     pageLength: 100,
-    fixedColumns: {
-      leftColumns: 4
+    fixedColumns:   {
+      left: 4,
     },
     columns: [
       { data: 'ean', orderable: false, searchable: true },

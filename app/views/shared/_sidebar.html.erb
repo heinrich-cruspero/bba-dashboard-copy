@@ -6,26 +6,26 @@
   </div>
   <ul class="list-unstyled components">
     <% if current_user.user? %>
-      <li> <a href="<%= books_url %>">Books</a> </li>
-      <li> <a href="<%= want_lists_url %>">Want Lists</a> </li>
+      <li> <a href="<%= books_url %>"><i class="bi bi-book"></i>&nbsp;&nbsp;Books</a> </li>
+      <li> <a href="<%= want_lists_url %>"><i class="bi bi-list-ul"></i>&nbsp;&nbsp;Want Lists</a> </li>
     <% end %>
     <% if current_user.warehouse? %>
-      <li> <a href="<%= rental_returns_path %>">Rental Returns</a> </li>
+      <li> <a href="<%= rental_returns_path %>"><i class="bi bi-arrow-left-square"></i>&nbsp;&nbsp;Rental Returns</a> </li>
     <% end %>
     <% if current_user.admin? %>
-      <li> <a href="<%= books_url %>">Books</a> </li>
-      <li> <a href="<%= want_lists_url %>">Want Lists</a> </li>
-      <li> <a href="<%= want_list_items_url %>">WantList Items</a> </li>
-      <li> <a href="<%= rental_returns_path %>">Rental Returns</a> </li>
-      <li> <a href="<%= users_url %>">Users</a> </li>
-      <li> <a href="<%= custom_isbns_url %>">Custom ISBN</a> </li>
-      <li> <a href="<%= accounts_url %>">Account</a> </li>
-      <li> <a href="<%= tracked_skus_url %>">Tracked SKUs</a> </li>
-      <li> <a href="<%= audits_url %>">Audits</a> </li>
-      <li> <a href="<%= thrift_orders_path %>">Thrift Orders</a> </li>
-      <li> <a href="<%= fedex_accounts_path %>">Fedex Accounts</a> </li>
-      <li> <a href="<%= easy_post_accounts_path %>">EasyPost Accounts</a> </li>
-      <li> <a href="<%= reporting_pages_path %>">Reporting Dashboard</a> </li>
+      <li> <a href="<%= books_url %>"><i class="bi bi-book"></i>&nbsp;&nbsp;Books</a> </li>
+      <li> <a href="<%= want_lists_url %>"><i class="bi bi-list-ul"></i>&nbsp;&nbsp;Want Lists</a> </li>
+      <li> <a href="<%= want_list_items_url %>"><i class="bi bi-list-ul"></i>&nbsp;&nbsp;WantList Items</a> </li>
+      <li> <a href="<%= rental_returns_path %>"><i class="bi bi-arrow-left-square"></i>&nbsp;&nbsp;Rental Returns</a> </li>
+      <li> <a href="<%= users_url %>"><i class="bi bi-people"></i>&nbsp;&nbsp;Users</a> </li>
+      <li> <a href="<%= custom_isbns_url %>"><i class="bi bi-bookshelf"></i>&nbsp;&nbsp;Custom ISBN</a> </li>
+      <li> <a href="<%= accounts_url %>"><i class="bi bi-person"></i>&nbsp;&nbsp;Account</a> </li>
+      <li> <a href="<%= tracked_skus_url %>"><i class="bi bi-bookshelf"></i>&nbsp;&nbsp;Tracked SKUs</a> </li>
+      <li> <a href="<%= audits_url %>"><i class="bi bi-bullseye"></i>&nbsp;&nbsp;Audits</a> </li>
+      <li> <a href="<%= thrift_orders_path %>"><i class="bi bi-receipt"></i>&nbsp;&nbsp;Thrift Orders</a> </li>
+      <li> <a href="<%= fedex_accounts_path %>"><i class="bi bi-truck"></i>&nbsp;&nbsp;Fedex Accounts</a> </li>
+      <li> <a href="<%= easy_post_accounts_path %>"><i class="bi bi-truck"></i>&nbsp;&nbsp;EasyPost Accounts</a> </li>
+      <li> <a href="<%= reporting_pages_path %>"><i class="bi bi-list-ul"></i>&nbsp;&nbsp;Reporting Dashboard</a> </li>
     <% end %>
   </ul>
 </nav>
