@@ -56,11 +56,13 @@ group :development, :test do
   gem 'capybara'
   gem 'faker'
   gem 'rspec-rails'
+  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "rspec-rails"
+  gem "factory_bot_rails"
   gem 'simplecov', require: false
 end
 
 group :test do
-  gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'shoulda-matchers'
 end

@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :source_type do
-    name Faker::Company.name
+    name {Faker::Company.name}
   end
 end

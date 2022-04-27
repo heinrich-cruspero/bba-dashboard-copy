@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :source do
     association :source_type
-    name Faker::Company.name
+    name {Faker::Company.name}
   end
 end
