@@ -57,6 +57,7 @@ class ReportingPageDatatable < AjaxDatatablesRails::ActiveRecord
                             max(valore_orders.price) AS max_price, ROUND(AVG(valore_orders.price)::numeric,2) AS avg_price,
                             books.author,  books.title, books.publisher, books.publication_date,
                             books.edition, books.list_price')
+
     if params['data'].present?
       from_date = params['data']['from_date']
       to_date = params['data']['to_date']

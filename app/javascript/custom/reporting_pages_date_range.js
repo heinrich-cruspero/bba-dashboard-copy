@@ -1,4 +1,4 @@
-$(function() {
+$(document).on("turbo:load", function () {
     $( "#from_date" ).datepicker({
         dateFormat: 'mm-dd-yy',
         changeMonth: true,
@@ -11,8 +11,8 @@ $(function() {
     });
 
     $('#search_valore_orders').click(function() {
-        isChecked = $("input[type=checkbox]:checked").length == 0;
-        isDateSelected = ($('#from_date').val() == "" || $('#to_date').val() == "");
+        var isChecked = $("input[type=checkbox]:checked").length == 0;
+        var isDateSelected = ($('#from_date').val() == "" || $('#to_date').val() == "");
         if(isChecked && isDateSelected) {
             if($('#from_date').val() && isChecked) {
                 alert("Please select to date");

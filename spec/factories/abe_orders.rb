@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :abe_order do
-    order_id Faker::Number.number(10)
-    dryrun Faker::Boolean.boolean(0.5)
-    reference_id Faker::Number.number(10)
+    order_id Faker::Number.number(digits: 10)
+    dryrun Faker::Boolean.boolean(true_ratio: 0.5)
+    reference_id Faker::Number.number(digits: 10)
   end
 end
