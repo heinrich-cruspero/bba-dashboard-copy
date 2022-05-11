@@ -187,6 +187,8 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jmespath (1.6.1)
+    jsbundling-rails (1.0.2)
+      railties (>= 6.0.0)
     jwt (2.3.0)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -422,6 +424,7 @@ DEPENDENCIES
   httparty
   importmap-rails
   jbuilder
+  jsbundling-rails (~> 1.0, >= 1.0.2)
   listen (~> 3.2)
   omniauth-google-oauth2
   pg (>= 0.18, < 2.0)

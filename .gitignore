@@ -19,3 +19,6 @@
 .byebug_history
 
 /public
+
+/app/assets/builds/*
+!/app/assets/builds/.keep

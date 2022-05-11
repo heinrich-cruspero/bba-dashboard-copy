@@ -57,7 +57,6 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
-  gem "rspec-rails"
   gem "factory_bot_rails"
   gem 'simplecov', require: false
 end
@@ -97,3 +96,4 @@ gem "bootstrap", "~> 5.0"
 gem "bootstrap_form", "~> 5.0"
 
 gem 'rubocop-faker', '~> 1.1'
+gem 'jsbundling-rails', '~> 1.0', '>= 1.0.2'
