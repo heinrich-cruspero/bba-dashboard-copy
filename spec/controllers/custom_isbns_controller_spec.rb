@@ -20,7 +20,7 @@ RSpec.describe CustomIsbnsController, type: :controller do
   describe 'GET #index' do
     it 'returns a success response' do
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response.code).to eq('200')
     end
   end
 
@@ -28,14 +28,14 @@ RSpec.describe CustomIsbnsController, type: :controller do
     it 'returns a success response' do
       custom_isbn = CustomIsbn.create! valid_attributes
       get :show, params: { id: custom_isbn.to_param }, session: valid_session
-      expect(response).to be_success
+      expect(response.code).to eq('200')
     end
   end
 
   describe 'GET #new' do
     it 'returns a success response' do
       get :new, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response.code).to eq('200')
     end
   end
 
@@ -43,7 +43,7 @@ RSpec.describe CustomIsbnsController, type: :controller do
     it 'returns a success response' do
       custom_isbn = CustomIsbn.create! valid_attributes
       get :edit, params: { id: custom_isbn.to_param }, session: valid_session
-      expect(response).to be_success
+      expect(response.code).to eq('200')
     end
   end
 
@@ -64,7 +64,7 @@ RSpec.describe CustomIsbnsController, type: :controller do
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'new' template)" do
         post :create, params: { custom_isbn: invalid_attributes }, session: valid_session
-        expect(response).to_not be_success
+        expect(response.code).to_not eq('200')
       end
     end
   end
@@ -93,7 +93,7 @@ RSpec.describe CustomIsbnsController, type: :controller do
       it "returns a success response (i.e. to display the 'edit' template)" do
         custom_isbn = CustomIsbn.create! valid_attributes
         put :update, params: { id: custom_isbn.to_param, custom_isbn: invalid_attributes }, session: valid_session
-        expect(response).to_not be_success
+        expect(response.code).to_not eq('200')
       end
     end
   end

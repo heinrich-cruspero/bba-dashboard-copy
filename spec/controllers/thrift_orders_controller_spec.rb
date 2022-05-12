@@ -20,14 +20,14 @@ RSpec.describe ThriftOrdersController, type: :controller do
   describe 'GET #index' do
     it 'returns a success response' do
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response.code).to eq('200')
     end
   end
 
   describe 'GET #items' do
     it 'returns a success response' do
       get :items, params: { id: create(:thrift_order) }, session: valid_session
-      expect(response).to be_success
+      expect(response.code).to eq('200')
     end
   end
 end

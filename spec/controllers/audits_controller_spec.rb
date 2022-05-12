@@ -26,7 +26,7 @@ RSpec.describe AuditsController, type: :controller do
   describe 'GET #index' do
     it 'returns a success response' do
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response.code).to eq('200')
     end
   end
 
@@ -34,7 +34,7 @@ RSpec.describe AuditsController, type: :controller do
     it 'returns a success response' do
       audit = Audit.create! valid_attributes
       get :show, params: { id: audit.to_param }, session: valid_session
-      expect(response).to be_success
+      expect(response.code).to eq('200')
     end
   end
 
@@ -42,7 +42,7 @@ RSpec.describe AuditsController, type: :controller do
     context 'with valid params' do
       it 'returns a success response' do
         get :new, params: { tracked_sku: create(:tracked_sku) }, session: valid_session
-        expect(response).to be_success
+        expect(response.code).to eq('200')
       end
 
       it 'redirects to the edit_audit_path' do
@@ -71,7 +71,7 @@ RSpec.describe AuditsController, type: :controller do
     it 'returns a success response' do
       audit = Audit.create! valid_attributes
       get :edit, params: { id: audit.to_param }, session: valid_session
-      expect(response).to be_success
+      expect(response.code).to eq('200')
     end
   end
 
@@ -92,7 +92,7 @@ RSpec.describe AuditsController, type: :controller do
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'new' template)" do
         post :create, params: { audit: invalid_attributes }, session: valid_session
-        expect(response).to be_success
+        expect(response.code).to eq('200')
       end
     end
   end
@@ -121,7 +121,7 @@ RSpec.describe AuditsController, type: :controller do
       it "returns a success response (i.e. to display the 'edit' template)" do
         audit = Audit.create! valid_attributes
         put :update, params: { id: audit.to_param, audit: invalid_attributes }, session: valid_session
-        expect(response).to be_success
+        expect(response.code).to eq('200')
       end
     end
   end

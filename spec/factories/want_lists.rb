@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :want_list do
     name {'MyString'}
-    owner { create(:admin_user) }
+    owner { create(:admin_user2) }
     active { Faker::Boolean.boolean }
     want_list_privacy
   end

@@ -31,7 +31,7 @@ RSpec.describe RentalReturnsController, type: :controller do
   describe 'GET #index' do
     it 'returns a success response' do
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response.code).to eq('200')
     end
   end
 
@@ -39,14 +39,14 @@ RSpec.describe RentalReturnsController, type: :controller do
     it 'returns a success response' do
       rental_return = RentalReturn.create! valid_attributes
       get :show, params: { id: rental_return.to_param }, session: valid_session
-      expect(response).to be_success
+      expect(response.code).to eq('200')
     end
   end
 
   describe 'GET #new' do
     it 'returns a success response' do
       get :new, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response.code).to eq('200')
     end
   end
 
@@ -54,7 +54,7 @@ RSpec.describe RentalReturnsController, type: :controller do
     it 'returns a success response' do
       rental_return = RentalReturn.create! valid_attributes
       get :edit, params: { id: rental_return.to_param }, session: valid_session
-      expect(response).to be_success
+      expect(response.code).to eq('200')
     end
   end
 
@@ -75,7 +75,7 @@ RSpec.describe RentalReturnsController, type: :controller do
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'new' template)" do
         post :create, params: { rental_return: invalid_attributes }, session: valid_session
-        expect(response).to be_success
+        expect(response.code).to eq('200')
       end
     end
   end
@@ -108,7 +108,7 @@ RSpec.describe RentalReturnsController, type: :controller do
       it "returns a success response (i.e. to display the 'edit' template)" do
         rental_return = RentalReturn.create! valid_attributes
         put :update, params: { id: rental_return.to_param, rental_return: invalid_attributes }, session: valid_session
-        expect(response).to be_success
+        expect(response.code).to eq('200')
       end
     end
   end
